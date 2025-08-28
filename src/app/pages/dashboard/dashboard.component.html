@@ -1,8 +1,87 @@
-<section>
+<section class="flex flex-col">
     <div>
-        <h2 class="text-xl font-semibold">Welcome Back, Herve</h2>
+        <h2 class="text-2xl font-semibold">Welcome Back, Herve</h2>
         <p class="text-gray-600">Here's your health summary for today.</p>
     </div>
-    <!-- cards -->
-    
+    <!-- CARDS -->
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3 py-8">
+        <!-- appointement -->
+        <article class="bg-gray-100 rounded-md shadow-md p-4 hover:translate-y-2 scale-105 transition cursor-pointer">
+            <div class="flex space-x-3 text-gray-600">
+                <div><i class="bi bi-people-fill text-xl text-blue-600"></i></div>
+                <div>
+                    <h2 class="flex flex-col font-semibold">2 <span>Appointments</span></h2>
+                </div>
+            </div>
+        </article>
+
+        <!-- medications due -->
+        <article class="bg-gray-100 rounded-md shadow-md p-4 hover:translate-y-2 scale-105 transition cursor-pointer">
+            <div class="flex space-x-3 text-gray-600">
+                <div><i class="bi bi-capsule text-xl text-blue-600"></i></div>
+                <div>
+                    <h2 class="flex flex-col font-semibold">3 <span>Medications due</span></h2>
+                </div>
+            </div>
+        </article>
+
+        <!-- today'smedication -->
+        <article class="bg-gray-100 rounded-md shadow-md p-4 hover:translate-y-2 scale-105 transition cursor-pointer">
+            <div class="flex space-x-3 text-gray-600">
+                <div><i class="bi bi-bell-fill text-blue-600 text-xl"></i></div>
+                <div>
+                    <h2 class="flex flex-col font-semibold">1 <span>New notification</span></h2>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- OTHER CARDS -->
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <!-- upcoming appointments -->
+        <article class="flex flex-col bg-gray-100 p-4 shadow-lg rounded-md hover:translate-y-2 scale-105 transition cursor-pointer">
+            <!-- text -->
+            <div class="text-gray-600 space-y-3">
+                <h2 class="text-xl text-gray-900 font-semibold">Upcoming appointments</h2>
+                <p>10:00AM 
+                    <i class="bi bi-arrow-right"></i>
+                    Dr. Herve Mashukane(Cardiology)
+                </p>
+                <p>2:00PM 
+                    <i class="bi bi-arrow-right"></i>
+                    Dr. Patricia Masiri(General Checkup)
+                </p>
+                <!-- button -->
+                <button class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded-lg transition">
+                    View All Appointments
+                    <i class="bi bi-arrow-right"></i>
+                </button> 
+            </div>
+        </article>
+
+        <!-- today's medications -->
+        <article class="flex flex-col bg-gray-100 p-4 shadow-lg rounded-md hover:translate-y-2 scale-105 transition cursor-pointer">
+            <!-- text -->
+            <div class="text-gray-600 space-y-3">
+                <h2 class="text-xl text-gray-900 font-semibold">Today's Medications</h2>
+                <p>
+                    <i class="bi bi-check-circle-fill text-emerald-500"></i>
+                    Amoxicillin 
+                    <i class="bi bi-arrow-right"></i>
+                    1 pill 9:00AM
+                </p>
+                <p>
+                    <i class="bi bi-clock-fill"></i>
+                    Vitamin C 
+                    <i class="bi bi-arrow-right"></i>
+                    1 pill 6:00PM
+                </p>
+                <!-- button -->
+                <button class="bg-emerald-500 hover:bg-emerald-700 text-white py-2 px-4 rounded-lg transition">
+                    View Medication Tracker
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
+        </article>
+    </div>
 </section>
