@@ -11,7 +11,7 @@ export const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // default route
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full'}, //default route
       { path: 'dashboard', component: DashboardComponent },
       { path: 'patients', component: PatientRecordsComponent },
       { path: 'medications', component: MedicationsComponent },
