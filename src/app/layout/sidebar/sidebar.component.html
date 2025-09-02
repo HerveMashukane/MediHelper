@@ -2,35 +2,46 @@
     <nav class="flex flex-col p-6 space-y-2 text-gray-700 font-medium">
         <!-- Dashboard -->
         <button 
-            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition">
+            routerLink="/dashboard"
+            routerLinkActive="bg-blue-100 text-blue-600"
+            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition">
             <i class="bi bi-speedometer2"></i>
             <span>Dashboard</span>
         </button>
 
         <!-- Appointments -->
-        <button 
-            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition">
+         
+       <button 
+            routerLink="/appointments"
+            routerLinkActive="bg-blue-100 text-blue-600"
+            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition">
             <i class="bi bi-calendar-event-fill"></i>
             <span>Appointments</span>
         </button>
 
+
         <!-- Medication Tracker -->
         <button 
-            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition">
+        routerLink="/medications"
+        routerLinkActive="bg-blue-100 text-blue-600"
+            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition">
             <i class="bi bi-capsule"></i>
             <span>Medication Tracker</span>
         </button>
 
         <!-- Patient Records -->
         <button 
-            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition">
+            routerLink="/patients"
+            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition">
             <i class="bi bi-person-vcard"></i>
             <span>Patient Records</span>
         </button>
 
         <!-- Settings -->
         <button 
-            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition">
+            routerLink="settings"
+            routerLinkActive="settings"
+            class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition">
             <i class="bi bi-gear-fill"></i>
             <span>Settings</span>
         </button>
