@@ -1,20 +1,59 @@
-<article class="flex flex-col bg-gray-100 p-4 shadow-lg rounded-md transition cursor-pointer">
-    <h2 class="text-2xl font-semibold">Hello Herve, here's your appointment schedule</h2>
-            <!-- text -->
-            <div class="text-gray-900 space-y-3">
-                <h2 class="text-xl text-gray-900 font-semibold">Upcoming appointments</h2>
-                <p>10:00AM 
-                    <i class="bi bi-arrow-right"></i>
-                    Dr. Herve Mashukane(Cardiology)
-                </p>
-                <p>2:00PM 
-                    <i class="bi bi-arrow-right"></i>
-                    Dr. Christelle Pelaya(General Checkup)
-                </p>
-                <!-- button -->
-                <button class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded-lg transition">
-                    View Appointments Preview
-                    <i class="bi bi-arrow-right"></i>
-                </button> 
+<section>
+    <!-- Appointment header + filter buttons & add appointment btn -->
+    <div class="space-y-4">
+        <h2 class="text-2xl text-gray-900 font-semibold">Appointments</h2>
+        <div class="flex justify-between pb-4">
+            <!-- filter buttons -->
+            <div class="flex flex-wrap space-x-2">
+                <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">All</button>
+                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Upcoming</button>
+                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Completed</button>
+                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Cancel</button>
             </div>
-        </article>
+            <!-- add appointment btn -->
+            <div>
+                <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Appointment
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- patient appointments table -->
+    <table class="w-full border-2 border-gray-300 bg-blue-500 text-white">
+        <thead>
+            <tr class="border text-white text-left">
+                <th class="border-r p-2">PATIENT</th>
+                <th class="border-r p-2">DOCTOR</th>
+                <th class="border-r p-2">DATE</th>
+                <th class="border-r p-2">TIME</th>
+                <th class="border-r p-2">STATUS</th>
+                <th class="border-r p-2">ACTIONS</th>
+            </tr>
+        </thead>
+
+        <tbody *ngFor="let activity of patientActivities">
+            <tr class="border">
+                <td class="py-3 border-r px-2">{{ activity.patientName }}</td>
+                <td class="py-3 border-r px-2">{{ activity.doctorName }}</td>
+                <td class="py-3 border-r px-2">{{ activity.date }}</td>
+                <td class="py-3 border-r px-2">{{ activity.time }}</td>
+                <td class="py-3 border-r px-2">
+                    <button 
+                        class="px-2 py-1 rounded-full text-white"
+                        [ngClass]="{
+                            'bg-emerald-500 hover:bg-emerald-600 transition': activity.status === 'Completed',
+                            'bg-yellow-500 hover:bg-yellow-600 transition': activity.status === 'Pending',
+                            'bg-red-500 hover:bg-red-600 transition': activity.status === 'Canceled'
+                        }">
+                        {{ activity.status }}
+                    </button>
+                </td>
+                <td class="flex py-3 border-r px-2 space-x-4">
+                    <button class="bg-blue-200 px-4 py-1 text-blue-600 hover:bg-blue-300 rounded-full transition">{{ activity.viewBtn }}</button>
+                    <button class="bg-red-200 px-4 py-1 text-red-600 hover:bg-red-300 rounded-full transition">{{ activity.cancelBtn }}</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

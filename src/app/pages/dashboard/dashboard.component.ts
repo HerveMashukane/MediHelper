@@ -10,11 +10,11 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
   patientActivities: any = [
-    {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'September 2, 2025', status: 'Completed'},
-    {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'September 2, 2025', status: 'Pending'},
-    {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'September 2, 2025', status: 'Canceled'},
     {patientName: 'Herve Mashukane', doctorName: 'Christelle Pelaya', date: 'September 2, 2025', status: 'Completed'},
-    {patientName: 'Christelle Pelaya', doctorName: 'Hiro Mataba', date: 'September 2, 2025', status: 'Pending'},
-    {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'September 2, 2025', status: 'Canceled'},
+    {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'August 10, 2025', status: 'Pending'},
+    {patientName: 'Christelle Pelaya', doctorName: 'Hiro Mataba', date: 'July 2, 2025', status: 'Canceled'},
+    {patientName: 'Herve Mashukane', doctorName: 'Christelle Pelaya', date: 'March 22, 2025', status: 'Completed'},
+    {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'February 18, 2025', status: 'Pending'},
+    {patientName: 'Christelle Pelaya', doctorName: 'Hiro Mataba', date: 'January 15, 2025', status: 'Canceled'},
   ]
 }

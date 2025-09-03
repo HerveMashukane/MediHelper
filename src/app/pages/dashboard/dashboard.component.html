@@ -1,6 +1,6 @@
 <section class="flex flex-col">
     <div>
-        <h2 class="text-2xl font-semibold">Welcome Back, Herve</h2>
+        <h2 class="text-2xl text-gray-900 font-semibold">Welcome Back, Herve</h2>
         <p class="text-gray-600">Here's your health summary for today.</p>
     </div>
     <!-- CARDS -->
@@ -10,7 +10,7 @@
             <div class="flex space-x-3 text-gray-900">
                 <div><i class="bi bi-people-fill text-xl text-blue-500"></i></div>
                 <div>
-                    <h2 class="flex flex-col font-semibold">2 <span>Appointments</span></h2>
+                    <h2 class="flex flex-col font-semibold">2 <span class="text-gray-600">Appointments</span></h2>
                 </div>
             </div>
         </article>
@@ -20,7 +20,7 @@
             <div class="flex space-x-3 text-gray-900">
                 <div><i class="fa-solid fa-pills text-xl text-emerald-500"></i></div>
                 <div>
-                    <h2 class="flex flex-col font-semibold">3 <span>Medications due</span></h2>
+                    <h2 class="flex flex-col font-semibold">3 <span class="text-gray-600">Medications due</span></h2>
                 </div>
             </div>
         </article>
@@ -29,7 +29,7 @@
             <div class="flex space-x-3 text-gray-900">
                 <div><i class="fa-solid fa-person text-xl text-blue-500"></i></div>
                 <div>
-                    <h2 class="flex flex-col font-semibold">50 <span>Active patients</span></h2>
+                    <h2 class="flex flex-col font-semibold">50 <span class="text-gray-600">Active patients</span></h2>
                 </div>
             </div>
         </article>
@@ -39,7 +39,7 @@
             <div class="flex space-x-3 text-gray-900">
                 <div><i class="bi bi-bell-fill text-yellow-600 text-xl"></i></div>
                 <div>
-                    <h2 class="flex flex-col font-semibold">1 <span>New notification</span></h2>
+                    <h2 class="flex flex-col font-semibold">1 <span class="text-gray-600">New notification</span></h2>
                 </div>
             </div>
         </article>
@@ -116,7 +116,7 @@
                     <td class="py-3 border-r px-2">{{ activity.date }}</td>
                     <td class="py-3 border-r px-2">
                         <button 
-                            class="px-2 py-1 rounded-md text-white"
+                            class="px-2 py-1 rounded-full text-white"
                             [ngClass]="{
                                 'bg-emerald-500 hover:bg-emerald-600 transition': activity.status === 'Completed',
                                 'bg-yellow-500 hover:bg-yellow-600 transition': activity.status === 'Pending',
