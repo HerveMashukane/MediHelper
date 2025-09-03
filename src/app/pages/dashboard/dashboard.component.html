@@ -96,37 +96,35 @@
     <!-- recent Patent activity card -->
     <article class="my-8 p-4 bg-gray-100 rounded-md shadow-lg w-full">
         <div class="py-4 text-gray-900">
-            <h2 class="text-xl text-gray-900 font-semibold">Recent Patient activity</h2>
+            <h2 class="text-xl text-gray-900 font-semibold">Recent Patient Activity</h2>
         </div>
         <!-- patient activity table -->
-        <table class="w-full border-2 text-sm">
+        <table class="w-full border-2 border-gray-300 bg-blue-500 text-white">
             <thead>
-                <tr class="border text-gray-600">
-                    <th>PATIENT</th>
-                    <th>DOCTOR</th>
-                    <th>DATE</th>
-                    <th>STATUS</th>
+                <tr class="border text-white text-left">
+                    <th class="border-r p-2">PATIENT</th>
+                    <th class="border-r p-2">DOCTOR</th>
+                    <th class="border-r p-2">DATE</th>
+                    <th class="border-r p-2">STATUS</th>
                 </tr>
             </thead>
 
-            <tbody class="text-center">
+            <tbody *ngFor="let activity of patientActivities">
                 <tr class="border">
-                    <td class="py-3 border-r-2">Herve</td>
-                    <td class="py-3 border-r-2">Christelle</td>
-                    <td class="py-3 border-r-2">September 2, 2025</td>
-                    <td class="py-3 border-r-2">Completed</td>
-                </tr>
-                <tr class="border">
-                    <td class="py-3 border-r-2">Herve</td>
-                    <td class="py-3 border-r-2">Christelle</td>
-                    <td class="py-3 border-r-2">September 2, 2025</td>
-                    <td class="py-3 border-r-2">Completed</td>
-                </tr>
-                <tr class="border">
-                    <td class="py-3 border-r-2">Herve</td>
-                    <td class="py-3 border-r-2">Christelle</td>
-                    <td class="py-3 border-r-2">September 2, 2025</td>
-                    <td class="py-3 border-r-2">Completed</td>
+                    <td class="py-3 border-r px-2">{{ activity.patientName }}</td>
+                    <td class="py-3 border-r px-2">{{ activity.doctorName }}</td>
+                    <td class="py-3 border-r px-2">{{ activity.date }}</td>
+                    <td class="py-3 border-r px-2">
+                        <button 
+                            class="px-2 py-1 rounded-md text-white"
+                            [ngClass]="{
+                                'bg-emerald-500 hover:bg-emerald-600 transition': activity.status === 'Completed',
+                                'bg-yellow-500 hover:bg-yellow-600 transition': activity.status === 'Pending',
+                                'bg-red-500 hover:bg-red-600 transition': activity.status === 'Canceled'
+                            }">
+                            {{ activity.status }}
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
