@@ -1,14 +1,24 @@
 <section>
     <!-- Appointment header + filter buttons & add appointment btn -->
     <div class="space-y-4">
-        <h2 class="text-2xl text-blue-600 font-semibold">Appointments</h2>
+        <h2 class="text-2xl text-blue-600 font-semibold">
+            Appointments
+        </h2>
         <div class="flex justify-between pb-2">
             <!-- filter buttons -->
             <div class="flex flex-wrap space-x-2">
-                <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">All</button>
-                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Upcoming</button>
-                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Completed</button>
-                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Cancel</button>
+                <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                    All
+                </button>
+                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                    Upcoming
+                </button>
+                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                    Completed
+                </button>
+                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                    Cancel
+                </button>
             </div>
             <!-- add appointment btn -->
             <div>
@@ -18,7 +28,9 @@
                 </button>
             </div>
         </div>
-        <h2 class="text-xl text-blue-600 font-semibold pb-2">All Appointments</h2>
+        <h2 class="text-xl text-blue-600 font-semibold pb-2">
+            All Appointments
+        </h2>
     </div>
     <!-- patient appointments table -->
     <table class="w-full border-2 border-gray-300 bg-blue-500 text-white">
@@ -51,8 +63,12 @@
                     </button>
                 </td>
                 <td class="flex py-3 border-r px-2 space-x-4">
-                    <button class="bg-blue-200 px-4 py-1 text-blue-600 hover:bg-blue-300 rounded-full transition">{{ activity.viewBtn }}</button>
-                    <button class="bg-red-200 px-4 py-1 text-red-600 hover:bg-red-300 rounded-full transition">{{ activity.cancelBtn }}</button>
+                    <button class="bg-blue-200 px-4 py-1 text-blue-600 hover:bg-blue-300 rounded-full transition">
+                        {{ activity.viewBtn }}
+                    </button>
+                    <button class="bg-red-200 px-4 py-1 text-red-600 hover:bg-red-300 rounded-full transition">
+                        {{ activity.cancelBtn }}
+                    </button>
                 </td>
             </tr>
         </tbody>
