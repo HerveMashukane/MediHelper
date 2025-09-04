@@ -11,10 +11,10 @@ import { NgForOf } from "@angular/common";
 export class MydoctorsComponent {
   doctors: any = [
     {
-      preferedName: 'Dr. Herve', 
-      fullName: 'Dr. Herve Mashukane', 
+      preferedName: 'Dr. Christelle', 
+      fullName: 'Dr. Christelle Pelaya', 
       image: '/assets/images/herve.png', 
-      alt: 'Dr. Herve Mashukane', 
+      alt: 'Dr. Christelle Pelaya', 
       speciality: 'Generalist', 
       viewBtn: 'View', 
       contactBtn: 'Contact'
@@ -29,19 +29,19 @@ export class MydoctorsComponent {
       contactBtn: 'Contact'
     },
     {
-      preferedName: 'Dr. Herve', 
-      fullName: 'Dr. Herve Mashukane', 
+      preferedName: 'Dr. Hiro', 
+      fullName: 'Dr. Hiro Mataba', 
       image: '/assets/images/herve.png', 
-      alt: 'Dr. Herve Mashukane', 
+      alt: 'Dr. Hiro Mataba', 
       speciality: 'Dermatologist', 
       viewBtn: 'View', 
       contactBtn: 'Contact'
     },
     {
-      preferedName: 'Dr. Herve', 
-      fullName: 'Dr. Herve Mashukane', 
+      preferedName: 'Dr. Patricia', 
+      fullName: 'Dr. Patricia Masiri', 
       image: '/assets/images/herve.png', 
-      alt: 'Dr. Herve Mashukane', 
+      alt: 'Dr. Patricia Masiri', 
       speciality: 'Neurologist', 
       viewBtn: 'View', 
       contactBtn: 'Contact'
@@ -56,10 +56,10 @@ export class MydoctorsComponent {
       contactBtn: 'Contact'
     },
     {
-      preferedName: 'Dr. Herve', 
-      fullName: 'Dr. Herve Mashukane', 
+      preferedName: 'Dr. Hiro', 
+      fullName: 'Dr. Hiro Mataba', 
       image: '/assets/images/herve.png', 
-      alt: 'Dr. Herve Mashukane', 
+      alt: 'Dr. Hiro Mataba', 
       speciality: 'Oncologist', 
       viewBtn: 'View', 
       contactBtn: 'Contact'

@@ -17,16 +17,23 @@
 
     <!-- doctor cards -->
     <div class="grid grid-cols-3 gap-4 pt-8">
-        <div *ngFor="let doctor of doctors" class="flex flex-col items-center bg-white p-4 shadow-lg">
-            <div>
+        <div 
+            *ngFor="let doctor of doctors" 
+            class="flex flex-col items-center bg-white p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
+            <div class="space-y-4">
                 <p class="text-sm text-gray-900">{{ doctor.preferedName }}</p>
                 <img [src]="doctor.image" [alt]="doctor.alt" class="w-20 h-20 rounded-full border border-blue-500">
-                <p class="font-semibold">{{ doctor.fullName }}</p>
-                <p class="text-center text-gray-500">{{ doctor.speciality }}</p>
+                <p class="font-semibold flex flex-col">{{ doctor.fullName }}
+                    <span class="font-normal text-center text-gray-500">{{ doctor.speciality }}</span>
+                </p>
             </div>
             <div class="flex space-x-4">
-                <button class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-600 transition">{{ doctor.viewBtn }}</button>
-                <button class="bg-emerald-100 text-emerald-500 py-1 px-3 rounded-md mt-2 hover:bg-emerald-200 transition">{{ doctor.contactBtn }}</button>
+                <button class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-600 transition">
+                    {{ doctor.viewBtn }}
+                </button>
+                <button class="bg-emerald-100 text-emerald-500 py-1 px-3 rounded-md mt-2 hover:bg-emerald-200 transition">
+                    {{ doctor.contactBtn }}
+                </button>
             </div>
         </div>
     </div>
