@@ -1,1 +1,73 @@
-<p>settings works!</p>
+<section>
+    <!-- title -->
+    <h2 class="text-2xl font-semibold text-blue-500">Settings</h2>
+
+    <!-- main content -->
+    <main class="flex gap-4 w-full">
+        <!-- profile settings form -->
+        <form class="text-gray-900 space-y-4 bg-white p-8 shadow-lg rounded-md w-full">
+            <h3 class="text-lg text-blue-600 font-semibold">Profile Settings</h3>
+            <!-- user full name -->
+            <div class="flex flex-col space-y-2">
+                <label for="name">Full name</label>
+                <input type="text" placeholder="Herve Mashukane" class="border rounded-md px-4 py-2">
+            </div>
+
+            <!-- user email -->
+            <div class="flex flex-col space-y-2">
+                <label for="email">Email</label>
+                <input type="email" name="email" placeholder="hervemashukane@gmailcom" class="border rounded-md px-4 py-2">
+            </div>
+
+            <!-- user password -->
+            <div class="flex flex-col space-y-2">
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="........" class="border rounded-md px-4 py-2">
+            </div>
+
+            <!-- save profile btn -->
+            <div>
+                <button class="bg-blue-500 text-white py-2 px-5 rounded-md hover:bg-blue-600 transition">
+                    Save Profile
+                </button>
+            </div>
+        </form>
+
+        <!-- notification & preferences -->
+        <div class="flex flex-col bg-white p-8 text-gray-900 space-y-2 shadow-lg rounded-md w-full">
+            <h3 class="text-lg text-blue-600 font-semibold">Notifications & Preferences</h3>
+
+            <!-- email notification -->
+            <div class="flex justify-between">
+                <label for="email">Email notifications</label>
+                <input type="checkbox">
+            </div>
+
+            <!-- SMS notifications -->
+            <div class="flex justify-between">
+                <label for="sms">SMS notifications</label>
+                <input type="checkbox">
+            </div>
+
+            <!-- Push notifications -->
+            <div class="flex justify-between">
+                <label for="push">Push notifications</label>
+                <input type="checkbox">
+            </div>
+
+            <!-- dark mode -->
+            <div class="flex justify-between">
+                <label for="darkmode">Dark Mode</label>
+                <input type="checkbox">
+            </div>
+
+            <!-- save preferences btn -->
+            <!-- save profile btn -->
+            <div>
+                <button class="bg-blue-500 text-white py-2 px-5 rounded-md hover:bg-blue-600 transition">
+                    Save Preferences
+                </button>
+            </div>
+        </div>
+    </main>
+</section>
