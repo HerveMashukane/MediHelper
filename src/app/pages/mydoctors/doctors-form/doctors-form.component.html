@@ -1,4 +1,35 @@
 <!-- doctor's form -->
- <form>
-    <p>Hey doctor</p>
+ <form (ngSubmit)="onSubmit()" class="bg-white flex flex-col p-8 space-y-4 w-full shadow-lg rounded-lg">
+    <!-- doctor's full name -->
+    <label for="fullName" class="flex flex-col text-blue-600">
+        Full Name
+        <input [(ngModel)]="fullName" type="text" name="fullName" placeholder="Doctor's full name" class="border-2 rounded-lg p-3 mt-3">
+    </label>
+    
+    <!-- doctor's prefered name -->
+
+        Prefered Name
+        <input [(ngModel)]="preferedName" type="text" name="preferedName" placeholder="Doctor's prefered name" class="border-2 rounded-lg p-3 mt-3">
+
+    <!-- doctor's speciality -->
+    <label for="speciality" class="flex flex-col text-blue-600">
+        Speciality
+        <input [(ngModel)]="speciality" type="text" name="speciality" placeholder="Doctor's speciality" class="border-2 rounded-lg p-3 mt-3">
+    </label>
+
+    <!-- doctor's image -->
+    <label for="image" class="flex flex-col text-blue-600">
+        Select Image
+        <input [(ngModel)]="image" type="file" placeholder="Doctor's image" class="border-2 rounded-lg p-3 mt-3">
+    </label>
+
+    <!-- buttons -->
+    <div class="flex space-x-4">
+        <button type="submit" class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-600 transition">
+            Add Doctor
+        </button>
+        <button class="bg-red-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-600 transition">
+            Cancel
+        </button>
+    </div>
  </form>
