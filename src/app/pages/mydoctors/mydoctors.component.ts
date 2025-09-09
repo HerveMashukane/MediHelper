@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from "@angular/common";
+import { DoctorsFormComponent } from "./doctors-form/doctors-form.component";
 
 @Component({
   selector: 'app-mydoctors',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DoctorsFormComponent],
   templateUrl: './mydoctors.component.html',
   styleUrl: './mydoctors.component.css'
 })
