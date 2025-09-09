@@ -14,12 +14,12 @@ export class MydoctorsComponent implements OnInit {
   doctors: Doctor[] = [];
 
   constructor(private doctorsService: MydoctorsService) {}
-
   ngOnInit(): void {
     this.doctorsService.doctors$.subscribe(data => {
       this.doctors = data;
-    });
+    })
   }
+  
   // doctors: any = [
   //   {
   //     preferedName: 'Dr. Christelle', 

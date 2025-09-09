@@ -16,23 +16,17 @@ export class DoctorsFormComponent {
   speciality = '';
   image = '';
 
-  constructor(private doctorService: MydoctorsService) {}
+  constructor(private doctorsService: MydoctorsService) {}
 
   onSubmit() {
-    if(this.fullName && this.preferedName && this.speciality && this.image) {
+    if(this.fullName && this.preferedName && this.speciality) {
       const newDoctor: Doctor = {
-        id: Date.now(),
         fullName: this.fullName,
         preferedName: this.preferedName,
         speciality: this.speciality,
         image: this.image,
       };
-      this.doctorService.addDoctor(newDoctor);
-
-      this.fullName = '';
-      this.preferedName = '';
-      this.speciality = '';
-      this.image = ''
+      this.doctorsService.addDoctor(newDoctor);
     }
   }
 }
