@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { DoctorsFormComponent } from "./doctors-form/doctors-form.component";
 import { Doctor, MydoctorsService } from '../../services/mydoctors.service';
-import { OnSameUrlNavigation } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -12,16 +12,16 @@ import { OnSameUrlNavigation } from '@angular/router';
   templateUrl: './mydoctors.component.html',
   styleUrl: './mydoctors.component.css'
 })
-export class MydoctorsComponent implements OnInit {
-  doctors: Doctor[] = [];
+export class MydoctorsComponent {
+  doctors$: Observable<Doctor[]>;
 
-  constructor(private doctorsService: MydoctorsService) {}
-
-  ngOnInit(): void {
-    this.doctorsService.doctors$.subscribe(data => {
-      this.doctors = data;
-    })
+  constructor(private doctorsService: MydoctorsService) {
+    this.doctors$ = this.doctorsService.doctors$;
   }
+
+  // ngOnInit(): void {
+  //   this.doctorsService.doctors$.subscribe
+  // }
   // doctors: any = [
   //   {
   //     preferedName: 'Dr. Christelle', 
