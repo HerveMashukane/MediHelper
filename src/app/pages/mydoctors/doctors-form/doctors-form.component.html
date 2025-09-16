@@ -2,10 +2,11 @@
 <h2 class="text-2xl text-blue-500 font-semibold pb-4">Doctors Form</h2>
  <form (ngSubmit)="onSubmit()" class="bg-blue-100 flex flex-col p-8 space-y-4 w-full shadow-lg rounded-lg">
     <!-- doctor's full name -->
-    <label for="fullName" class="flex flex-col text-blue-600">
-        Full Name
-        <input [(ngModel)]="fullName" type="text" name="fullName" placeholder="Doctor's full name" class="bg-gray-100 border-2 rounded-lg p-3 mt-3">
-    </label>
+    <label for="fullName" class="text-blue-600 font-medium">Full Name</label>
+<input [(ngModel)]="fullName" id="fullName" name="fullName" type="text"
+       placeholder="Doctor's full name" required
+       class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+
     
     <!-- doctor's prefered name -->
     <label for="preferedName" class="flex flex-col text-blue-600">
@@ -30,7 +31,7 @@
         <button type="submit" class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-600 transition">
             Add Doctor
         </button>
-        <button class="bg-red-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-600 transition">
+        <button type="button" (click)="onCancel()" class="bg-red-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-600 transition">
             Cancel
         </button>
     </div>

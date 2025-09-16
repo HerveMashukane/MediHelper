@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 import { Doctor, MydoctorsService } from '../../../services/mydoctors.service';
+import { EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-doctors-form',
@@ -45,4 +46,11 @@ export class DoctorsFormComponent {
       reader.readAsDataURL(file);
     }
   }
+
+  // cancel form
+  @Output() cancel = new EventEmitter<void>();
+  onCancel() {
+    this.cancel.emit();
+  }
+
 }

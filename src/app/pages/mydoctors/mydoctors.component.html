@@ -17,7 +17,7 @@
                     'bi bi-plus bg-blue-500 hover:bg-blue-600': !isFormVisible,
                 }">
                 
-                {{ isFormVisible ? 'Close Form' : 'Add new Doctor'}}
+                {{ isFormVisible ? 'Close form' : 'Add new Doctor'}}
             </button>
 
             <select class="bg-blue-100 p-2 text-gray-900">
@@ -57,4 +57,8 @@
 </section>
 
 <!-- doctor form -->
- <app-doctors-form *ngIf="isFormVisible" class="absolute top-0 z-50"></app-doctors-form>
+ <app-doctors-form 
+    [hidden]="!isFormVisible" 
+    (cancel)="toggleForm()" 
+    class="absolute top-0 z-50">
+</app-doctors-form>
