@@ -12,8 +12,12 @@
         <div class="flex space-x-4">
              <button 
                 (click)="toggleForm()"
-                class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-600 transition">
-                <i class="fa-solid fa-plus"></i> Add new Doctor
+                class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 transition" [ngClass]="{
+                    'bi bi-x bg-red-500 hover:bg-red-600': isFormVisible,
+                    'bi bi-plus bg-blue-500 hover:bg-blue-600': !isFormVisible,
+                }">
+                
+                {{ isFormVisible ? 'Close Form' : 'Add new Doctor'}}
             </button>
 
             <select class="bg-blue-100 p-2 text-gray-900">
@@ -53,4 +57,4 @@
 </section>
 
 <!-- doctor form -->
- <app-doctors-form *ngIf="isFormVisible" class="absolute top-0 z-50 w-full"></app-doctors-form>
+ <app-doctors-form *ngIf="isFormVisible" class="absolute top-0 z-50"></app-doctors-form>
