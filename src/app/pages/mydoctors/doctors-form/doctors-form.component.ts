@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
-import { MydoctorsService, Doctor } from '../../../services/mydoctors.service';
+import { Doctor, MydoctorsService } from '../../../services/mydoctors.service';
 
 @Component({
   selector: 'app-doctors-form',
@@ -26,10 +26,8 @@ export class DoctorsFormComponent {
         speciality: this.speciality,
         image: this.image,
       };
-
       this.doctorsService.addDoctor(newDoctor);
-
-      // ✅ Reset form (semicolon instead of comma)
+      // Reset form
       this.fullName = '';
       this.preferedName = '';
       this.speciality = '';

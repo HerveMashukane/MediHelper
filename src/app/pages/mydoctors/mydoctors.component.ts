@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { DoctorsFormComponent } from "./doctors-form/doctors-form.component";
-import { Doctor, MydoctorsService } from '../../services/mydoctors.service';
 import { Observable } from 'rxjs';
-
+import { Doctor, MydoctorsService } from '../../services/mydoctors.service';
 
 @Component({
   selector: 'app-mydoctors',
@@ -18,7 +17,6 @@ export class MydoctorsComponent {
   constructor(private doctorsService: MydoctorsService) {
     this.doctors$ = this.doctorsService.doctors$;
   }
-
   // ngOnInit(): void {
   //   this.doctorsService.doctors$.subscribe
   // }

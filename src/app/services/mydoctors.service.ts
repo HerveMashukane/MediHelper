@@ -15,22 +15,21 @@ export class MydoctorsService {
   private doctorsSource = new BehaviorSubject<Doctor[]>(this.loadDoctorsFromLocalStorage());
   doctors$ = this.doctorsSource.asObservable();
 
-  constructor() {}
-
-  // saveDoctors to local storage
-  private saveDoctorsToLocalStorage(doctors: Doctor[]) {
+  // save doctors to local storage
+  private saveDoctorsToLocaltorage(doctors: Doctor[]) {
     localStorage.setItem('doctors', JSON.stringify(doctors));
   }
 
-  private loadDoctorsFromLocalStorage() : Doctor[] {
+  // load doctors from local storage
+  private loadDoctorsFromLocalStorage(): Doctor[] {
     const storedDoctors = localStorage.getItem('doctors');
-    return storedDoctors ? JSON.parse(storedDoctors) : []
+    return storedDoctors ? JSON.parse(storedDoctors) : [];
   }
-  // Add doctor
+
   addDoctor(doctor: Doctor) {
-    const currentDoctors = this.doctorsSource.value;
-    const updatedDoctors = [...currentDoctors, doctor];
-    this.doctorsSource.next(updatedDoctors);
-    this.saveDoctorsToLocalStorage(updatedDoctors);
+    const currentDoctor = this.doctorsSource.value;
+    const updatedDoctor = [...currentDoctor, doctor]
+    this.doctorsSource.next(updatedDoctor);
+    this.saveDoctorsToLocaltorage(updatedDoctor);
   }
 }
