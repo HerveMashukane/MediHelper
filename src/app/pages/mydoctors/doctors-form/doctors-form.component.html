@@ -1,28 +1,28 @@
 <!-- doctor's form -->
  <h2 class="text-2xl text-blue-500 font-semibold pb-4">Doctors Form</h2>
- <form (ngSubmit)="onSubmit()" class="bg-white flex flex-col p-8 space-y-4 w-full shadow-lg rounded-lg">
+ <form (ngSubmit)="onSubmit()" class="bg-blue-100 flex flex-col p-8 space-y-4 w-full shadow-lg rounded-lg">
     <!-- doctor's full name -->
     <label for="fullName" class="flex flex-col text-blue-600">
         Full Name
-        <input [(ngModel)]="fullName" type="text" name="fullName" placeholder="Doctor's full name" class="border-2 rounded-lg p-3 mt-3">
+        <input [(ngModel)]="fullName" type="text" name="fullName" placeholder="Doctor's full name" class="bg-gray-100 border-2 rounded-lg p-3 mt-3">
     </label>
     
     <!-- doctor's prefered name -->
     <label for="preferedName" class="flex flex-col text-blue-600">
         Prefered Name
-        <input [(ngModel)]="preferedName" type="text" name="preferedName" placeholder="Doctor's prefered name" class="border-2 rounded-lg p-3 mt-3">
+        <input [(ngModel)]="preferedName" type="text" name="preferedName" placeholder="Doctor's prefered name" class="bg-gray-100 border-2 rounded-lg p-3 mt-3">
     </label>
 
     <!-- doctor's speciality -->
     <label for="speciality" class="flex flex-col text-blue-600">
         Speciality
-        <input [(ngModel)]="speciality" type="text" name="speciality" placeholder="Doctor's speciality" class="border-2 rounded-lg p-3 mt-3">
+        <input [(ngModel)]="speciality" type="text" name="speciality" placeholder="Doctor's speciality" class="bg-gray-100 border-2 rounded-lg p-3 mt-3">
     </label>
 
     <!-- doctor's image -->
     <label class="flex flex-col text-blue-600">
     Select Image
-    <input type="file" (change)="onFileSelected($event)" name="image" class="border-2 rounded-lg p-3 mt-3">
+    <input type="file" (change)="onFileSelected($event)" name="image" class="bg-gray-100 border-2 rounded-lg p-3 mt-3">
   </label>
 
     <!-- buttons -->

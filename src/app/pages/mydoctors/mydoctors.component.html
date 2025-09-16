@@ -1,4 +1,4 @@
-<section class="flex flex-col animate-pageFlip">
+<section class="relative flex flex-col animate-pageFlip">
     <h2 class="text-2xl text-blue-500 font-semibold">Doctors List</h2>
 
     <!-- filters -->
@@ -11,6 +11,7 @@
         <!-- add doctor -->
         <div class="flex space-x-4">
              <button 
+                (click)="toggleForm()"
                 class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-600 transition">
                 <i class="fa-solid fa-plus"></i> Add new Doctor
             </button>
@@ -52,4 +53,4 @@
 </section>
 
 <!-- doctor form -->
- <app-doctors-form></app-doctors-form>
+ <app-doctors-form *ngIf="isFormVisible" class="absolute top-0 z-50 w-full"></app-doctors-form>
