@@ -140,11 +140,11 @@
                     <td class="py-3 border-r px-2">{{ activity.date }}</td>
                     <td class="py-3 border-r px-2">
                         <button 
-                            class="px-2 py-1 rounded-full text-white"
+                            class="px-2 py-1 rounded-full"
                             [ngClass]="{
-                                'bg-emerald-500 hover:bg-emerald-600 transition': activity.status === 'Completed',
-                                'bg-yellow-500 hover:bg-yellow-600 transition': activity.status === 'Pending',
-                                'bg-red-500 hover:bg-red-600 transition': activity.status === 'Canceled'
+                                'bg-emerald-200 text-emerald-600 hover:bg-emerald-300 transition': activity.status === 'Completed',
+                                'bg-yellow-200 text-yellow-600 hover:bg-yellow-300 transition': activity.status === 'Pending',
+                                'bg-red-200 text-red-600 hover:bg-red-300 transition': activity.status === 'Canceled'
                             }">
                             {{ activity.status }}
                         </button>

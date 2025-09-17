@@ -13,7 +13,7 @@ export class PatientRecordsComponent {
     {
       preferedName: 'Christelle', 
       fullName: 'Christelle Pelaya', 
-      image: '/assets/images/herve.png', 
+      image: '/assets/images/christelle.png', 
       alt: 'Christelle Pelaya', 
       department: 'Dermatology',
       age: '30',
@@ -35,7 +35,7 @@ export class PatientRecordsComponent {
     {
       preferedName: 'Hiro', 
       fullName: 'Hiro Mataba', 
-      image: '/assets/images/herve.png', 
+      image: '/assets/images/hiro.png', 
       alt: 'Hiro Mataba', 
       department: 'Dermatology', 
       age: '70',
@@ -44,13 +44,13 @@ export class PatientRecordsComponent {
       editBtn: 'Edit'
     },
     {
-      preferedName: 'Patricia', 
-      fullName: 'Patricia Masiri', 
-      image: '/assets/images/herve.png', 
-      alt: 'Patricia Masiri', 
-      department: 'Neurology',
-      age: '40' ,
-      bloodGroup: 'A',
+      preferedName: 'Christelle', 
+      fullName: 'Christelle Pelaya', 
+      image: '/assets/images/christelle.png', 
+      alt: 'Christelle Pelaya', 
+      department: 'Dermatology',
+      age: '30',
+      bloodGroup: 'A+',
       viewBtn: 'View', 
       editBtn: 'Edit'
     },
@@ -68,7 +68,7 @@ export class PatientRecordsComponent {
     {
       preferedName: 'Hiro', 
       fullName: 'Hiro Mataba', 
-      image: '/assets/images/herve.png', 
+      image: '/assets/images/hiro.png', 
       alt: 'Hiro Mataba', 
       department: 'Oncology',
       age: '55',

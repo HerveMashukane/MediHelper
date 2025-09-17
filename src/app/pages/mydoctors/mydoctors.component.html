@@ -13,8 +13,7 @@
             <button 
                 (click)="toggleForm()"
                 class="text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1"
-                [ngClass]="isFormVisible ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'">
-                <i [ngClass]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
+                [ngClass]="isFormVisible ? 'bi bi-x bg-red-500 hover:bg-red-600' : 'bi bi-plus bg-blue-500 hover:bg-blue-600'">
                 <span>{{ isFormVisible ? 'Close Form' : 'Add Doctor' }}</span>
             </button>
 

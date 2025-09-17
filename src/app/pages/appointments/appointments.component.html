@@ -53,18 +53,21 @@
                 <td class="py-3 border-r px-2">{{ activity.time }}</td>
                 <td class="py-3 border-r px-2">
                     <button 
-                        class="px-2 py-1 rounded-full text-white"
+                        class="px-2 py-1 rounded-full"
                         [ngClass]="{
-                            'bg-emerald-500 hover:bg-emerald-600 transition': activity.status === 'Completed',
-                            'bg-yellow-500 hover:bg-yellow-600 transition': activity.status === 'Pending',
-                            'bg-red-500 hover:bg-red-600 transition': activity.status === 'Canceled'
+                            'bg-emerald-200 text-emerald-600 hover:bg-emerald-300 transition': activity.status === 'Completed',
+                            'bg-yellow-200 text-yellow-600 hover:bg-yellow-300 transition': activity.status === 'Pending',
+                            'bg-red-200 text-red-600 hover:bg-red-300 transition': activity.status === 'Canceled'
                         }">
                         {{ activity.status }}
                     </button>
                 </td>
                 <td class="flex py-3 border-r px-2 space-x-4">
-                    <button class="bg-blue-200 px-4 py-1 text-blue-600 hover:bg-blue-300 rounded-full transition">
+                    <button class="bg-blue-200 text-blue-600 px-4 py-1 hover:bg-blue-300 rounded-full transition">
                         {{ activity.viewBtn }}
+                    </button>
+                    <button class="bg-emerald-200 px-4 py-1 text-emerald-600 hover:bg-blue-300 rounded-full transition">
+                        {{ activity.editBtn }}
                     </button>
                     <button class="bg-red-200 px-4 py-1 text-red-600 hover:bg-red-300 rounded-full transition">
                         {{ activity.cancelBtn }}
