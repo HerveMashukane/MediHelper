@@ -2,21 +2,39 @@
 <div *ngIf="isOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn">
   
     <!-- Modal Box -->
-    <div class="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-md animate-fadeIn">
+    <div class="bg-white rounded-lg shadow-lg p-4 w-[90%] max-w-md animate-fadeIn">
         <!-- Header -->
         <div class="flex justify-between items-center border-b pb-2 mb-4">
-        <h3 class="text-xl font-semibold text-blue-600">{{ doctor?.fullName }}</h3>
-        <button (click)="onClose()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+            <h3 class="text-xl font-semibold text-blue-600">{{ doctor?.fullName }}</h3>
+            <button (click)="onClose()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
         </div>
 
-        <!-- Body -->
-        <div class="space-y-3 text-gray-700 text-center">
+        <!-- Body details -->
+        <!-- Image -->
+        <div>
             <img [src]="doctor?.image" [alt]="doctor?.preferedName" class="object-cover w-24 h-24 rounded-full border border-blue-500 mx-auto">
-            <p><strong>Preferred Name:</strong> {{doctor?.preferedName}}</p>
-            <p><strong>Speciality:</strong> {{doctor?.speciality}}</p>
-            <p><strong>Hospital:</strong> {{doctor?.hospital}}</p>
-            <p><strong>Email:</strong> {{doctor?.email}}</p>
-            <p><strong>Phone:</strong> {{doctor?.phone}}</p>
+        </div>
+        <div class="flex justify-between text-sm my-4 space-x-4 text-gray-700 w-full">
+            <!-- Doctor's information -->
+            <div class="border p-2 rounded-md shadow-lg">
+                <p><strong><i class="bi bi-person-fill"></i></strong> {{doctor?.preferedName}}</p>
+                <p><strong><i class="bi bi-mortarboard-fill"></i></strong> {{doctor?.speciality}}</p>
+                <p><strong><i class="bi bi-hospital-fill"></i></strong> {{doctor?.hospital}}</p>
+                <p><strong><i class="bi bi-envelope-fill"></i></strong> {{doctor?.email}}</p>
+                <p><strong><i class="bi bi-phone-fill"></i></strong> {{doctor?.phone}}</p>
+            </div>
+
+            <!-- Biography Box -->
+            <div class="text-sm border p-2 rounded-md shadow-lg w-full">
+                <p>
+                    The <strong class="text-blue-600">{{ doctor?.preferedName }}</strong> is a specialist 
+                    <strong class="text-blue-600">{{ doctor?.speciality }}</strong>, 
+                    with a high performance and strong background in medicine. 
+                    Besides other particular experiences, he has been working 
+                    as a <strong class="text-blue-600">{{ doctor?.speciality }}</strong> 
+                    for +3years,...
+                </p>
+            </div>
         </div>
 
         <!-- Footer -->

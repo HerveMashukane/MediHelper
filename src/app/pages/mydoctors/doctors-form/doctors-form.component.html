@@ -1,8 +1,8 @@
-<section class="p-8 bg-blue-100 rounded-lg lg:w-[600px] lg:left-1/3 md:left-1/3 sm:w-[350px] w-full animate-pageFlip">
-        <h2 class="text-2xl text-center text-blue-500 font-semibold pb-4">Doctors Form</h2>
+<section class="fixed inset-0 bg-black bg-opacity-30 p-8 rounded-lg lg:w-[600px] lg:left-1/3 md:left-1/3 sm:w-[350px] w-full animate-pageFlip">
+        
 
-        <form (ngSubmit)="onSubmit()" class="bg-blue-100 flex flex-col space-y-4 p-8 shadow-lg rounded-lg">
-
+        <form (ngSubmit)="onSubmit()" class="flex flex-col bg-white space-y-4 p-8 shadow-lg rounded-lg">
+                <h2 class="text-2xl text-center text-blue-500 font-semibold pb-4">Doctors Form</h2>
                 <!-- DOCTOR NAMES -->
                 <div class="flex space-x-4">
                         <div class="flex flex-col">
@@ -10,7 +10,7 @@
                                 <label for="fullName" class="text-blue-600 font-medium">Full Name</label>
                                 <input [(ngModel)]="fullName" id="fullName" name="fullName" type="text"
                                         placeholder="Doctor's full name" required
-                                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        class="bg-gray-100 border-2 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >      
                         </div>
 
@@ -19,7 +19,7 @@
                                 <label for="preferedName" class="text-blue-600 font-medium">Preferred Name</label>
                                 <input [(ngModel)]="preferedName" id="preferedName" name="preferedName" type="text"
                                         placeholder="Doctor's preferred name" required
-                                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        class="bg-gray-100 border-2 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >
                         </div>
                 </div>
@@ -30,7 +30,7 @@
                                 <label for="speciality" class="text-blue-600 font-medium">Speciality</label>
                                 <input [(ngModel)]="speciality" id="speciality" name="speciality" type="text"
                                         placeholder="Doctor's speciality" required
-                                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        class="bg-gray-100 border-2 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >
                         </div>
                         <!-- Hospital -->
@@ -38,7 +38,7 @@
                                 <label for="hospital" class="text-blue-600 font-medium">Hospital</label>
                                 <input [(ngModel)]="hospital" id="hospital" name="hospital" type="text"
                                         placeholder="Doctor's hospital" required
-                                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        class="bg-gray-100 border-2 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >
                         </div>
                 </div>
@@ -49,7 +49,7 @@
                                 <label for="email" class="text-blue-600 font-medium">Email</label>
                                 <input [(ngModel)]="email" id="speciality" name="email" type="email"
                                         placeholder="Doctor's email address" required
-                                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        class="bg-gray-100 border-2 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >
                         </div>
                         <div class="flex flex-col">
@@ -57,7 +57,7 @@
                                 <label for="phone" class="text-blue-600 font-medium">Phone</label>
                                 <input [(ngModel)]="phone" id="phone" name="phone" type="tel"
                                         placeholder="Doctor's phone number" required
-                                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        class="bg-gray-100 border-2 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >
                         </div>
                 </div>
@@ -66,7 +66,7 @@
                 <div class="flex flex-col w-full">
                         <label for="image" class="text-blue-600 font-medium">Select Image</label>
                         <input type="file" id="image" (change)="onFileSelected($event)" name="image"
-                                class="bg-gray-100 border rounded-lg p-3 mt-1"
+                                class="bg-gray-100 border-2 rounded-lg p-3 mt-1"
                         >
                 </div>
 
