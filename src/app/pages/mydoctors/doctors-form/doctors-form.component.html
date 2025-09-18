@@ -1,42 +1,48 @@
 <section class="p-8 bg-blue-100 rounded-lg animate-pageFlip">
-    <h2 class="text-2xl text-center text-blue-500 font-semibold pb-4">Doctors Form</h2>
+        <h2 class="text-2xl text-center text-blue-500 font-semibold pb-4">Doctors Form</h2>
 
-    <form (ngSubmit)="onSubmit()" 
-        class="bg-blue-100 flex flex-col p-8 space-y-4 w-full shadow-lg rounded-lg">
+        <form (ngSubmit)="onSubmit()" class="bg-blue-100 flex flex-col p-8 space-y-4 w-full shadow-lg rounded-lg">
 
-    <!-- Full Name -->
-    <label for="fullName" class="text-blue-600 font-medium">Full Name</label>
-    <input [(ngModel)]="fullName" id="fullName" name="fullName" type="text"
-            placeholder="Doctor's full name" required
-            class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <!-- Full Name -->
+                <label for="fullName" class="text-blue-600 font-medium">Full Name</label>
+                <input [(ngModel)]="fullName" id="fullName" name="fullName" type="text"
+                        placeholder="Doctor's full name" required
+                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
 
-    <!-- Preferred Name -->
-    <label for="preferedName" class="text-blue-600 font-medium">Preferred Name</label>
-    <input [(ngModel)]="preferedName" id="preferedName" name="preferedName" type="text"
-            placeholder="Doctor's preferred name" required
-            class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <!-- Preferred Name -->
+                <label for="preferedName" class="text-blue-600 font-medium">Preferred Name</label>
+                <input [(ngModel)]="preferedName" id="preferedName" name="preferedName" type="text"
+                        placeholder="Doctor's preferred name" required
+                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
 
-    <!-- Speciality -->
-    <label for="speciality" class="text-blue-600 font-medium">Speciality</label>
-    <input [(ngModel)]="speciality" id="speciality" name="speciality" type="text"
-            placeholder="Doctor's speciality" required
-            class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <!-- Speciality -->
+                <label for="speciality" class="text-blue-600 font-medium">Speciality</label>
+                <input [(ngModel)]="speciality" id="speciality" name="speciality" type="text"
+                        placeholder="Doctor's speciality" required
+                        class="bg-gray-100 border rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
 
-    <!-- Image -->
-    <label for="image" class="text-blue-600 font-medium">Select Image</label>
-    <input type="file" id="image" (change)="onFileSelected($event)" name="image"
-            class="bg-gray-100 border rounded-lg p-3 mt-1">
+                <!-- Image -->
+                <label for="image" class="text-blue-600 font-medium">Select Image</label>
+                <input type="file" id="image" (change)="onFileSelected($event)" name="image"
+                        class="bg-gray-100 border rounded-lg p-3 mt-1"
+                >
 
-    <!-- Buttons -->
-    <div class="flex space-x-4">
-        <button type="submit" 
-                class="bg-blue-500 text-white py-2 px-4 rounded-md mt-2 hover:bg-blue-600 transition">
-        Add Doctor
-        </button>
-        <button type="button" (click)="onCancel()"
-                class="bg-red-500 text-white py-2 px-4 rounded-md mt-2 hover:bg-red-600 transition">
-        Cancel
-        </button>
-    </div>
-    </form>
+                <!-- Buttons -->
+                <div class="flex space-x-4">
+                        <button 
+                                type="submit" 
+                                class="bg-blue-500 text-white py-2 px-4 rounded-md mt-2 hover:bg-blue-600 transition">
+                                Add Doctor
+                        </button>
+                        <button 
+                                type="button" 
+                                (click)="onCancel()"
+                                class="bg-red-500 text-white py-2 px-4 rounded-md mt-2 hover:bg-red-600 transition">
+                                Cancel
+                        </button>
+                </div>
+        </form>
 </section>
