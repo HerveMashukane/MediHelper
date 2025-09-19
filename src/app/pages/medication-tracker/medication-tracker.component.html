@@ -1,49 +1,49 @@
-<section class="space-y-8 animate-pageFlip">
-    <h2 class="text-2xl text-blue-500 font-semibold">Medication Tracker</h2>
+<section class="animate-pageFlip">
+    <h2 class="text-2xl text-white font-semibold">Medication Tracker</h2>
 
-    <div class="bg-white shadow-lg p-8 space-y-4 rounded-md">
+    <div class="bg-black text-white p-8 space-y-4 rounded-md shadow-2xl">
         <!-- header text and button -->
         <div class="flex justify-between">
-            <h2 class="text-xl text-blue-500 font-semibold">My Medications</h2>
+            <h2 class="text-xl text-white font-semibold">My Medications</h2>
             <!-- add medication button -->
-            <button class="bg-blue-500 text-white py-2 px-5 rounded-md hover:bg-blue-600 transition">
+            <button class="bg-blue-800 text-white py-2 px-5 rounded-md hover:bg-blue-700 transition">
                 <i class="fa-solid fa-plus"></i>
                 Add medication
             </button>
         </div>
 
         <!-- medication table -->
-        <table class="w-full border-2 border-white text-white bg-blue-500 shadow-lg">
+        <table class="w-full border-2 border-gray-700 text-white bg-blue-950 shadow-lg">
             <thead>
-                <tr class="text-left">
-                    <th class="border-r p-2">MEDICATION</th>
-                    <th class="border-r p-2">DOSAGE</th>
-                    <th class="border-r p-2">SCHEDULE</th>
-                    <th class="border-r p-2">STATUS</th>
-                    <th class="border-r p-2">ACTIONS</th>
+                <tr class="text-left text-xl font-semibold">
+                    <th class="border-2 border-gray-700 p-2">Medication</th>
+                    <th class="border-2 border-gray-700 p-2">Dosage</th>
+                    <th class="border-2 border-gray-700 p-2">Schedule</th>
+                    <th class="border-2 border-gray-700 p-2">Status</th>
+                    <th class="border-2 border-gray-700 p-2">Actions</th>
                 </tr>
             </thead>
 
             <tbody *ngFor="let med of medicationsTracker">
-                <tr class="border">
-                    <td class="py-3 border-r px-2">{{ med.name }}</td>
-                    <td class="py-3 border-r px-2">{{ med.dosage }}</td>
-                    <td class="py-3 border-r px-2">{{ med.schedule }}</td>
-                    <td class="py-3 border-r px-2">
+                <tr class="border-2 border-gray-700">
+                    <td class="py-3 border-2 border-gray-700 px-2">{{ med.name }}</td>
+                    <td class="py-3 border-2 border-gray-700 px-2">{{ med.dosage }}</td>
+                    <td class="py-3 border-2 border-gray-700 px-2">{{ med.schedule }}</td>
+                    <td class="py-3 border-2 border-gray-700 px-2">
                         <button 
                         class="py-1 px-3 rounded-full"
                         [ngClass]="{
-                            'bg-emerald-100 text-emerald-600 hover:bg-emerald-200 transition': med.status === 'Active', 
-                            'bg-red-100 text-red-600 hover:bg-red-200 transition': med.status === 'Pending'
+                            'bg-blue-800 text-white hover:bg-blue-700 transition': med.status === 'Active', 
+                            'bg-red-800 text-white hover:bg-red-700 transition': med.status === 'Pending'
                         }"
                         >{{ med.status }}</button>
                     </td>
-                    <td class="flex space-x-2 py-3 border-r px-2">
+                    <td class="flex space-x-2 py-3 px-1">
                         <!-- ation buttons -->
-                        <button class="bg-emerald-100 text-emerald-600 py-1 px-3 rounded-full hover:bg-emerald-200 transition">
+                        <button class="bg-yellow-800 text-white py-1 px-3 rounded-full hover:bg-yellow-700 transition">
                             Edit
                         </button>
-                        <button class="bg-red-100 text-red-600 py-1 px-3 rounded-full hover:bg-red-200 transition">
+                        <button class="bg-red-900 text-white py-1 px-3 rounded-full hover:bg-red-700 transition">
                             Delete
                         </button>
                     </td>

@@ -1,76 +1,76 @@
-<section class="animate-pageFlip">
+<section class="bg-black text-white animate-pageFlip">
     <!-- Appointment header + filter buttons & add appointment btn -->
     <div class="space-y-4">
-        <h2 class="text-2xl text-blue-600 font-semibold">
+        <h2 class="text-2xl font-semibold">
             Appointments
         </h2>
         <div class="flex justify-between pb-2">
             <!-- filter buttons -->
             <div class="flex flex-wrap space-x-2">
-                <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                <button class="bg-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">
                     All
                 </button>
-                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                <button class="bg-blue-400 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
                     Upcoming
                 </button>
-                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                <button class="bg-blue-400 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
                     Completed
                 </button>
-                <button class="bg-blue-300 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">
+                <button class="bg-blue-400 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
                     Cancel
                 </button>
             </div>
             <!-- add appointment btn -->
             <div>
-                <button class="bg-blue-500 text-white py-2 px-5 rounded-md hover:bg-blue-600 transition">
+                <button class="bg-blue-800 text-white py-2 px-5 rounded-md hover:bg-blue-700 transition">
                     <i class="fa-solid fa-plus"></i>
                     Add Appointment
                 </button>
             </div>
         </div>
-        <h2 class="text-xl text-blue-600 font-semibold pb-2">
+        <h2 class="text-xl font-semibold pb-2">
             All Appointments
         </h2>
     </div>
     <!-- patient appointments table -->
-    <table class="w-full border-2 border-white bg-blue-500 text-white shadow-lg">
+    <table class="w-full border-2 border-gray-600 bg-blue-950 text-white shadow-lg">
         <thead>
-            <tr class="border text-left">
-                <th class="border-r p-2">PATIENT</th>
-                <th class="border-r p-2">DOCTOR</th>
-                <th class="border-r p-2">DATE</th>
-                <th class="border-r p-2">TIME</th>
-                <th class="border-r p-2">STATUS</th>
-                <th class="border-r p-2">ACTIONS</th>
+            <tr class="border text-left text-xl font-semibold">
+                <th class="border-2 border-gray-600 p-2">Patient</th>
+                <th class="border-2 border-gray-600 p-2">Doctor</th>
+                <th class="border-2 border-gray-600 p-2">Date</th>
+                <th class="border-2 border-gray-600 p-2">Time</th>
+                <th class="border-2 border-gray-600 p-2">Status</th>
+                <th class="border-2 border-gray-600 p-2">Actions</th>
             </tr>
         </thead>
 
-        <tbody *ngFor="let activity of patientActivities">
-            <tr class="border">
-                <td class="py-3 border-r px-2">{{ activity.patientName }}</td>
-                <td class="py-3 border-r px-2">{{ activity.doctorName }}</td>
-                <td class="py-3 border-r px-2">{{ activity.date }}</td>
-                <td class="py-3 border-r px-2">{{ activity.time }}</td>
-                <td class="py-3 border-r px-2">
+        <tbody *ngFor="let appointment of patientAppointments">
+            <tr class="border-2 border-gray-600">
+                <td class="py-3 border-2 border-gray-600 px-2">{{ appointment.patientName }}</td>
+                <td class="py-3 border-2 border-gray-600 px-2">{{ appointment.doctorName }}</td>
+                <td class="py-3 border-2 border-gray-600 px-2">{{ appointment.date }}</td>
+                <td class="py-3 border-2 border-gray-600 px-2">{{ appointment.time }}</td>
+                <td class="py-3 border-2 border-gray-600 px-2">
                     <button 
                         class="px-2 py-1 rounded-full"
                         [ngClass]="{
-                            'bg-emerald-200 text-emerald-600 hover:bg-emerald-300 transition': activity.status === 'Completed',
-                            'bg-yellow-200 text-yellow-600 hover:bg-yellow-300 transition': activity.status === 'Pending',
-                            'bg-red-200 text-red-600 hover:bg-red-300 transition': activity.status === 'Canceled'
+                            'bg-blue-800 text-white hover:bg-blue-700 transition': appointment.status === 'Completed',
+                            'bg-yellow-800 text-white hover:bg-yellow-700 transition': appointment.status === 'Pending',
+                            'bg-red-800 text-white hover:bg-red-700 transition': appointment.status === 'Canceled'
                         }">
-                        {{ activity.status }}
+                        {{ appointment.status }}
                     </button>
                 </td>
-                <td class="flex py-3 border-r px-2 space-x-4">
-                    <button class="bg-blue-200 text-blue-600 px-4 py-1 hover:bg-blue-300 rounded-full transition">
-                        {{ activity.viewBtn }}
+                <td class="flex py-3 px-2 space-x-4">
+                    <button class="bg-blue-800 text-white px-4 py-1 hover:bg-blue-700 rounded-full transition">
+                        {{ appointment.viewBtn }}
                     </button>
-                    <button class="bg-emerald-200 px-4 py-1 text-emerald-600 hover:bg-blue-300 rounded-full transition">
-                        {{ activity.editBtn }}
+                    <button class="bg-yellow-800 text-white px-4 py-1 hover:bg-yellow-700 rounded-full transition">
+                        {{ appointment.editBtn }}
                     </button>
-                    <button class="bg-red-200 px-4 py-1 text-red-600 hover:bg-red-300 rounded-full transition">
-                        {{ activity.cancelBtn }}
+                    <button class="bg-red-800 px-4 py-1 text-white hover:bg-red-700 rounded-full transition">
+                        {{ appointment.cancelBtn }}
                     </button>
                 </td>
             </tr>

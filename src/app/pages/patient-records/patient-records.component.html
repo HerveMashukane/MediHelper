@@ -1,14 +1,14 @@
 <section class="flex flex-col animate-pageFlip">
-    <h2 class="text-2xl text-blue-500 font-semibold">Patient Records</h2>
+    <h2 class="text-2xl text-white font-semibold">Patient Records</h2>
 
     <!-- patient filters -->
     <div class="flex justify-between py-4">
         <input 
             type="search" 
             placeholder="Search patient.." 
-            class="border rounded-md px-4 py-2 ring-1 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            class="bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-800"
         >
-        <select class="bg-blue-100 p-2 text-gray-900">
+        <select class="bg-gray-800 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
             <option value="All" selected>All Departments</option>
             <option value="Pediatrics">Pediatrics</option>
             <option value="Cardiology">Cardiology</option>
@@ -23,20 +23,20 @@
     <div class="grid grid-cols-3 gap-4 pt-8">
         <div 
             *ngFor="let p of patients" 
-            class="flex flex-col items-center bg-white p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
+            class="flex flex-col items-center bg-blue-950 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
             <div class="space-y-2">
-                <p class="text-sm text-gray-900">{{ p.preferedName }}</p>
-                <img [src]="p.image" [alt]="p.alt" class="object-cover w-20 h-20 rounded-full border border-blue-500">
-                <p class="font-semibold flex flex-col">{{ p.fullName }}
-                    <span class="font-normal text-gray-500">{{ p.department }}</span>
+                <p class="text-sm text-gray-300 italic">{{ p.preferedName }}</p>
+                <img [src]="p.image" [alt]="p.alt" class="object-cover w-20 h-20 rounded-full border border-white">
+                <p class="flex flex-col font-semibold text-white">{{ p.fullName }}
+                    <span class="font-normal text-gray-300">{{ p.department }}</span>
                 </p>
-                <p class="text-gray-600">Age: {{ p.age }} | Blood Group: {{ p.bloodGroup }}</p>
+                <p class="text-gray-300">Age: {{ p.age }} | Blood Group: {{ p.bloodGroup }}</p>
             </div>
             <div class="flex space-x-4">
-                <button class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-600 transition">
+                <button class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition">
                     {{ p.viewBtn }}
                 </button>
-                <button class="bg-emerald-100 text-emerald-500 py-1 px-3 rounded-md mt-2 hover:bg-emerald-200 transition">
+                <button class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
                     {{ p.editBtn }}
                 </button>
             </div>

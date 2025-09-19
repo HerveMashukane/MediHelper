@@ -1,14 +1,14 @@
-<nav class="flex justify-between items-center p-6 shadow-sm bg-white">
+<nav class="flex justify-between border-b border-gray-700 items-center p-6 shadow-2xl bg-black text-white sticky top-0 z-50">
   <!-- Logo -->
   <div class="flex items-center space-x-2">
-    <i class="bi bi-plus-square-fill text-blue-600 text-2xl"></i>
-    <h1 class="text-2xl font-bold text-blue-600">MedHelper</h1>
+    <i class="bi bi-plus-square-fill text-white text-2xl"></i>
+    <h1 class="text-2xl font-bold text-white">MedHelper</h1>
   </div>
 
   <!-- Right section -->
   <div class="flex items-center space-x-6 text-gray-600">
         <!-- Notifications -->
-        <button aria-label="Notifications" class="relative text-xl text-yellow-600 hover:text-yellow-700 transition">
+        <button aria-label="Notifications" class="relative text-2xl text-yellow-600 hover:text-yellow-700 transition">
           <i class="bi bi-bell-fill"></i>
           <!-- notification badge -->
           <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1">1</span>
@@ -19,7 +19,7 @@
           <img 
             src="/assets/images/herve.png" 
             alt="user profile" 
-            class="object-cover w-8 h-8 rounded-full cursor-pointer"
+            class="object-cover object-center w-10 h-10 rounded-full cursor-pointer border border-white"
           >
   
           <!-- online indicator with hover group -->
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Language Switcher -->
-        <select name="language-switcher" class="flex items-center space-x-1 cursor-pointer bg-white hover:text-gray-900">
+        <select name="language-switcher" class="flex items-center space-x-1 cursor-pointer bg-blue-800 text-white p-1 hover:text-blue-950 rounded-md transition">
             <option value="EN" class="text-sm font-medium">🇬🇧 En</option>
             <option value="FR" class="text-sm font-medium">🇫🇷 Fr</option>
         </select>

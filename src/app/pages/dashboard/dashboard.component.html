@@ -1,56 +1,56 @@
-<section class="flex flex-col animate-pageFlip">
+<section class="flex flex-col text-white animate-pageFlip">
     <div>
-        <h2 class="text-2xl text-blue-600 font-semibold">
+        <h2 class="text-2xl font-semibold">
             Welcome Back, Herve
         </h2>
-        <p class="text-gray-600">
+        <p>
             Here's your health summary for today.
         </p>
     </div>
     <!-- CARDS -->
     <div class="grid grid-cols-1 gap-8 md:grid-cols-4 py-8">
         <!-- appointement -->
-        <article class="bg-gray-100 rounded-md shadow-md p-4 hover:thanslate-y-2 scale-105 thansition cursor-pointer">
-            <div class="flex space-x-3 text-gray-900">
-                <div><i class="bi bi-people-fill text-xl text-blue-500"></i></div>
+        <article class="bg-blue-950 rounded-md p-4 hover:scale-105 transition cursor-pointer">
+            <div class="flex space-x-3">
+                <div><i class="bi bi-people-fill text-xl text-blue-600"></i></div>
                 <div>
                     <h2 class="flex flex-col font-semibold">
-                        2 <span class="text-gray-600">Appointments</span>
+                        2 <span>Appointments</span>
                     </h2>
                 </div>
             </div>
         </article>
 
         <!-- medications due -->
-        <article class="bg-gray-100 rounded-md shadow-md p-4 hover:thanslate-y-2 scale-105 thansition cursor-pointer">
-            <div class="flex space-x-3 text-gray-900">
+        <article class="bg-blue-950 rounded-md p-4 hover:scale-105 transition cursor-pointer">
+            <div class="flex space-x-3">
                 <div><i class="fa-solid fa-pills text-xl text-emerald-500"></i></div>
                 <div>
                     <h2 class="flex flex-col font-semibold">
-                        3 <span class="text-gray-600">Medications due</span>
+                        3 <span>Medications due</span>
                     </h2>
                 </div>
             </div>
         </article>
         <!-- active patients -->
-        <article class="bg-gray-100 rounded-md shadow-md p-4 hover:thanslate-y-2 scale-105 thansition cursor-pointer">
-            <div class="flex space-x-3 text-gray-900">
-                <div><i class="fa-solid fa-person text-xl text-blue-500"></i></div>
+        <article class="bg-blue-950 rounded-md p-4 hover:scale-105 transition cursor-pointer">
+            <div class="flex space-x-3">
+                <div><i class="fa-solid fa-person text-xl text-blue-600"></i></div>
                 <div>
                     <h2 class="flex flex-col font-semibold">
-                        50 <span class="text-gray-600">Active patients</span>
+                        50 <span>Active patients</span>
                     </h2>
                 </div>
             </div>
         </article>
 
         <!-- today'smedication -->
-        <article class="bg-gray-100 rounded-md shadow-md p-4 hover:thanslate-y-2 scale-105 thansition cursor-pointer">
-            <div class="flex space-x-3 text-gray-900">
+        <article class="bg-blue-950 rounded-md p-4 hover:scale-105 transition cursor-pointer">
+            <div class="flex space-x-3">
                 <div><i class="bi bi-bell-fill text-yellow-600 text-xl"></i></div>
                 <div>
                     <h2 class="flex flex-col font-semibold">
-                        1 <span class="text-gray-600">New notification</span>
+                        1 <span>New notification</span>
                     </h2>
                 </div>
             </div>
@@ -60,10 +60,10 @@
     <!-- OTHER CARDS -->
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
         <!-- upcoming appointments -->
-        <article class="flex flex-col bg-gray-100 p-4 shadow-lg rounded-md hover:thanslate-y-2 scale-105 thansition cursor-pointer">
+        <article class="flex flex-col bg-blue-950 p-4 rounded-md hover:scale-105 transition cursor-pointer">
             <!-- text -->
-            <div class="text-gray-900 space-y-3">
-                <h2 class="text-xl text-blue-600 font-semibold">
+            <div class="text-white space-y-3">
+                <h2 class="text-xl text-white font-semibold">
                     Upcoming appointments
                 </h2>
                 <p>
@@ -78,7 +78,7 @@
                 </p>
                 <!-- button to appointments full page -->
                 <div>
-                    <a routerLink="/appointments" class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded-lg thansition">
+                    <a routerLink="/appointments" class="bg-blue-800 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition">
                         View All Appointments
                         <i class="bi bi-arrow-right"></i>
                     </a> 
@@ -87,10 +87,10 @@
         </article>
 
         <!-- today's medications -->
-        <article class="flex flex-col bg-gray-100 p-4 shadow-lg rounded-md hover:thanslate-y-2 scale-105 thansition cursor-pointer">
+        <article class="flex flex-col bg-blue-950 p-4 rounded-md hover:scale-105 transition cursor-pointer">
             <!-- text -->
-            <div class="text-gray-900 space-y-3">
-                <h2 class="text-xl text-blue-600 font-semibold">
+            <div class="text-white space-y-3">
+                <h2 class="text-xl text-white font-semibold">
                     Today's Medications
                 </h2>
                 <p>
@@ -100,7 +100,7 @@
                     1 pill 9:00AM
                 </p>
                 <p>
-                    <i class="bi bi-clock-fill"></i>
+                    <i class="bi bi-clock-fill text-blue-800"></i>
                     Vitamin C 
                     <i class="bi bi-arrow-right"></i>
                     1 pill 6:00PM
@@ -116,35 +116,35 @@
         </article>
     </div>
     <!-- recent Patent activity card -->
-    <article class="my-8 p-4 bg-gray-100 rounded-md shadow-lg w-full">
+    <article class="my-8 p-4 rounded-md w-full">
         <div class="py-4 text-gray-900">
-            <h2 class="text-xl text-blue-600 font-semibold">
+            <h2 class="text-xl text-white font-semibold">
                 Recent Patient Activity
             </h2>
         </div>
         <!-- patient activity table -->
-        <table class="w-full border-2 border-gray-300 bg-blue-500 text-white">
+        <table class="w-full bg-blue-950 text-white">
             <thead>
-                <tr class="border text-white text-left">
-                    <th class="border-r p-2">PATIENT</th>
-                    <th class="border-r p-2">DOCTOR</th>
-                    <th class="border-r p-2">DATE</th>
-                    <th class="border-r p-2">STATUS</th>
+                <tr class="border-2 border-gray-600 text-white text-left text-xl font-semibold">
+                    <th class="border-2 border-gray-600 p-2">Patient</th>
+                    <th class="border-2 border-gray-600 p-2">Doctor</th>
+                    <th class="border-2 border-gray-600 p-2">Date</th>
+                    <th class="border-2 border-gray-600 p-2">Status</th>
                 </tr>
             </thead>
 
             <tbody *ngFor="let activity of patientActivities">
-                <tr class="border">
-                    <td class="py-3 border-r px-2">{{ activity.patientName }}</td>
-                    <td class="py-3 border-r px-2">{{ activity.doctorName }}</td>
-                    <td class="py-3 border-r px-2">{{ activity.date }}</td>
-                    <td class="py-3 border-r px-2">
+                <tr class="border border-gray-600">
+                    <td class="py-2 border-2 border-gray-600 px-2">{{ activity.patientName }}</td>
+                    <td class="py-2 border-2 border-gray-600 px-2">{{ activity.doctorName }}</td>
+                    <td class="py-2 border-2 border-gray-600 px-2">{{ activity.date }}</td>
+                    <td class="py-2 border-2 border-gray-600 px-2">
                         <button 
                             class="px-2 py-1 rounded-full"
                             [ngClass]="{
-                                'bg-emerald-200 text-emerald-600 hover:bg-emerald-300 transition': activity.status === 'Completed',
-                                'bg-yellow-200 text-yellow-600 hover:bg-yellow-300 transition': activity.status === 'Pending',
-                                'bg-red-200 text-red-600 hover:bg-red-300 transition': activity.status === 'Canceled'
+                                'bg-blue-800 text-white hover:bg-blue-700 transition': activity.status === 'Completed',
+                                'bg-yellow-800 text-white hover:bg-yellow-700 transition': activity.status === 'Pending',
+                                'bg-red-800 text-white hover:bg-red-700 transition': activity.status === 'Canceled'
                             }">
                             {{ activity.status }}
                         </button>

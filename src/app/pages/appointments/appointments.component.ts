@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './appointments.component.css'
 })
 export class AppointmentsComponent {
-  patientActivities: any = [
+  patientAppointments: any = [
     {patientName: 'Herve Mashukane', doctorName: 'Christelle Pelaya', date: 'September 2, 2025', time: '10:00AM', status: 'Completed', viewBtn: 'View', editBtn: 'Edit', cancelBtn: 'Cancel'},
     {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'August 10, 2025', time: '11:30AM', status: 'Pending', viewBtn: 'View', editBtn: 'Edit', cancelBtn: 'Cancel'},
     {patientName: 'Christelle Pelaya', doctorName: 'Hiro Mataba', date: 'July 2, 2025', time: '2:00PM', status: 'Canceled', viewBtn: 'View', editBtn: 'Edit', cancelBtn: 'Cancel'},

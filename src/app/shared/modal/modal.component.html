@@ -1,22 +1,24 @@
 <!-- Modal Overlay -->
-<div *ngIf="isOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn">
+<div *ngIf="isOpen" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 animate-fadeIn">
   
     <!-- Modal Box -->
-    <div class="bg-white rounded-lg shadow-lg p-4 w-[90%] max-w-md animate-fadeIn">
+    <div class="bg-blue-950 text-white rounded-lg shadow-lg p-4 w-[90%] max-w-md animate-fadeIn">
         <!-- Header -->
-        <div class="flex justify-between items-center border-b pb-2 mb-4">
-            <h3 class="text-xl font-semibold text-blue-600">{{ doctor?.fullName }}</h3>
-            <button (click)="onClose()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+        <div class="flex justify-between items-center border-b border-b-gray-700 pb-2 mb-4">
+            <h3 class="text-xl font-semibold text-white">{{ doctor?.fullName }}</h3>
+            <button (click)="onClose()" class="text-white hover:text-red-700 text-2xl">
+                <i class="bi bi-x-circle text-xl"></i>
+            </button>
         </div>
 
         <!-- Body details -->
         <!-- Image -->
         <div>
-            <img [src]="doctor?.image" [alt]="doctor?.preferedName" class="object-cover w-24 h-24 rounded-full border border-blue-500 mx-auto">
+            <img [src]="doctor?.image" [alt]="doctor?.preferedName" class="object-cover w-24 h-24 rounded-full border border-white mx-auto">
         </div>
-        <div class="flex justify-between text-sm my-4 space-x-4 text-gray-700 w-full">
+        <div class="flex justify-between text-sm my-4 space-x-4 text-white w-full">
             <!-- Doctor's information -->
-            <div class="border p-2 rounded-md shadow-lg">
+            <div class="border border-gray-700 p-2 rounded-md shadow-lg">
                 <p><strong><i class="bi bi-person-fill"></i></strong> {{doctor?.preferedName}}</p>
                 <p><strong><i class="bi bi-mortarboard-fill"></i></strong> {{doctor?.speciality}}</p>
                 <p><strong><i class="bi bi-hospital-fill"></i></strong> {{doctor?.hospital}}</p>
@@ -25,13 +27,13 @@
             </div>
 
             <!-- Biography Box -->
-            <div class="text-sm border p-2 rounded-md shadow-lg w-full">
+            <div class="text-sm text-white border border-gray-700 p-2 rounded-md shadow-lg w-full">
                 <p>
-                    The <strong class="text-blue-600">{{ doctor?.preferedName }}</strong> is a specialist 
-                    <strong class="text-blue-600">{{ doctor?.speciality }}</strong>, 
+                    The <strong class="text-yellow-600">{{ doctor?.preferedName }}</strong> is a specialist 
+                    <strong class="text-yellow-600">{{ doctor?.speciality }}</strong>, 
                     with a high performance and strong background in medicine. 
                     Besides other particular experiences, he has been working 
-                    as a <strong class="text-blue-600">{{ doctor?.speciality }}</strong> 
+                    as a <strong class="text-yellow-600">{{ doctor?.speciality }}</strong> 
                     for +3years,...
                 </p>
             </div>
@@ -39,10 +41,10 @@
 
         <!-- Footer -->
         <div class="flex justify-end space-x-3 mt-4">
-            <button (click)="onClose()" class="bg-gray-200 text-red-600 px-4 py-2 rounded-md hover:bg-red-600 hover:text-gray-200 transition">
+            <button (click)="onClose()" class="bg-red-800 text-white-600 px-4 py-2 rounded-md hover:bg-red-700 transition">
                 Close
             </button>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+            <button class="bg-blue-800 text-white px-4 py-2 rounded-md hover:bg-blue-700">
                 Contact
             </button>
         </div>

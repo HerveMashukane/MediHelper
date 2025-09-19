@@ -1,23 +1,23 @@
-<section class="relative flex flex-col animate-pageFlip">
-    <h2 class="text-2xl text-blue-500 font-semibold">Doctors List</h2>
+<section class="relative flex flex-col animate-pageFlip bg-black text-white">
+    <h2 class="text-2xl text-white font-semibold">Doctors List</h2>
 
     <!-- filters -->
     <div class="flex justify-between py-4">
         <input 
             type="search" 
             placeholder="Search doctor..." 
-            class="border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            class="bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-800"
         >
         <!-- add doctor -->
         <div class="flex space-x-4">
             <button 
                 (click)="toggleForm()"
                 class="text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1"
-                [ngClass]="isFormVisible ? 'bi bi-x bg-red-500 hover:bg-red-600' : 'bi bi-plus bg-blue-500 hover:bg-blue-600'">
+                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-blue-800 hover:bg-blue-700'">
                 <span>{{ isFormVisible ? 'Close Form' : 'Add Doctor' }}</span>
             </button>
 
-            <select class="bg-blue-100 p-2 text-gray-900">
+            <select class="bg-gray-800 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
                 <option value="All" selected>All specialists</option>
                 <option value="Generalist">Generalist</option>
                 <option value="Cardiologist">Cardiologist</option>
@@ -33,26 +33,26 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
         <div 
             *ngFor="let doctor of doctors$ | async"
-            class="flex flex-col items-center bg-white p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
+            class="flex flex-col items-center bg-blue-950 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
             <div class="space-y-4">
-                <p class="text-sm text-gray-500 italic">{{ doctor.preferedName }}</p>
-                <img [src]="doctor.image" [alt]="doctor.preferedName" class="object-cover w-20 h-20 rounded-full border border-blue-500">
+                <p class="text-sm text-gray-300 italic">{{ doctor.preferedName }}</p>
+                <img [src]="doctor.image" [alt]="doctor.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
                 
                 <p class="font-semibold text-lg">{{ doctor.fullName }}</p>
-                <p class="text-gray-600">{{ doctor.speciality }}</p>
+                <p class="text-gray-300">{{ doctor.speciality }}</p>
             </div>
             <div class="flex space-x-4">
                 <button 
                     (click)="viewDoctor(doctor)"
-                    class="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-600 transition">
+                    class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition">
                     View
                 </button>
                 <button 
-                    class="bg-emerald-100 text-emerald-500 py-1 px-3 rounded-md mt-2 hover:bg-emerald-200 transition">
+                    class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
                     Edit
                 </button>
                 <button 
-                    class="bg-red-100 text-red-500 py-1 px-3 rounded-md mt-2 hover:bg-red-200 transition">
+                    class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
                     Delete
                 </button>
             </div>
