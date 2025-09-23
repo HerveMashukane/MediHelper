@@ -4,17 +4,17 @@ import { DoctorsFormComponent } from "./doctors-form/doctors-form.component";
 import { Observable } from 'rxjs';
 import { Doctor, MydoctorsService } from '../../services/mydoctors.service';
 import { ModalComponent } from "../../shared/modal/modal.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mydoctors',
   standalone: true,
-  imports: [CommonModule, DoctorsFormComponent, ModalComponent],
+  imports: [CommonModule, FormsModule, DoctorsFormComponent, ModalComponent],
   templateUrl: './mydoctors.component.html',
   styleUrl: './mydoctors.component.css',
 })
 export class MydoctorsComponent {
   doctors$: Observable<Doctor[]>;
-  doctor: any;
 
   constructor(private doctorsService: MydoctorsService) {
     this.doctors$ = this.doctorsService.doctors$;
@@ -39,5 +39,13 @@ export class MydoctorsComponent {
   closeModel() {
     this.selectedDoctor = null;
     this.isModelOpen = false;
+  }
+
+  // filter doctors
+  selectedSpeciality: string = 'All';
+  get filteredDoctors() {
+    const allDoctors = this.doctorsService.doctorsSource.value;
+    return allDoctors.filter(d => 
+      (this.selectedSpeciality === 'All' || d.speciality === this.selectedSpeciality));
   }
 }

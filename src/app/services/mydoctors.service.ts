@@ -17,7 +17,7 @@ export interface Doctor {
 })
 export class MydoctorsService {
   private doctors: Doctor[] = [];
-  private doctorsSource = new BehaviorSubject<Doctor[]>(this.loadDoctorsFromLocalStorage());
+  public doctorsSource = new BehaviorSubject<Doctor[]>(this.loadDoctorsFromLocalStorage());
   doctors$ = this.doctorsSource.asObservable();
 
   // save doctors to local storage

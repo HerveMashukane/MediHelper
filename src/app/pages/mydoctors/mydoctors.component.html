@@ -17,7 +17,7 @@
                 <span>{{ isFormVisible ? 'Close Form' : 'Add Doctor' }}</span>
             </button>
 
-            <select class="bg-gray-800 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
+            <select [(ngModel)]="selectedSpeciality" class="bg-gray-800 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
                 <option value="All" selected>All specialists</option>
                 <option value="Generalist">Generalist</option>
                 <option value="Cardiologist">Cardiologist</option>
@@ -32,7 +32,7 @@
     <!-- doctor cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
         <div 
-            *ngFor="let doctor of doctors$ | async"
+            *ngFor="let doctor of filteredDoctors"
             class="flex flex-col items-center bg-blue-950 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
             <div class="space-y-4">
                 <p class="text-sm text-gray-300 italic">{{ doctor.preferedName }}</p>
