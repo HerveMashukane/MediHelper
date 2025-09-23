@@ -43,9 +43,13 @@ export class MydoctorsComponent {
 
   // filter doctors
   selectedSpeciality: string = 'All';
+  searchDoctor: string = '';
+
   get filteredDoctors() {
     const allDoctors = this.doctorsService.doctorsSource.value;
-    return allDoctors.filter(d => 
-      (this.selectedSpeciality === 'All' || d.speciality === this.selectedSpeciality));
+    return allDoctors.filter(d =>
+    (this.selectedSpeciality === 'All' || d.speciality === this.selectedSpeciality) &&
+    (this.searchDoctor === '' || d.fullName.toLowerCase().includes(this.searchDoctor.toLowerCase()))
+    );
   }
 }
