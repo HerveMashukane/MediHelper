@@ -46,6 +46,7 @@ export class MydoctorsService {
       const updatedDoctors = [...currentDoctors];
       updatedDoctors.splice(index, 1)
       this.doctorsSource.next(updatedDoctors)
+      this.saveDoctorsToLocalStorage(updatedDoctors);
     };
   }
 }
