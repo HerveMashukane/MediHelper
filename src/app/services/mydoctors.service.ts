@@ -31,11 +31,21 @@ export class MydoctorsService {
   }
   // add new doctor, update list and save to LS
   addDoctor(doctor: Doctor) {
-    const currentDoctor = this.doctorsSource.value;
-    const updatedDoctor = [...currentDoctor, doctor];
-    this.doctorsSource.next(updatedDoctor);
-    this.saveDoctorsToLocalStorage(updatedDoctor);
+    const currentDoctors = this.doctorsSource.value;
+    const updatedDoctors = [...currentDoctors, doctor];
+    this.doctorsSource.next(updatedDoctors);
+    this.saveDoctorsToLocalStorage(updatedDoctors);
   }
 
   // remove doctors
+  removeDoctor(doctorId: number) {
+    const currentDoctors = this.doctorsSource.value;
+    const index = currentDoctors.findIndex(d => d.id === doctorId)
+
+    if(index !== -1) {
+      const updatedDoctors = [...currentDoctors];
+      updatedDoctors.splice(index, 1)
+      this.doctorsSource.next(updatedDoctors)
+    };
+  }
 }
