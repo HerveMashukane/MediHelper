@@ -18,7 +18,13 @@ export class PatientsFormComponent {
   speciality = '';
   hospital = '';
 
+  // patients data submission
   onSubmit() {
 
+  }
+
+  // cancel patients form
+  onCancel() {
+    
   }
 }
