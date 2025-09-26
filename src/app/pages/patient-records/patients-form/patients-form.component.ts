@@ -1,3 +1,4 @@
+import { Patient } from './../../../services/patient-records.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -10,17 +11,30 @@ import { FormsModule } from '@angular/forms';
 })
 export class PatientsFormComponent {
   id = 0;
-  image: string | null = null;
-  fullName = '';
   preferedName = '';
+  image = '';
+  fullName = '';
   email = '';
   phone = '';
-  speciality = '';
-  hospital = '';
+  department= '';
+  age = '';
+  bloodGroup = '';
 
   // patients data submission
   onSubmit() {
-
+    if(this.preferedName && this.fullName && this.email && this.phone && this.department && this.age && this.bloodGroup) {
+      const newPatient: Patient = {
+        id: this.id,
+        preferedName: this.preferedName,
+        image: this.image,
+        fullName: this.fullName,
+        email: this.email,
+        phone: this.phone,
+        department: this.department,
+        age: this.age,
+        bloodGroup: this.bloodGroup,
+      }
+    }
   }
 
   @Output() close = new EventEmitter<void>();

@@ -13,39 +13,39 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
                                 <label for="fullName" class="font-medium">Full Name</label>
-                                <input [(ngModel)]="fullName" id="fullName" name="fullName" type="text" placeholder="Dr. John Doe" required
+                                <input [(ngModel)]="fullName" id="fullName" name="fullName" type="text" placeholder="Herve Mashukane" required
                                 class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
                         </div>
                         <div class="flex flex-col">
                             <label for="preferedName" class="font-medium">Preferred Name</label>
-                            <input [(ngModel)]="preferedName" id="preferedName" name="preferedName" type="text" placeholder="John" required
+                            <input [(ngModel)]="preferedName" id="preferedName" name="preferedName" type="text" placeholder="Herve" required
                                     class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
                         </div>
                 </div>
 
-                <!-- Speciality & Hospital -->
+                <!-- Department & age -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
-                                <label for="speciality" class="font-medium">Department</label>
-                                <input [(ngModel)]="speciality" id="speciality" name="speciality" type="text" placeholder="Cardiologist" required
-                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                                <label for="department" class="font-medium">Department</label>
+                                <input [(ngModel)]="department" id="department" name="department" type="text" placeholder="e.g: Pediatry" required
+                                        class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
                         </div>
                         <div class="flex flex-col">
-                                <label for="hospital" class="font-medium">Hospital</label>
-                                <input [(ngModel)]="hospital" id="hospital" name="hospital" type="text" placeholder="St. Mary Hospital" required
-                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                                <label for="age" class="font-medium">Age</label>
+                                <input [(ngModel)]="age" id="age" name="age" type="text" placeholder="100 years" required
+                                        class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
                         </div>
                 </div>
 
                 <!-- Contact -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
-                                <label for="email" class="font-medium">Email</label>
-                                <input [(ngModel)]="email" id="email" name="email" type="email" placeholder="doctor@example.com" required
+                                <label for="email" class="font-medium">Patient Email</label>
+                                <input [(ngModel)]="email" id="email" name="email" type="email" placeholder="patient@example.com" required
                                 class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
                         </div>
                         <div class="flex flex-col">
-                                <label for="phone" class="font-medium">Phone</label>
+                                <label for="phone" class="font-medium">Patient Phone</label>
                                 <input [(ngModel)]="phone" id="phone" name="phone" type="tel" placeholder="+1234567890" required
                                 class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
                         </div>
