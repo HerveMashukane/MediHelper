@@ -1,4 +1,4 @@
-import { Patient } from './../../../services/patient-records.service';
+import { Patient, PatientRecordsService } from './../../../services/patient-records.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -16,9 +16,11 @@ export class PatientsFormComponent {
   fullName = '';
   email = '';
   phone = '';
-  department= '';
+  department = '';
   age = '';
   bloodGroup = '';
+
+  constructor(private patientsRecordService: PatientRecordsService) {}
 
   // patients data submission
   onSubmit() {
@@ -34,6 +36,7 @@ export class PatientsFormComponent {
         age: this.age,
         bloodGroup: this.bloodGroup,
       }
+      this.patientsRecordService.addPatient(newPatient);
     }
   }
 
@@ -41,5 +44,17 @@ export class PatientsFormComponent {
   // cancel patients form
   onCancel() {
     this.close.emit();
+  }
+
+  // Handle file patient selection
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+       this.image = reader.result as string; // base64 data
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }

@@ -32,12 +32,12 @@
                         </div>
                         <div class="flex flex-col">
                                 <label for="age" class="font-medium">Age</label>
-                                <input [(ngModel)]="age" id="age" name="age" type="number" placeholder="eg: 100yrs" required
+                                <input [(ngModel)]="age" id="age" name="age" type="text" placeholder="eg: 100yrs" required
                                         class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
                         </div>
                 </div>
 
-                <!-- Contact -->
+                <!-- Patient Contacts -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
                                 <label for="email" class="font-medium">Patient Email</label>
@@ -51,11 +51,18 @@
                         </div>
                 </div>
 
-                <!-- Image Upload -->
-                <div class="flex flex-col">
-                        <label for="image" class="font-medium">Profile Picture</label>
-                        <input type="file" id="image" name="image"
-                        class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                <!-- blood group && Image Upload -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex flex-col">
+                                <label for="image" class="font-medium">Profile Picture</label>
+                                <input type="file" id="image" name="image" (change)="onFileSelected($event)"
+                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                        </div>
+                        <div class="flex flex-col">
+                                <label for="bloodGroup" class="font-medium">Blood Group</label>
+                                <input [(ngModel)]="bloodGroup" id="bloodGroup" name="bloodGroup" type="text" placeholder="eg: A+" required
+                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                        </div>
                 </div>
 
                 <!-- Buttons -->
