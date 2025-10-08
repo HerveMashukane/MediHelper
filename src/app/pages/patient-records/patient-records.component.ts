@@ -94,6 +94,7 @@ export class PatientRecordsComponent {
   //   },
   // ]
 
+  // toggle patient form
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
   }
