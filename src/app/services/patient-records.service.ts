@@ -49,7 +49,15 @@ export class PatientRecordsService {
   }
 
   // remove patient
-  removePatient() {
+  removePatient(patientId: number) {
+    const currentPatients = this.patientsSource.value;
 
+    const index = currentPatients.findIndex(p => p.id === patientId);
+
+    if(index !== -1 && confirm(`Remove patient ${currentPatients[index].fullName} ?`)) {
+      const updatedPatients = [...currentPatients];
+      updatedPatients.splice(index, 1);
+      this.patientsSource.next(updatedPatients);
+    }
   }
 }

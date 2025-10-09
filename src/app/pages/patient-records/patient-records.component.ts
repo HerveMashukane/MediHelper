@@ -98,4 +98,9 @@ export class PatientRecordsComponent {
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
   }
+
+  // remove patient from list
+  removePatient(id: number) {
+    this.patientRecordsService.removePatient(id)
+  }
 }
