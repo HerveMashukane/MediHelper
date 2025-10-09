@@ -38,6 +38,15 @@ export class PatientsFormComponent {
       }
       this.patientsRecordService.addPatient(newPatient);
     }
+    this.preferedName = '';
+    this.preferedName = '';
+    this.image = '';
+    this.fullName = '';
+    this.email = '';
+    this.phone = '';
+    this.department = '';
+    this.age = '';
+    this.bloodGroup = '';
   }
 
   @Output() close = new EventEmitter<void>();
