@@ -109,13 +109,17 @@ export class PatientRecordsComponent {
 
   }
 
+  // filters variables
   selectedDepartment: string = 'All';
   searchPatient: string = '';
 
+  // getter to filter patients by department and name
   get filteredPatients() {
     const allPatients = this.patientRecordsService.patientsSource.value;
 
-    return allPatients.filter(p => (this.selectedDepartment === 'All' || p.department === this.selectedDepartment) &&
-    (this.searchPatient === '' || p.fullName.toLowerCase().includes(this.searchPatient.toLowerCase())));
+    return allPatients.filter(p => 
+      (this.selectedDepartment === 'All' || p.department === this.selectedDepartment) && 
+      (this.searchPatient === '' || p.fullName.toLowerCase().includes(this.searchPatient.toLowerCase()))
+    );
   }
 }
