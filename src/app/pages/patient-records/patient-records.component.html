@@ -40,17 +40,17 @@
                 <p class="flex flex-col font-semibold text-white">{{ p.fullName }}
                     <span class="font-normal text-gray-300">{{ p.department }}</span>
                 </p>
-                <p class="text-gray-300">Age: {{ p.age }} | Blood Group: {{ p.bloodGroup }}</p>
+                <p class="text-gray-300">Age: {{ p.age }} <span>years old</span> | Blood Group: {{ p.bloodGroup }}</p>
             </div>
             <div class="flex space-x-4">
                 <button class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition">
-                    View
+                    <i class="bi bi-eye"></i>
                 </button>
                 <button class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
-                    Edit
+                    <i class="bi bi-pen"></i>
                 </button>
                 <button (click)="removePatient(p.id)" class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
-                    Remove
+                    <i class="bi bi-trash"></i>
                 </button>
             </div>
         </div>

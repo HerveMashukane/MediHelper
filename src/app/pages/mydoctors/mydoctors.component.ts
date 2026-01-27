@@ -3,13 +3,13 @@ import { CommonModule } from "@angular/common";
 import { DoctorsFormComponent } from "./doctors-form/doctors-form.component";
 import { Observable } from 'rxjs';
 import { Doctor, MydoctorsService } from '../../services/mydoctors.service';
-import { ModalComponent } from "../../shared/modal/modal.component";
 import { FormsModule } from '@angular/forms';
+import { CardComponent } from '../../reusable-components/card/card.component';
 
 @Component({
   selector: 'app-mydoctors',
   standalone: true,
-  imports: [CommonModule, FormsModule, DoctorsFormComponent, ModalComponent],
+  imports: [CommonModule, FormsModule, DoctorsFormComponent, CardComponent],
   templateUrl: './mydoctors.component.html',
   styleUrl: './mydoctors.component.css',
 })

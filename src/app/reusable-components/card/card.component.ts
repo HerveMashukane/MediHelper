@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Doctor } from '../../services/mydoctors.service';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'app-card',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css'
+  templateUrl: './card.component.html',
+  styleUrl: './card.component.css'
 })
-export class ModalComponent {
+export class CardComponent {
   // doctors functionality
   @Input() doctor: Doctor | null = null;
   @Input() isOpen: boolean = false;

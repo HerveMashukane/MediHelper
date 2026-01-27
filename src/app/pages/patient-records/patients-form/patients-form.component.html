@@ -43,7 +43,7 @@
                         </div>
                         <div class="flex flex-col">
                                 <label for="dob" class="font-medium">Age</label>
-                                <input [(ngModel)]="age" id="date" name="age" type="text" placeholder="eg: 100yrs" required
+                                <input [(ngModel)]="age" id="date" name="age" type="number" placeholder="eg: 100" required min="0"
                                         class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
                         </div>
                 </div>
