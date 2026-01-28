@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export interface ConfirmOptions {
   title: string;
   message: string;
+  hightlight: string;
   confirmText: string;
   cancelText: string;
 }

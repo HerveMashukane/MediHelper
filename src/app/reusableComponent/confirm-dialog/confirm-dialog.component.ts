@@ -1,15 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-confirm-dialog',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './confirm-dialog.component.html',
   styleUrl: './confirm-dialog.component.css'
 })
 export class ConfirmDialogComponent {
   @Input() title = 'Confirm action';
   @Input() message = 'Are you sure you want to proceed ?';
+  @Input() hightlight = '';
   @Input() confirmText = 'Confirm';
   @Input() cancelText = 'Cancel';
 

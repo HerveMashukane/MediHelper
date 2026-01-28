@@ -54,7 +54,7 @@ export class PatientRecordsService {
 
     const index = currentPatients.findIndex(p => p.id === patientId);
 
-    if(index !== -1 && confirm(`Remove patient: ${currentPatients[index].fullName} ?`)) {
+    if(index !== -1) {
       const updatedPatients = [...currentPatients];
       updatedPatients.splice(index, 1);
       this.patientsSource.next(updatedPatients);

@@ -5,6 +5,7 @@ import { PatientsFormComponent } from './patients-form/patients-form.component';
 import { Observable } from 'rxjs';
 import { Patient } from '../../services/patient-records.service';
 import { FormsModule } from '@angular/forms';
+import { ConfirmDialogService } from '../../confirm-dialog.service';
 
 @Component({
   selector: 'app-patient-records',
@@ -17,9 +18,13 @@ export class PatientRecordsComponent {
   patients$: Observable<Patient[]>;
   isFormVisible: boolean = false;
 
-  constructor(private patientRecordsService: PatientRecordsService) {
+   constructor(
+    private patientRecordsService: PatientRecordsService,
+    private confirm: ConfirmDialogService
+  ) {
     this.patients$ = this.patientRecordsService.patients$;
   }
+
   // patients: any = [
   //   {
   //     preferedName: 'Christelle', 
@@ -95,14 +100,24 @@ export class PatientRecordsComponent {
   //   },
   // ]
 
+  // remove patient from list
+  async removePatient(id: number, fullName: string) {
+    const ok = await this.confirm.request({
+      title: 'Delete Patient',
+      message: 'Are you sure you want to delete ',
+      hightlight: `${fullName}`,
+      confirmText: 'Yes, delete',
+      cancelText: 'Cancel',
+    });
+
+    if (!ok) return;
+
+    this.patientRecordsService.removePatient(id);
+  }
+
   // toggle patient form
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
-  }
-
-  // remove patient from list
-  removePatient(id: number) {
-    this.patientRecordsService.removePatient(id)
   }
 
   filtererPatients(patient: Patient) {

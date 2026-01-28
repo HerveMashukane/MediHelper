@@ -44,12 +44,12 @@
             </div>
             <div class="flex space-x-4">
                 <button class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition">
-                    <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-fill"></i>
                 </button>
                 <button class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
                     <i class="bi bi-pen"></i>
                 </button>
-                <button (click)="removePatient(p.id)" class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
+                <button (click)="removePatient(p.id, p.fullName)" class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
                     <i class="bi bi-trash"></i>
                 </button>
             </div>
