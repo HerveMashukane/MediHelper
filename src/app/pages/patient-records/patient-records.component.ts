@@ -120,10 +120,6 @@ export class PatientRecordsComponent {
     this.isFormVisible = !this.isFormVisible;
   }
 
-  filtererPatients(patient: Patient) {
-
-  }
-
   // filters variables
   selectedDepartment: string = 'All';
   searchPatient: string = '';
