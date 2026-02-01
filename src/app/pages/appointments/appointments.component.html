@@ -1,4 +1,4 @@
-<section class="bg-black text-white animate-pageFlip">
+<section class="bg-gray-950 p-10 text-white animate-pageFlip">
     <!-- Appointment header + filter buttons & add appointment btn -->
     <div class="space-y-4">
         <h2 class="text-2xl font-semibold">
@@ -7,22 +7,26 @@
         <div class="flex justify-between pb-2">
             <!-- filter buttons -->
             <div class="flex flex-wrap space-x-2">
-                <button class="bg-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">
+                <button class="bg-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-900 transition">
                     All
                 </button>
-                <button class="bg-blue-400 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
+                <button class="border border-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
                     Upcoming
                 </button>
-                <button class="bg-blue-400 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
+                <button class="border border-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
                     Completed
                 </button>
-                <button class="bg-blue-400 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
-                    Cancel
+                <button class="border border-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
+                    Pending
                 </button>
+                <button class="border border-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
+                    Canceled
+                </button>
+                <input type="search" placeholder="Search appointement..." class="bg-gray-950 text-white border border-blue-950 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-950"/>
             </div>
             <!-- add appointment btn -->
             <div>
-                <button class="bg-blue-800 text-white py-2 px-5 rounded-md hover:bg-blue-700 transition">
+                <button class="bg-blue-950 text-white py-2 px-5 rounded-md hover:bg-blue-900 transition">
                     <i class="fa-solid fa-plus"></i>
                     Add Appointment
                 </button>
@@ -33,7 +37,7 @@
         </h2>
     </div>
     <!-- patient appointments table -->
-    <table class="w-full border-2 border-gray-600 bg-blue-950 text-white shadow-lg">
+    <table class="w-full bg-gray-900 text-white">
         <thead>
             <tr class="border text-left text-xl font-semibold">
                 <th class="border-2 border-gray-600 p-2">Patient</th>

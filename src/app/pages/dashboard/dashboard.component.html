@@ -1,4 +1,4 @@
-<section class="flex flex-col text-white overflow-y-auto animate-pageFlip">
+<section class="p-10 bg-gray-950 flex flex-col text-white overflow-y-auto animate-pageFlip">
     <div>
         <h2 class="text-2xl font-semibold">
             Welcome Back, Herve
@@ -10,9 +10,9 @@
     <!-- CARDS -->
     <div class="grid grid-cols-1 gap-8 md:grid-cols-4 py-8">
         <!-- appointement -->
-        <article class="bg-blue-950 rounded-md p-4 hover:scale-105 transition cursor-pointer">
+        <article class="bg-gray-900 rounded-md p-4 hover:scale-105 transition cursor-pointer">
             <div class="flex space-x-3">
-                <div><i class="bi bi-people-fill text-xl text-blue-600"></i></div>
+                <div><i class="bi bi-people-fill text-xl text-blue-800"></i></div>
                 <div>
                     <h2 class="flex flex-col font-semibold">
                         2 <span>Appointments</span>
@@ -22,9 +22,9 @@
         </article>
 
         <!-- medications due -->
-        <article class="bg-blue-950 rounded-md p-4 hover:scale-105 transition cursor-pointer">
+        <article class="bg-gray-900 rounded-md p-4 hover:scale-105 transition cursor-pointer">
             <div class="flex space-x-3">
-                <div><i class="fa-solid fa-pills text-xl text-emerald-500"></i></div>
+                <div><i class="fa-solid fa-pills text-xl text-emerald-600"></i></div>
                 <div>
                     <h2 class="flex flex-col font-semibold">
                         3 <span>Medications due</span>
@@ -33,7 +33,7 @@
             </div>
         </article>
         <!-- active patients -->
-        <article class="bg-blue-950 rounded-md p-4 hover:scale-105 transition cursor-pointer">
+        <article class="bg-gray-900 rounded-md p-4 hover:scale-105 transition cursor-pointer">
             <div class="flex space-x-3">
                 <div><i class="fa-solid fa-person text-xl text-blue-600"></i></div>
                 <div>
@@ -45,7 +45,7 @@
         </article>
 
         <!-- today'smedication -->
-        <article class="bg-blue-950 rounded-md p-4 hover:scale-105 transition cursor-pointer">
+        <article class="bg-gray-900 rounded-md p-4 hover:scale-105 transition cursor-pointer">
             <div class="flex space-x-3">
                 <div><i class="bi bi-bell-fill text-yellow-600 text-xl"></i></div>
                 <div>
@@ -60,7 +60,7 @@
     <!-- OTHER CARDS -->
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
         <!-- upcoming appointments -->
-        <article class="flex flex-col bg-blue-950 p-4 rounded-md hover:scale-105 transition cursor-pointer">
+        <article class="flex flex-col bg-gray-900 p-4 rounded-md hover:scale-105 transition cursor-pointer">
             <!-- text -->
             <div class="text-white space-y-3">
                 <h2 class="text-xl text-white font-semibold">
@@ -87,14 +87,14 @@
         </article>
 
         <!-- today's medications -->
-        <article class="flex flex-col bg-blue-950 p-4 rounded-md hover:scale-105 transition cursor-pointer">
+        <article class="flex flex-col bg-gray-900 p-4 rounded-md hover:scale-105 transition cursor-pointer">
             <!-- text -->
             <div class="text-white space-y-3">
                 <h2 class="text-xl text-white font-semibold">
                     Today's Medications
                 </h2>
                 <p>
-                    <i class="bi bi-check-circle-fill text-emerald-500"></i>
+                    <i class="bi bi-clock-fill text-blue-800"></i>
                     Amoxicillin 
                     <i class="bi bi-arrow-right"></i>
                     1 pill 9:00AM
@@ -107,7 +107,7 @@
                 </p>
                 <!-- button to medicatons full page -->
                 <div>
-                    <a routerLink="/medications" class="bg-emerald-500 hover:bg-emerald-700 text-white py-2 px-4 rounded-lg thansition">
+                    <a routerLink="/medications" class="bg-emerald-800 hover:bg-emerald-700 text-white py-2 px-4 rounded-lg thansition">
                         View Medication tracker
                         <i class="bi bi-arrow-right"></i>
                     </a>
@@ -123,7 +123,7 @@
             </h2>
         </div>
         <!-- patient activity table -->
-        <table class="w-full bg-blue-950 text-white">
+        <table class="w-full bg-gray-900 text-white">
             <thead>
                 <tr class="border-2 border-gray-600 text-white text-left text-xl font-semibold">
                     <th class="border-2 border-gray-600 p-2">Patient</th>
