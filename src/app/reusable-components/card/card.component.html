@@ -2,10 +2,10 @@
 <div *ngIf="isOpen" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 animate-fadeIn">
   
     <!-- Modal Box -->
-    <div class="bg-blue-950 text-white rounded-lg shadow-lg p-4 w-[90%] max-w-md animate-fadeIn">
+    <div class="bg-gray-900 text-white rounded-lg shadow-lg p-4 w-[90%] max-w-md animate-fadeIn">
         <!-- Header -->
         <div class="flex justify-between items-center border-b border-b-gray-700 pb-2 mb-4">
-            <h3 class="text-xl font-semibold text-white">{{ doctor?.fullName }}</h3>
+            <h3 class="text-xl font-semibold text-yellow-600">{{ doctor?.fullName }}</h3>
             <button (click)="onClose()" class="text-white hover:text-red-700 text-2xl">
                 <i class="bi bi-x-circle text-xl"></i>
             </button>
@@ -19,22 +19,22 @@
         <div class="flex justify-between text-sm my-4 space-x-4 text-white w-full">
             <!-- Doctor's information -->
             <div class="border border-gray-700 p-2 rounded-md shadow-lg">
-                <p><strong><i class="bi bi-person-lines-fill"></i></strong> {{doctor?.preferedName}}</p>
-                <p><strong><i class="bi bi-heart-pulse-fill"></i></strong> {{doctor?.speciality}}</p>
-                <p><strong><i class="bi bi-hospital-fill"></i></strong> {{doctor?.hospital}}</p>
-                <p><strong><i class="bi bi-envelope-fill"></i></strong> {{doctor?.email}}</p>
-                <p><strong><i class="bi bi-phone-fill"></i></strong> {{doctor?.phone}}</p>
+                <p><strong><i class="bi bi-person-lines-fill text-yellow-600"></i></strong> {{doctor?.preferedName}}</p>
+                <p><strong><i class="bi bi-heart-pulse-fill text-yellow-600"></i></strong> {{doctor?.speciality}}</p>
+                <p><strong><i class="bi bi-hospital-fill text-yellow-600"></i></strong> {{doctor?.hospital}}</p>
+                <p><strong><i class="bi bi-envelope-fill text-yellow-600"></i></strong> {{doctor?.email}}</p>
+                <p><strong><i class="bi bi-phone-fill text-yellow-600"></i></strong> {{doctor?.phone}}</p>
             </div>
 
             <!-- Biography Box -->
             <div class="text-sm text-white border border-gray-700 p-2 rounded-md shadow-lg w-full">
                 <p>
-                    The <strong class="text-yellow-600">{{ doctor?.preferedName }}</strong> is a specialist 
-                    <strong class="text-yellow-600">{{ doctor?.speciality }}</strong>, 
+                    The Dr. <strong class="text-yellow-600">{{ doctor?.preferedName }}</strong> is a 
+                    <strong class="text-yellow-600">{{ doctor?.speciality }}</strong> specialist, 
                     with a high performance and strong background in medicine. 
                     Besides other particular experiences, he has been working 
                     as a <strong class="text-yellow-600">{{ doctor?.speciality }}</strong> 
-                    for +3years,...
+                    for +3years.
                 </p>
             </div>
         </div>
@@ -44,7 +44,7 @@
             <button (click)="onClose()" class="bg-red-800 text-white-600 px-4 py-2 rounded-md hover:bg-red-700 transition">
                 Close
             </button>
-            <button class="bg-blue-800 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+            <button class="bg-blue-950 text-white px-4 py-2 rounded-md hover:bg-blue-700">
                 Contact
             </button>
         </div>
