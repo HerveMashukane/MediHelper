@@ -1,9 +1,9 @@
 <section class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4 lg:p-8 animate-pageFlip">
-        <form (ngSubmit)="onSubmit()" class="flex flex-col bg-gradient-to-br from-blue-900 to-blue-950 text-white w-full max-w-lg p-8 space-y-6 rounded-xl shadow-2xl">
+        <form (ngSubmit)="onSubmit()" class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 text-white w-full max-w-lg p-8 space-y-6 rounded-xl shadow-2xl">
     
                 <!-- Header -->
-                <div class="flex justify-between items-center border-b border-blue-700 pb-4">
-                        <h2 class="text-2xl font-bold">Doctor Registration</h2>
+                <div class="flex justify-between items-center border-b border-blue-950 pb-4">
+                        <h2 class="text-2xl font-bold">Doctor's Form</h2>
                         <button type="button" (click)="onCancel()" class="text-white hover:text-red-500 transition">
                                 <i class="bi bi-x-circle text-2xl"></i>
                         </button>
@@ -14,12 +14,12 @@
                         <div class="flex flex-col">
                                 <label for="fullName" class="font-medium">Full Name</label>
                                 <input [(ngModel)]="fullName" id="fullName" name="fullName" type="text" placeholder="eg: Herve Mashukane" required
-                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
                         <div class="flex flex-col">
                                 <label for="preferedName" class="font-medium">Preferred Name</label>
-                                <input [(ngModel)]="preferedName" id="preferedName" name="preferedName" type="text" placeholder="eg: Dr. Herve" required
-                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                                <input [(ngModel)]="preferedName" id="preferedName" name="preferedName" type="text" placeholder="eg: Herve" required
+                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
                 </div>
 
@@ -27,13 +27,25 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
                                 <label for="speciality" class="font-medium">Speciality</label>
-                                <input [(ngModel)]="speciality" id="speciality" name="speciality" type="text" placeholder="eg: Cardiologist" required
-                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                                <select 
+                                        [(ngModel)]="speciality" 
+                                        id="speciality" 
+                                        name="speciality" 
+                                        required
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        <option value="" disabled selected>Select speciality</option>
+                                        <option value="Generalist">Generalist</option>
+                                        <option value="Cardiologist">Cardiologist</option>
+                                        <option value="Dermatologist">Dermatologist</option>
+                                        <option value="Neurologist">Neurologist</option>
+                                        <option value="Surgeon">Surgeon</option>
+                                        <option value="Oncologist">Oncologist</option>
+                                </select>
                         </div>
                         <div class="flex flex-col">
                                 <label for="hospital" class="font-medium">Hospital</label>
                                 <input [(ngModel)]="hospital" id="hospital" name="hospital" type="text" placeholder="eg: Heal Africa" required
-                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
                 </div>
 
@@ -42,12 +54,12 @@
                         <div class="flex flex-col">
                                 <label for="email" class="font-medium">Email</label>
                                 <input [(ngModel)]="email" id="email" name="email" type="email" placeholder="eg: hervemashukane@gmail.com" required
-                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
                         <div class="flex flex-col">
                                 <label for="phone" class="font-medium">Phone</label>
                                 <input [(ngModel)]="phone" id="phone" name="phone" type="tel" placeholder="eg: +243979594795" required
-                                class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
                 </div>
 
@@ -55,12 +67,12 @@
                 <div class="flex flex-col">
                         <label for="image" class="font-medium">Profile Picture</label>
                         <input type="file" id="image" (change)="onFileSelected($event)" name="image"
-                        class="bg-gray-800 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition"/>
+                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                 </div>
 
                 <!-- Buttons -->
                 <div class="flex justify-end space-x-4">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-500 transition px-6 py-2 rounded-lg font-semibold">
+                        <button type="submit" class="bg-blue-950 hover:bg-blue-900 transition px-6 py-2 rounded-lg font-semibold">
                                 Add Doctor
                         </button>
                         <button type="button" (click)="onCancel()" class="bg-red-600 hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">

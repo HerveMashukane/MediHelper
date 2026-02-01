@@ -36,7 +36,7 @@
             *ngFor="let doctor of filteredDoctors"
             class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
             <div class="space-y-4">
-                <p class="text-sm text-gray-300 italic">{{ doctor.preferedName }}</p>
+                <p class="text-sm text-gray-300 italic">Dr. <span>{{ doctor.preferedName }}</span></p>
                 <img [src]="doctor.image" [alt]="doctor.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
                 
                 <p class="flex flex-col font-semibold text-lg pb-2">
