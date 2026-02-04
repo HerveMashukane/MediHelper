@@ -32,35 +32,41 @@
 
     <!-- doctor cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
-        <div 
-            *ngFor="let doctor of filteredDoctors"
-            class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
-            <div class="space-y-4">
-                <p class="text-sm text-gray-300 italic">Dr. <span>{{ doctor.preferedName }}</span></p>
-                <img [src]="doctor.image" [alt]="doctor.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
-                
-                <p class="flex flex-col font-semibold text-lg pb-2">
-                    {{ doctor.fullName }}
-                    <span class="font-normal text-base text-gray-300">{{ doctor.speciality }}</span>
-                </p>
-            </div>
-            <div class="flex space-x-4">
-                <button 
-                    (click)="viewDoctor(doctor)"
-                    class="bg-blue-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-blue-700 transition">
-                    <i class="bi bi-eye-fill"></i>
-                </button>
-                <button 
-                    class="bg-yellow-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-yellow-700 transition">
-                    <i class="bi bi-pen"></i>
-                </button>
-                <button 
-                    (click)="removeDoctor(doctor.id, doctor.fullName)"
-                    class="bg-red-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-red-700 transition">
-                    <i class="bi bi-trash"></i>
-                </button>
+        <div *ngIf="filteredDoctors.length > 0; else noDoctors">
+            <div 
+                *ngFor="let doctor of filteredDoctors"
+                class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
+                <div class="space-y-4">
+                    <p class="text-sm text-gray-300 italic">Dr. <span>{{ doctor.preferedName }}</span></p>
+                    <img [src]="doctor.image" [alt]="doctor.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
+                    
+                    <p class="flex flex-col font-semibold text-lg pb-2">
+                        {{ doctor.fullName }}
+                        <span class="font-normal text-base text-gray-300">{{ doctor.speciality }}</span>
+                    </p>
+                </div>
+                <div class="flex space-x-4">
+                    <button 
+                        (click)="viewDoctor(doctor)"
+                        class="bg-blue-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-blue-700 transition">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                    <button 
+                        class="bg-yellow-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-yellow-700 transition">
+                        <i class="bi bi-pen"></i>
+                    </button>
+                    <button 
+                        (click)="removeDoctor(doctor.id, doctor.fullName)"
+                        class="bg-red-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-red-700 transition">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
             </div>
         </div>
+        <ng-template #noDoctors>
+            <p class="text-gray-500 text-2xl">Doctors no found...</p>
+        </ng-template>
+        
     </div>
 </section>
 

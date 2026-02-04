@@ -31,30 +31,35 @@
 
     <!-- patient cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
-        <div 
-            *ngFor="let p of filteredPatients" 
-            class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
-            <div class="space-y-2">
-                <p class="text-sm text-gray-300 italic">{{ p.preferedName }}</p>
-                <img [src]="p.image" [alt]="p.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
-                <p class="flex flex-col font-semibold text-white">{{ p.fullName }}
-                    <span class="font-normal text-gray-300">{{ p.department }}</span>
-                </p>
-                <p class="text-gray-300">Age: {{ p.age }} <span>years old</span> | Blood Group: {{ p.bloodGroup }}</p>
-            </div>
-            <div class="flex space-x-4">
-                <button class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition">
-                    <i class="bi bi-eye-fill"></i>
-                </button>
-                <button class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
-                    <i class="bi bi-pen"></i>
-                </button>
-                <button (click)="removePatient(p.id, p.fullName)" class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
-                    <i class="bi bi-trash"></i>
-                </button>
+        <div *ngIf="filteredPatients.length > 0; else noPatients">
+            <div 
+                *ngFor="let p of filteredPatients" 
+                class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
+                <div class="space-y-2">
+                    <p class="text-sm text-gray-300 italic">{{ p.preferedName }}</p>
+                    <img [src]="p.image" [alt]="p.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
+                    <p class="flex flex-col font-semibold text-white">{{ p.fullName }}
+                        <span class="font-normal text-gray-300">{{ p.department }}</span>
+                    </p>
+                    <p class="text-gray-300">Age: {{ p.age }} <span>years old</span> | Blood Group: {{ p.bloodGroup }}</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                    <button class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
+                        <i class="bi bi-pen"></i>
+                    </button>
+                    <button (click)="removePatient(p.id, p.fullName)" class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+    <ng-template #noPatients>
+        <p class="text-gray-500 text-xl text-center">Patients no found...</p>
+    </ng-template>
 </section>
 
 <!-- patient form -->
