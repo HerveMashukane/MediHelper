@@ -3,70 +3,79 @@
     
                 <!-- Header -->
                 <div class="flex justify-between items-center border-b border-blue-950 pb-4">
-                        <h2 class="text-2xl font-bold">Doctor's Form</h2>
+                        <h2 class="text-2xl font-bold">Medication's Form</h2>
                         <button type="button" (close)="closeForm()" type="button" class="text-white hover:text-red-500 transition">
                                 <i class="bi bi-x-circle text-2xl"></i>
                         </button>
                 </div>
 
-                <!-- Names -->
+                <!-- Medicaton name -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
-                                <label for="fullName" class="font-medium">Full Name</label>
-                                <input id="fullName" name="fullName" type="text" placeholder="eg: Herve Mashukane" required
+                                <label for="medication" class="font-medium">Medication name</label>
+                                <input id="medication" name="medication" type="text" placeholder="Type medication name" required
                                 class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
                         <div class="flex flex-col">
-                                <label for="preferedName" class="font-medium">Preferred Name</label>
-                                <input id="preferedName" name="preferedName" type="text" placeholder="eg: Herve" required
-                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
+                                <label for="schedule" class="font-medium">Schedue</label>
+                                <select 
+                                        name="schedule" 
+                                        id="schedule"
+                                        required
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        <option value="" disabled selected>Select schedule</option>
+                                        <option value="Morning(06-08AM)">Morning(06-08AM)</option>
+                                        <option value="Noon(12-2PM)">Afternoon(12-2PM)</option>
+                                        <option value="Evenening(6-8PM)">Evenening(6-8PM)</option>
+                                        <option value="Once(a day)">Once a day</option>
+                                        <option value="Twice(a day)">Twice a day</option>
+                                </select>
                         </div>
                 </div>
 
-                <!-- Speciality & Hospital -->
+                <!-- Dosage & currency -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
-                                <label for="speciality" class="font-medium">Speciality</label>
+                                <label for="dosage" class="font-medium">Dosage</label>
                                 <select 
-                                        id="speciality" 
-                                        name="speciality" 
+                                        id="dosage" 
+                                        name="dosage" 
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
-                                        <option value="" disabled selected>Select speciality</option>
-                                        <option value="Generalist">Generalist</option>
-                                        <option value="Cardiologist">Cardiologist</option>
-                                        <option value="Dermatologist">Dermatologist</option>
-                                        <option value="Neurologist">Neurologist</option>
-                                        <option value="Surgeon">Surgeon</option>
-                                        <option value="Oncologist">Oncologist</option>
+                                        <option value="" disabled selected>Select Medication dose</option>
+                                        <option value="Generalist">100</option>
+                                        <option value="Cardiologist">200</option>
+                                        <option value="Dermatologist">500</option>
+                                        <option value="Neurologist">1000</option>
                                 </select>
                         </div>
                         <div class="flex flex-col">
-                                <label for="hospital" class="font-medium">Hospital</label>
-                                <input id="hospital" name="hospital" type="text" placeholder="eg: Heal Africa" required
-                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
+                                <label for="currency" class="font-medium">Currency</label>
+                                <select 
+                                        name="currency" 
+                                        id="currency"
+                                        required
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        <option value="" disabled selected>Medication currency</option>
+                                        <option value="">mg</option>
+                                        <option value="">g</option>
+                                </select>
                         </div>
                 </div>
 
-                <!-- Contact -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex flex-col">
-                                <label for="email" class="font-medium">Email</label>
-                                <input id="email" name="email" type="email" placeholder="eg: hervemashukane@gmail.com" required
-                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
-                        </div>
-                        <div class="flex flex-col">
-                                <label for="phone" class="font-medium">Phone</label>
-                                <input id="phone" name="phone" type="tel" placeholder="eg: +243979594795" required
-                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
-                        </div>
-                </div>
-
-                <!-- Image Upload -->
+                <!-- Status -->
                 <div class="flex flex-col">
-                        <label for="image" class="font-medium">Profile Picture</label>
-                        <input type="file" id="image" name="image"
-                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
+                        <label for="status" class="font-medium">Medication Status</label>
+                        <select 
+                                name="status" 
+                                id="status"
+                                required
+                                class="block bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                        </select>
                 </div>
 
                 <!-- Buttons -->
