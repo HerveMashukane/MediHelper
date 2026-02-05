@@ -40,6 +40,7 @@ export class DoctorsFormComponent {
         hospital: this.hospital,
       };
       this.doctorsService.addDoctor(newDoctor);
+      this.cancel.emit();
       // Reset form
       this.image = null;
       this.fullName = '';

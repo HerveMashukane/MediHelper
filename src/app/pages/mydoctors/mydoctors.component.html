@@ -31,8 +31,10 @@
     </div>
 
     <!-- doctor cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
-        <div *ngIf="filteredDoctors.length > 0; else noDoctors">
+    <div>
+        <div 
+            *ngIf="filteredDoctors.length > 0; else noDoctors"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
             <div 
                 *ngFor="let doctor of filteredDoctors"
                 class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
@@ -66,7 +68,6 @@
         <ng-template #noDoctors>
             <p class="text-gray-500 text-2xl">Doctors no found...</p>
         </ng-template>
-        
     </div>
 </section>
 

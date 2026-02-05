@@ -30,8 +30,10 @@
     </div>
 
     <!-- patient cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
-        <div *ngIf="filteredPatients.length > 0; else noPatients">
+    <div>
+        <div 
+            *ngIf="filteredPatients.length > 0; else noPatients"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
             <div 
                 *ngFor="let p of filteredPatients" 
                 class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
