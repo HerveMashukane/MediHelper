@@ -14,7 +14,8 @@ export class CardModalComponent {
   // doctors & patients functionality
     @Input() patient: Patient | null = null;
     @Input() doctor: Doctor | null = null;
-    @Input() isOpen: boolean = false;
+    @Input() isDoctorsModalOpen: boolean = false;
+    @Input() isPatientsModalOpen: boolean = false;
     @Output() close = new EventEmitter<void>();
   
     onClose() {

@@ -140,8 +140,7 @@ export class PatientRecordsComponent {
   closeModel() {
     this.isModelOpen = false;
   }
-
-  patient: any;
+  
   viewPatient(patient: Patient) {
     this.selectedPatient = patient;
     this.isModelOpen = false;

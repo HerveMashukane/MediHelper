@@ -47,7 +47,7 @@
                 </div>
                 <div class="flex space-x-4">
                     <button 
-                        (click)="viewPatient(patient)"
+                        (click)="viewPatient(p)"
                         class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition"
                         >
                         <i class="bi bi-eye-fill"></i>
@@ -69,8 +69,8 @@
 
 <!-- doctor card modal -->
 <app-card-modal
-    [patient]="selectedPatient"
-    [isOpen]="isModelOpen"
+    [p]="selectedPatient"
+    [isPatientsModalOpen]="isModelOpen"
     (close)="closeModel()">
 </app-card-modal>
 
