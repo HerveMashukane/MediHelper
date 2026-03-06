@@ -143,7 +143,7 @@ export class PatientRecordsComponent {
   
   viewPatient(patient: Patient) {
     this.selectedPatient = patient;
-    this.isModelOpen = false;
+    this.isModelOpen = true;
   }
 
   // edit patients

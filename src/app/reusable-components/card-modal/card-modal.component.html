@@ -36,6 +36,10 @@
                     as a <strong class="text-yellow-600">{{ doctor?.speciality }}</strong> 
                     for +3years.
                 </p>
+                <p class="text-yellow-600">
+                    Dr. {{doctor?.preferedName}} id: 
+                    <strong class="text-neutral-50">{{doctor?.id}}</strong>
+                </p>
             </div>
         </div>
 
@@ -80,10 +84,13 @@
             <!-- Biography Box -->
             <div class="text-sm text-white border border-gray-700 p-2 rounded-md shadow-lg w-full">
                 <p>
-                    <strong class="text-yellow-600">{{ doctor?.preferedName }}</strong> is a patient in 
-                    Heal Africa hospital, with bllod group <strong>{{patient?.bloodGroup}}</strong>
-                    , please check him with id: <strong>{{patient?.id}}</strong>
-                    <strong>{{patient?.department}} department</strong>
+                    <strong class="text-yellow-600">{{ patient?.preferedName }}</strong> is a patient in 
+                    Heal Africa hospital, with blood group <strong>{{patient?.bloodGroup}}</strong>
+                    , please check him in <strong>{{patient?.department}} department</strong>
+                </p>
+                <p class="text-yellow-600">
+                    {{patient?.preferedName}} id: 
+                    <strong class="text-neutral-50">{{patient?.id}}</strong>
                 </p>
             </div>
         </div>
