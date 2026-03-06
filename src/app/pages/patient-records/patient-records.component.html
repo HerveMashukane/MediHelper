@@ -46,20 +46,23 @@
                     <p class="text-gray-300">Age: {{ p.age }} <span>years old</span> | Blood Group: {{ p.bloodGroup }}</p>
                 </div>
                 <div class="flex space-x-4">
-                    <div *ngFor="let patient of filteredPatients">
+                    <div class="flex space-x-4">
                         <button 
-                        (click)="viewPatient(patient)"
-                        class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition"
-                        >
-                        <i class="bi bi-eye-fill"></i>
-                    </button>
+                            (click)="viewPatient(p)"
+                            class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
+
+                        <button class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
+                            <i class="bi bi-pen"></i>
+                        </button>
+
+                        <button 
+                            (click)="removePatient(p.id, p.fullName)" 
+                            class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </div>
-                    <button class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
-                        <i class="bi bi-pen"></i>
-                    </button>
-                    <button (click)="removePatient(p.id, p.fullName)" class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
-                        <i class="bi bi-trash"></i>
-                    </button>
                 </div>
             </div>
         </div>
