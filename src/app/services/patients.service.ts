@@ -17,7 +17,7 @@ export interface Patient {
 @Injectable({
   providedIn: 'root'
 })
-export class PatientRecordsService {
+export class PatientsService {
 
   // observable list of patients
   public patientsSource = new BehaviorSubject<Patient[]>(this.loadPatientsFromLocalStorage());

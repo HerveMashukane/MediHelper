@@ -1,4 +1,4 @@
-import { Patient, PatientRecordsService } from '../../../services/patient-records.service';
+import { Patient, PatientsService } from '../../../services/patients.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -20,7 +20,7 @@ export class PatientsFormComponent {
   age = '';
   bloodGroup = '';
 
-  constructor(private patientsRecordService: PatientRecordsService) {}
+  constructor(private patientsService: PatientsService) {}
 
   // patients data submission
   onSubmit() {
@@ -36,7 +36,7 @@ export class PatientsFormComponent {
         age: this.age,
         bloodGroup: this.bloodGroup,
       }
-      this.patientsRecordService.addPatient(newPatient);
+      this.patientsService.addPatient(newPatient);
       this.close.emit();
     }
     this.preferedName = '';

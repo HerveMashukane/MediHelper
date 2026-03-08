@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Doctor } from '../../services/mydoctors.service';
-import { Patient } from '../../services/patient-records.service';
+import { Patient } from '../../services/patients.service';
 
 @Component({
   selector: 'app-card-modal',

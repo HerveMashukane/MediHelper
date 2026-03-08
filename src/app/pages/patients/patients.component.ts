@@ -1,9 +1,9 @@
-import { PatientRecordsService } from '../../services/patient-records.service';
+import { PatientsService } from '../../services/patients.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PatientsFormComponent } from '../patients/patients-form/patients-form.component';
 import { Observable } from 'rxjs';
-import { Patient } from '../../services/patient-records.service';
+import { Patient } from '../../services/patients.service';
 import { FormsModule } from '@angular/forms';
 import { ConfirmDialogService } from '../../confirm-dialog.service';
 import { CardModalComponent } from '../../reusable-components/card-modal/card-modal.component';
@@ -20,10 +20,10 @@ export class PatientsComponent {
   isFormVisible: boolean = false;
 
    constructor(
-    private patientRecordsService: PatientRecordsService,
+    private patientsService: PatientsService,
     private confirm: ConfirmDialogService
   ) {
-    this.patients$ = this.patientRecordsService.patients$;
+    this.patients$ = this.patientsService.patients$;
   }
 
   // patients: any = [
@@ -112,7 +112,7 @@ export class PatientsComponent {
     });
 
     if (!ok) return;
-    this.patientRecordsService.removePatient(id);
+    this.patientsService.removePatient(id);
   }
 
   // toggle patient form
@@ -126,7 +126,7 @@ export class PatientsComponent {
 
   // getter to filter patients by department and name
   get filteredPatients() {
-    const allPatients = this.patientRecordsService.patientsSource.value;
+    const allPatients = this.patientsService.patientsSource.value;
 
     return allPatients.filter(p => 
       (this.selectedDepartment === 'All' || p.department === this.selectedDepartment) && 
