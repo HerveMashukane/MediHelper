@@ -1,1 +1,86 @@
-<p>patients works!</p>
+<section class="bg-gray-950 p-10 flex flex-col animate-pageFlip">
+    <h2 class="text-2xl text-white font-semibold">Patient Records</h2>
+
+    <!-- patient filters -->
+    <div class="flex justify-between py-4">
+        <input 
+            type="search" 
+            [(ngModel)]="searchPatient"
+            placeholder="Search patient.." 
+            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-950"
+        >
+        <div class="flex space-x-4">
+            <button 
+                (click)="toggleForm()"
+                class="text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1"
+                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-blue-950 hover:bg-blue-900'">
+                <span>{{isFormVisible ? 'Close Form' : 'New Patient'}}</span>
+            </button>
+
+            <select [(ngModel)]="selectedDepartment" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-950">
+                <option value="All" selected>All Departments</option>
+                <option value="Pediatry">Pediatry</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Surgey">Surgery</option>
+                <option value="Oncology">Oncology</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- patient cards -->
+    <div>
+        <div 
+            *ngIf="filteredPatients.length > 0; else noPatients"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
+            <div 
+                *ngFor="let p of filteredPatients" 
+                class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
+                <div class="space-y-2">
+                    <p class="text-sm text-gray-300 italic">{{ p.preferedName }}</p>
+                    <img [src]="p.image" [alt]="p.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
+                    <p class="flex flex-col font-semibold text-white">{{ p.fullName }}
+                        <span class="font-normal text-gray-300">{{ p.department }}</span>
+                    </p>
+                    <p class="text-gray-300">Age: {{ p.age }} <span>years old</span> | Blood Group: {{ p.bloodGroup }}</p>
+                </div>
+                <div class="flex space-x-4">
+                    <div class="flex space-x-4">
+                        <button 
+                            (click)="viewPatient(p)"
+                            class="bg-blue-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-blue-700 transition">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
+
+                        <button class="bg-yellow-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-yellow-700 transition">
+                            <i class="bi bi-pen"></i>
+                        </button>
+
+                        <button 
+                            (click)="removePatient(p.id, p.fullName)" 
+                            class="bg-red-800 text-white py-1 px-3 rounded-md mt-2 hover:bg-red-700 transition">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #noPatients>
+        <p class="text-gray-500 text-xl text-center">Patients no found...</p>
+    </ng-template>
+</section>
+
+<!-- doctor card modal -->
+<app-card-modal
+    [patient]="selectedPatient"
+    [isPatientsModalOpen]="isModelOpen"
+    (close)="closeModel()">
+</app-card-modal>
+
+<!-- patient form -->
+<app-patients-form 
+    *ngIf="isFormVisible"
+    (close)="toggleForm()">
+</app-patients-form>
