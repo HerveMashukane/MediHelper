@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { DoctorsFormComponent } from "./doctors-form/doctors-form.component";
+import { DoctorsFormComponent } from './doctors-form/doctors-form.component';
 import { Observable } from 'rxjs';
 import { Doctor, MydoctorsService } from '../../services/mydoctors.service';
 import { FormsModule } from '@angular/forms';
@@ -8,13 +8,13 @@ import { ConfirmDialogService } from '../../confirm-dialog.service';
 import { CardModalComponent } from '../../reusable-components/card-modal/card-modal.component';
 
 @Component({
-  selector: 'app-mydoctors',
+  selector: 'app-doctors',
   standalone: true,
   imports: [CommonModule, FormsModule, DoctorsFormComponent, CardModalComponent],
-  templateUrl: './mydoctors.component.html',
-  styleUrl: './mydoctors.component.css',
+  templateUrl: './doctors.component.html',
+  styleUrl: './doctors.component.css'
 })
-export class MydoctorsComponent {
+export class DoctorsComponent {
   doctors$: Observable<Doctor[]>;
 
   constructor(

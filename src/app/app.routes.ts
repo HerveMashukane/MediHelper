@@ -6,7 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MedicationTrackerComponent } from './pages/medication-tracker/medication-tracker.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { BookingsComponent } from './pages/bookings/bookings.component';
-import { MydoctorsComponent } from './pages/mydoctors/mydoctors.component';
+import { DoctorsComponent } from './pages/doctors/doctors.component';
 
 export const routes: Routes = [
   {
@@ -19,7 +19,7 @@ export const routes: Routes = [
       { path: 'medications', component: MedicationTrackerComponent },
       { path: 'appointments', component: AppointmentsComponent },
       {path: 'bookings', component: BookingsComponent},
-      {path: 'mydoctor', component: MydoctorsComponent},
+      {path: 'mydoctor', component: DoctorsComponent},
       {path: 'settings', component: SettingsComponent},
     ]
   }

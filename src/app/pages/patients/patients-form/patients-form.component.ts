@@ -1,4 +1,4 @@
-import { Patient, PatientsService } from '../../../services/patients.service';
+import { Patient, PatientsService } from '../../../services/patients-records.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
