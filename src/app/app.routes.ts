@@ -5,7 +5,6 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MedicationTrackerComponent } from './pages/medication-tracker/medication-tracker.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
-import { BookingsComponent } from './pages/bookings/bookings.component';
 import { DoctorsComponent } from './pages/doctors/doctors.component';
 import { LaboratoryComponent } from './pages/laboratory/laboratory.component';
 import { RadiologyComponent } from './pages/radiology/radiology.component';
@@ -24,7 +23,6 @@ export const routes: Routes = [
       {path: 'doctors', component: DoctorsComponent},
       { path: 'appointments', component: AppointmentsComponent },
       { path: 'pharmacy', component: MedicationTrackerComponent },
-      {path: 'bookings', component: BookingsComponent},
       {path: 'laboratory', component: LaboratoryComponent},
       {path: 'radiology', component: RadiologyComponent},
       {path: 'billing', component: BillingComponent},

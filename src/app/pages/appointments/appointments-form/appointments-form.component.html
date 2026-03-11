@@ -1,0 +1,158 @@
+<section class="p-10 bg-gray-950 space-y-6 animate-pageFlip">
+
+    <h2 class="text-2xl text-white font-semibold">
+        Book an Appointment
+    </h2>
+
+
+    <div class="grid grid-cols-2 gap-6">
+
+        <!-- APPOINTMENT FORM -->
+        <form class="bg-gray-900 p-8 rounded-xl border border-gray-800 space-y-5">
+
+            <h3 class="text-lg text-white font-semibold">
+                Appointment Details
+            </h3>
+
+            <!-- Patient Name -->
+            <div class="flex flex-col space-y-2">
+                <label class="text-gray-300">Patient Name</label>
+
+                <input
+                    type="text"
+                    placeholder="Type patient name..."
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-700 outline-none">
+            </div>
+
+
+            <!-- Doctor -->
+            <div class="flex flex-col space-y-2">
+
+                <label class="text-gray-300">
+                    Select Doctor
+                </label>
+
+                <select
+                    (change)="loadSlots()"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2">
+
+                    <option disabled selected>
+                        Choose Doctor...
+                    </option>
+
+                    <!-- <option *ngFor="let doctor of doctors">
+                        {{ doctor.name }}
+                    </option> -->
+
+                </select>
+
+            </div>
+
+
+            <!-- Date -->
+            <div class="flex flex-col space-y-2">
+
+                <label class="text-gray-300">
+                    Appointment Date
+                </label>
+
+                <input
+                    type="date"
+                    (change)="loadSlots()"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2">
+
+            </div>
+
+
+            <!-- Selected Time -->
+            <div class="flex flex-col space-y-2">
+
+                <label class="text-gray-300">
+                    Selected Time
+                </label>
+
+                <input
+                    type="text"
+                    [value]="selectedSlot"
+                    readonly
+                    placeholder="Select a slot"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2">
+
+            </div>
+
+
+            <!-- Notes -->
+            <div class="flex flex-col space-y-2">
+
+                <label class="text-gray-300">
+                    Notes
+                </label>
+
+                <textarea
+                    rows="4"
+                    placeholder="Additional information"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2">
+                </textarea>
+
+            </div>
+
+
+            <button
+                class="bg-blue-700 hover:bg-blue-600 px-6 py-2 rounded-lg font-medium transition">
+                Book Appointment
+            </button>
+
+        </form>
+
+
+
+        <!-- SLOT PANEL -->
+        <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 space-y-6">
+
+            <h3 class="text-lg text-white font-semibold">
+                Available Time Slots
+            </h3>
+
+
+            <!-- Doctor summary -->
+            <div class="flex items-center justify-between bg-gray-950 p-4 rounded-lg">
+
+                <div>
+                    <p class="text-white font-medium">
+                        {{ selectedDoctor || 'Select doctor' }}
+                    </p>
+
+                    <p class="text-sm text-gray-400">
+                        {{ selectedDate || 'Choose a date' }}
+                    </p>
+                </div>
+
+                <i class="fa-solid fa-user-doctor text-blue-500 text-xl"></i>
+
+            </div>
+
+
+            <!-- SLOTS -->
+            <div class="grid grid-cols-4 gap-3">
+
+                <button
+                    *ngFor="let slot of slots"
+                    (click)="selectSlot(slot)"
+                    [disabled]="slot.booked"
+                    [ngClass]="{
+                        'bg-gray-800 hover:bg-blue-700': !slot.booked,
+                        'bg-red-700 cursor-not-allowed': slot.booked
+                    }"
+                    class="text-white py-2 rounded-lg transition">
+
+                    {{ slot.time }}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

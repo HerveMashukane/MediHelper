@@ -13,11 +13,11 @@
             <button 
                 (click)="toggleForm()"
                 class="text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1"
-                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-blue-950 hover:bg-blue-900'">
+                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-blue-800 hover:bg-blue-700'">
                 <span>{{isFormVisible ? 'Close Form' : 'New Patient'}}</span>
             </button>
 
-            <select [(ngModel)]="selectedDepartment" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-950">
+            <select [(ngModel)]="selectedDepartment" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
                 <option value="All" selected>All Departments</option>
                 <option value="Pediatry">Pediatry</option>
                 <option value="Cardiology">Cardiology</option>
