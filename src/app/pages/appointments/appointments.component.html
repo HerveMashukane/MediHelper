@@ -1,82 +1,178 @@
-<section class="p-10 relative flex flex-col bg-gray-950 text-white animate-pageFlip">
-    <!-- Appointment header + filter buttons & add appointment btn -->
-    <div class="space-y-4">
-        <h2 class="text-2xl font-semibold">
-            Appointments
-        </h2>
-        <div class="flex justify-between pb-2">
-            <!-- filter buttons -->
-            <div class="flex flex-wrap space-x-2">
-                <button class="bg-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-900 transition">
-                    All
-                </button>
-                <button class="border border-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
-                    Upcoming
-                </button>
-                <button class="border border-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
-                    Completed
-                </button>
-                <button class="border border-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
-                    Pending
-                </button>
-                <button class="border border-blue-950 text-white px-3 py-1 rounded-full hover:bg-blue-950 transition">
-                    Canceled
-                </button>
-                <input type="search" placeholder="Search appointement..." class="bg-gray-950 text-white border border-blue-950 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-950"/>
-            </div>
-        </div>
-        <h2 class="text-xl font-semibold pb-2">
-            All Appointments
-        </h2>
-    </div>
-    <!-- patient appointments table -->
-    <table class="w-full bg-gray-900 text-white">
-        <thead>
-            <tr class="border text-left text-xl font-semibold">
-                <th class="border-2 border-gray-600 p-2">Patient</th>
-                <th class="border-2 border-gray-600 p-2">Doctor</th>
-                <th class="border-2 border-gray-600 p-2">Date</th>
-                <th class="border-2 border-gray-600 p-2">Time</th>
-                <th class="border-2 border-gray-600 p-2">Status</th>
-                <th class="border-2 border-gray-600 p-2">Actions</th>
-            </tr>
-        </thead>
+<section class="p-8 bg-gray-950 text-white min-h-screen space-y-8">
 
-        <tbody *ngFor="let appointment of patientAppointments">
-            <tr class="border-2 border-gray-600">
-                <td class="py-3 border-2 border-gray-600 px-2">{{ appointment.patientName }}</td>
-                <td class="py-3 border-2 border-gray-600 px-2">{{ appointment.doctorName }}</td>
-                <td class="py-3 border-2 border-gray-600 px-2">{{ appointment.date }}</td>
-                <td class="py-3 border-2 border-gray-600 px-2">{{ appointment.time }}</td>
-                <td class="py-3 border-2 border-gray-600 px-2">
-                    <button 
-                        class="px-2 py-1 rounded-full"
-                        [ngClass]="{
-                            'bg-blue-800 text-white hover:bg-blue-700 transition': appointment.status === 'Completed',
-                            'bg-yellow-800 text-white hover:bg-yellow-700 transition': appointment.status === 'Pending',
-                            'bg-red-800 text-white hover:bg-red-700 transition': appointment.status === 'Canceled'
-                        }">
-                        {{ appointment.status }}
-                    </button>
-                </td>
-                <td class="flex py-3 px-2 space-x-4">
-                    <button aria-label="view appointment" title="view appointment" class="bg-blue-800 text-white px-2 py-1 hover:bg-blue-700 rounded-full transition">
-                        <i class="bi bi-eye-fill"></i>
-                    </button>
-                    <button aria-label="complete appointment" title="mark as completed" class="bg-blue-800 text-white px-2 py-1 hover:bg-blue-700 rounded-full transition">
-                        <i class="bi bi-check"></i>
-                    </button>
-                    <button aria-label="cancel appointment" title="mark as canceled" class="bg-red-800 px-2 py-1 text-white hover:bg-red-700 rounded-full transition">
-                        <i class="bi bi-x"></i>
-                    </button>
-                    <button aria-label="pend appointment" title="mark as pended" class="bg-yellow-800 px-2 py-1 text-white hover:bg-yellow-700 rounded-full transition">
-                        <i class="bi bi-clock"></i>
-                    </button>
-                    <button aria-label="edit appointment" title="edit appointment" class="bg-yellow-800 text-white px-2 py-1 hover:bg-yellow-700 rounded-full transition">
-                        <i class="bi bi-pen"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- PAGE HEADER -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-3xl font-semibold">Appointments</h1>
+            <p class="text-gray-400 text-sm">
+                Manage patient appointments and scheduling
+            </p>
+        </div>
+
+        <button class="bg-blue-700 hover:bg-blue-600 px-5 py-2 rounded-lg font-medium transition">
+            + New Appointment
+        </button>
+    </div>
+
+
+    <!-- STATISTICS -->
+    <div class="grid grid-cols-4 gap-6">
+
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+            <p class="text-gray-400 text-sm">Total</p>
+            <h2 class="text-2xl font-semibold">324</h2>
+        </div>
+
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+            <p class="text-gray-400 text-sm">Upcoming</p>
+            <h2 class="text-2xl font-semibold text-blue-400">102</h2>
+        </div>
+
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+            <p class="text-gray-400 text-sm">Completed</p>
+            <h2 class="text-2xl font-semibold text-green-400">190</h2>
+        </div>
+
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+            <p class="text-gray-400 text-sm">Canceled</p>
+            <h2 class="text-2xl font-semibold text-red-400">32</h2>
+        </div>
+
+    </div>
+
+
+    <!-- FILTERS -->
+    <div class="flex flex-wrap items-center justify-between gap-4">
+
+        <!-- status filters -->
+        <div class="flex space-x-2">
+
+            <button class="bg-blue-900 px-4 py-1 rounded-full text-sm">
+                All
+            </button>
+
+            <button class="border border-gray-700 px-4 py-1 rounded-full text-sm hover:bg-gray-800">
+                Upcoming
+            </button>
+
+            <button class="border border-gray-700 px-4 py-1 rounded-full text-sm hover:bg-gray-800">
+                Completed
+            </button>
+
+            <button class="border border-gray-700 px-4 py-1 rounded-full text-sm hover:bg-gray-800">
+                Pending
+            </button>
+
+            <button class="border border-gray-700 px-4 py-1 rounded-full text-sm hover:bg-gray-800">
+                Cancelled
+            </button>
+
+        </div>
+
+        <!-- search -->
+        <input
+            type="search"
+            placeholder="Search patient, doctor..."
+            class="bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-700"
+        />
+
+    </div>
+
+
+    <!-- TABLE -->
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+
+        <table class="w-full text-left">
+
+            <thead class="bg-gray-800 text-gray-300 text-sm">
+                <tr>
+                    <th class="p-4">Patient</th>
+                    <th class="p-4">Doctor</th>
+                    <th class="p-4">Date</th>
+                    <th class="p-4">Time</th>
+                    <th class="p-4">Type</th>
+                    <th class="p-4">Status</th>
+                    <th class="p-4">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let appointment of patientAppointments"
+                    class="border-t border-gray-800 hover:bg-gray-800 transition">
+                    <td class="p-4 font-medium">
+                        {{ appointment.patientName }}
+                    </td>
+                    <td class="p-4">
+                        {{ appointment.doctorName }}
+                    </td>
+                    <td class="p-4">
+                        {{ appointment.date }}
+                    </td>
+                    <td class="p-4">
+                        {{ appointment.time }}
+                    </td>
+                    <td class="p-4 text-sm text-gray-400">
+                        Consultation
+                    </td>
+
+                    <!-- STATUS -->
+                    <td class="p-4">
+                        <span
+                            class="px-3 py-1 text-xs rounded-full"
+                            [ngClass]="{
+                                'bg-green-700 text-white': appointment.status === 'Completed',
+                                'bg-yellow-700 text-white': appointment.status === 'Pending',
+                                'bg-red-700 text-white': appointment.status === 'Canceled',
+                                'bg-blue-700 text-white': appointment.status === 'Upcoming'
+                            }"
+                        >
+                            {{ appointment.status }}
+                        </span>
+                    </td>
+
+                    <!-- ACTIONS -->
+                    <td class="p-4 flex space-x-2">
+                        <button
+                            class="bg-blue-700 px-3 py-1 rounded-md hover:bg-blue-600">
+                            View
+                        </button>
+                        <button
+                            class="bg-yellow-600 px-3 py-1 rounded-md hover:bg-yellow-500">
+                            Edit
+                        </button>
+                        <button
+                            class="bg-green-700 px-3 py-1 rounded-md hover:bg-green-600">
+                            Complete
+                        </button>
+                        <button
+                            class="bg-red-700 px-3 py-1 rounded-md hover:bg-red-600">
+                            Cancel
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <!-- PAGINATION -->
+    <!-- <div class="flex justify-between items-center text-sm text-gray-400">
+        <p>Showing 1 - 10 of 324 appointments</p>
+        <div class="space-x-2">
+            <button class="px-3 py-1 bg-gray-800 rounded">
+                Prev
+            </button>
+            <button class="px-3 py-1 bg-blue-700 rounded">
+                1
+            </button>
+            <button class="px-3 py-1 bg-gray-800 rounded">
+                2
+            </button>
+            <button class="px-3 py-1 bg-gray-800 rounded">
+                Next
+            </button>
+        </div> -->
+    <!-- </div> -->
 </section>

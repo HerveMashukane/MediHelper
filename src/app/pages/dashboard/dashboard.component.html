@@ -123,20 +123,20 @@
         <div class="rounded-xl shadow overflow-hidden">
             <table class="bg-gray-900 w-full text-left">
                 <thead class="bg-gray-800 text-gray-300 text-sm">
-                    <tr>
-                        <th class="p-4">Patient</th>
-                        <th class="p-4">Doctor</th>
-                        <th class="p-4">Date</th>
-                        <th class="p-4">Status</th>
+                    <tr class="border border-gray-700">
+                        <th class="p-4 border border-gray-700">Patient</th>
+                        <th class="p-4 border border-gray-700">Doctor</th>
+                        <th class="p-4 border border-gray-700">Date</th>
+                        <th class="p-4 border border-gray-700">Status</th>
                     </tr>
                 </thead>
 
                 <tbody *ngFor="let activity of patientActivities">
-                    <tr class="text-white border-t border-gray-300">
-                        <td class="p-4">{{ activity.patientName }}</td>
-                        <td class="p-4">{{ activity.doctorName }}</td>
-                        <td class="p-4">{{ activity.date }}</td>
-                        <td class="p-4">
+                    <tr class="text-white border border-gray-700">
+                        <td class="p-4 border border-gray-700">{{ activity.patientName }}</td>
+                        <td class="p-4 border border-gray-700">{{ activity.doctorName }}</td>
+                        <td class="p-4 border border-gray-700">{{ activity.date }}</td>
+                        <td class="p-4 border border-gray-700">
                             <button 
                                 class="px-2 py-1 rounded-full"
                                 [ngClass]="{
