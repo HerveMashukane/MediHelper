@@ -1,0 +1,160 @@
+<section class="animate-pageFlip space-y-6">
+
+  <!-- HEADER -->
+  <div class="flex justify-between items-center">
+    <div>
+      <h2 class="text-3xl text-white font-semibold">Medication Tracker</h2>
+      <p class="text-gray-400 text-sm">
+        Track prescriptions, schedules and adherence
+      </p>
+    </div>
+
+    <button
+      (click)="toggleForm()"
+      class="bg-blue-950 text-white py-2 px-5 rounded-md hover:bg-blue-900 transition flex items-center gap-2"
+      [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : 'bg-blue-950 hover:bg-blue-900'"
+    >
+      <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
+      <span>{{ isFormVisible ? 'Close Form' : 'Add Medication' }}</span>
+    </button>
+  </div>
+
+  <!-- SEARCH + FILTERS -->
+  <div class="bg-gray-950 p-6 rounded-md shadow-xl space-y-4">
+
+    <div class="flex flex-wrap gap-4 items-center justify-between">
+
+      <!-- search -->
+      <input
+        type="text"
+        placeholder="Search medication..."
+        [(ngModel)]="searchTerm"
+        class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64"
+      />
+
+      <!-- status filters -->
+      <div class="flex flex-wrap gap-2">
+        <button
+          *ngFor="let filter of statusFilters"
+          (click)="setFilter(filter)"
+          class="px-3 py-1 rounded-full border border-gray-700 hover:bg-blue-950 transition"
+          [ngClass]="currentFilter === filter ? 'bg-blue-950 text-white' : 'text-gray-300'"
+        >
+          {{ filter }}
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MEDICATION TABLE -->
+  <div class="bg-gray-950 p-6 rounded-md shadow-2xl overflow-x-auto">
+
+    <table class="w-full text-white">
+
+      <thead class="bg-gray-900 text-gray-200">
+        <tr class="text-left text-sm uppercase">
+          <th class="p-3">Medication</th>
+          <th class="p-3">Dosage</th>
+          <th class="p-3">Schedule</th>
+          <th class="p-3">Doctor</th>
+          <th class="p-3">Start</th>
+          <th class="p-3">End</th>
+          <th class="p-3">Progress</th>
+          <th class="p-3">Status</th>
+          <th class="p-3">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr
+          *ngFor="let med of filteredMedications"
+          class="border-b border-gray-800 hover:bg-gray-900 transition"
+        >
+
+          <td class="p-3 font-semibold">{{ med.name }}</td>
+
+          <td class="p-3">{{ med.dosage }}</td>
+
+          <td class="p-3">{{ med.schedule }}</td>
+
+          <td class="p-3 text-blue-400">{{ med.doctor }}</td>
+
+          <td class="p-3">{{ med.startDate }}</td>
+
+          <td class="p-3">{{ med.endDate }}</td>
+
+          <!-- adherence progress -->
+          <td class="p-3 w-40">
+
+            <div class="w-full bg-gray-800 rounded-full h-2">
+              <div
+                class="bg-green-500 h-2 rounded-full"
+                [style.width.%]="med.progress"
+              ></div>
+            </div>
+
+            <span class="text-xs text-gray-400">
+              {{ med.progress }}%
+            </span>
+
+          </td>
+
+          <!-- STATUS -->
+          <td class="p-3">
+
+            <span
+              class="px-3 py-1 rounded-full text-xs font-semibold"
+              [ngClass]="{
+                'bg-green-700': med.status === 'Active',
+                'bg-yellow-700': med.status === 'Pending',
+                'bg-red-700': med.status === 'Inactive',
+                'bg-blue-700': med.status === 'Completed'
+              }"
+            >
+              {{ med.status }}
+            </span>
+
+          </td>
+
+          <!-- ACTIONS -->
+          <td class="p-3 flex gap-2">
+
+            <button
+              class="bg-yellow-700 px-3 py-1 rounded-full hover:bg-yellow-600"
+            >
+              Edit
+            </button>
+
+            <button
+              class="bg-red-800 px-3 py-1 rounded-full hover:bg-red-700"
+            >
+              Delete
+            </button>
+
+            <button
+              class="bg-blue-800 px-3 py-1 rounded-full hover:bg-blue-700"
+            >
+              View
+            </button>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+<app-medication-form
+  *ngIf="isFormVisible"
+  (cancel)="closeFormFromChild()"
+  class="text-white"
+>
+</app-medication-form>
