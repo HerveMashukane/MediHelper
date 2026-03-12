@@ -1,1 +1,137 @@
-<p>radiology works!</p>
+<section class="animate-pageFlip space-y-6">
+
+    <!-- PAGE HEADER -->
+    <div class="flex justify-between items-center">
+        <div>
+        <h2 class="text-3xl font-semibold text-white">Radiology Center</h2>
+        <p class="text-gray-400 text-sm">
+            Manage imaging exams, reports and results
+        </p>
+        </div>
+
+        <button
+        (click)="toggleForm()"
+        class="bg-blue-950 text-white py-2 px-5 rounded-md hover:bg-blue-900 transition flex gap-2 items-center"
+        [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : ''"
+        >
+        <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
+        {{ isFormVisible ? 'Close Form' : 'New Radiology Exam' }}
+        </button>
+    </div>
+
+    <!-- SEARCH + FILTERS -->
+    <div class="bg-gray-950 p-6 rounded-md shadow-xl">
+        <div class="flex flex-wrap gap-4 justify-between items-center">
+            <input
+                type="text"
+                placeholder="Search patient or exam..."
+                [(ngModel)]="searchTerm"
+                class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64"
+            >
+
+            <div class="flex gap-2 flex-wrap">
+                <button
+                *ngFor="let filter of statusFilters"
+                (click)="setFilter(filter)"
+                class="px-3 py-1 rounded-full border border-gray-700 hover:bg-blue-950"
+                [ngClass]="currentFilter === filter ? 'bg-blue-950 text-white' : 'text-gray-300'"
+                >
+                {{filter}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RADIOLOGY TABLE -->
+    <div class="bg-gray-950 p-6 rounded-md shadow-2xl overflow-x-auto">
+        <table class="w-full text-white">
+
+            <thead class="bg-gray-900 text-sm uppercase">
+                <tr>
+                <th class="p-3">Patient</th>
+                <th class="p-3">Exam</th>
+                <th class="p-3">Body Part</th>
+                <th class="p-3">Doctor</th>
+                <th class="p-3">Date</th>
+                <th class="p-3">Radiologist</th>
+                <th class="p-3">Status</th>
+                <th class="p-3">Report</th>
+                <th class="p-3">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr
+                *ngFor="let exam of filteredRadiology"
+                class="border-b border-gray-800 hover:bg-gray-900"
+                >
+
+                <td class="p-3 font-semibold">{{exam.patient}}</td>
+
+                    <td class="p-3">{{exam.examType}}</td>
+
+                    <td class="p-3">{{exam.bodyPart}}</td>
+
+                    <td class="p-3 text-blue-400">{{exam.doctor}}</td>
+
+                    <td class="p-3">{{exam.date}}</td>
+
+                    <td class="p-3">{{exam.radiologist}}</td>
+
+                    <td class="p-3">
+
+                        <span
+                        class="px-3 py-1 rounded-full text-xs font-semibold"
+                        [ngClass]="{
+
+                            'bg-yellow-700': exam.status === 'Pending',
+                            'bg-blue-700': exam.status === 'In Review',
+                            'bg-green-700': exam.status === 'Completed',
+                            'bg-red-700': exam.status === 'Urgent'
+
+                        }"
+                        >
+                        {{exam.status}}
+                        </span>
+                    </td>
+
+                    <td class="p-3">
+
+                        <button
+                        class="bg-blue-800 px-3 py-1 rounded-full hover:bg-blue-700"
+                        >
+                        View Report
+                        </button>
+                    </td>
+
+                    <td class="p-3 flex gap-2">
+                        <button
+                            class="bg-yellow-700 px-3 py-1 rounded-full hover:bg-yellow-600"
+                            >
+                            Edit
+                        </button>
+
+                        <button
+                            class="bg-red-800 px-3 py-1 rounded-full hover:bg-red-700"
+                            >
+                            Delete
+                        </button>
+
+                        <button
+                            class="bg-green-800 px-3 py-1 rounded-full hover:bg-green-700"
+                            >
+                            Upload Image
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- <app-radiology-form
+  *ngIf="isFormVisible"
+  (cancel)="closeFormFromChild()"
+>
+</app-radiology-form> -->
