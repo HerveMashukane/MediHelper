@@ -1,155 +1,222 @@
-<section class="p-10 bg-gray-950 flex flex-col text-white overflow-y-auto animate-pageFlip">
-    <div>
-        <h2 class="text-2xl font-semibold">
-            Hello Herve, Here's your health summary
-        </h2>
-    </div>
-    <!-- CARDS -->
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-4 py-8">
-        <!-- appointement -->
-        <article class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-            <div class="flex space-x-3">
-                <div><i class="bi bi-people-fill text-xl text-blue-700"></i></div>
-                <div>
-                    <h2 class="flex flex-col font-semibold">
-                        2 <span>Appointments</span>
-                    </h2>
-                </div>
-            </div>
-        </article>
+<section class="p-8 bg-gray-950 text-white min-h-screen space-y-8 animate-pageFlip">
 
-        <!-- medications due -->
-        <article class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-            <div class="flex space-x-3">
-                <div><i class="fa-solid fa-pills text-xl text-emerald-600"></i></div>
-                <div>
-                    <h2 class="flex flex-col font-semibold">
-                        3 <span>Medications due</span>
-                    </h2>
-                </div>
-            </div>
-        </article>
-        <!-- active patients -->
-        <article class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-            <div class="flex space-x-3">
-                <div><i class="fa-solid fa-person text-xl text-blue-600"></i></div>
-                <div>
-                    <h2 class="flex flex-col font-semibold">
-                        50 <span>Active patients</span>
-                    </h2>
-                </div>
-            </div>
-        </article>
+    <!-- HEADER -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-3xl font-semibold">
+                Dashboard
+            </h1>
+            <p class="text-gray-400 text-sm">
+                Welcome back, Hervé 👋
+            </p>
+        </div>
 
-        <!-- today'smedication -->
-        <article class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-            <div class="flex space-x-3">
-                <div><i class="bi bi-bell-fill text-yellow-500 text-xl"></i></div>
-                <div>
-                    <h2 class="flex flex-col font-semibold">
-                        0 <span>New notification</span>
-                    </h2>
-                </div>
-            </div>
-        </article>
+        <div class="flex items-center gap-3">
+            <button class="bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm">
+                + New Appointment
+            </button>
+        </div>
     </div>
 
-    <!-- OTHER CARDS -->
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <!-- upcoming appointments -->
-        <article class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 p-4 rounded-md hover:scale-105 transition cursor-pointer">
-            <!-- text -->
-            <div class="text-white space-y-3">
-                <h2 class="text-xl text-white font-semibold">
-                    Upcoming appointments
-                </h2>
-                <p>
-                    10:00AM 
-                    <i class="bi bi-arrow-right"></i>
-                    Dr. Herve Mashukane(Cardiology)
-                </p>
-                <p>
-                    2:00PM 
-                    <i class="bi bi-arrow-right"></i>
-                    Dr. Christelle Pelaya(General Checkup)
-                </p>
-                <!-- button to appointments full page -->
-                <div>
-                    <a routerLink="/appointments" class="bg-blue-800 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition">
-                        View All Appointments
-                        <i class="bi bi-arrow-right"></i>
-                    </a> 
-                </div>
-            </div>
-        </article>
 
-        <!-- today's medications -->
-        <article class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 p-4 rounded-md hover:scale-105 transition cursor-pointer">
-            <!-- text -->
-            <div class="text-white space-y-3">
-                <h2 class="text-xl text-white font-semibold">
-                    Today's Medications
-                </h2>
-                <p>
-                    <i class="bi bi-clock-fill text-blue-800"></i>
-                    Amoxicillin 
-                    <i class="bi bi-arrow-right"></i>
-                    1 pill 9:00AM
-                </p>
-                <p>
-                    <i class="bi bi-clock-fill text-blue-800"></i>
-                    Vitamin C 
-                    <i class="bi bi-arrow-right"></i>
-                    1 pill 6:00PM
-                </p>
-                <!-- button to medicatons full page -->
-                <div>
-                    <a routerLink="/medications" class="bg-emerald-800 hover:bg-emerald-700 text-white py-2 px-4 rounded-lg thansition">
-                        View Medication tracker
-                        <i class="bi bi-arrow-right"></i>
+    <!-- KPI CARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+        <!-- Appointments -->
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-blue-700 transition">
+            <p class="text-gray-400 text-sm">Appointments</p>
+            <h2 class="text-2xl font-semibold mt-2">24</h2>
+            <span class="text-xs text-blue-400">+4 today</span>
+        </div>
+
+        <!-- Patients -->
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-blue-700 transition">
+            <p class="text-gray-400 text-sm">Active Patients</p>
+            <h2 class="text-2xl font-semibold mt-2">50</h2>
+            <span class="text-xs text-green-400">Stable</span>
+        </div>
+
+        <!-- Medications -->
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-blue-700 transition">
+            <p class="text-gray-400 text-sm">Medications Due</p>
+            <h2 class="text-2xl font-semibold mt-2">3</h2>
+            <span class="text-xs text-yellow-400">Needs attention</span>
+        </div>
+
+        <!-- Alerts -->
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-red-600 transition">
+            <p class="text-gray-400 text-sm">Notifications</p>
+            <h2 class="text-2xl font-semibold mt-2">2</h2>
+            <span class="text-xs text-red-400">Urgent</span>
+        </div>
+
+    </div>
+
+
+    <!-- MAIN GRID -->
+    <div class="grid grid-cols-3 gap-6">
+
+        <!-- LEFT SIDE -->
+        <div class="col-span-2 space-y-6">
+
+            <!-- Upcoming Appointments -->
+            <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">
+                        Upcoming Appointments
+                    </h2>
+
+                    <a routerLink="/appointments" class="text-sm text-blue-400 hover:underline">
+                        View all
                     </a>
                 </div>
-            </div>
-        </article>
-    </div>
-    <!-- recent Patent activity card -->
-    <article class="my-8 p-4 rounded-md w-full">
-        <div class="py-4 text-gray-900">
-            <h2 class="text-xl text-white font-semibold">
-                Recent Patient Activity
-            </h2>
-        </div>
-        <!-- patient activity table -->
-        <div class="rounded-xl shadow overflow-hidden">
-            <table class="bg-gray-900 w-full text-left">
-                <thead class="bg-gray-800 text-gray-300 text-sm">
-                    <tr class="border border-gray-700">
-                        <th class="p-4 border border-gray-700">Patient</th>
-                        <th class="p-4 border border-gray-700">Doctor</th>
-                        <th class="p-4 border border-gray-700">Date</th>
-                        <th class="p-4 border border-gray-700">Status</th>
-                    </tr>
-                </thead>
 
-                <tbody *ngFor="let activity of patientActivities">
-                    <tr class="text-white border border-gray-700">
-                        <td class="p-4 border border-gray-700">{{ activity.patientName }}</td>
-                        <td class="p-4 border border-gray-700">{{ activity.doctorName }}</td>
-                        <td class="p-4 border border-gray-700">{{ activity.date }}</td>
-                        <td class="p-4 border border-gray-700">
-                            <button 
-                                class="px-2 py-1 rounded-full"
-                                [ngClass]="{
-                                    'bg-blue-800 text-white hover:bg-blue-700 transition': activity.status === 'Completed',
-                                    'bg-yellow-800 text-white hover:bg-yellow-700 transition': activity.status === 'Pending',
-                                    'bg-red-800 text-white hover:bg-red-700 transition': activity.status === 'Canceled'
-                                }">
-                                {{ activity.status }}
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <div class="space-y-3">
+
+                    <div class="flex items-center justify-between bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition">
+
+                        <div>
+                            <p class="font-medium">Herve Mashukane</p>
+                            <span class="text-sm text-gray-400">
+                                10:00 AM • Cardiology
+                            </span>
+                        </div>
+
+                        <span class="text-blue-400 text-sm">
+                            Dr. Hiro
+                        </span>
+
+                    </div>
+
+                    <div class="flex items-center justify-between bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition">
+
+                        <div>
+                            <p class="font-medium">Christelle Pelaya</p>
+                            <span class="text-sm text-gray-400">
+                                02:00 PM • General
+                            </span>
+                        </div>
+
+                        <span class="text-blue-400 text-sm">
+                            Dr. Hervé
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PATIENT ACTIVITY -->
+            <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+
+                <div class="p-6">
+                    <h2 class="text-lg font-semibold">
+                        Recent Activity
+                    </h2>
+                </div>
+
+                <table class="w-full text-left">
+
+                    <thead class="bg-gray-800 text-gray-300 text-sm">
+                        <tr>
+                            <th class="p-4">Patient</th>
+                            <th class="p-4">Doctor</th>
+                            <th class="p-4">Date</th>
+                            <th class="p-4">Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let activity of patientActivities"
+                            class="border-t border-gray-800 hover:bg-gray-800 transition">
+
+                            <td class="p-4">{{ activity.patientName }}</td>
+                            <td class="p-4">{{ activity.doctorName }}</td>
+                            <td class="p-4">{{ activity.date }}</td>
+
+                            <td class="p-4">
+                                <span
+                                    class="px-3 py-1 text-xs rounded-full"
+                                    [ngClass]="{
+                                        'bg-green-700': activity.status === 'Completed',
+                                        'bg-yellow-700': activity.status === 'Pending',
+                                        'bg-red-700': activity.status === 'Canceled'
+                                    }">
+                                    {{ activity.status }}
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
         </div>
-    </article>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="space-y-6">
+
+            <!-- TODAY SCHEDULE -->
+            <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+
+                <h2 class="text-lg font-semibold mb-4">
+                    Today’s Schedule
+                </h2>
+
+                <div class="space-y-3">
+
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">09:00</span>
+                        <span>Available</span>
+                    </div>
+
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">10:00</span>
+                        <span class="text-blue-400">Booked</span>
+                    </div>
+
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">11:00</span>
+                        <span>Available</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MEDICATIONS -->
+            <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+
+                <h2 class="text-lg font-semibold mb-4">
+                    Today’s Medications
+                </h2>
+
+                <div class="space-y-3 text-sm">
+
+                    <div class="flex justify-between">
+                        <span>Amoxicillin</span>
+                        <span class="text-blue-400">09:00</span>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span>Vitamin C</span>
+                        <span class="text-blue-400">18:00</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </section>
