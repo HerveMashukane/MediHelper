@@ -1,85 +1,130 @@
-<section class="animate-pageFlip">
-    <!-- title -->
-    <h2 class="text-2xl font-semibold text-white">Settings</h2>
+<section class="p-8 bg-gray-950 text-white min-h-screen">
 
-    <!-- main content -->
-    <main class="flex gap-4 w-full">
-        <!-- profile settings form -->
-        <form class="text-white space-y-4 bg-gradient-to-br from-gray-900 to-gray-950 p-8 shadow-lg rounded-md w-full">
-            <h3 class="text-lg text-white font-semibold">Profile Settings</h3>
-            <!-- user full name -->
-            <div class="flex flex-col space-y-2">
-                <label for="name" class="text-white font-medium">Full name</label>
-                <input 
-                    type="text" 
-                    placeholder="e.g: Herve Mashukane" 
-                    class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"
-                >
-            </div>
+    <!-- HEADER -->
+    <div class="mb-6">
+        <h1 class="text-3xl font-semibold">Settings</h1>
+        <p class="text-gray-400 text-sm">
+            Manage your account and system preferences
+        </p>
+    </div>
 
-            <!-- user email -->
-            <div class="flex flex-col space-y-2">
-                <label for="email" class="text-white font-medium">Email</label>
-                <input type="email" name="email" 
-                    placeholder="eg: hervemashukane@gmailcom" 
-                    class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"
-                >
-            </div>
 
-            <!-- user password -->
-            <div class="flex flex-col space-y-2">
-                <label for="password" class="text-white font-medium">Password</label>
-                <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="........" 
-                    class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"
-                >
-            </div>
+    <div class="grid grid-cols-4 gap-6">
 
-            <!-- save profile btn -->
-            <div>
-                <button class="bg-blue-950 text-white py-2 px-5 rounded-md hover:bg-blue-900 transition">
+        <!-- LEFT MENU -->
+        <aside class="bg-gray-900 rounded-xl border border-gray-800 p-4 space-y-2">
+
+            <button (click)="activeTab='profile'"
+                [ngClass]="activeTab==='profile' ? 'bg-blue-700' : 'hover:bg-gray-800'"
+                class="w-full text-left px-4 py-2 rounded-lg">
+                Profile
+            </button>
+
+            <button (click)="activeTab='security'"
+                [ngClass]="activeTab==='security' ? 'bg-blue-700' : 'hover:bg-gray-800'"
+                class="w-full text-left px-4 py-2 rounded-lg">
+                Security
+            </button>
+
+            <button (click)="activeTab='notifications'"
+                [ngClass]="activeTab==='notifications' ? 'bg-blue-700' : 'hover:bg-gray-800'"
+                class="w-full text-left px-4 py-2 rounded-lg">
+                Notifications
+            </button>
+
+            <button (click)="activeTab='appearance'"
+                [ngClass]="activeTab==='appearance' ? 'bg-blue-700' : 'hover:bg-gray-800'"
+                class="w-full text-left px-4 py-2 rounded-lg">
+                Appearance
+            </button>
+
+        </aside>
+
+
+        <!-- RIGHT CONTENT -->
+        <div class="col-span-3 space-y-6">
+
+            <!-- PROFILE -->
+            <div *ngIf="activeTab==='profile'" class="bg-gray-900 p-6 rounded-xl border border-gray-800 space-y-4">
+
+                <h2 class="text-lg font-semibold">Profile Information</h2>
+
+                <input type="text" placeholder="Full Name"
+                    class="w-full bg-gray-950 border border-gray-700 rounded-lg p-3">
+
+                <input type="email" placeholder="Email"
+                    class="w-full bg-gray-950 border border-gray-700 rounded-lg p-3">
+
+                <button class="bg-blue-700 px-5 py-2 rounded-lg">
                     Save Profile
                 </button>
-            </div>
-        </form>
 
-        <!-- notification & preferences -->
-        <div class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 p-8 text-white space-y-2 shadow-lg rounded-md w-full">
-            <h3 class="text-lg text-white font-semibold">Notifications & Preferences</h3>
-
-            <!-- email notification -->
-            <div class="flex justify-between">
-                <label for="email">Email notifications</label>
-                <input type="checkbox">
             </div>
 
-            <!-- SMS notifications -->
-            <div class="flex justify-between">
-                <label for="sms">SMS notifications</label>
-                <input type="checkbox">
+
+            <!-- SECURITY -->
+            <div *ngIf="activeTab==='security'" class="bg-gray-900 p-6 rounded-xl border border-gray-800 space-y-4">
+
+                <h2 class="text-lg font-semibold">Security</h2>
+
+                <input type="password" placeholder="Current Password"
+                    class="w-full bg-gray-950 border border-gray-700 rounded-lg p-3">
+
+                <input type="password" placeholder="New Password"
+                    class="w-full bg-gray-950 border border-gray-700 rounded-lg p-3">
+
+                <button class="bg-red-700 px-5 py-2 rounded-lg">
+                    Update Password
+                </button>
+
             </div>
 
-            <!-- Push notifications -->
-            <div class="flex justify-between">
-                <label for="push">Push notifications</label>
-                <input type="checkbox">
-            </div>
 
-            <!-- dark mode -->
-            <div class="flex justify-between">
-                <label for="darkmode">Dark Mode</label>
-                <input type="checkbox" checked>
-            </div>
+            <!-- NOTIFICATIONS -->
+            <div *ngIf="activeTab==='notifications'" class="bg-gray-900 p-6 rounded-xl border border-gray-800 space-y-4">
 
-            <!-- save preferences btn -->
-            <!-- save profile btn -->
-            <div>
-                <button class="bg-blue-950 text-white py-2 px-5 rounded-md hover:bg-blue-900 transition">
+                <h2 class="text-lg font-semibold">Notifications</h2>
+
+                <div class="flex justify-between">
+                    <span>Email Notifications</span>
+                    <input type="checkbox">
+                </div>
+
+                <div class="flex justify-between">
+                    <span>SMS Notifications</span>
+                    <input type="checkbox">
+                </div>
+
+                <div class="flex justify-between">
+                    <span>Push Notifications</span>
+                    <input type="checkbox">
+                </div>
+
+                <button class="bg-blue-700 px-5 py-2 rounded-lg">
                     Save Preferences
                 </button>
+
             </div>
+
+
+            <!-- APPEARANCE -->
+            <div *ngIf="activeTab==='appearance'" class="bg-gray-900 p-6 rounded-xl border border-gray-800 space-y-4">
+
+                <h2 class="text-lg font-semibold">Appearance</h2>
+
+                <div class="flex justify-between">
+                    <span>Dark Mode</span>
+                    <input type="checkbox" checked>
+                </div>
+
+                <button class="bg-blue-700 px-5 py-2 rounded-lg">
+                    Save Appearance
+                </button>
+
+            </div>
+
         </div>
-    </main>
+
+    </div>
+
 </section>
