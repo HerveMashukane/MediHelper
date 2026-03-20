@@ -2,22 +2,38 @@
 
     <!-- HEADER -->
     <div class="flex items-center justify-between">
-        <div>
-            <h1 class="text-3xl font-semibold">
-                Dashboard
-            </h1>
-            <p class="text-gray-400 text-sm">
-                Welcome back, Hervé 👋
-            </p>
-        </div>
 
-        <div class="flex items-center gap-3">
-            <button class="bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm">
-                + New Appointment
-            </button>
-        </div>
+    <!-- LEFT -->
+    <div>
+        <h1 class="text-3xl font-semibold">
+            Dashboard
+        </h1>
+        <p class="text-gray-400 text-sm">
+            Welcome back, Hervé 👋 • {{ today | date:'fullDate' }} • 
+            <span>{{today | date:'shortTime'}}</span>
+        </p>
     </div>
 
+    <!-- RIGHT -->
+    <div class="flex items-center gap-4">
+
+        <!-- Search shortcut -->
+        <div class="hidden md:flex items-center bg-gray-900 border border-gray-800 px-3 py-1 rounded-lg">
+            <i class="fa fa-search text-gray-400 mr-2"></i>
+            <input class="text-gray-400 text-sm" type="search" placeholder="Quick search...">
+        </div>
+
+        <!-- Notifications preview -->
+        <button class="relative bg-gray-900 p-2 rounded-lg hover:bg-gray-800 transition">
+            <i class="bi bi-bell text-yellow-400"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-xs px-1 rounded-full">
+                2
+            </span>
+        </button>
+
+    </div>
+
+</div>
 
     <!-- KPI CARDS -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
