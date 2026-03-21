@@ -1,17 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SlotsService } from '../../../services/slots.service';
+import { AppointmentService } from '../../../services/appointment.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-appointments-form',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './appointments-form.component.html',
   styleUrl: './appointments-form.component.css'
 })
 export class AppointmentsFormComponent {
 
-  constructor(private slotsService: SlotsService){}
+  patientName = '';
+  constructor(
+    private slotsService: SlotsService,
+    private appointmentService: AppointmentService,
+  ){}
   slots:any[]=[]
   selectedDoctor:any
   selectedDate: any
@@ -44,5 +50,10 @@ this.selectedDoctor.slotDuration
   @Output() close = new EventEmitter<void>();
   onCancel() {
     this.close.emit();
+  }
+
+  // book appointment
+  bookAppointment() {
+    
   }
 }
