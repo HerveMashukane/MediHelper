@@ -54,6 +54,10 @@ this.selectedDoctor.slotDuration
 
   // book appointment
   bookAppointment() {
-    
+    // const newAppointment = {
+    //   if(this.patientName){
+        
+    //   }
+    // }
   }
 }
