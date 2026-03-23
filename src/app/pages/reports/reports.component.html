@@ -1,3 +1,172 @@
-<section class="text-white animate-pageFlip">
-    <h1>Hello Reports</h1>
+<section class="p-8 bg-gray-950 min-h-screen text-white space-y-8 animate-pageFlip">
+
+  <!-- HEADER -->
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-semibold">Medical Reports Dashboard</h1>
+      <p class="text-gray-400 text-sm">
+        Overview of patient activity, appointments, and medication adherence
+      </p>
+    </div>
+
+    <div class="flex gap-3">
+      <input type="search" placeholder="Search patients, reports, metrics..."
+        class="px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+      <button class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-sm font-medium transition">
+        Export Reports
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-blue-500 transition">
+      <p class="text-gray-400 text-sm">Total Patients</p>
+      <h2 class="text-2xl font-semibold mt-2">250</h2>
+      <span class="text-xs text-green-400">+5% this month</span>
+    </div>
+
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-yellow-500 transition">
+      <p class="text-gray-400 text-sm">Appointments Today</p>
+      <h2 class="text-2xl font-semibold mt-2">34</h2>
+      <span class="text-xs text-yellow-400">Scheduled</span>
+    </div>
+
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-blue-500 transition">
+      <p class="text-gray-400 text-sm">Medications Administered</p>
+      <h2 class="text-2xl font-semibold mt-2">128</h2>
+      <span class="text-xs text-blue-400">On Time</span>
+    </div>
+
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-red-500 transition">
+      <p class="text-gray-400 text-sm">Missed Medications</p>
+      <h2 class="text-2xl font-semibold mt-2">6</h2>
+      <span class="text-xs text-red-400">Critical</span>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="flex flex-wrap gap-3 mt-6">
+    <select class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg">
+      <option>All Departments</option>
+      <option>Cardiology</option>
+      <option>General</option>
+      <option>Pediatrics</option>
+    </select>
+
+    <select class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg">
+      <option>All Doctors</option>
+      <option>Dr. Hervé</option>
+      <option>Dr. Christelle</option>
+    </select>
+
+    <input type="date" class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg">
+    <input type="date" class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg">
+  </div>
+
+  <!-- CHARTS -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+
+    <!-- Appointment Trends Chart -->
+    <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+      <h2 class="text-lg font-semibold mb-4">Appointments Trend</h2>
+      <canvas id="appointmentsTrendChart" class="w-full h-64"></canvas>
+    </div>
+
+    <!-- Medications Compliance Chart -->
+    <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+      <h2 class="text-lg font-semibold mb-4">Medications Compliance</h2>
+      <canvas id="medicationsComplianceChart" class="w-full h-64"></canvas>
+    </div>
+
+  </div>
+
+  <!-- DETAILED REPORT TABLES -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+
+    <!-- Patients Activity Table -->
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+      <div class="p-6">
+        <h2 class="text-lg font-semibold">Patient Activity</h2>
+      </div>
+      <table class="w-full text-left">
+        <thead class="bg-gray-800 text-gray-300 text-sm">
+          <tr>
+            <th class="p-4">Patient</th>
+            <th class="p-4">Doctor</th>
+            <th class="p-4">Appointments</th>
+            <th class="p-4">Medications</th>
+            <th class="p-4">Compliance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-gray-800 hover:bg-gray-800 transition">
+            <td class="p-4">Hervé Mashukane</td>
+            <td class="p-4">Dr. Hervé</td>
+            <td class="p-4">3</td>
+            <td class="p-4">5</td>
+            <td class="p-4">
+              <span class="px-3 py-1 text-xs rounded-full bg-green-700">100%</span>
+            </td>
+          </tr>
+          <tr class="border-t border-gray-800 hover:bg-gray-800 transition">
+            <td class="p-4">Christelle Pelaya</td>
+            <td class="p-4">Dr. Christelle</td>
+            <td class="p-4">2</td>
+            <td class="p-4">4</td>
+            <td class="p-4">
+              <span class="px-3 py-1 text-xs rounded-full bg-yellow-700">75%</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Medications Log Table -->
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+      <div class="p-6">
+        <h2 class="text-lg font-semibold">Medications Log</h2>
+      </div>
+      <table class="w-full text-left">
+        <thead class="bg-gray-800 text-gray-300 text-sm">
+          <tr>
+            <th class="p-4">Patient</th>
+            <th class="p-4">Medication</th>
+            <th class="p-4">Scheduled Time</th>
+            <th class="p-4">Status</th>
+            <th class="p-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-gray-800 hover:bg-gray-800 transition">
+            <td class="p-4">Hervé Mashukane</td>
+            <td class="p-4">Amoxicillin</td>
+            <td class="p-4">09:00 AM</td>
+            <td class="p-4">
+              <span class="px-3 py-1 text-xs rounded-full bg-green-700">Taken</span>
+            </td>
+            <td class="p-4 flex gap-2">
+              <button class="px-2 py-1 bg-blue-600 rounded-lg hover:bg-blue-500 text-xs">View</button>
+              <button class="px-2 py-1 bg-red-600 rounded-lg hover:bg-red-500 text-xs">Flag</button>
+            </td>
+          </tr>
+          <tr class="border-t border-gray-800 hover:bg-gray-800 transition">
+            <td class="p-4">Christelle Pelaya</td>
+            <td class="p-4">Vitamin C</td>
+            <td class="p-4">06:00 PM</td>
+            <td class="p-4">
+              <span class="px-3 py-1 text-xs rounded-full bg-yellow-700">Missed</span>
+            </td>
+            <td class="p-4 flex gap-2">
+              <button class="px-2 py-1 bg-blue-600 rounded-lg hover:bg-blue-500 text-xs">View</button>
+              <button class="px-2 py-1 bg-red-600 rounded-lg hover:bg-red-500 text-xs">Flag</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
 </section>
