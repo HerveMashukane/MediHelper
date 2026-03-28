@@ -43,14 +43,14 @@
         3
       </span>
     </button>
-
-
+    
     <!-- Profile -->
-    <div class="relative group">
+    <div class="relative">
 
       <!-- Avatar -->
       <img
         src="/assets/images/herve.jpg"
+        (click)="toggleDropdown()"
         class="w-10 h-10 rounded-full object-cover border border-gray-700 cursor-pointer"
         alt="User"
       />
@@ -58,14 +58,19 @@
       <!-- Online indicator -->
       <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-gray-950 rounded-full"></span>
 
-
       <!-- Dropdown menu -->
       <div
-        class="absolute right-0 top-12 w-44 bg-gray-900 border border-gray-700 rounded-lg shadow-lg 
-        opacity-0 invisible group-hover:visible group-hover:opacity-100
-        transition duration-200 z-50"
+        *ngIf="isDropdownOpen"
+        class="absolute right-0 top-12 w-56 bg-gray-900 border border-gray-700 rounded-lg shadow-lg transition duration-200 z-50"
       >
 
+        <!-- USER INFO -->
+        <div class="px-4 py-3 border-b border-gray-700">
+          <p class="text-sm font-semibold">Hervé Mashukane</p>
+          <p class="text-xs text-blue-400">Super Admin</p>
+        </div>
+
+        <!-- MENU -->
         <a class="block px-4 py-2 hover:bg-gray-800 cursor-pointer">
           Profile
         </a>
@@ -79,7 +84,6 @@
         </a>
 
       </div>
-
     </div>
 
 
