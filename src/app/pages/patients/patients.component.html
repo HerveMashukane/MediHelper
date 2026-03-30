@@ -7,17 +7,17 @@
             type="search" 
             [(ngModel)]="searchPatient"
             placeholder="Search patient.." 
-            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-950"
+            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
         >
         <div class="flex space-x-4">
             <button 
                 (click)="toggleForm()"
                 class="text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1"
-                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-blue-800 hover:bg-blue-700'">
+                [ngClass]="isFormVisible ? 'bi bi-x bg-red-900 hover:bg-red-700' : 'bi bi-plus bg-blue-900 hover:bg-blue-800'">
                 <span>{{isFormVisible ? 'Close Form' : 'New Patient'}}</span>
             </button>
 
-            <select [(ngModel)]="selectedDepartment" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
+            <select [(ngModel)]="selectedDepartment" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
                 <option value="All" selected>All Departments</option>
                 <option value="Pediatry">Pediatry</option>
                 <option value="Cardiology">Cardiology</option>

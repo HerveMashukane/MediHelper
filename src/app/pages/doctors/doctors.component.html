@@ -7,7 +7,7 @@
             type="search" 
             placeholder="Search doctor..." 
             [(ngModel)]="searchDoctor"
-            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-950"
+            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
         >
         <!-- add doctor -->
         <div class="flex space-x-4">
@@ -18,7 +18,7 @@
                 <span>{{ isFormVisible ? 'Close Form' : 'New Doctor' }}</span>
             </button>
 
-            <select [(ngModel)]="selectedSpeciality" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
+            <select [(ngModel)]="selectedSpeciality" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
                 <option value="All" selected>All specialists</option>
                 <option value="Generalist">Generalist</option>
                 <option value="Cardiologist">Cardiologist</option>
