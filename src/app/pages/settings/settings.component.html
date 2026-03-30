@@ -1,46 +1,43 @@
-<section class="p-8 bg-gray-950 text-white min-h-screen space-y-8">
+<section class="p-8 bg-[#0a0f1c] text-white min-h-screen">
 
   <!-- HEADER -->
-  <div class="flex items-center justify-between">
+  <div class="flex items-center justify-between mb-8">
     <div>
-      <h1 class="text-3xl font-semibold tracking-tight">System Settings</h1>
-      <p class="text-gray-400 text-sm">Centralized configuration for your medical platform</p>
+      <h1 class="text-3xl font-semibold tracking-tight">Super Admin Settings</h1>
+      <p class="text-gray-400 text-sm">Manage your platform like a pro</p>
     </div>
 
     <div class="flex gap-3">
       <button class="btn-ghost">Reset</button>
-      <button class="btn-primary">Save Changes</button>
+      <button class="btn-primary">Save</button>
     </div>
   </div>
 
   <div class="grid grid-cols-5 gap-6">
 
     <!-- SIDEBAR -->
-    <aside class="col-span-1 bg-gray-900/70 backdrop-blur-xl rounded-2xl border border-gray-800 p-3 space-y-2">
+    <aside class="col-span-1 bg-[#0f172a] rounded-2xl p-3 border border-gray-800">
 
-      <div class="menu-group">
-        <p class="menu-title">Core</p>
-        <button (click)="activeTab='organization'" [ngClass]="activeTab==='organization' ? 'menu-active' : 'menu'">🏥 Organization</button>
-        <button (click)="activeTab='users'" [ngClass]="activeTab==='users' ? 'menu-active' : 'menu'">👥 Users & Roles</button>
-      </div>
+      <div class="space-y-6 text-sm">
 
-      <div class="menu-group">
-        <p class="menu-title">Clinical</p>
-        <button (click)="activeTab='clinical'" [ngClass]="activeTab==='clinical' ? 'menu-active' : 'menu'">❤️ Clinical</button>
-        <button (click)="activeTab='services'" [ngClass]="activeTab==='services' ? 'menu-active' : 'menu'">📋 Services</button>
-      </div>
+        <div>
+          <p class="menu-title">Core</p>
+          <button (click)="activeTab='organization'" [ngClass]="activeTab==='organization' ? 'menu-active' : 'menu'">Organization</button>
+          <button (click)="activeTab='users'" [ngClass]="activeTab==='users' ? 'menu-active' : 'menu'">Users</button>
+        </div>
 
-      <div class="menu-group">
-        <p class="menu-title">Finance</p>
-        <button (click)="activeTab='billing'" [ngClass]="activeTab==='billing' ? 'menu-active' : 'menu'">💳 Billing</button>
-        <button (click)="activeTab='insurance'" [ngClass]="activeTab==='insurance' ? 'menu-active' : 'menu'">🛡️ Insurance</button>
-      </div>
+        <div>
+          <p class="menu-title">Clinical</p>
+          <button (click)="activeTab='clinical'" [ngClass]="activeTab==='clinical' ? 'menu-active' : 'menu'">Clinical</button>
+          <button (click)="activeTab='services'" [ngClass]="activeTab==='services' ? 'menu-active' : 'menu'">Services</button>
+        </div>
 
-      <div class="menu-group">
-        <p class="menu-title">System</p>
-        <button (click)="activeTab='security'" [ngClass]="activeTab==='security' ? 'menu-active' : 'menu'">🔐 Security</button>
-        <button (click)="activeTab='integrations'" [ngClass]="activeTab==='integrations' ? 'menu-active' : 'menu'">🔌 Integrations</button>
-        <button (click)="activeTab='audit'" [ngClass]="activeTab==='audit' ? 'menu-active' : 'menu'">🕓 Audit Logs</button>
+        <div>
+          <p class="menu-title">System</p>
+          <button (click)="activeTab='security'" [ngClass]="activeTab==='security' ? 'menu-active' : 'menu'">Security</button>
+          <button (click)="activeTab='integrations'" [ngClass]="activeTab==='integrations' ? 'menu-active' : 'menu'">Integrations</button>
+        </div>
+
       </div>
 
     </aside>
@@ -49,134 +46,77 @@
     <div class="col-span-4 space-y-6">
 
       <!-- ORGANIZATION -->
-      <div *ngIf="activeTab==='organization'" class="card">
+      <div *ngIf="activeTab==='organization'" class="card fade-in">
         <h2 class="title">Organization</h2>
 
         <div class="grid grid-cols-2 gap-4">
           <input class="input" placeholder="Hospital Name">
-          <input class="input" placeholder="License Number">
+          <input class="input" placeholder="License">
         </div>
 
         <input class="input" placeholder="Address">
 
-        <label class="toggle">
-          <span>Multi-Branch System</span>
-          <input type="checkbox">
-        </label>
+        <div class="toggle-row">
+          <span>Multi-Branch</span>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+          </label>
+        </div>
       </div>
 
       <!-- USERS -->
-      <div *ngIf="activeTab==='users'" class="card">
+      <div *ngIf="activeTab==='users'" class="card fade-in">
         <h2 class="title">Users & Roles</h2>
 
-        <label class="toggle">
+        <div class="toggle-row">
           <span>Enable RBAC</span>
-          <input type="checkbox" checked>
-        </label>
-
-        <div class="flex justify-between items-center">
-          <span class="text-gray-300">Session Timeout</span>
-          <input type="number" class="input w-28" value="30">
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
         </div>
 
-        <button class="btn-primary w-fit">Manage Roles</button>
-      </div>
-
-      <!-- CLINICAL -->
-      <div *ngIf="activeTab==='clinical'" class="card">
-        <h2 class="title">Clinical Config</h2>
-
-        <label class="toggle">
-          <span>Electronic Medical Records</span>
-          <input type="checkbox" checked>
-        </label>
-
-        <label class="toggle">
-          <span>Telemedicine</span>
-          <input type="checkbox">
-        </label>
-      </div>
-
-      <!-- SERVICES -->
-      <div *ngIf="activeTab==='services'" class="card">
-        <h2 class="title">Services</h2>
-
-        <div class="flex gap-3">
-          <input class="input" placeholder="New Service">
-          <button class="btn-primary">Add</button>
-        </div>
-      </div>
-
-      <!-- BILLING -->
-      <div *ngIf="activeTab==='billing'" class="card">
-        <h2 class="title">Billing</h2>
-
-        <label class="toggle">
-          <span>Automatic Invoicing</span>
-          <input type="checkbox" checked>
-        </label>
-
         <div class="flex justify-between items-center">
-          <span class="text-gray-300">Tax Rate</span>
-          <input type="number" class="input w-28" value="18">
+          <span>Session Timeout</span>
+          <input class="input w-24" type="number" value="30">
         </div>
       </div>
 
       <!-- SECURITY -->
-      <div *ngIf="activeTab==='security'" class="card">
+      <div *ngIf="activeTab==='security'" class="card fade-in">
         <h2 class="title">Security</h2>
 
-        <label class="toggle">
-          <span>Two-Factor Authentication</span>
-          <input type="checkbox" checked>
-        </label>
+        <div class="toggle-row">
+          <span>2FA</span>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
 
-        <label class="toggle">
-          <span>Strong Password Policy</span>
-          <input type="checkbox" checked>
-        </label>
-
-        <label class="toggle">
-          <span>IP Whitelisting</span>
-          <input type="checkbox">
-        </label>
+        <div class="toggle-row">
+          <span>Strong Passwords</span>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
       </div>
 
       <!-- INTEGRATIONS -->
-      <div *ngIf="activeTab==='integrations'" class="card">
+      <div *ngIf="activeTab==='integrations'" class="card fade-in">
         <h2 class="title">Integrations</h2>
 
         <div class="integration">
           <span>Stripe</span>
-          <button class="btn-success">Connect</button>
+          <button class="btn-primary text-sm">Connect</button>
         </div>
 
         <div class="integration">
-          <span>Google Calendar</span>
-          <button class="btn-success">Connect</button>
+          <span>Google</span>
+          <button class="btn-primary text-sm">Connect</button>
         </div>
-      </div>
-
-      <!-- AUDIT -->
-      <div *ngIf="activeTab==='audit'" class="card">
-        <h2 class="title">Audit Logs</h2>
-
-        <table class="w-full text-sm">
-          <thead class="text-gray-400">
-            <tr>
-              <th class="p-2">User</th>
-              <th class="p-2">Action</th>
-              <th class="p-2">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-t border-gray-800 hover:bg-gray-800/50">
-              <td class="p-2">Admin</td>
-              <td class="p-2">Updated Settings</td>
-              <td class="p-2">2026-03-30</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
 
     </div>
@@ -185,21 +125,157 @@
 </section>
 
 <style>
-.menu { @apply w-full text-left px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 transition; }
-.menu-active { @apply w-full text-left px-3 py-2 rounded-lg bg-blue-700 text-white shadow; }
-.menu-title { @apply text-xs text-gray-500 px-2 mb-1 uppercase; }
-.menu-group { @apply space-y-1; }
+  /* MENU */
+  .menu {
+    width: 100%;
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #9ca3af;
+    transition: background 0.2s;
+  }
+  .menu:hover {
+    background: #1f2937;
+  }
 
-.card { @apply bg-gray-900/80 backdrop-blur rounded-2xl p-6 border border-gray-800 shadow-xl space-y-4; }
-.title { @apply text-lg font-semibold; }
+  .menu-active {
+    width: 100%;
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+  }
 
-.input { @apply bg-gray-950 border border-gray-700 rounded-lg p-3 outline-none focus:border-blue-500 transition; }
+  /* MENU TITLE */
+  .menu-title {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
 
-.btn-primary { @apply bg-blue-600 px-5 py-2 rounded-lg hover:bg-blue-500 transition shadow; }
-.btn-success { @apply bg-green-600 px-4 py-1 rounded-lg hover:bg-green-500 transition text-sm; }
-.btn-ghost { @apply bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700 transition; }
+  /* CARD */
+  .card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-.toggle { @apply flex justify-between items-center bg-gray-950 border border-gray-800 px-4 py-3 rounded-xl; }
+  /* TITLE */
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+  }
 
-.integration { @apply flex justify-between items-center bg-gray-950 border border-gray-800 px-4 py-3 rounded-xl; }
+  /* INPUT */
+  .input {
+    background: #020617;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 12px;
+    outline: none;
+    width: 100%;
+  }
+  .input:focus {
+    border-color: #3b82f6;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    background: #2563eb;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover {
+    background: #3b82f6;
+  }
+
+  .btn-ghost {
+    background: #1f2937;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .btn-ghost:hover {
+    background: #374151;
+  }
+
+  /* TOGGLE SWITCH */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 22px;
+  }
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #374151;
+    transition: .3s;
+    border-radius: 999px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+  }
+  input:checked + .slider {
+    background-color: #2563eb;
+  }
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+
+  /* ROW */
+  .toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* INTEGRATION ROW */
+  .integration {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #020617;
+    border: 1px solid #1f2937;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  /* ANIMATION */
+  .fade-in {
+    animation: fadeIn .3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 </style>
