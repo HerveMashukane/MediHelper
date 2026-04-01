@@ -45,15 +45,20 @@ export class PharmacyComponent {
   }
 
   // get medication progress dynamically
+  currentTime = Date.now();
+
+  ngOnInit() {
+    setInterval(() => {
+      this.currentTime = Date.now();
+    }, 60000);
+  }
   getProgress(med: Medication): number {
     const start = new Date(med.startDate).getTime();
     const end = new Date(med.endDate).getTime();
-    const now = Date.now();
 
-    if (now <= start) return 0;
-    if (now >= end) return 100;
+    if (this.currentTime <= start) return 0;
+    if (this.currentTime >= end) return 100;
 
-    const progress = ((now - start) / (end - start)) * 100;
-    return Math.round(progress);
+    return Math.round(((this.currentTime - start) / (end - start)) * 100);
   }
 }
