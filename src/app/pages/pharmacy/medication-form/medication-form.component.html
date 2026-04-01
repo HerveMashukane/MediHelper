@@ -13,14 +13,21 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
                                 <label for="medication" class="font-medium">Medication name</label>
-                                <input id="medication" name="medication" type="text" placeholder="Type medication name" required
-                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
+                                <input 
+                                        id="medication" 
+                                        name="medication" 
+                                        type="text" 
+                                        placeholder="Type medication name" 
+                                        [(ngModel)]="name"
+                                        required
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
                         <div class="flex flex-col">
                                 <label for="schedule" class="font-medium">Schedue</label>
                                 <select 
                                         name="schedule" 
                                         id="schedule"
+                                        [(ngModel)]="schedule"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
                                         <option value="" disabled selected>Select schedule</option>
@@ -40,13 +47,14 @@
                                 <select 
                                         id="dosage" 
                                         name="dosage" 
+                                        [(ngModel)]="dosage"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
                                         <option value="" disabled selected>Select Medication dose</option>
-                                        <option value="Generalist">100</option>
-                                        <option value="Cardiologist">200</option>
-                                        <option value="Dermatologist">500</option>
-                                        <option value="Neurologist">1000</option>
+                                        <option value="100">100</option>
+                                        <option value="200">200</option>
+                                        <option value="500">500</option>
+                                        <option value="1000">1000</option>
                                 </select>
                         </div>
                         <div class="flex flex-col">
@@ -54,11 +62,12 @@
                                 <select 
                                         name="currency" 
                                         id="currency"
+                                        [(ngModel)]="currency"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
                                         <option value="" disabled selected>Medication currency</option>
-                                        <option value="">mg</option>
-                                        <option value="">g</option>
+                                        <option value="mg">mg</option>
+                                        <option value="g">g</option>
                                 </select>
                         </div>
                 </div>
@@ -69,9 +78,11 @@
                         <select 
                                 name="status" 
                                 id="status"
+                                [(ngModel)]="status"
                                 required
                                 class="block bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
-                                <option value="Active" selected>Active</option>
+                                <option value="" disabled selected>Choose status</option>
+                                <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Completed">Completed</option>

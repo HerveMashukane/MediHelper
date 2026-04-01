@@ -3,19 +3,19 @@ import { Component } from '@angular/core';
 import { MedicationFormComponent } from './medication-form/medication-form.component';
 import { FormsModule } from '@angular/forms';
 
-export interface Medication {
-  id: string
-  name: string
-  dosage: string
-  schedule: string
-  doctor: string
-  startDate: string
-  endDate: string
-  status: 'Active' | 'Inactive' | 'Pending' | 'Completed'
-  progress: number
-  notes?: string
+// export interface Medication {
+//   id: number
+//   name: string
+//   dosage: string
+//   schedule: string
+//   doctor: string
+//   startDate: string
+//   endDate: string
+//   status: 'Active' | 'Inactive' | 'Pending' | 'Completed'
+//   progress: number
+//   notes?: string
 
-}
+// }
 
 @Component({
   selector: 'app-pharmacy',
