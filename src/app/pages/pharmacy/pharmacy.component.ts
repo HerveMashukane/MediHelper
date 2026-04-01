@@ -26,21 +26,34 @@ export class PharmacyComponent {
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
   }
+  // filters
   searchTerm = ''
-  currentFilter = 'All'
-
+  selectedStatus = 'All'
   statusFilters = ['All','Active','Pending','Inactive','Completed']
 
   setFilter(filter: string) {
-    this.currentFilter = filter
+    this.selectedStatus = filter
   }
 
   get filteredMedications() {
     const allMedications = this.medicationService.medicationsSource.value;
 
     return allMedications.filter(med =>
-      (this.currentFilter === 'All' || med.status === this.currentFilter) &&
+      (this.selectedStatus === 'All' || med.status === this.selectedStatus) &&
       (this.searchTerm === '' || med.medName.toLowerCase().includes(this.searchTerm.toLowerCase()))
     );
+  }
+
+  // get medication progress dynamically
+  getProgress(med: Medication): number {
+    const start = new Date(med.startDate).getTime();
+    const end = new Date(med.endDate).getTime();
+    const now = Date.now();
+
+    if (now <= start) return 0;
+    if (now >= end) return 100;
+
+    const progress = ((now - start) / (end - start)) * 100;
+    return Math.round(progress);
   }
 }

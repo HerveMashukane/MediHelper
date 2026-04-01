@@ -38,7 +38,7 @@
           *ngFor="let filter of statusFilters"
           (click)="setFilter(filter)"
           class="px-3 py-1 rounded-full border border-gray-700 hover:bg-blue-950 transition"
-          [ngClass]="currentFilter === filter ? 'bg-blue-950 text-white' : 'text-gray-300'"
+          [ngClass]="selectedStatus === filter ? 'bg-blue-950 text-white' : 'text-gray-300'"
         >
           {{ filter }}
         </button>
@@ -80,18 +80,18 @@
             <td class="p-3">{{ med.startDate }}</td>
             <td class="p-3">{{ med.endDate }}</td>
             <!-- adherence progress -->
-            <!-- <td class="p-3 w-40">
+            <td class="p-3 w-40">
               <div class="w-full bg-gray-800 rounded-full h-2">
                 <div
-                  class="bg-green-500 h-2 rounded-full"
-                  [style.width.%]="med.progress"
+                  class="bg-green-500 h-2 rounded-full transition-all duration-500"
+                  [style.width.%]="getProgress(med)"
                 ></div>
               </div>
 
               <span class="text-xs text-gray-400">
-                {{ med.progress }}%
+                {{ getProgress(med) }}%
               </span>
-            </td> -->
+            </td>
 
             <!-- STATUS -->
             <td class="p-3">

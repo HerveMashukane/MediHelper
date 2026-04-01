@@ -21,7 +21,7 @@ export class MedicationFormComponent {
   startDate = "";
   endDate = "";
   status = "";
-  // progress = "";
+  progress = "";
   notes? = "";
 
   constructor(private medicationService: MedicationService){}
@@ -49,7 +49,7 @@ export class MedicationFormComponent {
         startDate: this.startDate,
         endDate: this.endDate,
         status: this.status as 'Active' | 'Inactive' | 'Pending' | 'Completed',
-        // progress: Number(this.progress), // convert progress to a number
+        progress: Number(this.progress), // convert progress to a number
         notes: this.notes
         
       }

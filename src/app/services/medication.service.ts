@@ -8,12 +8,12 @@ export interface Medication {
   doctorName: string;
   dosage: string;
   dosageUnit: string;
-  schedule: string
-  startDate: string
-  endDate: string
-  status: 'Active' | 'Inactive' | 'Pending' | 'Completed'
-  // progress: number
-  notes?: string
+  schedule: string;
+  startDate: string;
+  endDate: string;
+  status: 'Active' | 'Inactive' | 'Pending' | 'Completed';
+  progress: number;
+  notes?: string;
 }
 
 @Injectable({
