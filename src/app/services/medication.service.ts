@@ -3,15 +3,16 @@ import { BehaviorSubject } from 'rxjs';
 
 // medication form schema
 export interface Medication {
-  id: string
-  name: string
-  dosage: string
+  id: number;
+  medName: string;
+  doctorName: string;
+  dosage: string;
+  dosageUnit: string;
   schedule: string
-  doctor: string
   startDate: string
   endDate: string
   status: 'Active' | 'Inactive' | 'Pending' | 'Completed'
-  progress: number
+  // progress: number
   notes?: string
 }
 
@@ -20,7 +21,7 @@ export interface Medication {
 })
 export class MedicationService {
   // medications observable list
-  private medicationsSource = new BehaviorSubject<Medication[]>([]);
+  public medicationsSource = new BehaviorSubject<Medication[]>([]);
   medications$ = this.medicationsSource.asObservable();
 
   constructor() { }

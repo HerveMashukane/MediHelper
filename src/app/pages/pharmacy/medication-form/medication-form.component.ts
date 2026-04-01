@@ -12,46 +12,64 @@ import { Medication, MedicationService } from '../../../services/medication.serv
 })
 export class MedicationFormComponent {
   // medication form schema
-  id = "";
-  name = "";
+  id = 0;
+  medName = "";
+  doctorName = "";
   dosage = "";
+  dosageUnit = "";
   schedule = "";
-  doctor = "";
   startDate = "";
   endDate = "";
   status = "";
-  progress = "";
+  // progress = "";
   notes? = "";
 
   constructor(private medicationService: MedicationService){}
 
   // add new medication
-  submitMedication() {
+  addMedication() {
     if (
-      this.name &&
+      this.medName &&
+      this.doctorName &&
       this.dosage &&
+      this.dosageUnit &&
       this.schedule &&
-      this.doctor &&
       this.startDate &&
       this.endDate &&
-      this.status &&
-      this.progress
+      this.status
+      // this.progress
     ) {
       const newMedication: Medication = {
-        id: this.id,
-        name: this.name,
+        id: Date.now(),
+        medName: this.medName,
+        doctorName: this.doctorName,
         dosage: this.dosage,
+        dosageUnit: this.dosageUnit,
         schedule: this.schedule,
-        doctor: this.doctor,
         startDate: this.startDate,
         endDate: this.endDate,
         status: this.status as 'Active' | 'Inactive' | 'Pending' | 'Completed',
-        progress: Number(this.progress), // convert progress to a number
+        // progress: Number(this.progress), // convert progress to a number
         notes: this.notes
         
       }
       this.medicationService.addMedication(newMedication);
+      this.resetForm();
+      this.closeForm();
     }
+  }
+
+  // reset form fields
+  resetForm() {
+    this.medName = "";
+    this.doctorName = "";
+    this.dosage = "";
+    this.dosageUnit = "";
+    this.schedule = "";
+    this.startDate = "";
+    this.endDate = "";
+    this.status = "";
+    this.notes = "";
   }
   // close medication form
   @Output() cancel = new EventEmitter<void>();

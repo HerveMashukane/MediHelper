@@ -2,20 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MedicationFormComponent } from './medication-form/medication-form.component';
 import { FormsModule } from '@angular/forms';
-
-// export interface Medication {
-//   id: number
-//   name: string
-//   dosage: string
-//   schedule: string
-//   doctor: string
-//   startDate: string
-//   endDate: string
-//   status: 'Active' | 'Inactive' | 'Pending' | 'Completed'
-//   progress: number
-//   notes?: string
-
-// }
+import { Observable } from 'rxjs';
+import { Medication, MedicationService } from '../../services/medication.service';
 
 @Component({
   selector: 'app-pharmacy',
@@ -26,14 +14,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class PharmacyComponent {
   isFormVisible: boolean = false;
-  medicationsTracker: any = [
-  {
-    name: 'Amoxicillin', 
-    dosage: '500mg', 
-    schedule: 'Twice a day', 
-    status: 'Active', 
-  },
-  ]
+  medications$: Observable<Medication[]>;
+
+  constructor(private medicationService: MedicationService){
+    this.medications$ = this.medicationService.medications$;
+  }
+
   closeFormFromChild() {
     this.isFormVisible = false;
   }
@@ -50,18 +36,11 @@ export class PharmacyComponent {
   }
 
   get filteredMedications() {
+    const allMedications = this.medicationService.medicationsSource.value;
 
-    return this.medicationsTracker.filter((med: any) => {
-
-      const matchesSearch =
-        med.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-
-      const matchesStatus =
-        this.currentFilter === 'All' || med.status === this.currentFilter
-
-      return matchesSearch && matchesStatus
-
-    })
-
+    return allMedications.filter(med =>
+      (this.currentFilter === 'All' || med.status === this.currentFilter) &&
+      (this.searchTerm === '' || med.medName.toLowerCase().includes(this.searchTerm.toLowerCase()))
+    );
   }
 }

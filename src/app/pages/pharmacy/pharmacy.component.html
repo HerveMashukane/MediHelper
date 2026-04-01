@@ -73,21 +73,14 @@
             class="border-b border-gray-800 hover:bg-gray-900 transition"
           >
 
-            <td class="p-3 font-semibold">{{ med.name }}</td>
-
-            <td class="p-3">{{ med.dosage }}</td>
-
+            <td class="p-3 font-semibold">{{ med.medName }}</td>
+            <td class="p-3">{{ med.dosage }}<span>{{ med.dosageUnit }}</span></td>
             <td class="p-3">{{ med.schedule }}</td>
-
-            <td class="p-3 text-blue-400">{{ med.doctor }}</td>
-
+            <td class="p-3 text-blue-400">{{ med.doctorName }}</td>
             <td class="p-3">{{ med.startDate }}</td>
-
             <td class="p-3">{{ med.endDate }}</td>
-
             <!-- adherence progress -->
-            <td class="p-3 w-40">
-
+            <!-- <td class="p-3 w-40">
               <div class="w-full bg-gray-800 rounded-full h-2">
                 <div
                   class="bg-green-500 h-2 rounded-full"
@@ -98,8 +91,7 @@
               <span class="text-xs text-gray-400">
                 {{ med.progress }}%
               </span>
-
-            </td>
+            </td> -->
 
             <!-- STATUS -->
             <td class="p-3">

@@ -1,6 +1,5 @@
 <section class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4 lg:p-8 animate-pageFlip">
-        <form class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 text-white w-full max-w-lg p-8 space-y-6 rounded-xl shadow-2xl">
-    
+        <form (ngSubmit)="addMedication()" class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 text-white w-full max-w-lg p-8 space-y-6 rounded-xl shadow-2xl">
                 <!-- Header -->
                 <div class="flex justify-between items-center border-b border-blue-950 pb-4">
                         <h2 class="text-2xl font-bold">Medication's Form</h2>
@@ -9,35 +8,48 @@
                         </button>
                 </div>
 
-                <!-- Medicaton name -->
+                <!-- Medicaton name & Doctor -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
-                                <label for="medication" class="font-medium">Medication name</label>
+                                <label for="medName" name="medName" class="font-medium">Medication name</label>
                                 <input 
-                                        id="medication" 
-                                        name="medication" 
+                                        id="medName" 
+                                        name="medName" 
                                         type="text" 
-                                        placeholder="Type medication name" 
-                                        [(ngModel)]="name"
+                                        placeholder="Type medication name..." 
+                                        [(ngModel)]="medName"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
                         <div class="flex flex-col">
-                                <label for="schedule" class="font-medium">Schedue</label>
-                                <select 
-                                        name="schedule" 
-                                        id="schedule"
-                                        [(ngModel)]="schedule"
+                                <label for="doctorName" class="font-medium">Doctor Name</label>
+                                <input 
+                                        id="doctorName" 
+                                        name="doctorName" 
+                                        type="text" 
+                                        placeholder="Type doctor name..." 
+                                        [(ngModel)]="doctorName"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
-                                        <option value="" disabled selected>Select schedule</option>
-                                        <option value="Morning(06-08AM)">Morning(06:30AM)</option>
-                                        <option value="Noon(12-2PM)">Afternoon(12:30PM)</option>
-                                        <option value="Evenening(6-8PM)">Evenening(6:30PM)</option>
-                                        <option value="Once(a day)">Once a day</option>
-                                        <option value="Twice(a day)">Twice a day</option>
-                                </select>
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
                         </div>
+                </div>
+
+                <!-- schedule -->
+                <div class="flex flex-col">
+                        <label for="schedule" class="font-medium">Schedue</label>
+                        <select 
+                                name="schedule" 
+                                id="schedule"
+                                [(ngModel)]="schedule"
+                                required
+                                class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                <option value="" disabled>Select schedule</option>
+                                <option value="Morning(06-08AM)">Morning(06:30AM)</option>
+                                <option value="Noon(12-2PM)">Afternoon(12:30PM)</option>
+                                <option value="Evenening(6-8PM)">Evenening(6:30PM)</option>
+                                <option value="Once(a day)">Once a day</option>
+                                <option value="Twice(a day)">Twice a day</option>
+                        </select>
                 </div>
 
                 <!-- Dosage & currency -->
@@ -58,35 +70,75 @@
                                 </select>
                         </div>
                         <div class="flex flex-col">
-                                <label for="currency" class="font-medium">Currency</label>
+                                <label for="currency" class="font-medium">Dosage Unit</label>
                                 <select 
-                                        name="currency" 
+                                        name="dosageUnit" 
                                         id="currency"
-                                        [(ngModel)]="currency"
+                                        [(ngModel)]="dosageUnit"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
-                                        <option value="" disabled selected>Medication currency</option>
+                                        <option value="" disabled selected>Dosage Unit</option>
                                         <option value="mg">mg</option>
                                         <option value="g">g</option>
                                 </select>
                         </div>
                 </div>
+                <!-- start date & end date -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- start date -->
+                        <div class="flex flex-col">
+                                <label for="status" class="font-medium">Start Date</label>
+                                <input 
+                                        type="date"
+                                        id="startDate" 
+                                        name="startDate" 
+                                        [(ngModel)]="startDate"
+                                        required
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                        </div>
+                        <!-- end date -->
+                         <div>
+                                <label for="progress" class="font-medium">End Date</label>
+                                <input 
+                                        type="date"
+                                        id="endDate" 
+                                        name="endDate" 
+                                        [(ngModel)]="endDate"
+                                        required
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                        </div>
+                </div>
 
-                <!-- Status -->
-                <div class="flex flex-col">
-                        <label for="status" class="font-medium">Medication Status</label>
-                        <select 
-                                name="status" 
-                                id="status"
-                                [(ngModel)]="status"
-                                required
-                                class="block bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
-                                <option value="" disabled selected>Choose status</option>
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Completed">Completed</option>
-                        </select>
+                <!-- status and progress -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- status -->
+                        <div class="flex flex-col">
+                                <label for="status" class="font-medium">Medication Status</label>
+                                <select 
+                                        name="status" 
+                                        id="status"
+                                        [(ngModel)]="status"
+                                        required
+                                        class="block bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        <option value="" disabled selected>Choose status</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Completed">Completed</option>
+                                </select>
+                        </div>
+                        <!-- progress -->
+                        <!-- <div>
+                                <label for="progress" class="font-medium">Medication Progress</label>
+                                <input 
+                                        type="range"
+                                        id="progress" 
+                                        name="progress" 
+                                        [(ngModel)]="progress"
+                                        min="0"
+                                        required
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                        </div> -->
                 </div>
 
                 <!-- Buttons -->
@@ -94,7 +146,7 @@
                         <button type="submit" class="bg-blue-950 hover:bg-blue-900 transition px-6 py-2 rounded-lg font-semibold">
                                 Add Medication
                         </button>
-                        <button type="button" (click)="closeForm()" type="button" class="bg-red-600 hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
+                        <button type="button" (click)="closeForm()" class="bg-red-600 hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
                                 Cancel
                         </button>
                 </div>
