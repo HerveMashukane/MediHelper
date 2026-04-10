@@ -33,4 +33,10 @@ export class LaboratoryComponent {
   closeFromChild() {
     this.isFormVisible = false;
   }
+
+  // actions toggle menu in table
+  activeMenuIndex: number | null = null;
+  toggleMenu(index: number) {
+    this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
+  }
 }

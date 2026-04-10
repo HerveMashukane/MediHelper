@@ -12,8 +12,8 @@
     </div>
     <button 
       (click)="toggleForm()" 
-      class="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition"
-      [ngClass]="isFormVisible ? 'bg-red-950 hover:bg-red-900' : 'bg-blue-950 hover:bg-blue-900'">
+      class="text-white px-4 py-2 rounded-lg transition"
+      [ngClass]="isFormVisible ? 'bg-red-950 hover:bg-red-900' : 'bg-blue-900 hover:bg-blue-700'">
       <i [class]="isFormVisible? 'bi bi-x' : 'bi bi-plus'"></i>
       {{ isFormVisible ? 'Close Form' : 'New Lab Test' }}
     </button>
@@ -68,10 +68,10 @@
     </select>
   </div>
   <!-- LAB TABLE TESTS -->
-  <div class="bg-gray-950 p-6 rounded-md shadow-2xl overflow-x-auto">
+  <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
 
     <table class="w-full text-white">
-      <thead class="bg-gray-900 text-gray-200">
+      <thead class="bg-gray-800 text-gray-300 text-sm">
         <tr class="text-left text-sm uppercase">
           <th class="p-3">Patient</th>
           <th class="p-3">Test</th>
@@ -83,24 +83,58 @@
       </thead>
       <tbody>
         <tr 
-          *ngFor="let test of filteredTests"
-          class="border-b border-gray-800 hover:bg-gray-900 transition">
+          *ngFor="let test of filteredTests; let i = index"
+          class="border-t border-gray-800 hover:bg-gray-800 transition">
           <td class="p-3">{{ test.patientName }}</td>
           <td class="p-3">{{ test.testType }}</td>
           <td class="p-3">{{ test.doctorName }}</td>
           <td class="p-3">{{ test.date }}</td>
           <td class="p-3">
-            <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">
+            <span
+              class="px-3 py-1 rounded-full text-xs font-semibold"
+              [ngClass]="{
+                'bg-green-700 text-white': test.status === 'Completed',
+                'bg-yellow-700 text-white': test.status === 'Pending',
+                'bg-blue-700 text-white': test.status === 'Active',
+                'bg-red-700 text-white': test.status === 'Canceled'
+              }"
+            >
               {{ test.status }}
             </span>
           </td>
-          <td class="p-3 flex gap-2">
-            <button class="text-blue-600 hover:underline">
-              View
+          <td class="p-3 relative">
+            <!-- 3 dots -->
+            <button
+              (click)="toggleMenu(i)"
+              class="bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-md text-white transition"
+            >
+              ⋮
             </button>
-            <button class="text-green-600 hover:underline">
-              Result
-            </button>
+
+            <!-- Dropdown -->
+            <div
+              *ngIf="activeMenuIndex === i"
+              class="absolute right-2 mt-2 w-44 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 overflow-hidden"
+            >
+
+              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-white">
+                View
+              </button>
+
+              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-blue-400">
+                Result
+              </button>
+
+              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-green-400">
+                Validate
+              </button>
+
+              <button class="w-full text-left px-4 py-2 hover:bg-red-900 text-red-400">
+                Delete
+              </button>
+
+            </div>
+
           </td>
         </tr>
       </tbody>
@@ -108,6 +142,24 @@
   </div>
 </section>
 
+<!-- PAGINATION -->
+<div class="flex justify-between items-center text-sm text-gray-400">
+    <p>Showing 1 - 10 of 324 appointments</p>
+    <div class="space-x-2">
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            Prev
+        </button>
+        <button class="px-3 py-1 bg-blue-700 rounded">
+            1
+        </button>
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            2
+        </button>
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            Next
+        </button>
+    </div>
+</div>
 <app-laboratory-form
   *ngIf="isFormVisible"
   (cancel)="closeFromChild()">

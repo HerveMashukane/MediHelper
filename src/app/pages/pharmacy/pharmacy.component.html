@@ -11,8 +11,8 @@
 
     <button
       (click)="toggleForm()"
-      class="bg-blue-950 text-white py-2 px-5 rounded-md hover:bg-blue-900 transition flex items-center gap-2"
-      [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : 'bg-blue-950 hover:bg-blue-900'"
+      class="text-white py-2 px-5 rounded-md transition flex items-center gap-2"
+      [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : 'bg-blue-900 hover:bg-blue-700'"
     >
       <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
       <span>{{ isFormVisible ? 'Close Form' : 'Add Medication' }}</span>
@@ -156,6 +156,24 @@
 
 </section>
 
+<!-- PAGINATION -->
+<div class="flex justify-between items-center text-sm text-gray-400 mt-4">
+    <p>Showing 1 - 10 of 324 appointments</p>
+    <div class="space-x-2">
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            Prev
+        </button>
+        <button class="px-3 py-1 bg-blue-700 rounded">
+            1
+        </button>
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            2
+        </button>
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            Next
+        </button>
+    </div>
+</div>
 <app-medication-form
   *ngIf="isFormVisible"
   (cancel)="closeFromChild()"

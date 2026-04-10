@@ -34,7 +34,7 @@ export class MedicationService {
       schedule: 'Twice daily',
       startDate: '2026-04-01',
       endDate: '2026-04-10',
-      status: 'Active',
+      status: 'Completed',
       progress: 40,
       notes: 'Take after meals'
     },
@@ -46,8 +46,8 @@ export class MedicationService {
       dosageUnit: 'mg',
       schedule: 'Every 8h',
       startDate: '2026-03-25',
-      endDate: '2026-04-05',
-      status: 'Completed',
+      endDate: '2026-04-25',
+      status: 'Active',
       progress: 100
     },
     {
@@ -61,6 +61,93 @@ export class MedicationService {
       endDate: '2026-05-03',
       status: 'Pending',
       progress: 10
+    },
+    {
+      id: 4,
+      medName: 'Amoxicillin',
+      doctorName: 'Dr. Carter',
+      dosage: '500',
+      dosageUnit: 'mg',
+      schedule: 'Twice daily',
+      startDate: '2026-02-01',
+      endDate: '2026-04-20',
+      status: 'Inactive',
+      progress: 40,
+      notes: 'Take after meals'
+    },
+    {
+      id: 5,
+      medName: 'Ibuprofen',
+      doctorName: 'Dr. Smith',
+      dosage: '200',
+      dosageUnit: 'mg',
+      schedule: 'Every 8h',
+      startDate: '2026-03-25',
+      endDate: '2026-06-25',
+      status: 'Active',
+      progress: 100
+    },
+    {
+      id: 6,
+      medName: 'Metformin',
+      doctorName: 'Dr. Lee',
+      dosage: '850',
+      dosageUnit: 'mg',
+      schedule: 'Daily',
+      startDate: '2026-04-03',
+      endDate: '2026-05-03',
+      status: 'Pending',
+      progress: 10
+    },
+    {
+      id: 7,
+      medName: 'Amoxicillin',
+      doctorName: 'Dr. Carter',
+      dosage: '500',
+      dosageUnit: 'mg',
+      schedule: 'Twice daily',
+      startDate: '2026-04-01',
+      endDate: '2026-04-10',
+      status: 'Completed',
+      progress: 40,
+      notes: 'Take after meals'
+    },
+    {
+      id: 8,
+      medName: 'Ibuprofen',
+      doctorName: 'Dr. Smith',
+      dosage: '200',
+      dosageUnit: 'mg',
+      schedule: 'Every 8h',
+      startDate: '2026-03-25',
+      endDate: '2026-04-25',
+      status: 'Active',
+      progress: 100
+    },
+    {
+      id: 9,
+      medName: 'Metformin',
+      doctorName: 'Dr. Lee',
+      dosage: '850',
+      dosageUnit: 'mg',
+      schedule: 'Daily',
+      startDate: '2026-04-03',
+      endDate: '2026-05-03',
+      status: 'Pending',
+      progress: 10
+    },
+    {
+      id: 10,
+      medName: 'Amoxicillin',
+      doctorName: 'Dr. Carter',
+      dosage: '500',
+      dosageUnit: 'mg',
+      schedule: 'Twice daily',
+      startDate: '2026-02-01',
+      endDate: '2026-04-20',
+      status: 'Inactive',
+      progress: 40,
+      notes: 'Take after meals'
     }
   ]);
   medications$ = this.medicationsSource.asObservable();
