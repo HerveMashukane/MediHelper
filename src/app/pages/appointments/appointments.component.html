@@ -102,7 +102,7 @@
 
                 <tbody>
 
-                    <tr *ngFor="let appointment of patientAppointments"
+                    <tr *ngFor="let appointment of patientAppointments; let i = index"
                         class="border-t border-gray-800 hover:bg-gray-800 transition">
                         <td class="p-4 font-medium">
                             {{ appointment.patientName }}
@@ -117,7 +117,7 @@
                             {{ appointment.time }}
                         </td>
                         <td class="p-4 text-sm text-gray-400">
-                            Consultation
+                            {{ appointment.type }}
                         </td>
 
                         <!-- STATUS -->
@@ -136,23 +136,35 @@
                         </td>
 
                         <!-- ACTIONS -->
-                        <td class="p-4 flex space-x-2">
+                        <td class="p-4 relative">
+                            <!-- 3 dots button -->
                             <button
-                                class="bg-blue-700 px-3 py-1 rounded-md hover:bg-blue-600">
-                                View
+                                (click)="toggleMenu(i)"
+                                class="px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-md text-white">
+                                ⋮
                             </button>
-                            <button
-                                class="bg-yellow-600 px-3 py-1 rounded-md hover:bg-yellow-500">
-                                Edit
-                            </button>
-                            <button
-                                class="bg-green-700 px-3 py-1 rounded-md hover:bg-green-600">
-                                Complete
-                            </button>
-                            <button
-                                class="bg-red-700 px-3 py-1 rounded-md hover:bg-red-600">
-                                Cancel
-                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div
+                                *ngIf="activeMenuIndex === i"
+                                class="absolute right-4 mt-2 w-40 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50 overflow-hidden">
+
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
+                                    View
+                                </button>
+
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
+                                    Edit
+                                </button>
+
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
+                                    Complete
+                                </button>
+
+                                <button class="w-full text-left px-4 py-2 text-red-400 hover:bg-red-900">
+                                    Cancel
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

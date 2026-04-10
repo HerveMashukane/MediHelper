@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AppointmentsFormComponent } from './appointments-form/appointments-form.component';
-import { Appointment } from '../../services/appointments/appointment.service';
-
+import { AppointmentService, Appointment } from '../../services/appointments/appointment.service';
 @Component({
   selector: 'app-appointments',
   standalone: true,
@@ -13,10 +12,23 @@ import { Appointment } from '../../services/appointments/appointment.service';
 export class AppointmentsComponent {
 
   patientAppointments: Appointment[] = [];
-  isFormVisible:boolean = false;
+  isFormVisible: boolean = false;
 
-  toggleFormVisibility()
-  {
+  constructor(private appointmentService: AppointmentService) {
+    this.loadAppointments();
+  }
+
+  loadAppointments() {
+    this.patientAppointments = this.appointmentService.getAppointments();
+  }
+
+  toggleFormVisibility() {
     this.isFormVisible = !this.isFormVisible;
+  }
+
+  // toggle menu actions in the appointments table
+  activeMenuIndex: number | null = null;
+  toggleMenu(index: number) {
+    this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
   }
 }
