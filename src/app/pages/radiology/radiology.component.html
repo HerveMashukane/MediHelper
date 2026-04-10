@@ -3,25 +3,26 @@
     <!-- PAGE HEADER -->
     <div class="flex justify-between items-center">
         <div>
-        <h2 class="text-3xl font-semibold text-white">Radiology Center</h2>
-        <p class="text-gray-400 text-sm">
-            Manage imaging exams, reports and results
-        </p>
+            <h2 class="text-3xl font-semibold text-white">Radiology Center</h2>
+            <p class="text-gray-400 text-sm">
+                Manage imaging exams, reports and results
+            </p>
         </div>
 
         <button
-        (click)="toggleForm()"
-        class="bg-blue-950 text-white py-2 px-5 rounded-md hover:bg-blue-900 transition flex gap-2 items-center"
-        [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : ''"
+            (click)="toggleForm()"
+            class="py-2 px-5 rounded-md transition flex gap-2 items-center font-medium"
+            [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700 text-white' : 'bg-blue-700 hover:bg-blue-600 text-white'"
         >
-        <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
-        {{ isFormVisible ? 'Close Form' : 'New Radiology Exam' }}
+            <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
+            {{ isFormVisible ? 'Close Form' : 'New Radiology Exam' }}
         </button>
     </div>
 
     <!-- SEARCH + FILTERS -->
-    <div class="bg-gray-950 p-6 rounded-md shadow-xl">
+    <div class="bg-gray-900 p-6 rounded-md border border-gray-800 shadow-xl">
         <div class="flex flex-wrap gap-4 justify-between items-center">
+
             <input
                 type="text"
                 placeholder="Search patient or exam..."
@@ -31,12 +32,12 @@
 
             <div class="flex gap-2 flex-wrap">
                 <button
-                *ngFor="let filter of statusFilters"
-                (click)="setFilter(filter)"
-                class="px-3 py-1 rounded-full border border-gray-700 hover:bg-blue-950"
-                [ngClass]="currentFilter === filter ? 'bg-blue-950 text-white' : 'text-gray-300'"
+                    *ngFor="let filter of statusFilters"
+                    (click)="setFilter(filter)"
+                    class="px-3 py-1 rounded-full border border-gray-700 transition"
+                    [ngClass]="currentFilter === filter ? 'bg-blue-700 text-white' : 'text-gray-300 hover:bg-gray-800'"
                 >
-                {{filter}}
+                    {{ filter }}
                 </button>
             </div>
 
@@ -44,11 +45,13 @@
     </div>
 
     <!-- RADIOLOGY TABLE -->
-    <div class="bg-gray-950 p-6 rounded-md shadow-2xl overflow-x-auto">
-        <div *ngIf="radiologyExams.length > 0; else noExams">
+    <div class="bg-gray-900 p-6 rounded-md border border-gray-800 shadow-2xl overflow-x-auto">
+
+        <div *ngIf="filteredRadiology.length > 0; else noExams">
+
             <table class="w-full text-white">
 
-                <thead class="bg-gray-900 text-gray-200">
+                <thead class="bg-gray-800 text-gray-300 text-sm">
                     <tr class="text-left text-sm uppercase">
                         <th class="p-3">Patient</th>
                         <th class="p-3">Exam</th>
@@ -63,74 +66,108 @@
                 </thead>
 
                 <tbody>
+
                     <tr
-                    *ngFor="let exam of filteredRadiology"
-                    class="border-b border-gray-800 hover:bg-gray-900 transition"
+                        *ngFor="let exam of filteredRadiology; let i = index"
+                        class="border-t border-gray-800 hover:bg-gray-800 transition"
                     >
 
-                        <td class="p-3 font-semibold">{{exam.patient}}</td>
-                        <td class="p-3">{{exam.examType}}</td>
-                        <td class="p-3">{{exam.bodyPart}}</td>
-                        <td class="p-3 text-blue-400">{{exam.doctor}}</td>
-                        <td class="p-3">{{exam.date}}</td>
-                        <td class="p-3">{{exam.radiologist}}</td>
+                        <td class="p-3 font-semibold">{{ exam.patient }}</td>
+                        <td class="p-3">{{ exam.examType }}</td>
+                        <td class="p-3">{{ exam.bodyPart }}</td>
+                        <td class="p-3 text-blue-400">{{ exam.doctor }}</td>
+                        <td class="p-3">{{ exam.date }}</td>
+                        <td class="p-3">{{ exam.radiologist }}</td>
+
+                        <!-- STATUS -->
                         <td class="p-3">
                             <span
-                            class="px-3 py-1 rounded-full text-xs font-semibold"
-                            [ngClass]="{
-
-                                'bg-yellow-700': exam.status === 'Pending',
-                                'bg-blue-700': exam.status === 'In Review',
-                                'bg-green-700': exam.status === 'Completed',
-                                'bg-red-700': exam.status === 'Urgent'
-
-                            }"
+                                class="px-3 py-1 rounded-full text-xs font-semibold"
+                                [ngClass]="{
+                                    'bg-yellow-700 text-white': exam.status === 'Pending',
+                                    'bg-blue-700 text-white': exam.status === 'In Review',
+                                    'bg-green-700 text-white': exam.status === 'Completed',
+                                    'bg-red-700 text-white': exam.status === 'Urgent'
+                                }"
                             >
-                            {{exam.status}}
+                                {{ exam.status }}
                             </span>
                         </td>
 
-                        <td class="p-3">
+                        <!-- REPORT -->
+                        <td class="p-3 text-sm text-gray-300">
+                            {{ exam.report || 'No report yet' }}
+                        </td>
+
+                        <!-- ACTIONS (3 DOT MENU) -->
+                        <td class="p-3 relative">
+
+                            <!-- Trigger -->
                             <button
-                            class="bg-blue-800 px-3 py-1 rounded-full hover:bg-blue-700"
+                                (click)="toggleMenu(i)"
+                                class="bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-md text-white transition"
                             >
-                            View Report
+                                ⋮
                             </button>
+
+                            <!-- Dropdown -->
+                            <div
+                                *ngIf="activeMenuIndex === i"
+                                class="absolute right-2 mt-2 w-44 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 overflow-hidden"
+                            >
+
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-white">
+                                    View Report
+                                </button>
+
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-yellow-400">
+                                    Edit
+                                </button>
+
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-green-400">
+                                    Upload Image
+                                </button>
+
+                                <button class="w-full text-left px-4 py-2 hover:bg-red-900 text-red-400">
+                                    Delete
+                                </button>
+
+                            </div>
+
                         </td>
 
-                        <td class="p-3 flex gap-2">
-                            <button
-                                class="bg-yellow-700 px-3 py-1 rounded-full hover:bg-yellow-600"
-                                >
-                                Edit
-                            </button>
-
-                            <button
-                                class="bg-red-800 px-3 py-1 rounded-full hover:bg-red-700"
-                                >
-                                Delete
-                            </button>
-
-                            <button
-                                class="bg-green-800 px-3 py-1 rounded-full hover:bg-green-700"
-                                >
-                                Upload Image
-                            </button>
-                        </td>
                     </tr>
+
                 </tbody>
+
             </table>
+
         </div>
+
+        <!-- EMPTY STATE -->
         <ng-template #noExams>
             <h2 class="text-gray-500 text-center py-4 text-2xl">
                 No radiology exams found.
             </h2>
         </ng-template>
+
     </div>
 </section>
-
-<!-- <app-radiology-form
-  *ngIf="isFormVisible"
-  (cancel)="closeFormFromChild()"
->
-</app-radiology-form> -->
+ <!-- PAGINATION -->
+<div class="flex justify-between items-center text-sm text-gray-400 mt-4">
+    <p>Showing 1 - 10 of 324 appointments</p>
+    <div class="space-x-2">
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            Prev
+        </button>
+        <button class="px-3 py-1 bg-blue-700 rounded">
+            1
+        </button>
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            2
+        </button>
+        <button class="px-3 py-1 bg-gray-800 rounded">
+            Next
+        </button>
+    </div>
+</div>

@@ -26,21 +26,112 @@ export interface RadiologyExam {
 })
 export class RadiologyComponent {
 
-  /* ------------------------------
-     UI STATE
-  ------------------------------ */
+  // MOCK DATA (Temporary until backend)
+  radiologyExams: RadiologyExam[] = [
 
+  {
+    id: 'RX-1001',
+    patient: 'John Smith',
+    examType: 'X-Ray',
+    bodyPart: 'Chest',
+    doctor: 'Dr. Williams',
+    radiologist: 'Dr. Adams',
+    date: '2026-04-08',
+    status: 'Completed',
+    report: 'No abnormalities detected. Lungs are clear.',
+    imageUrl: 'https://example.com/xray1.jpg'
+  },
+
+  {
+    id: 'RX-1002',
+    patient: 'Maria Lopez',
+    examType: 'MRI',
+    bodyPart: 'Brain',
+    doctor: 'Dr. Carter',
+    radiologist: 'Dr. Evans',
+    date: '2026-04-09',
+    status: 'In Review',
+    report: 'Possible minor lesion detected, further analysis required.'
+  },
+
+  {
+    id: 'RX-1003',
+    patient: 'David Brown',
+    examType: 'CT Scan',
+    bodyPart: 'Abdomen',
+    doctor: 'Dr. Taylor',
+    radiologist: 'Dr. Wilson',
+    date: '2026-04-10',
+    status: 'Pending'
+  },
+
+  {
+    id: 'RX-1004',
+    patient: 'Sophia Johnson',
+    examType: 'Ultrasound',
+    bodyPart: 'Kidney',
+    doctor: 'Dr. Clark',
+    radiologist: 'Dr. Lee',
+    date: '2026-04-10',
+    status: 'Urgent',
+    report: 'Hydronephrosis suspected. Immediate review required.'
+  },
+
+  {
+    id: 'RX-1005',
+    patient: 'Michael Tan',
+    examType: 'X-Ray',
+    bodyPart: 'Spine',
+    doctor: 'Dr. Williams',
+    radiologist: 'Dr. Adams',
+    date: '2026-04-11',
+    status: 'Completed',
+    report: 'Mild scoliosis observed in thoracic region.'
+  },
+
+  {
+    id: 'RX-1006',
+    patient: 'Grace Mutesi',
+    examType: 'CT Scan',
+    bodyPart: 'Chest',
+    doctor: 'Dr. Carter',
+    radiologist: 'Dr. Evans',
+    date: '2026-04-11',
+    status: 'Pending'
+  },
+
+  {
+    id: 'RX-1007',
+    patient: 'Paul Mukendi',
+    examType: 'MRI',
+    bodyPart: 'Knee',
+    doctor: 'Dr. Taylor',
+    radiologist: 'Dr. Wilson',
+    date: '2026-04-12',
+    status: 'In Review'
+  },
+
+  {
+    id: 'RX-1008',
+    patient: 'Linda Kabila',
+    examType: 'Ultrasound',
+    bodyPart: 'Abdomen',
+    doctor: 'Dr. Clark',
+    radiologist: 'Dr. Lee',
+    date: '2026-04-12',
+    status: 'Urgent',
+    report: 'Appendicitis suspected. Surgical evaluation recommended.'
+  }
+
+];
+
+  // UI state varianles
   searchTerm = ''
-
   currentFilter: string = 'All'
-
   isFormVisible = false
 
 
-  /* ------------------------------
-     FILTER OPTIONS
-  ------------------------------ */
-
+  // filter options
   statusFilters: string[] = [
     'All',
     'Pending',
@@ -49,65 +140,14 @@ export class RadiologyComponent {
     'Urgent'
   ]
 
-
-  /* ------------------------------
-     MOCK DATA
-     (Temporary until backend)
-  ------------------------------ */
-
-  radiologyExams: RadiologyExam[] = [
-
-    {
-      id: '1',
-      patient: 'John Smith',
-      examType: 'X-Ray',
-      bodyPart: 'Chest',
-      doctor: 'Dr. Williams',
-      radiologist: 'Dr. Adams',
-      date: '2026-03-10',
-      status: 'Completed',
-      report: 'No abnormal findings'
-    },
-
-    {
-      id: '2',
-      patient: 'Maria Lopez',
-      examType: 'MRI',
-      bodyPart: 'Brain',
-      doctor: 'Dr. Carter',
-      radiologist: 'Dr. Evans',
-      date: '2026-03-11',
-      status: 'In Review'
-    },
-
-    {
-      id: '3',
-      patient: 'David Brown',
-      examType: 'CT Scan',
-      bodyPart: 'Abdomen',
-      doctor: 'Dr. Taylor',
-      radiologist: 'Dr. Wilson',
-      date: '2026-03-12',
-      status: 'Pending'
-    },
-
-    {
-      id: '4',
-      patient: 'Sophia Johnson',
-      examType: 'Ultrasound',
-      bodyPart: 'Kidney',
-      doctor: 'Dr. Clark',
-      radiologist: 'Dr. Lee',
-      date: '2026-03-12',
-      status: 'Urgent'
-    }
-
-  ]
+  // three dots toggle for actions in table
+  activeMenuIndex: number | null = null;
+  toggleMenu(index: number) {
+    this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
+  }
 
 
-  /* ------------------------------
-     FORM CONTROL
-  ------------------------------ */
+  // form control methods
 
   toggleForm() {
     this.isFormVisible = !this.isFormVisible
@@ -117,19 +157,14 @@ export class RadiologyComponent {
     this.isFormVisible = false
   }
 
-
-  /* ------------------------------
-     FILTER METHODS
-  ------------------------------ */
+  // filter methods
 
   setFilter(filter: string) {
     this.currentFilter = filter
   }
 
 
-  /* ------------------------------
-     FILTERED RESULTS
-  ------------------------------ */
+  // filtered results based on search term and status filter
 
   get filteredRadiology(): RadiologyExam[] {
 
@@ -148,5 +183,6 @@ export class RadiologyComponent {
     })
 
   }
+
 
 }
