@@ -1,6 +1,6 @@
 <section class="fixed inset-0 flex items-center justify-center bg-black/70 p-4 lg:p-8 animate-pageFlip">
     <!-- LABORATORY FORM -->
-    <form (ngSubmit)="onSubmit()" class="bg-gray-900 p-8 rounded-xl border border-gray-800 space-y-5">
+    <form class="bg-gray-900 p-8 rounded-xl border border-gray-800 space-y-5">
         <!-- text header -->
         <div class="flex flex-col space-y-4">
             <h2 class="text-2xl text-white font-semibold">
@@ -20,7 +20,6 @@
                 <input
                     type="text"
                     placeholder="Type patient name..."
-                    [(ngModel)]="patientName"
                     name="patientName"
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
             </div>
@@ -32,7 +31,6 @@
                 </label>
 
                 <select
-                    [(ngModel)]="doctorName"
                     name="doctorName"
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
 
@@ -51,7 +49,7 @@
             <!-- test status -->
             <div class="flex flex-col space-y-2">
                 <label for="status" class="text-gray-300">Status</label>
-                <select [(ngModel)]="status" name="status" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                <select name="status" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
                     <option value="" disabled>Choose status</option>
                     <option value="Active">Active</option>
                     <option value="Completed">Completed</option>
@@ -68,7 +66,6 @@
                 </label>
 
                 <select
-                    [(ngModel)]="testType"
                     name="testType"
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
                     <option value="" disabled>Choose type...</option>
@@ -91,7 +88,6 @@
 
             <input
                 type="date"
-                [(ngModel)]="date"
                 name="date"
                 class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
 
@@ -100,9 +96,9 @@
         <!-- Buttons -->
         <div class="flex justify-end space-x-4">
                 <button type="submit" class="bg-blue-800 hover:bg-blue-700 transition px-6 py-2 rounded-lg font-semibold">
-                        Add Test
+                        Add Exam
                 </button>
-                <button (click)="closeForm()" type="button" class="bg-red-600 text-white hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
+                <button type="button" class="bg-red-600 text-white hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
                         Cancel
                 </button>
         </div>

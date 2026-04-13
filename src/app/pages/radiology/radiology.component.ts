@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
+import { RadiologyFormComponent } from './radiology-form/radiology-form.component'
 
 export interface RadiologyExam {
 
@@ -20,7 +21,7 @@ export interface RadiologyExam {
 @Component({
   selector: 'app-radiology',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [RadiologyFormComponent, CommonModule, FormsModule],
   templateUrl: './radiology.component.html',
   styleUrls: ['./radiology.component.css']
 })
