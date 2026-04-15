@@ -4,7 +4,7 @@
         <!-- text header -->
         <div class="flex flex-col space-y-4">
             <h2 class="text-2xl text-white font-semibold">
-                Laboratory tests form
+                Laboratory exams form
             </h2>
             <h3 class="text-lg text-white font-semibold">
                 Laboratory details
@@ -24,19 +24,17 @@
                     name="patientName"
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
             </div>
-            <!-- Doctor -->
+            <!-- Technologist name -->
             <div class="flex flex-col space-y-2">
 
-                <label for="doctorName" class="text-gray-300">
-                    Select Doctor
+                <label for="technologistName" class="text-gray-300">
+                    Select Technologist
                 </label>
-
                 <select
-                    [(ngModel)]="doctorName"
-                    name="doctorName"
+                    [(ngModel)]="technologistName"
+                    name="technologistName"
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
-
-                    <option disabled>Choose Doctor...</option>
+                    <option value="" disabled>Choose Technologist...</option>
                     <option value="Herve">Herve</option>
                     <option value="Hiro">Hiro</option>
                     <option value="Patricia">Patricia</option>
@@ -46,12 +44,15 @@
             </div>
         </div>
 
-        <!-- test status and type -->
+        <!-- exam status and type -->
         <div class="grid grid-cols-2 gap-4">
             <!-- test status -->
             <div class="flex flex-col space-y-2">
                 <label for="status" class="text-gray-300">Status</label>
-                <select [(ngModel)]="status" name="status" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                <select 
+                    [(ngModel)]="status" 
+                    name="status" 
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
                     <option value="" disabled>Choose status</option>
                     <option value="Active">Active</option>
                     <option value="Completed">Completed</option>
@@ -64,21 +65,17 @@
             <div class="flex flex-col space-y-2">
 
                 <label for="testType" class="text-gray-300">
-                    Select test type
+                    Select Test type
                 </label>
-
-                <select
-                    [(ngModel)]="testType"
-                    name="testType"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
-                    <option value="" disabled>Choose type...</option>
-                    <option value="Blood Test">Blood Test</option>
-                    <option value="Urine Test">Urine Test</option>
-                    <option value="HIV Test">HIV Test</option>
-                    <option value="Malaria Test">Malaria Test</option>
-                    <option value="Whole Body Test">Whole Body Test</option>
+                <select name="testType" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                    <option value="" disabled>Choose test type</option>
+                    <option value="Blood">Blood</option>
+                    <option value="Urine">Urine</option>
+                    <option value="Body">Body</option>
+                    <option value="HIV">HIV</option>
+                    <option value="Malaria">Malaria</option>
+                    <option value="">Other</option>
                 </select>
-
             </div>
         </div>
 
@@ -99,12 +96,12 @@
 
         <!-- Buttons -->
         <div class="flex justify-end space-x-4">
-                <button type="submit" class="bg-blue-800 hover:bg-blue-700 transition px-6 py-2 rounded-lg font-semibold">
-                        Add Test
-                </button>
-                <button (click)="closeForm()" type="button" class="bg-red-600 text-white hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
-                        Cancel
-                </button>
+            <button type="submit" class="bg-blue-800 hover:bg-blue-700 text-white transition px-6 py-2 rounded-lg font-semibold">
+                    Add Test
+            </button>
+            <button type="button" (click)="closeForm()" class="bg-red-600 hover:bg-red-500 text-white transition px-6 py-2 rounded-lg font-semibold">
+                    Cancel
+            </button>
         </div>
     </form>
 </section>

@@ -5,7 +5,7 @@ export interface LaboTest{
   id: number;
   patientName: string;
   testType: string;
-  doctorName: string;
+  technologistName: string;
   date: string;
   status: string;
 }
@@ -18,57 +18,57 @@ export class LaboratoryService {
     id: 1,
     patientName: 'John Smith',
     testType: 'Blood Test',
-    doctorName: 'Dr. Carter',
+    technologistName: 'Dr. Carter',
     date: '2026-04-09',
-    status: 'Completed'
+    status: 'Completed',
   },
   {
     id: 2,
     patientName: 'Maria Lopez',
     testType: 'Urine Test',
-    doctorName: 'Dr. Evans',
+    technologistName: 'Dr. Evans',
     date: '2026-04-10',
-    status: 'Pending'
+    status: 'Pending',
   },
   {
     id: 3,
     patientName: 'David Brown',
     testType: 'Whole Body Test',
-    doctorName: 'Dr. Wilson',
+    technologistName: 'Dr. Wilson',
     date: '2026-04-11',
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 4,
     patientName: 'Sophia Johnson',
     testType: 'Blood Test',
-    doctorName: 'Dr. Lee',
+    technologistName: 'Dr. Lee',
     date: '2026-04-12',
-    status: 'Canceled'
+    status: 'Canceled',
   },
   {
     id: 5,
     patientName: 'Paul Mukendi',
     testType: 'Urine Test',
-    doctorName: 'Dr. Carter',
+    technologistName: 'Dr. Carter',
     date: '2026-04-13',
-    status: 'Completed'
+    status: 'Completed',
   },
   {
     id: 6,
     patientName: 'John Smith',
     testType: 'Blood Test',
-    doctorName: 'Dr. Carter',
+    technologistName: 'Dr. Carter',
     date: '2026-04-09',
-    status: 'Completed'
+    status: 'Completed',
   },
   {
     id: 7,
     patientName: 'Maria Lopez',
     testType: 'Urine Test',
-    doctorName: 'Dr. Evans',
+    technologistName: 'Dr. Evans',
     date: '2026-04-10',
-    status: 'Pending'
+    status: 'Pending',
   },
 ]);
   tests$ = this.laboTestSource.asObservable();

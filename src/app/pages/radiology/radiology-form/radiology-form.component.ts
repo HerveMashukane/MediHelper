@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-radiology-form',
@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class RadiologyFormComponent {
 
+  // close form
+  @Output() cancel = new EventEmitter<void>();
+  closeForm() {
+    this.cancel.emit();
+  }
 }

@@ -11,7 +11,7 @@
             </h3>
         </div>
 
-        <!-- patient and doctor names -->
+        <!-- patient and radiologist names -->
         <div class="grid grid-cols-2 gap-4">
             <!-- Patient Name -->
             <div class="flex flex-col space-y-2">
@@ -23,18 +23,18 @@
                     name="patientName"
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
             </div>
-            <!-- Doctor -->
+            <!-- Radiologist -->
             <div class="flex flex-col space-y-2">
 
-                <label for="doctorName" class="text-gray-300">
-                    Select Doctor
+                <label for="radiologist" class="text-gray-300">
+                    Radiologist
                 </label>
 
                 <select
-                    name="doctorName"
+                    name="radiologist"
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
 
-                    <option disabled>Choose Doctor...</option>
+                    <option disabled>Choose Radiologist...</option>
                     <option value="Herve">Herve</option>
                     <option value="Hiro">Hiro</option>
                     <option value="Patricia">Patricia</option>
@@ -48,17 +48,18 @@
         <div class="grid grid-cols-2 gap-4">
             <!-- Exam type -->
             <div class="flex flex-col space-y-2">
-                <label for="status" class="text-gray-300">Type</label>
-                <select name="status" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                <label for="examType" class="text-gray-300">Type</label>
+                <select name="examType" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
                     <option value="" disabled>Choose exam type</option>
                     <option value="X-Ray">X-Ray</option>
                     <option value="MRI">MRI</option>
                     <option value="CT Scan">CT Scan</option>
                     <option value="Ultrasound">Ultrasound</option>
+                    <option value="">Other</option>
                 </select>
             </div>
 
-            <!-- Test Type -->
+            <!-- Body Part -->
             <div class="flex flex-col space-y-2">
 
                 <label for="testType" class="text-gray-300">
@@ -73,7 +74,8 @@
                     <option value="Brain">Brain</option>
                     <option value="Abdomen">Abdomen</option>
                     <option value="Kidney">Kidney</option>
-                    <option value="Whole Body Test">Whole Body Test</option>
+                    <option value="Whole">Whole Body</option>
+                    <option value="">Other</option>
                 </select>
 
             </div>
@@ -83,24 +85,25 @@
         <div class="flex flex-col space-y-2">
 
             <label for="date" class="text-gray-300">
-                Test Taken Date
+                Exam Taken Date
             </label>
 
             <input
                 type="date"
                 name="date"
-                class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+            >
 
         </div>
 
         <!-- Buttons -->
         <div class="flex justify-end space-x-4">
-                <button type="submit" class="bg-blue-800 hover:bg-blue-700 transition px-6 py-2 rounded-lg font-semibold">
-                        Add Exam
-                </button>
-                <button type="button" class="bg-red-600 text-white hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
-                        Cancel
-                </button>
+            <button type="submit" class="bg-blue-800 hover:bg-blue-700 text-white transition px-6 py-2 rounded-lg font-semibold">
+                    Add Exam
+            </button>
+            <button type="button" (click)="closeForm()" class="bg-red-600 text-white hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
+                    Cancel
+            </button>
         </div>
     </form>
 </section>

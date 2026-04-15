@@ -55,10 +55,9 @@
                     <tr class="text-left text-sm uppercase">
                         <th class="p-3">Patient</th>
                         <th class="p-3">Exam</th>
-                        <th class="p-3">Body Part</th>
-                        <th class="p-3">Doctor</th>
-                        <th class="p-3">Date</th>
                         <th class="p-3">Radiologist</th>
+                        <th class="p-3">Body Part</th>
+                        <th class="p-3">Date</th>
                         <th class="p-3">Status</th>
                         <th class="p-3">Report</th>
                         <th class="p-3">Actions</th>
@@ -74,10 +73,9 @@
 
                         <td class="p-3 font-semibold">{{ exam.patient }}</td>
                         <td class="p-3">{{ exam.examType }}</td>
-                        <td class="p-3">{{ exam.bodyPart }}</td>
-                        <td class="p-3 text-blue-400">{{ exam.doctor }}</td>
-                        <td class="p-3">{{ exam.date }}</td>
                         <td class="p-3">{{ exam.radiologist }}</td>
+                        <td class="p-3">{{ exam.bodyPart }}</td>
+                        <td class="p-3">{{ exam.date }}</td>
 
                         <!-- STATUS -->
                         <td class="p-3">
@@ -172,5 +170,7 @@
     </div>
 </div>
 
-<!-- <app-radiology-form>
-</app-radiology-form> -->
+<app-radiology-form
+    *ngIf="isFormVisible"
+    (cancel)="closeFormFromChild()">
+</app-radiology-form>

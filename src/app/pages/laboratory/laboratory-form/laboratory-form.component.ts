@@ -13,7 +13,7 @@ export class LaboratoryFormComponent {
   id = 0;
   patientName = "";
   testType = "";
-  doctorName = "";
+  technologistName = "";
   date = "";
   status = "";
 
@@ -23,7 +23,7 @@ export class LaboratoryFormComponent {
   onSubmit() {
     if(
       this.patientName &&
-      this.doctorName &&
+      this.technologistName &&
       this.testType &&
       this.date &&
       this.status
@@ -31,7 +31,7 @@ export class LaboratoryFormComponent {
       const newLaboTest: LaboTest = {
         id: Date.now(),
         patientName: this.patientName,
-        doctorName: this.doctorName,
+        technologistName: this.technologistName,
         testType: this.testType,
         date: this.date,
         status: this.status as 'Active' | 'Inactive' | 'Pending' | 'Completed' | 'Canceled',
@@ -45,7 +45,7 @@ export class LaboratoryFormComponent {
   // reset form
   resetForm(){
     this.patientName = "";
-    this.doctorName = "";
+    this.technologistName = "";
     this.testType = "";
     this.date = "";
     this.status = "";

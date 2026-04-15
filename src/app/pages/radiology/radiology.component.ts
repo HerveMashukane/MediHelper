@@ -9,7 +9,6 @@ export interface RadiologyExam {
   patient: string
   examType: 'X-Ray' | 'MRI' | 'CT Scan' | 'Ultrasound'
   bodyPart: string
-  doctor: string
   radiologist: string
   date: string
   status: 'Pending' | 'In Review' | 'Completed' | 'Urgent'
@@ -35,7 +34,6 @@ export class RadiologyComponent {
     patient: 'John Smith',
     examType: 'X-Ray',
     bodyPart: 'Chest',
-    doctor: 'Dr. Williams',
     radiologist: 'Dr. Adams',
     date: '2026-04-08',
     status: 'Completed',
@@ -48,7 +46,6 @@ export class RadiologyComponent {
     patient: 'Maria Lopez',
     examType: 'MRI',
     bodyPart: 'Brain',
-    doctor: 'Dr. Carter',
     radiologist: 'Dr. Evans',
     date: '2026-04-09',
     status: 'In Review',
@@ -60,7 +57,6 @@ export class RadiologyComponent {
     patient: 'David Brown',
     examType: 'CT Scan',
     bodyPart: 'Abdomen',
-    doctor: 'Dr. Taylor',
     radiologist: 'Dr. Wilson',
     date: '2026-04-10',
     status: 'Pending'
@@ -71,7 +67,6 @@ export class RadiologyComponent {
     patient: 'Sophia Johnson',
     examType: 'Ultrasound',
     bodyPart: 'Kidney',
-    doctor: 'Dr. Clark',
     radiologist: 'Dr. Lee',
     date: '2026-04-10',
     status: 'Urgent',
@@ -83,7 +78,6 @@ export class RadiologyComponent {
     patient: 'Michael Tan',
     examType: 'X-Ray',
     bodyPart: 'Spine',
-    doctor: 'Dr. Williams',
     radiologist: 'Dr. Adams',
     date: '2026-04-11',
     status: 'Completed',
@@ -95,7 +89,6 @@ export class RadiologyComponent {
     patient: 'Grace Mutesi',
     examType: 'CT Scan',
     bodyPart: 'Chest',
-    doctor: 'Dr. Carter',
     radiologist: 'Dr. Evans',
     date: '2026-04-11',
     status: 'Pending'
@@ -106,7 +99,6 @@ export class RadiologyComponent {
     patient: 'Paul Mukendi',
     examType: 'MRI',
     bodyPart: 'Knee',
-    doctor: 'Dr. Taylor',
     radiologist: 'Dr. Wilson',
     date: '2026-04-12',
     status: 'In Review'
@@ -117,7 +109,6 @@ export class RadiologyComponent {
     patient: 'Linda Kabila',
     examType: 'Ultrasound',
     bodyPart: 'Abdomen',
-    doctor: 'Dr. Clark',
     radiologist: 'Dr. Lee',
     date: '2026-04-12',
     status: 'Urgent',
