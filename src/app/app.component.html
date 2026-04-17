@@ -1,13 +1,11 @@
-<div class="bg-gradient-to-br from-gray-950 to-gray-900">
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>
 
-  <app-confirm-dialog
-    *ngIf="options"
-    [title]="options.title"
-    [message]="options.message"
-    [hightlight]="options.hightlight"
-    [confirmText]="options.confirmText"
-    [cancelText]="options.cancelText"
-    (confirmed)="onResponse($event)"
-  ></app-confirm-dialog>
-</div>
+<app-confirm-dialog
+  *ngIf="options"
+  [title]="options.title"
+  [message]="options.message"
+  [hightlight]="options.hightlight"
+  [confirmText]="options.confirmText"
+  [cancelText]="options.cancelText"
+  (confirmed)="onResponse($event)"
+></app-confirm-dialog>
