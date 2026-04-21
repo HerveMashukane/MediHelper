@@ -1,213 +1,213 @@
-<section class="p-8 bg-gray-900 shadow-md shadow-black text-white min-h-screen space-y-8 animate-pageFlip rounded-xl">
+<section class="p-8 bg-gray-900 text-white min-h-screen space-y-8 rounded-xl animate-pageFlip">
 
-    <!-- HEADER (PURE CONTEXT) -->
-    <div class="flex items-center justify-between">
-        <div>
-            <h1 class="text-3xl font-semibold">MediHelper Dashboard</h1>
-            <p class="text-gray-400 text-sm">
-                {{ today | date:'fullDate' }} • Live hospital overview
-            </p>
-        </div>
+  <!-- ================= HEADER ================= -->
+  <div class="flex items-center justify-between">
 
-        <!-- SYSTEM STATUS -->
-        <div class="flex items-center gap-4 text-sm">
-            <div class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-                <span class="text-gray-400">System Online</span>
-            </div>
-
-            <div class="text-gray-400">
-                <span class="text-white font-medium">8</span> appointments today
-            </div>
-        </div>
+    <div>
+      <h1 class="text-3xl font-semibold">MediHelper Dashboard</h1>
+      <p class="text-gray-400 text-sm">
+        {{ today | date:'fullDate' }} • Hospital operational overview
+      </p>
     </div>
 
+    <div class="flex items-center gap-6 text-sm">
 
-    <!-- 🚨ALERT BAR (VERY IMPORTANT) -->
-    <div class="bg-red-900/30 border border-red-700 p-4 rounded-xl flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+        <span class="text-gray-400">System Active</span>
+      </div>
 
-        <div class="flex items-center gap-3">
-            <i class="bi bi-exclamation-triangle text-red-400 text-xl"></i>
-            <p class="text-sm">
-                2 missed appointments • 1 urgent patient requires attention
-            </p>
-        </div>
-
-        <button class="bg-red-700 px-4 py-1 rounded-lg text-sm hover:bg-red-600">
-            View Issues
-        </button>
+      <div class="text-gray-400">
+        <span class="text-white font-medium">8</span> appointments today
+      </div>
 
     </div>
 
+  </div>
 
-    <!-- KPI CARDS (SMART METRICS) -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+  <!-- ================= ALERT SECTION ================= -->
+  <div class="bg-red-900/30 border border-red-700 p-4 rounded-xl flex justify-between items-center">
 
-        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-            <p class="text-gray-400 text-sm">Appointments</p>
-            <h2 class="text-2xl font-semibold mt-2">24</h2>
-            <p class="text-xs text-blue-00 mt-1">
-                +4 today • 3 pending
-            </p>
+    <div class="flex items-center gap-3">
+      <i class="bi bi-exclamation-triangle text-red-400 text-xl"></i>
+      <p class="text-sm">
+        2 missed appointments • 1 urgent patient requires attention
+      </p>
+    </div>
+
+    <button class="bg-red-700 hover:bg-red-600 px-4 py-1 rounded-lg text-sm transition">
+      View Critical Cases
+    </button>
+
+  </div>
+
+  <!-- ================= KPI SECTION ================= -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+      <p class="text-gray-400 text-sm">Appointments</p>
+      <h2 class="text-2xl font-semibold mt-2">24</h2>
+      <p class="text-xs text-sky-400 mt-1">+4 today</p>
+    </div>
+
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+      <p class="text-gray-400 text-sm">Patients</p>
+      <h2 class="text-2xl font-semibold mt-2">50</h2>
+      <p class="text-xs text-green-400 mt-1">+2 new</p>
+    </div>
+
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+      <p class="text-gray-400 text-sm">Medications Due</p>
+      <h2 class="text-2xl font-semibold mt-2">3</h2>
+      <p class="text-xs text-yellow-400 mt-1">1 overdue</p>
+    </div>
+
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+      <p class="text-gray-400 text-sm">Critical Alerts</p>
+      <h2 class="text-2xl font-semibold mt-2 text-red-400">2</h2>
+      <p class="text-xs text-red-400 mt-1">Requires attention</p>
+    </div>
+
+  </div>
+
+  <!-- ================= MAIN GRID ================= -->
+  <div class="grid grid-cols-3 gap-6">
+
+    <!-- ========== LEFT SECTION ========== -->
+    <div class="col-span-2 space-y-6">
+
+      <!-- UPCOMING APPOINTMENTS -->
+      <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">Upcoming Appointments</h2>
+
+          <a routerLink="/appointments"
+             class="text-sm text-sky-400 hover:underline">
+            View all
+          </a>
         </div>
 
-        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-            <p class="text-gray-400 text-sm">Patients</p>
-            <h2 class="text-2xl font-semibold mt-2">50</h2>
-            <p class="text-xs text-green-400 mt-1">
-                +2 new • Stable
-            </p>
+        <div class="space-y-3">
+
+          <div class="flex items-center justify-between bg-gray-800 p-4 rounded-lg">
+
+            <div>
+              <p class="font-medium">Herve Mashukane</p>
+              <span class="text-sm text-gray-400">
+                10:00 AM • Cardiology
+              </span>
+            </div>
+
+            <div class="flex gap-2">
+
+              <button class="bg-green-700 hover:bg-green-600 px-3 py-1 rounded-md text-sm transition">
+                Complete
+              </button>
+
+              <button class="bg-red-700 hover:bg-red-600 px-3 py-1 rounded-md text-sm transition">
+                Cancel
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-            <p class="text-gray-400 text-sm">Medications Due</p>
-            <h2 class="text-2xl font-semibold mt-2">3</h2>
-            <p class="text-xs text-yellow-400 mt-1">
-                1 overdue
-            </p>
+      </div>
+
+      <!-- RECENT ACTIVITY -->
+      <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+
+        <div class="p-6">
+          <h2 class="text-lg font-semibold">Recent Activity</h2>
         </div>
 
-        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-            <p class="text-gray-400 text-sm">Critical Alerts</p>
-            <h2 class="text-2xl font-semibold mt-2 text-red-400">2</h2>
-            <p class="text-xs text-red-400 mt-1">
-                Requires immediate action
-            </p>
-        </div>
+        <table class="w-full text-left">
+
+          <thead class="bg-gray-800 text-gray-300 text-sm">
+            <tr>
+              <th class="p-4">Patient</th>
+              <th class="p-4">Doctor</th>
+              <th class="p-4">Date</th>
+              <th class="p-4">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let activity of patientActivities"
+                class="border-t border-gray-800 hover:bg-gray-800">
+
+              <td class="p-4">{{ activity.patientName }}</td>
+              <td class="p-4">{{ activity.doctorName }}</td>
+              <td class="p-4">{{ activity.date }}</td>
+
+              <td class="p-4">
+                <span class="px-3 py-1 text-xs rounded-full"
+                      [ngClass]="{
+                        'bg-green-700': activity.status === 'Completed',
+                        'bg-yellow-700': activity.status === 'Pending',
+                        'bg-red-700': activity.status === 'Canceled'
+                      }">
+                  {{ activity.status }}
+                </span>
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
 
     </div>
 
+    <!-- ========== RIGHT SECTION ========== -->
+    <div class="space-y-6">
 
-    <!-- MAIN GRID -->
-    <div class="grid grid-cols-3 gap-6">
+      <!-- TIMELINE -->
+      <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
 
-        <!-- LEFT -->
-        <div class="col-span-2 space-y-6">
+        <h2 class="text-lg font-semibold mb-4">Today Timeline</h2>
 
-            <!-- APPOINTMENTS WITH ACTIONS -->
-            <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+        <div class="space-y-3 text-sm">
 
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold">Upcoming Appointments</h2>
-                    <a routerLink="/appointments" class="text-sm text-blue-400 hover:underline">
-                        View all
-                    </a>
-                </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-400">09:00</span>
+            <span class="bg-gray-700 px-2 py-1 rounded">Available</span>
+          </div>
 
-                <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-400">10:00</span>
+            <span class="bg-sky-900 px-2 py-1 rounded">
+              Booked • Dr Herve
+            </span>
+          </div>
 
-                    <div class="flex items-center justify-between bg-gray-800 p-4 rounded-lg">
-
-                        <div>
-                            <p class="font-medium">Herve Mashukane</p>
-                            <span class="text-sm text-gray-400">
-                                10:00 AM • Cardiology
-                            </span>
-                        </div>
-
-                        <div class="flex items-center gap-2">
-
-                            <button class="bg-green-700 px-3 py-1 rounded-md text-sm hover:bg-green-600">
-                                Complete
-                            </button>
-
-                            <button class="bg-red-700 px-3 py-1 rounded-md text-sm hover:bg-red-600">
-                                Cancel
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- RECENT ACTIVITY -->
-            <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
-
-                <div class="p-6">
-                    <h2 class="text-lg font-semibold">Recent Activity</h2>
-                </div>
-
-                <table class="w-full text-left">
-
-                    <thead class="bg-gray-800 text-gray-300 text-sm">
-                        <tr>
-                            <th class="p-4">Patient</th>
-                            <th class="p-4">Doctor</th>
-                            <th class="p-4">Date</th>
-                            <th class="p-4">Status</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <tr *ngFor="let activity of patientActivities"
-                            class="border-t border-gray-800 hover:bg-gray-800">
-
-                            <td class="p-4">{{ activity.patientName }}</td>
-                            <td class="p-4">{{ activity.doctorName }}</td>
-                            <td class="p-4">{{ activity.date }}</td>
-
-                            <td class="p-4">
-                                <span class="px-3 py-1 text-xs rounded-full"
-                                    [ngClass]="{
-                                        'bg-green-700': activity.status === 'Completed',
-                                        'bg-yellow-700': activity.status === 'Pending',
-                                        'bg-red-700': activity.status === 'Canceled'
-                                    }">
-                                    {{ activity.status }}
-                                </span>
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
 
+      </div>
 
-        <!-- RIGHT -->
-        <div class="space-y-6">
+      <!-- INSIGHTS -->
+      <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
 
-            <!-- TIMELINE -->
-            <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+        <h2 class="text-lg font-semibold mb-4">Insights</h2>
 
-                <h2 class="text-lg font-semibold mb-4">
-                    Today Timeline
-                </h2>
+        <ul class="space-y-2 text-sm text-gray-300">
 
-                <div class="space-y-3 text-sm">
+          <li>Peak hours: 10AM - 12PM</li>
+          <li>Most active doctor: Dr Herve</li>
+          <li>High cancellation rate today</li>
 
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400">09:00</span>
-                        <span class="bg-gray-700 px-2 py-1 rounded">Available</span>
-                    </div>
+        </ul>
 
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400">10:00</span>
-                        <span class="bg-blue-900 px-2 py-1 rounded">
-                            Booked • Dr Herve
-                        </span>
-                    </div>
+      </div>
 
-                </div>
-            </div>
-
-
-            <!-- INSIGHTS -->
-            <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-                <h2 class="text-lg font-semibold mb-4">
-                    Insights
-                </h2>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li>Peak hours: 10AM - 12PM</li>
-                    <li>Most active doctor: Dr Herve</li>
-                    <li>High cancellation rate today</li>
-                </ul>
-            </div>
-        </div>
     </div>
+
+  </div>
+
 </section>
