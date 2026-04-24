@@ -33,30 +33,32 @@
     </div>
 
     <!-- STATS (now clickable-ready structure) -->
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+    <div 
+        *ngIf="appointmentStats$ | async as stats"
+        class="grid grid-cols-1 md:grid-cols-5 gap-4">
         <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 cursor-pointer hover:border-sky-500 transition">
             <p class="text-gray-400 text-sm">Active</p>
-            <h2 class="text-2xl font-semibold text-sky-500">24</h2>
+            <h2 class="text-2xl font-semibold text-sky-500">{{stats.Active}}</h2>
         </div>
 
         <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 cursor-pointer hover:border-gray-500 transition">
             <p class="text-gray-400 text-sm">Upcoming</p>
-            <h2 class="text-2xl font-semibold">102</h2>
+            <h2 class="text-2xl font-semibold">{{stats.Upcoming}}</h2>
         </div>
 
         <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 cursor-pointer hover:border-green-400 transition">
             <p class="text-gray-400 text-sm">Completed</p>
-            <h2 class="text-2xl font-semibold text-green-400">190</h2>
+            <h2 class="text-2xl font-semibold text-green-400">{{stats.Completed}}</h2>
         </div>
 
         <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 cursor-pointer hover:border-yellow-400 transition">
             <p class="text-gray-400 text-sm">Pending</p>
-            <h2 class="text-2xl font-semibold text-yellow-400">23</h2>
+            <h2 class="text-2xl font-semibold text-yellow-400">{{stats.Pending}}</h2>
         </div>
 
         <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 cursor-pointer hover:border-red-400 transition">
             <p class="text-gray-400 text-sm">Canceled</p>
-            <h2 class="text-2xl font-semibold text-red-400">32</h2>
+            <h2 class="text-2xl font-semibold text-red-400">{{stats.Canceled}}</h2>
         </div>
     </div>
 
@@ -188,7 +190,7 @@
   <!-- PAGINATION -->
   <div class="flex justify-between items-center text-sm text-gray-400">
 
-    <p>Showing 1 - 10 of 371 appointments</p>
+    <p>Showing 1 - {{filteredAppointments.length }} of <span>{{filteredAppointments.length}}</span> appointments</p>
 
     <div class="space-x-2">
 
