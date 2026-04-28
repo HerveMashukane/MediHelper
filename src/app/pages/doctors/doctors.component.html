@@ -1,4 +1,4 @@
-<section class="p-10 relative flex flex-col animate-pageFlip bg-gray-950 text-white">
+<section class="p-10 relative flex flex-col bg-gray-900 animate-pageFlip rounded-lg">
     <h2 class="text-2xl text-white font-semibold">
         Doctors List • 
         <span>{{ filteredDoctors.length }}</span>
@@ -10,18 +10,18 @@
             type="search" 
             placeholder="Search doctor..." 
             [(ngModel)]="searchDoctor"
-            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
         >
         <!-- add doctor -->
         <div class="flex space-x-4">
             <button 
                 (click)="toggleForm()"
                 class="text-white py-2 px-3 rounded-md mt-2 transition flex items-center space-x-1"
-                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-blue-800 hover:bg-blue-700'">
+                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-sky-500 hover:bg-sky-600'">
                 <span>{{ isFormVisible ? 'Close Form' : 'New Doctor' }}</span>
             </button>
 
-            <select [(ngModel)]="selectedSpeciality" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+            <select [(ngModel)]="selectedSpeciality" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                 <option value="All" selected>All specialists</option>
                 <option value="Generalist">Generalist</option>
                 <option value="Cardiologist">Cardiologist</option>
@@ -40,7 +40,7 @@
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
             <div 
                 *ngFor="let doctor of doctors$ | async"
-                class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
+                class="flex flex-col items-center bg-gray-950 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
                 <div class="space-y-4">
                     <p class="text-sm text-gray-300 italic">Dr. <span>{{ doctor.preferedName }}</span></p>
                     <img [src]="doctor.image" [alt]="doctor.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
@@ -53,7 +53,7 @@
                 <div class="flex space-x-4">
                     <button 
                         (click)="viewDoctor(doctor)"
-                        class="bg-blue-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-blue-700 transition">
+                        class="bg-sky-500 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-sky-600 transition">
                         <i class="bi bi-eye-fill"></i>
                     </button>
                     <button 
