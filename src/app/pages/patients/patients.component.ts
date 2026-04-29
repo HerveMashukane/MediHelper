@@ -16,6 +16,15 @@ import { CardModalComponent } from '../../reusable-components/card-modal/card-mo
 })
 export class PatientsComponent {
   patients$: Observable<Patient[]>;
+  patientStats$: Observable<{
+    Pediatry: number,
+    Cardiology: number,
+    Dermatology: number,
+    Neurology: number,
+    Surgery: number,
+    Oncology: number,
+    Total: number,
+  }>;
   isFormVisible: boolean = false;
 
    constructor(
@@ -23,6 +32,7 @@ export class PatientsComponent {
     private confirm: ConfirmDialogService
   ) {
     this.patients$ = this.patientsService.patients$;
+    this.patientStats$ = this.patientsService.patientStats$;
   }
 
   // remove patient from list

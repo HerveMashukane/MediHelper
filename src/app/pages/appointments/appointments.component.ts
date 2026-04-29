@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { AppointmentsFormComponent } from './appointments-form/appointments-form.component';
 import { AppointmentService, Appointment } from '../../services/appointments/appointment.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'app-appointments',

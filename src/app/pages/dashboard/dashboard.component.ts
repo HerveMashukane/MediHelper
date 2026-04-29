@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Appointment, AppointmentService } from '../../services/appointments/appointment.service';
-import { map } from 'rxjs';
+import { AppointmentService } from '../../services/appointments/appointment.service';
+import { PatientsService } from '../../services/patients/patients.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,9 +21,23 @@ export class DashboardComponent {
     Canceled: number;
     Total: number;
   }>;
+  patientStats$: Observable<{
+    Pediatry: number,
+    Cardiology: number,
+    Dermatology: number,
+    Neurology: number,
+    Surgery: number,
+    Oncology: number,
+    Total: number,
+  }>;
 
-  constructor(private appointmentService: AppointmentService) {
-    this.appointmentStats$ = this.appointmentService.appointmentStats$
+  constructor(
+    private appointmentService: AppointmentService,
+    private patientService: PatientsService
+  ) 
+  {
+    this.appointmentStats$ = this.appointmentService.appointmentStats$;
+    this.patientStats$ = this.patientService.patientStats$;
   }
   today = new Date();
   patientActivities: any = [

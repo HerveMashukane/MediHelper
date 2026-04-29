@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 // patients interface
 export interface Patient {
@@ -37,6 +38,29 @@ export class PatientsService {
     return storedPatients ? JSON.parse(storedPatients) : [];
   }
 
+  // reactive patient stats
+  patientStats$ = this.patients$.pipe(
+    map((patients) => {
+      const stats = {
+        Pediatry: 0,
+        Cardiology: 0,
+        Dermatology: 0,
+        Neurology: 0,
+        Surgery: 0,
+        Oncology: 0,
+        Total: 0,
+
+      }
+      for(let p of patients) {
+        if(stats[p.department as keyof typeof stats] !== undefined) {
+          stats[p.department as keyof typeof stats]++;
+          stats.Total++;
+        }
+      }
+      return stats;
+    })
+  )
+  
   // add new patient
   addPatient(patient: Patient) {
     const currentPatients = this.patientsSource.value;
