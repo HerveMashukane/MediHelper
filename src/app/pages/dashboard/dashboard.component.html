@@ -40,17 +40,24 @@
         </div>
 
         <!-- ================= KPI SECTION ================= -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+
+            <div *ngIf="patientStats$ | async as stats" class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-green-500 transition">
+                <p class="text-gray-400 text-sm">Patients</p>
+                <h2 class="text-2xl text-green-400 font-semibold mt-2">{{ stats.Total }}</h2>
+                <p class="text-xs text-green-400 mt-1">+2 new</p>
+            </div>
+
+            <div *ngIf="doctorStats$ | async as stats" class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-green-500 transition">
+                <p class="text-gray-400 text-sm">Doctors</p>
+                <h2 class="text-2xl text-green-400 font-semibold mt-2">{{ stats.Total }}</h2>
+                <p class="text-xs text-green-400 mt-1">+2 new</p>
+            </div>
+
             <div *ngIf="appointmentStats$ | async as stats" class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-sky-500 transition">
                 <p class="text-gray-400 text-sm">Appointments</p>
                 <h2 class="text-2xl text-sky-500 font-semibold mt-2">{{stats.Total}}</h2>
                 <p class="text-xs text-sky-500 mt-1">+4 today</p>
-            </div>
-
-            <div *ngIf="patientStats$ | async as stats" class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-green-500 transition">
-            <p class="text-gray-400 text-sm">Patients</p>
-            <h2 class="text-2xl text-green-400 font-semibold mt-2">{{ stats.Total }}</h2>
-            <p class="text-xs text-green-400 mt-1">+2 new</p>
             </div>
 
             <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-yellow-400 transition">

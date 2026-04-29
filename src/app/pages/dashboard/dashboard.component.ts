@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AppointmentService } from '../../services/appointments/appointment.service';
 import { PatientsService } from '../../services/patients/patients.service';
+import { DoctorsService } from '../../services/doctors/doctors.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,14 +31,25 @@ export class DashboardComponent {
     Oncology: number,
     Total: number,
   }>;
+  doctorStats$: Observable<{
+    Generalist: number,
+    Cardiologist: number,
+    Dermatologist: number,
+    Neurologist: number,
+    Surgeon: number,
+    Oncologist: number,
+    Total: number,
+  }>;
 
   constructor(
     private appointmentService: AppointmentService,
-    private patientService: PatientsService
+    private patientService: PatientsService,
+    private doctorService: DoctorsService
   ) 
   {
     this.appointmentStats$ = this.appointmentService.appointmentStats$;
     this.patientStats$ = this.patientService.patientStats$;
+    this.doctorStats$ = this.doctorService.doctorStats$;
   }
   today = new Date();
   patientActivities: any = [

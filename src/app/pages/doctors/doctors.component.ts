@@ -16,12 +16,22 @@ import { CardModalComponent } from '../../reusable-components/card-modal/card-mo
 })
 export class DoctorsComponent {
   doctors$: Observable<Doctor[]>;
+  doctorStats: Observable<{
+    Generalist: number,
+    Cardiologist: number,
+    Dermatologist: number,
+    Neurologist: number,
+    Surgeon: number,
+    Oncologist: number,
+    Total: number,
+  }>;
 
   constructor(
     private doctorsService: DoctorsService,
-    private confirm: ConfirmDialogService
+    private confirm: ConfirmDialogService,
   ) {
     this.doctors$ = this.doctorsService.doctors$;
+    this.doctorStats = this.doctorsService.doctorStats$
   }
 
   // toggle form

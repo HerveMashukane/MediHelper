@@ -21,23 +21,8 @@ export interface Patient {
 export class PatientsService {
 
   // observable list of patients
-  public patientsSource = new BehaviorSubject<Patient[]>(this.loadPatientsFromLocalStorage());
-  patients$ = this.patientsSource.asObservable();
-
-  private formVisibleSubject = new BehaviorSubject<Patient[]>([]);
-  isFormVisible$ = this.formVisibleSubject.asObservable();
-
-  // save patients to local storage
-  private savePatientsToLocalStorage(patients: Patient[]) {
-    localStorage.setItem('patients', JSON.stringify(patients));
-  }
-
-  // load patients from local storage
-  private loadPatientsFromLocalStorage() {
-    const storedPatients = localStorage.getItem('patients');
-    return storedPatients ? JSON.parse(storedPatients) : [];
-  }
-
+  public patientsSource = new BehaviorSubject<Patient[]>(this.loadPatientsFromLocalStorage());// initialize patients list from local storage
+  patients$ = this.patientsSource.asObservable(); // get observable list of patients
   // reactive patient stats
   patientStats$ = this.patients$.pipe(
     map((patients) => {
@@ -59,7 +44,21 @@ export class PatientsService {
       }
       return stats;
     })
-  )
+  );
+
+  private formVisibleSubject = new BehaviorSubject<Patient[]>([]);
+  isFormVisible$ = this.formVisibleSubject.asObservable();
+
+  // save patients to local storage
+  private savePatientsToLocalStorage(patients: Patient[]) {
+    localStorage.setItem('patients', JSON.stringify(patients));
+  }
+
+  // load patients from local storage
+  private loadPatientsFromLocalStorage() {
+    const storedPatients = localStorage.getItem('patients');
+    return storedPatients ? JSON.parse(storedPatients) : [];
+  }
   
   // add new patient
   addPatient(patient: Patient) {

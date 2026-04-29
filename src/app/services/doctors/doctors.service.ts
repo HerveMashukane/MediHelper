@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 // doctors interface
 export interface Doctor {
@@ -18,7 +19,28 @@ export interface Doctor {
 })
 export class DoctorsService {
   public doctorsSource = new BehaviorSubject<Doctor[]>(this.loadDoctorsFromLocalStorage());
-  doctors$ = this.doctorsSource.asObservable();
+  doctors$ = this.doctorsSource.asObservable(); // observable list of doctors
+  // reactive doctors stats
+  doctorStats$ = this.doctors$.pipe(
+    map((doctors) => {
+      const stats = {
+        Generalist: 0,
+        Cardiologist: 0,
+        Dermatologist: 0,
+        Neurologist: 0,
+        Surgeon: 0,
+        Oncologist: 0,
+        Total: 0,
+      }
+      for(let d of doctors) {
+        if(stats[d.speciality as keyof typeof stats] !== undefined){
+          stats[d.speciality as keyof typeof stats]++;
+          stats.Total++;
+        }
+      }
+      return stats;
+    })
+  )
 
   // save doctors to local storage
   private saveDoctorsToLocalStorage(doctors: Doctor[]) {
