@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AppointmentService } from '../../services/appointments/appointment.service';
 import { PatientsService } from '../../services/patients/patients.service';
 import { DoctorsService } from '../../services/doctors/doctors.service';
+import { MedicationService } from '../../services/medication/medication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,7 @@ import { DoctorsService } from '../../services/doctors/doctors.service';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
+  // Observable to hold appointments statistics
   appointmentStats$: Observable<{
     Active: number;
     Upcoming: number;
@@ -22,6 +24,7 @@ export class DashboardComponent {
     Canceled: number;
     Total: number;
   }>;
+  // Observable to hold patients statistics
   patientStats$: Observable<{
     Pediatry: number,
     Cardiology: number,
@@ -31,6 +34,7 @@ export class DashboardComponent {
     Oncology: number,
     Total: number,
   }>;
+  // Observable to hold doctors statistics
   doctorStats$: Observable<{
     Generalist: number,
     Cardiologist: number,
@@ -40,16 +44,26 @@ export class DashboardComponent {
     Oncologist: number,
     Total: number,
   }>;
+  // Observable to hold medications statitics
+  medicationStats$: Observable<{
+    Active: number,
+    Inactive: number,
+    Completed: number,
+    Pending: number,
+    Total: number
+  }>;
 
   constructor(
     private appointmentService: AppointmentService,
     private patientService: PatientsService,
-    private doctorService: DoctorsService
+    private doctorService: DoctorsService,
+    private medicationService: MedicationService
   ) 
   {
     this.appointmentStats$ = this.appointmentService.appointmentStats$;
     this.patientStats$ = this.patientService.patientStats$;
     this.doctorStats$ = this.doctorService.doctorStats$;
+    this.medicationStats$ = this.medicationService.medicationStats$;
   }
   today = new Date();
   patientActivities: any = [

@@ -60,9 +60,9 @@
                 <p class="text-xs text-sky-500 mt-1">+4 today</p>
             </div>
 
-            <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-yellow-400 transition">
+            <div *ngIf="medicationStats$ | async as stats" class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-yellow-400 transition">
             <p class="text-gray-400 text-sm">Medications Due</p>
-            <h2 class="text-2xl text-yellow-400 font-semibold mt-2">3</h2>
+            <h2 class="text-2xl text-yellow-400 font-semibold mt-2">{{ stats.Total }}</h2>
             <p class="text-xs text-yellow-400 mt-1">1 overdue</p>
             </div>
 

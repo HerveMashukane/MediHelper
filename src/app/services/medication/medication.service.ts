@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 
@@ -151,6 +152,25 @@ export class MedicationService {
     }
   ]);
   medications$ = this.medicationsSource.asObservable();
+  // reactive stats of medications
+  medicationStats$ = this.medications$.pipe(
+    map((medications) => {
+      const stats = {
+        Active: 0,
+        Inactive: 0,
+        Completed: 0,
+        Pending: 0,
+        Total: 0,
+      }
+      for(let med of medications) {
+        if(stats[med.status as keyof typeof stats] !== undefined) {
+          stats[med.status as keyof typeof stats]++;
+          stats.Total++;
+        }
+      }
+      return stats;
+    })
+  )
 
   constructor() { }
 

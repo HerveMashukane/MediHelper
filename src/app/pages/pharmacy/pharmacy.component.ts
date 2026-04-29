@@ -15,9 +15,17 @@ import { Medication, MedicationService } from '../../services/medication/medicat
 export class PharmacyComponent {
   isFormVisible: boolean = false;
   medications$: Observable<Medication[]>;
+  medicationStats$: Observable<{
+    Active: number,
+    Inactive: number,
+    Completed: number,
+    Pending: number,
+    Total: number
+  }>;
 
   constructor(private medicationService: MedicationService){
     this.medications$ = this.medicationService.medications$;
+    this.medicationStats$ = this.medicationService.medicationStats$;
   }
 
   closeFromChild() {

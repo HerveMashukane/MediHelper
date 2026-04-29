@@ -22,7 +22,7 @@ export class PatientsService {
 
   // observable list of patients
   public patientsSource = new BehaviorSubject<Patient[]>(this.loadPatientsFromLocalStorage());// initialize patients list from local storage
-  patients$ = this.patientsSource.asObservable(); // get observable list of patients
+  patients$ = this.patientsSource.asObservable(); // observable list of patients
   // reactive patient stats
   patientStats$ = this.patients$.pipe(
     map((patients) => {
