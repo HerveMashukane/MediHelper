@@ -107,86 +107,89 @@
                 </tr>
             </thead>
 
-            <tbody *ngIf="filteredAppointments$ | async as apps; else noAppointments">
-                <tr
-                    *ngFor="let app of apps; let i = index"
-                    class="border-t border-gray-800 hover:bg-gray-800 transition"
-                >
+            <tbody>
+                <ng-container *ngIf="filteredAppointments$ | async as apps">
+                    <!-- EMPTY STATE -->
+                    <tr *ngIf="apps.length === 0">
+                        <td colspan="7" class="text-center text-2xl text-gray-500 py-6">
+                            No appointments found.
+                        </td>
+                    </tr>
+                    <!-- ROW DATA -->
+                    <tr
+                        *ngFor="let app of apps; let i = index"
+                        class="border-t border-gray-800 hover:bg-gray-800 transition"
+                    >
 
-                    <td class="p-4 font-medium">
-                        {{ app.patientName }}
-                    </td>
+                        <td class="p-4 font-medium">
+                            {{ app.patientName }}
+                        </td>
 
-                    <td class="p-4">
-                        {{ app.doctorName }}
-                    </td>
+                        <td class="p-4">
+                            {{ app.doctorName }}
+                        </td>
 
-                    <td class="p-4">
-                        {{ app.date }}
-                    </td>
+                        <td class="p-4">
+                            {{ app.date }}
+                        </td>
 
-                    <td class="p-4">
-                        {{ app.time }}
-                    </td>
+                        <td class="p-4">
+                            {{ app.time }}
+                        </td>
 
-                    <td class="p-4 text-sm text-gray-400">
-                        {{ app.type }}
-                    </td>
+                        <td class="p-4 text-sm text-gray-400">
+                            {{ app.type }}
+                        </td>
 
-                    <!-- STATUS -->
-                    <td class="p-4">
-                        <span
-                        class="px-3 py-1 text-xs rounded-full"
-                        [ngClass]="{
-                            'bg-sky-500': app.status === 'Active',
-                            'bg-green-700': app.status === 'Completed',
-                            'bg-yellow-700': app.status === 'Pending',
-                            'bg-red-700': app.status === 'Canceled',
-                            'bg-gray-700': app.status === 'Upcoming'
-                        }"
-                        >
-                        {{ app.status }}
-                        </span>
-                    </td>
+                        <!-- STATUS -->
+                        <td class="p-4">
+                            <span
+                            class="px-3 py-1 text-xs rounded-full"
+                            [ngClass]="{
+                                'bg-sky-500': app.status === 'Active',
+                                'bg-green-700': app.status === 'Completed',
+                                'bg-yellow-700': app.status === 'Pending',
+                                'bg-red-700': app.status === 'Canceled',
+                                'bg-gray-700': app.status === 'Upcoming'
+                            }"
+                            >
+                            {{ app.status }}
+                            </span>
+                        </td>
 
-                    <!-- ACTIONS -->
-                    <td class="p-4 relative">
+                        <!-- ACTIONS -->
+                        <td class="p-4 relative">
 
-                        <button
-                            (click)="toggleMenu(i)"
-                            class="px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-md transition"
-                        >
-                            ⋮
-                        </button>
-                        <div
-                            *ngIf="activeMenuIndex === i"
-                            class="absolute right-4 mt-2 w-40 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50 overflow-hidden"
-                        >
-                            <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
-                                View
+                            <button
+                                (click)="toggleMenu(i)"
+                                class="px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-md transition"
+                            >
+                                ⋮
                             </button>
+                            <div
+                                *ngIf="activeMenuIndex === i"
+                                class="absolute right-4 mt-2 w-40 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50 overflow-hidden"
+                            >
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
+                                    View
+                                </button>
 
-                            <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
-                                Edit
-                            </button>
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
+                                    Edit
+                                </button>
 
-                            <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
-                                Complete
-                            </button>
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
+                                    Complete
+                                </button>
 
-                            <button class="w-full text-left px-4 py-2 text-red-400 hover:bg-gray-800">
-                                Cancel
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                                <button class="w-full text-left px-4 py-2 text-red-400 hover:bg-gray-800">
+                                    Cancel
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
             </tbody>
-            <!-- EMPTY STATE -->
-            <ng-template #noAppointments>
-                <div class="text-gray-500 text-2xl text-center">
-                    No appointments found.
-                </div>
-            </ng-template>
         </table>
     </div>
 
