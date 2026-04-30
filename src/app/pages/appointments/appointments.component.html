@@ -7,7 +7,7 @@
             <h1 
                 class="text-3xl font-semibold">
                 Total Appointments • 
-                <span>{{filteredAppointments.length}}</span>
+                <!-- <span>{{filteredAppointments.length}}</span> -->
             </h1>
             <p class="text-gray-400 text-sm">
                 Manage patient appointments and scheduling
@@ -70,25 +70,28 @@
 
         <!-- SEARCH -->
         <input
-        type="search"
-        placeholder="Search patient, doctor..."
-        class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-full md:w-80 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+            [(ngModel)]="searchTerm"
+            (ngModelChange)="searchTerm$.next($event)"
+            placeholder="Search patient, doctor..."
+            class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-full md:w-80 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
         />
 
         <!-- FILTER -->
         <select
+            [(ngModel)]="selectedStatus"
+            (ngModelChange)="selectedStatus$.next($event)"
             class="bg-gray-900 border border-gray-700 px-4 py-2 rounded-md focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         >
-            <option>All</option>
-            <option>Upcoming</option>
-            <option>Completed</option>
-            <option>Pending</option>
-            <option>Canceled</option>
+            <option value="All" selected>All</option>
+            <option value="Upcoming">Upcoming</option>
+            <option value="Completed">Completed</option>
+            <option value="Pending">Pending</option>
+            <option value="Canceled">Canceled</option>
         </select>
     </div>
 
-  <!-- TABLE -->
-  <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+    <!-- TABLE -->
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
 
         <table class="w-full text-left">
 
@@ -104,31 +107,30 @@
                 </tr>
             </thead>
 
-            <tbody>
-
+            <tbody *ngIf="filteredAppointments$ | async as apps; else noAppointments">
                 <tr
-                    *ngFor="let appointment of appointments$ | async;; let i = index"
+                    *ngFor="let app of apps; let i = index"
                     class="border-t border-gray-800 hover:bg-gray-800 transition"
                 >
 
                     <td class="p-4 font-medium">
-                        {{ appointment.patientName }}
+                        {{ app.patientName }}
                     </td>
 
                     <td class="p-4">
-                        {{ appointment.doctorName }}
+                        {{ app.doctorName }}
                     </td>
 
                     <td class="p-4">
-                        {{ appointment.date }}
+                        {{ app.date }}
                     </td>
 
                     <td class="p-4">
-                        {{ appointment.time }}
+                        {{ app.time }}
                     </td>
 
                     <td class="p-4 text-sm text-gray-400">
-                        {{ appointment.type }}
+                        {{ app.type }}
                     </td>
 
                     <!-- STATUS -->
@@ -136,14 +138,14 @@
                         <span
                         class="px-3 py-1 text-xs rounded-full"
                         [ngClass]="{
-                            'bg-sky-500': appointment.status === 'Active',
-                            'bg-green-700': appointment.status === 'Completed',
-                            'bg-yellow-700': appointment.status === 'Pending',
-                            'bg-red-700': appointment.status === 'Canceled',
-                            'bg-gray-700': appointment.status === 'Upcoming'
+                            'bg-sky-500': app.status === 'Active',
+                            'bg-green-700': app.status === 'Completed',
+                            'bg-yellow-700': app.status === 'Pending',
+                            'bg-red-700': app.status === 'Canceled',
+                            'bg-gray-700': app.status === 'Upcoming'
                         }"
                         >
-                        {{ appointment.status }}
+                        {{ app.status }}
                         </span>
                     </td>
 
@@ -179,23 +181,21 @@
                     </td>
                 </tr>
             </tbody>
+            <!-- EMPTY STATE -->
+            <ng-template #noAppointments>
+                <div class="text-gray-500 text-2xl text-center">
+                    No appointments found.
+                </div>
+            </ng-template>
         </table>
-
-    <!-- EMPTY STATE -->
-    <ng-template #noAppointments>
-      <div class="text-center text-gray-500 p-6">
-        No appointments found.
-      </div>
-    </ng-template>
-
-  </div>
+    </div>
 
   <!-- PAGINATION -->
   <div class="flex justify-between items-center text-sm text-gray-400">
 
-    <p>
-        Showing 1 - {{filteredAppointments.length }} of 
-        <span>{{filteredAppointments.length}}</span> 
+    <p *ngIf="filteredAppointments$ | async as apps">
+        Showing 1 - {{ apps.length }} of 
+        <span>{{ apps.length }}</span> 
         appointments
     </p>
 

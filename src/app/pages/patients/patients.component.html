@@ -38,7 +38,7 @@
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
             <div 
                 *ngFor="let p of patients$ | async" 
-                class="flex flex-col items-center bg-gray-900 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
+                class="flex flex-col items-center bg-gray-950 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
                 <div class="space-y-2">
                     <p class="text-sm text-gray-300 italic">{{ p.preferedName }}</p>
                     <img [src]="p.image" [alt]="p.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
