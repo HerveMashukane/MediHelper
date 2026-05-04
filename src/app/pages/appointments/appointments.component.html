@@ -80,7 +80,7 @@
         <select
             [(ngModel)]="selectedStatus"
             (ngModelChange)="selectedStatus$.next($event)"
-            class="bg-gray-900 border border-gray-700 px-4 py-2 rounded-md focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+            class="bg-gray-900 border border-gray-700 px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         >
             <option value="All" selected>All</option>
             <option value="Upcoming">Upcoming</option>
@@ -199,7 +199,7 @@
     <p *ngIf="filteredAppointments$ | async as apps">
         Showing 1 - {{ apps.length }} of 
         <span>{{ apps.length }}</span> 
-        appointments
+        appointment<span *ngIf="apps.length > 1">s</span>
     </p>
 
     <div class="space-x-2">

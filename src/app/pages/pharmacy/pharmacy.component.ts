@@ -40,7 +40,7 @@ export class PharmacyComponent {
   statusFilters = ['All','Active','Pending','Inactive','Completed']
 
   setFilter(filter: string) {
-    this.selectedStatus = filter
+    this.selectedStatus = filter;
   }
 
   get filteredMedications() {
