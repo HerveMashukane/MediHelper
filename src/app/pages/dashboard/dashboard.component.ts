@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { fromEvent, map, merge, Observable, startWith } from 'rxjs';
 import { AppointmentService } from '../../services/appointments/appointment.service';
 import { PatientsService } from '../../services/patients/patients.service';
 import { DoctorsService } from '../../services/doctors/doctors.service';
@@ -74,4 +74,13 @@ export class DashboardComponent {
     {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'February 18, 2025', status: 'Pending'},
     {patientName: 'Christelle Pelaya', doctorName: 'Hiro Mataba', date: 'January 15, 2025', status: 'Canceled'},
   ]
+
+  // check system online status
+  isOnline$ = merge(
+    fromEvent(window, 'online'),
+    fromEvent(window, 'offline')
+  ).pipe(
+    map(() => navigator.onLine),
+    startWith(navigator.onLine)
+  )
 }

@@ -13,8 +13,13 @@
             <div class="flex items-center gap-6 text-sm">
 
                 <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-                    <span class="text-gray-400">System Active</span>
+                    <span 
+                        class="w-2 h-2 rounded-full"
+                        [ngClass]="(isOnline$ | async) ? 'bg-green-500' : 'bg-red-500'"
+                        ></span>
+                    <span class="text-gray-400">
+                        {{ (isOnline$ | async) ? 'System Connected' : 'System Disconnected'}}
+                    </span>
                 </div>
 
                 <div class="text-gray-400">

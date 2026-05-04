@@ -60,7 +60,10 @@
         />
 
         <!-- Online indicator -->
-        <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-gray-950 rounded-full"></span>
+        <span 
+          class="absolute bottom-0 right-0 w-3 h-3 border-2 border-gray-950 rounded-full"
+          [ngClass]="(isOnline$ | async) ? 'bg-green-500' : 'bg-red-500'">
+        </span>
       </div>
 
       <!-- Name visible directly -->
