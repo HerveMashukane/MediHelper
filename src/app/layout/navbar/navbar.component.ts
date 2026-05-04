@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { fromEvent, map, merge, startWith } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ConnectionStatusService } from '../../services/connection-status/connection-status.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +13,10 @@ import { fromEvent, map, merge, startWith } from 'rxjs';
 })
 export class NavbarComponent {
   // check system connection status
-  isOnline$ = merge(
-    fromEvent(window, 'online'),
-    fromEvent(window, 'offline')
-  ).pipe(
-    map(() => navigator.onLine),
-    startWith(navigator.onLine)
-  )
-
+  isOnline$: Observable<boolean>;
+  constructor(private connectionStatusService: ConnectionStatusService) {
+    this.isOnline$ = this.connectionStatusService.isOnline$;
+  }
   // drop down toggle
   isDropdownOpen = false;
   toggleDropdown() {

@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { fromEvent, map, merge, Observable, startWith } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AppointmentService } from '../../services/appointments/appointment.service';
 import { PatientsService } from '../../services/patients/patients.service';
 import { DoctorsService } from '../../services/doctors/doctors.service';
 import { MedicationService } from '../../services/medication/medication.service';
+import { ConnectionStatusService } from '../../services/connection-status/connection-status.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -52,18 +53,22 @@ export class DashboardComponent {
     Pending: number,
     Total: number
   }>;
+  // check system online status
+  isOnline$: Observable<boolean>;
 
   constructor(
     private appointmentService: AppointmentService,
     private patientService: PatientsService,
     private doctorService: DoctorsService,
-    private medicationService: MedicationService
+    private medicationService: MedicationService,
+    private connectionsStatusService: ConnectionStatusService
   ) 
   {
-    this.appointmentStats$ = this.appointmentService.appointmentStats$;
-    this.patientStats$ = this.patientService.patientStats$;
-    this.doctorStats$ = this.doctorService.doctorStats$;
-    this.medicationStats$ = this.medicationService.medicationStats$;
+    this.appointmentStats$ = this.appointmentService.appointmentStats$; // appointments stats
+    this.patientStats$ = this.patientService.patientStats$; // patients stats
+    this.doctorStats$ = this.doctorService.doctorStats$; // doctors stats
+    this.medicationStats$ = this.medicationService.medicationStats$; // medicatoion stats
+    this.isOnline$ = this.connectionsStatusService.isOnline$; // connection status
   }
   today = new Date();
   patientActivities: any = [
@@ -74,13 +79,4 @@ export class DashboardComponent {
     {patientName: 'Hiro Mataba', doctorName: 'Herve Mashukane', date: 'February 18, 2025', status: 'Pending'},
     {patientName: 'Christelle Pelaya', doctorName: 'Hiro Mataba', date: 'January 15, 2025', status: 'Canceled'},
   ]
-
-  // check system online status
-  isOnline$ = merge(
-    fromEvent(window, 'online'),
-    fromEvent(window, 'offline')
-  ).pipe(
-    map(() => navigator.onLine),
-    startWith(navigator.onLine)
-  )
 }
