@@ -11,9 +11,9 @@
 
         <div class="flex gap-3">
             <input type="search" placeholder="Search clients, policies, claims..."
-            class="px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+            class="px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
             />
-            <button class="bg-blue-900 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">
+            <button class="bg-sky-500 hover:bg-sky-600 px-4 py-2 rounded-lg text-sm font-medium transition">
                 + New Policy
             </button>
         </div>
@@ -21,7 +21,7 @@
 
     <!-- KPI CARDS -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
-        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-blue-500 transition">
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-green-500 transition">
             <p class="text-gray-400 text-sm">Total Policies</p>
             <h2 class="text-2xl font-semibold mt-2">1,250</h2>
             <span class="text-xs text-green-400">+8% this month</span>
@@ -33,10 +33,10 @@
             <span class="text-xs text-yellow-400">Pending attention</span>
         </div>
 
-        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-blue-500 transition">
+        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-sky-500 transition">
             <p class="text-gray-400 text-sm">Closed Claims</p>
             <h2 class="text-2xl font-semibold mt-2">98</h2>
-            <span class="text-xs text-blue-400">Resolved</span>
+            <span class="text-xs text-sky-500">Resolved</span>
         </div>
 
         <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-red-500 transition">
@@ -60,13 +60,13 @@
 
         <!-- Filters -->
         <div class="flex gap-3 mb-4">
-            <select class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg">
+            <select class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
                 <option>All Status</option>
                 <option>Active</option>
                 <option>Expired</option>
                 <option>Pending Renewal</option>
             </select>
-            <input type="month" class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg">
+            <input type="month" class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
         </div>
 
         <!-- Policies Table -->
@@ -95,7 +95,7 @@
                             <span class="px-3 py-1 text-xs rounded-full bg-green-700">Active</span>
                         </td>
                         <td class="p-4 flex gap-2">
-                            <button class="px-2 py-1 bg-blue-600 rounded-lg hover:bg-blue-500 text-xs">View</button>
+                            <button class="px-2 py-1 bg-sky-500 rounded-lg hover:bg-sky-600 text-xs">View</button>
                             <button class="px-2 py-1 bg-gray-700 rounded-lg hover:bg-gray-600 text-xs">Renew</button>
                         </td>
                     </tr>
@@ -108,7 +108,7 @@
                             <span class="px-3 py-1 text-xs rounded-full bg-yellow-700">Pending Renewal</span>
                         </td>
                         <td class="p-4 flex gap-2">
-                            <button class="px-2 py-1 bg-blue-600 rounded-lg hover:bg-blue-500 text-xs">View</button>
+                            <button class="px-2 py-1 bg-sky-500 rounded-lg hover:bg-sky-600 text-xs">View</button>
                             <button class="px-2 py-1 bg-red-600 rounded-lg hover:bg-red-500 text-xs">Cancel</button>
                         </td>
                     </tr>
@@ -142,7 +142,7 @@
                             <span class="px-3 py-1 text-xs rounded-full bg-yellow-700">Pending</span>
                         </td>
                         <td class="p-4 flex gap-2">
-                            <button class="px-2 py-1 bg-blue-600 rounded-lg hover:bg-blue-500 text-xs">View</button>
+                            <button class="px-2 py-1 bg-sky-500 rounded-lg hover:bg-sky-600 text-xs">View</button>
                             <button class="px-2 py-1 bg-green-600 rounded-lg hover:bg-green-500 text-xs">Approve</button>
                         </td>
                     </tr>
@@ -155,7 +155,7 @@
                             <span class="px-3 py-1 text-xs rounded-full bg-red-700">Denied</span>
                         </td>
                         <td class="p-4 flex gap-2">
-                            <button class="px-2 py-1 bg-blue-600 rounded-lg hover:bg-blue-500 text-xs">View</button>
+                            <button class="px-2 py-1 bg-sky-500 rounded-lg hover:bg-sky-600 text-xs">View</button>
                             <button class="px-2 py-1 bg-gray-700 rounded-lg hover:bg-gray-600 text-xs">Export</button>
                         </td>
                     </tr>
@@ -171,7 +171,7 @@
             <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
                 <h2 class="text-lg font-semibold mb-4">Quick Actions</h2>
                 <div class="flex flex-col gap-3">
-                    <button class="bg-blue-600 hover:bg-blue-500 py-2 px-4 rounded-lg transition">Add Policy</button>
+                    <button class="bg-sky-500 hover:bg-sky-600 py-2 px-4 rounded-lg transition">Add Policy</button>
                     <button class="bg-green-600 hover:bg-green-500 py-2 px-4 rounded-lg transition">Approve Claim</button>
                     <button class="bg-red-600 hover:bg-red-500 py-2 px-4 rounded-lg transition">Deny Claim</button>
                     <button class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-lg transition">Export CSV</button>
@@ -185,7 +185,7 @@
                 <div class="flex justify-between"><span>Total Policies</span><span class="text-green-400">1,250</span></div>
                 <div class="flex justify-between"><span>New Policies</span><span class="text-green-400">48</span></div>
                 <div class="flex justify-between"><span>Claims Submitted</span><span class="text-yellow-400">32</span></div>
-                <div class="flex justify-between"><span>Claims Closed</span><span class="text-blue-400">98</span></div>
+                <div class="flex justify-between"><span>Claims Closed</span><span class="text-sky-400">98</span></div>
                 <div class="flex justify-between"><span>Overdue Claims</span><span class="text-red-400">5</span></div>
             </div>
         </div>

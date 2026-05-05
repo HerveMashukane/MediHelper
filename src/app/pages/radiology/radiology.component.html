@@ -15,7 +15,7 @@
         <button
             (click)="toggleForm()"
             class="py-2 px-5 rounded-md transition flex gap-2 items-center font-medium"
-            [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700 text-white' : 'bg-blue-800 hover:bg-blue-700 text-white'"
+            [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700 text-white' : 'bg-sky-500 hover:bg-sky-600 text-white'"
         >
             <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
             {{ isFormVisible ? 'Close Form' : 'New Radiology Exam' }}
@@ -30,7 +30,7 @@
                 type="text"
                 placeholder="Search patient or exam..."
                 [(ngModel)]="searchTerm"
-                class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
             >
 
             <div class="flex gap-2 flex-wrap">
@@ -86,7 +86,7 @@
                                 class="px-3 py-1 rounded-full text-xs font-semibold"
                                 [ngClass]="{
                                     'bg-yellow-700 text-white': exam.status === 'Pending',
-                                    'bg-blue-700 text-white': exam.status === 'In Review',
+                                    'bg-sky-500 text-white': exam.status === 'In Review',
                                     'bg-green-700 text-white': exam.status === 'Completed',
                                     'bg-red-700 text-white': exam.status === 'Urgent'
                                 }"
@@ -129,7 +129,7 @@
                                     Upload Image
                                 </button>
 
-                                <button class="w-full text-left px-4 py-2 hover:bg-red-900 text-red-400">
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
                                     Delete
                                 </button>
 
@@ -161,10 +161,10 @@
         <button class="px-3 py-1 bg-gray-800 rounded">
             Prev
         </button>
-        <button class="px-3 py-1 bg-blue-700 rounded">
+        <button class="px-3 py-1 bg-sky-500 rounded">
             1
         </button>
-        <button class="px-3 py-1 bg-gray-800 rounded">
+        <button class="px-3 py-1 bg-gray-800 text-white rounded">
             2
         </button>
         <button class="px-3 py-1 bg-gray-800 rounded">

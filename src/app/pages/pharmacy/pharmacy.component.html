@@ -15,7 +15,7 @@
     <button
       (click)="toggleForm()"
       class="text-white py-2 px-5 rounded-md transition flex items-center gap-2"
-      [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : 'bg-blue-900 hover:bg-blue-700'"
+      [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : 'bg-sky-500 hover:bg-sky-600'"
     >
       <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
       <span>{{ isFormVisible ? 'Close Form' : 'Add Medication' }}</span>
@@ -32,7 +32,7 @@
         type="text"
         placeholder="Search medication..."
         [(ngModel)]="searchTerm"
-        class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+        class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
       />
 
       <!-- status filters -->
@@ -82,7 +82,7 @@
               <td class="p-3 font-semibold">{{ med.medName }}</td>
               <td class="p-3">{{ med.dosage }}<span>{{ med.dosageUnit }}</span></td>
               <td class="p-3">{{ med.schedule }}</td>
-              <td class="p-3 text-blue-400">{{ med.doctorName }}</td>
+              <td class="p-3 text-blue-500">{{ med.doctorName }}</td>
               <td class="p-3">{{ med.startDate }}</td>
               <td class="p-3">{{ med.endDate }}</td>
               <!-- adherence progress -->
@@ -108,7 +108,7 @@
                     'bg-green-700': med.status === 'Active',
                     'bg-yellow-700': med.status === 'Pending',
                     'bg-red-700': med.status === 'Inactive',
-                    'bg-blue-700': med.status === 'Completed'
+                    'bg-sky-500': med.status === 'Completed'
                   }"
                 >
                   {{ med.status }}
@@ -169,10 +169,10 @@
     <button class="px-3 py-1 bg-gray-800 rounded">
       Prev
     </button>
-    <button class="px-3 py-1 bg-blue-700 rounded">
+    <button class="px-3 py-1 bg-sky-500 text-white rounded">
       1
     </button>
-    <button class="px-3 py-1 bg-gray-800 rounded">
+    <button class="px-3 py-1 bg-gray-800 text-white rounded">
       2
     </button>
     <button class="px-3 py-1 bg-gray-800 rounded">

@@ -3,7 +3,7 @@
   <!-- Page Header -->
   <div class="flex justify-between items-center">
     <div>
-      <h1 class="text-2xl font-bold text-white">
+      <h1 class="text-3xl font-bold text-white">
         Laboratory Management | Tests • 
         <span>{{ filteredTests.length }}</span>
       </h1>
@@ -14,31 +14,31 @@
     <button 
       (click)="toggleForm()" 
       class="text-white px-4 py-2 rounded-lg transition"
-      [ngClass]="isFormVisible ? 'bg-red-950 hover:bg-red-900' : 'bg-blue-900 hover:bg-blue-700'">
+      [ngClass]="isFormVisible ? 'bg-red-950 hover:bg-red-800' : 'bg-sky-500 hover:bg-sky-600'">
       <i [class]="isFormVisible? 'bi bi-x' : 'bi bi-plus'"></i>
       {{ isFormVisible ? 'Close Form' : 'New Lab Test' }}
     </button>
   </div>
 
 
-  <!-- Statistics -->
+  <!-- KPI Statistics -->
   <div class="grid grid-cols-4 gap-6">
-    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-gray-400">
       <p class="text-gray-400 text-sm">Total Tests</p>
       <h2 class="text-white text-2xl font-bold mt-2">152</h2>
     </div>
 
-    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-yellow-500">
       <p class="text-gray-400 text-sm">Pending</p>
       <h2 class="text-yellow-400 text-2xl font-bold mt-2">24</h2>
     </div>
 
-    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-green-500">
       <p class="text-gray-400 text-sm">Completed</p>
       <h2 class="text-green-400 text-2xl font-bold mt-2">108</h2>
     </div>
 
-    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-red-400">
       <p class="text-gray-400 text-sm">Critical Results</p>
       <h2 class="text-red-400 text-2xl font-bold mt-2">5</h2>
     </div>
@@ -50,17 +50,17 @@
     <input
       type="text"
       placeholder="Search patient..."
-      class="w-64 px-3 py-2 bg-gray-900 border text-white border-gray-700 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+      class="w-64 px-3 py-2 bg-gray-900 border text-white border-gray-700 rounded-lg text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
     />
 
-    <select class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
+    <select class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
       <option value="" disabled selected>All Tests</option>
       <option>Blood Test</option>
       <option>Urine Test</option>
       <option>Whole Body Test</option>
     </select>
 
-    <select class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800">
+    <select class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
       <option value="" disabled selected>Status</option>
       <option>Active</option>
       <option>Pending</option>
@@ -96,7 +96,7 @@
               [ngClass]="{
                 'bg-green-700 text-white': test.status === 'Completed',
                 'bg-yellow-700 text-white': test.status === 'Pending',
-                'bg-blue-700 text-white': test.status === 'Active',
+                'bg-sky-500 text-white': test.status === 'Active',
                 'bg-red-700 text-white': test.status === 'Canceled'
               }"
             >
@@ -122,7 +122,7 @@
                 View
               </button>
 
-              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-blue-400">
+              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-sky-500">
                 Result
               </button>
 
@@ -130,7 +130,7 @@
                 Validate
               </button>
 
-              <button class="w-full text-left px-4 py-2 hover:bg-red-900 text-red-400">
+              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
                 Delete
               </button>
 
@@ -150,10 +150,10 @@
         <button class="px-3 py-1 bg-gray-800 rounded">
             Prev
         </button>
-        <button class="px-3 py-1 bg-blue-700 rounded">
+        <button class="px-3 py-1 bg-sky-500 text-white rounded">
             1
         </button>
-        <button class="px-3 py-1 bg-gray-800 rounded">
+        <button class="px-3 py-1 bg-gray-800 text-white rounded">
             2
         </button>
         <button class="px-3 py-1 bg-gray-800 rounded">
