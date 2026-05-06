@@ -5,7 +5,7 @@
     <div>
       <h2 class="text-3xl text-white font-semibold">
         Medication Tracker • 
-          <span>{{ filteredMedications.length }}</span>
+          <span>{{ (medications$ | async)?.length }}</span>
       </h2>
       <p class="text-gray-400 text-sm">
         Track prescriptions, schedules and adherence
@@ -35,17 +35,18 @@
         class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
       />
 
-      <!-- status filters -->
-      <div class="flex flex-wrap gap-2">
-        <button
-          *ngFor="let filter of statusFilters"
-          (click)="setFilter(filter)"
-          class="px-3 py-1 rounded-full border border-gray-700 hover:bg-blue-950 transition"
-          [ngClass]="selectedStatus === filter ? 'bg-blue-950 text-white' : 'text-gray-300'"
-        >
-          {{ filter }}
-        </button>
-      </div>
+      <!-- FILTER -->
+      <select
+        [(ngModel)]="selectedStatus"
+        (ngModelChange)="selectedStatus$.next($event)"
+        class="bg-gray-900 border border-gray-700 px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+      >
+        <option value="All" selected>All Medications</option>
+        <option value="Active">Acive</option>
+        <option value="Inactive">Inactive</option>
+        <option value="Completed">Completed</option>
+        <option value="Pending">Pending</option>
+      </select>
     </div>
   </div>
 
@@ -159,7 +160,7 @@
 </section>
 
 <!-- PAGINATION -->
-<div *ngIf="filteredMedications as meds" class="flex justify-between items-center text-sm text-gray-400 mt-4">
+<div *ngIf="(medications$ | async) as meds" class="flex justify-between items-center text-sm text-gray-400 mt-4">
   <p>
     Showing 1 - <span>{{ meds.length }}</span> of 
     <span>{{ meds.length }}</span> 

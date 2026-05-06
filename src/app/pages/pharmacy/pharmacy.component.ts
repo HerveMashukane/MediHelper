@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MedicationFormComponent } from './medication-form/medication-form.component';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Medication, MedicationService } from '../../services/medication/medication.service';
 
 @Component({
@@ -14,18 +14,20 @@ import { Medication, MedicationService } from '../../services/medication/medicat
 })
 export class PharmacyComponent {
   isFormVisible: boolean = false;
-  medications$: Observable<Medication[]>;
+  medications$: Observable<Medication[]>; // observable medicatins list
+  filteredMedications$: Observable<Medication[]>; // observable list of filtered medication by search and status
   medicationStats$: Observable<{
     Active: number,
     Inactive: number,
     Completed: number,
     Pending: number,
     Total: number
-  }>;
+  }>; // observable medication statistics
 
   constructor(private medicationService: MedicationService){
     this.medications$ = this.medicationService.medications$;
     this.medicationStats$ = this.medicationService.medicationStats$;
+    this.filteredMedications$ = this.medicationService.medications$
   }
 
   closeFromChild() {
@@ -37,25 +39,33 @@ export class PharmacyComponent {
   // filters
   searchTerm = ''
   selectedStatus = 'All'
-  statusFilters = ['All','Active','Pending','Inactive','Completed']
-
-  setFilter(filter: string) {
-    this.selectedStatus = filter;
-  }
-
-  get filteredMedications() {
-    const allMedications = this.medicationService.medicationsSource.value;
-
-    return allMedications.filter(med =>
-      (this.selectedStatus === 'All' || med.status === this.selectedStatus) &&
-      (this.searchTerm === '' || med.medName.toLowerCase().includes(this.searchTerm.toLowerCase()))
-    );
-  }
+  searchTerm$ = new BehaviorSubject<string>("");
+  selectedStatus$ = new BehaviorSubject<string>("All");
 
   // get medication progress dynamically
   currentTime = Date.now();
 
   ngOnInit() {
+    // filter medications by status and search term
+    this.filteredMedications$ = combineLatest([
+      this.medications$,
+      this.searchTerm$,
+      this.selectedStatus$
+    ]).pipe(
+      map(([medications, searchTerm, selectedStatus]) => {
+        return medications.filter(med => {
+          const matchesSearch =
+            med.medName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            med.doctorName.toLowerCase().includes(searchTerm.toLowerCase());
+
+          const matchesStatus =
+            selectedStatus === 'All' || med.status === selectedStatus;
+
+          return matchesSearch && matchesStatus;
+        });
+      })
+    );
+    // logic for dynamic medication progress
     setInterval(() => {
       this.currentTime = Date.now();
     }, 60000);
