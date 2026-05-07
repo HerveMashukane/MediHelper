@@ -24,6 +24,12 @@ export class PharmacyComponent {
     Total: number
   }>; // observable medication statistics
 
+  // filters
+  searchTerm = ''
+  selectedStatus = 'All'
+  searchTerm$ = new BehaviorSubject<string>("");
+  selectedStatus$ = new BehaviorSubject<string>("All");
+
   constructor(private medicationService: MedicationService){
     this.medications$ = this.medicationService.medications$;
     this.medicationStats$ = this.medicationService.medicationStats$;
@@ -55,11 +61,6 @@ export class PharmacyComponent {
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
   }
-  // filters
-  searchTerm = ''
-  selectedStatus = 'All'
-  searchTerm$ = new BehaviorSubject<string>("");
-  selectedStatus$ = new BehaviorSubject<string>("All");
 
   // get medication progress dynamically
   currentTime = Date.now();

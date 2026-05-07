@@ -1,26 +1,42 @@
 import { Component } from '@angular/core';
 import { LaboratoryService, LaboTest } from '../../services/laboratory/laboratory.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { LaboratoryFormComponent } from './laboratory-form/laboratory-form.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-laboratory',
   standalone: true,
-  imports: [LaboratoryFormComponent, CommonModule],
+  imports: [LaboratoryFormComponent, CommonModule, FormsModule],
   templateUrl: './laboratory.component.html',
   styleUrl: './laboratory.component.css'
 })
 export class LaboratoryComponent {
-  tests$: Observable<LaboTest[]>
+  tests$: Observable<LaboTest[]>;
+  filteredTests$: Observable<LaboTest[]>;
 
-
+  // filters
+  searchTerm = "";
+  searchTerm$ = new BehaviorSubject<string>("");
   constructor(private laboratoryService: LaboratoryService){
     this.tests$ = this.laboratoryService.tests$;
-  }
-  get filteredTests() {
-    const allTests = this.laboratoryService.laboTestSource.value;
-    return allTests;
+
+    // reactive laboratory filter
+    this.filteredTests$ = combineLatest([
+      this.tests$,
+      this.searchTerm$
+    ]).pipe(
+      map(([tests, searchTerm]) => {
+        return tests.filter(test => {
+          const matchesSearch = 
+            test.patientName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+            test.technologistName.toLowerCase().includes(this.searchTerm.toLowerCase())
+
+          return matchesSearch
+        })
+      })
+    )
   }
 
   // toggle form visibility

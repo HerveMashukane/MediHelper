@@ -2,10 +2,10 @@
 
   <!-- Page Header -->
   <div class="flex justify-between items-center">
-    <div>
+    <div *ngIf="filteredTests$ | async as tests">
       <h1 class="text-3xl font-bold text-white">
         Laboratory Management | Tests • 
-        <span>{{ filteredTests.length }}</span>
+        <span>{{ tests.length }}</span>
       </h1>
       <p class="text-gray-300 text-sm">
         Manage lab tests, results and patient samples
@@ -49,7 +49,9 @@
   <div class="bg-gradient-to-br from-gray-900 to-gray-950 p-4 rounded-xl transition cursor-pointer shadow flex gap-4">
     <input
       type="text"
-      placeholder="Search patient..."
+      placeholder="Search patient or technologist by name.."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="searchTerm$.next($event)"
       class="w-64 px-3 py-2 bg-gray-900 border text-white border-gray-700 rounded-lg text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
     />
 
@@ -83,61 +85,70 @@
         </tr>
       </thead>
       <tbody>
-        <tr 
-          *ngFor="let test of tests$ | async; let i = index"
-          class="border-t border-gray-800 hover:bg-gray-800 transition">
-          <td class="p-3">{{ test.patientName }}</td>
-          <td class="p-3">{{ test.testType }}</td>
-          <td class="p-3">{{ test.technologistName }}</td>
-          <td class="p-3">{{ test.date }}</td>
-          <td class="p-3">
-            <span
-              class="px-3 py-1 rounded-full text-xs font-semibold"
-              [ngClass]="{
-                'bg-green-700 text-white': test.status === 'Completed',
-                'bg-yellow-700 text-white': test.status === 'Pending',
-                'bg-sky-500 text-white': test.status === 'Active',
-                'bg-red-700 text-white': test.status === 'Canceled'
-              }"
-            >
-              {{ test.status }}
-            </span>
-          </td>
-          <td class="p-3 relative">
-            <!-- 3 dots -->
-            <button
-              (click)="toggleMenu(i)"
-              class="bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-md text-white transition"
-            >
-              ⋮
-            </button>
-
-            <!-- Dropdown -->
-            <div
-              *ngIf="activeMenuIndex === i"
-              class="absolute right-2 mt-2 w-44 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 overflow-hidden"
-            >
-
-              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-white">
-                View
+        <ng-container *ngIf="filteredTests$ | async as tests">
+          <!-- EMPTY STATE -->
+          <tr *ngIf="tests.length === 0">
+              <td colspan="7" class="text-center text-2xl text-gray-500 py-6">
+                  No appointments found.
+              </td>
+          </tr>
+          <!-- ROW DATA -->
+          <tr 
+            *ngFor="let test of tests | async; let i = index"
+            class="border-t border-gray-800 hover:bg-gray-800 transition">
+            <td class="p-3">{{ test.patientName }}</td>
+            <td class="p-3">{{ test.testType }}</td>
+            <td class="p-3">{{ test.technologistName }}</td>
+            <td class="p-3">{{ test.date }}</td>
+            <td class="p-3">
+              <span
+                class="px-3 py-1 rounded-full text-xs font-semibold"
+                [ngClass]="{
+                  'bg-green-700 text-white': test.status === 'Completed',
+                  'bg-yellow-700 text-white': test.status === 'Pending',
+                  'bg-sky-500 text-white': test.status === 'Active',
+                  'bg-red-700 text-white': test.status === 'Canceled'
+                }"
+              >
+                {{ test.status }}
+              </span>
+            </td>
+            <td class="p-3 relative">
+              <!-- 3 dots -->
+              <button
+                (click)="toggleMenu(i)"
+                class="bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-md text-white transition"
+              >
+                ⋮
               </button>
 
-              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-sky-500">
-                Result
-              </button>
+              <!-- Dropdown -->
+              <div
+                *ngIf="activeMenuIndex === i"
+                class="absolute right-2 mt-2 w-44 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 overflow-hidden"
+              >
 
-              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-green-400">
-                Validate
-              </button>
+                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-white">
+                  View
+                </button>
 
-              <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
-                Delete
-              </button>
+                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-sky-500">
+                  Result
+                </button>
 
-            </div>
+                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-green-400">
+                  Validate
+                </button>
 
-          </td>
-        </tr>
+                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
+                  Delete
+                </button>
+
+              </div>
+
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>
@@ -145,7 +156,10 @@
 
 <!-- PAGINATION -->
 <div class="flex justify-between items-center text-sm text-gray-400">
-    <p>Showing 1 - 10 of 324 appointments</p>
+    <p *ngIf="filteredTests$ | async as tests">
+      Showing 1 - <span>{{tests.length}}</span> of 
+      <span>{{tests.length}}</span> appointments
+    </p>
     <div class="space-x-2">
         <button class="px-3 py-1 bg-gray-800 rounded">
             Prev
