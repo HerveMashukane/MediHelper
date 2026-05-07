@@ -5,7 +5,7 @@
     <div>
       <h2 class="text-3xl text-white font-semibold">
         Medication Tracker • 
-          <span>{{ (medications$ | async)?.length }}</span>
+          <span>{{ (filteredMedications$ | async)?.length }}</span>
       </h2>
       <p class="text-gray-400 text-sm">
         Track prescriptions, schedules and adherence
@@ -32,6 +32,7 @@
         type="text"
         placeholder="Search medication..."
         [(ngModel)]="searchTerm"
+        (ngModelChange)="searchTerm$.next($event)"
         class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
       />
 
@@ -71,12 +72,12 @@
         </thead>
 
         <tbody>
-          <ng-container *ngIf="medications$ | async as meds">
+          <ng-container *ngIf="filteredMedications$ | async as meds">
             <tr *ngIf="meds.length === 0">
               <td class="text-gray-500 text-center py-4 text-2xl">No medications found.</td>
             </tr>
             <tr
-              *ngFor="let med of medications$ | async; let i = index"
+              *ngFor="let med of filteredMedications$ | async; let i = index"
               class="border-t border-gray-800 hover:bg-gray-800 transition"
             >
 

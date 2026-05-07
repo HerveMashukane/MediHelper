@@ -27,25 +27,7 @@ export class PharmacyComponent {
   constructor(private medicationService: MedicationService){
     this.medications$ = this.medicationService.medications$;
     this.medicationStats$ = this.medicationService.medicationStats$;
-    this.filteredMedications$ = this.medicationService.medications$
-  }
 
-  closeFromChild() {
-    this.isFormVisible = false;
-  }
-  toggleForm() {
-    this.isFormVisible = !this.isFormVisible;
-  }
-  // filters
-  searchTerm = ''
-  selectedStatus = 'All'
-  searchTerm$ = new BehaviorSubject<string>("");
-  selectedStatus$ = new BehaviorSubject<string>("All");
-
-  // get medication progress dynamically
-  currentTime = Date.now();
-
-  ngOnInit() {
     // filter medications by status and search term
     this.filteredMedications$ = combineLatest([
       this.medications$,
@@ -65,6 +47,24 @@ export class PharmacyComponent {
         });
       })
     );
+  }
+
+  closeFromChild() {
+    this.isFormVisible = false;
+  }
+  toggleForm() {
+    this.isFormVisible = !this.isFormVisible;
+  }
+  // filters
+  searchTerm = ''
+  selectedStatus = 'All'
+  searchTerm$ = new BehaviorSubject<string>("");
+  selectedStatus$ = new BehaviorSubject<string>("All");
+
+  // get medication progress dynamically
+  currentTime = Date.now();
+
+  ngOnInit() {
     // logic for dynamic medication progress
     setInterval(() => {
       this.currentTime = Date.now();
