@@ -25,7 +25,7 @@
                     [(ngModel)]="form.patientName"
                     name="patientName"
                     placeholder="Enter patient name"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
                 />
             </div>
 
@@ -36,7 +36,7 @@
                     [(ngModel)]="form.doctor"
                     name="doctor"
                     (change)="loadSlots()"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
                 >
                     <option value="" disabled selected>Choose doctor...</option>
                     <option *ngFor="let doctor of doctors" [value]="doctor.name">
@@ -53,7 +53,7 @@
                     [(ngModel)]="form.date"
                     name="date"
                     (change)="loadSlots()"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
                 />
             </div>
 
@@ -64,7 +64,7 @@
                     type="text"
                     [value]="form.time"
                     readonly
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
                 />
             </div>
 
@@ -74,7 +74,7 @@
                 <select
                     [(ngModel)]="form.status"
                     name="status"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
                 >
                     <option value="Upcoming">Upcoming</option>
                     <option value="Pending">Pending</option>
@@ -92,7 +92,7 @@
                     [(ngModel)]="form.type"
                     name="type"
                     placeholder="Consultation, checkup..."
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
                 />
             </div>
 
@@ -104,7 +104,7 @@
                     [(ngModel)]="form.notes"
                     name="notes"
                     placeholder="Additional information"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
                 ></textarea>
             </div>
 

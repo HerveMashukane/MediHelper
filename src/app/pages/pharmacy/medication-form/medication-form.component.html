@@ -19,7 +19,7 @@
                                         placeholder="Type medication name..."
                                         [(ngModel)]="medName"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"/>
                         </div>
                         <div class="flex flex-col">
                                 <label for="doctorName" class="font-medium">Doctor Name</label>
@@ -30,7 +30,7 @@
                                         placeholder="Type doctor name..." 
                                         [(ngModel)]="doctorName"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition"/>
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"/>
                         </div>
                 </div>
 
@@ -44,7 +44,7 @@
                                         id="schedule"
                                         [(ngModel)]="schedule"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                                         <option value="" disabled>Select schedule</option>
                                         <option value="Morning(06-08AM)">Morning(06-08AM)</option>
                                         <option value="Noon(12-2PM)">Noon(12-2PM)</option>
@@ -62,7 +62,7 @@
                                         id="status"
                                         [(ngModel)]="status"
                                         required
-                                        class="block bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        class="block bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                                         <option value="" disabled selected>Choose status</option>
                                         <option value="Active">Active</option>
                                         <option value="Inactive">Inactive</option>
@@ -81,7 +81,7 @@
                                         name="dosage" 
                                         [(ngModel)]="dosage"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                                         <option value="" disabled selected>Select Medication dose</option>
                                         <option value="100">100</option>
                                         <option value="200">200</option>
@@ -96,7 +96,7 @@
                                         id="currency"
                                         [(ngModel)]="dosageUnit"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                                         <option value="" disabled selected>Dosage Unit</option>
                                         <option value="mg">mg</option>
                                         <option value="g">g</option>
@@ -114,7 +114,7 @@
                                         name="startDate" 
                                         [(ngModel)]="startDate"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                         </div>
                         <!-- end date -->
                         <div>
@@ -125,7 +125,7 @@
                                         name="endDate" 
                                         [(ngModel)]="endDate"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                         </div>
                 </div>
                 <!-- notes(optional) -->
@@ -137,13 +137,13 @@
                                 [(ngModel)]="notes"
                                  placeholder="Additional notes about the medication..." 
                                  rows="4"
-                                class="w-full bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-950 transition">
+                                class="w-full bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                         </textarea>
                 </div>
 
                 <!-- Buttons -->
                 <div class="flex justify-end space-x-4">
-                        <button type="submit" class="bg-blue-800 hover:bg-blue-700 transition px-6 py-2 rounded-lg font-semibold">
+                        <button type="submit" class="bg-sky-500 hover:bg-sky-600 transition px-6 py-2 rounded-lg font-semibold">
                                 Add Medication
                         </button>
                         <button type="button" (click)="closeForm()" class="bg-red-600 hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">

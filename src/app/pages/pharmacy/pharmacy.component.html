@@ -11,15 +11,6 @@
         Track prescriptions, schedules and adherence
       </p>
     </div>
-
-    <button
-      (click)="toggleForm()"
-      class="text-white py-2 px-5 rounded-md transition flex items-center gap-2"
-      [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : 'bg-sky-500 hover:bg-sky-600'"
-    >
-      <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
-      <span>{{ isFormVisible ? 'Close Form' : 'Add Medication' }}</span>
-    </button>
   </div>
 
   <!-- SEARCH + FILTERS -->
@@ -36,18 +27,30 @@
         class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
       />
 
-      <!-- FILTER -->
-      <select
-        [(ngModel)]="selectedStatus"
-        (ngModelChange)="selectedStatus$.next($event)"
-        class="bg-gray-900 border border-gray-700 px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+      <div class="flex gap-4 flex-wrap">
+        <!-- select FILTER -->
+        <select
+          [(ngModel)]="selectedStatus"
+          (ngModelChange)="selectedStatus$.next($event)"
+          class="bg-gray-900 border border-gray-700 px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+        >
+          <option value="All" selected>All Medications</option>
+          <option value="Active">Acive</option>
+          <option value="Inactive">Inactive</option>
+          <option value="Completed">Completed</option>
+          <option value="Pending">Pending</option>
+        </select>
+
+      <!-- add new uppointment button -->
+      <button
+        (click)="toggleForm()"
+        class="text-white py-2 px-5 rounded-md transition flex items-center gap-2"
+        [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700' : 'bg-sky-500 hover:bg-sky-600'"
       >
-        <option value="All" selected>All Medications</option>
-        <option value="Active">Acive</option>
-        <option value="Inactive">Inactive</option>
-        <option value="Completed">Completed</option>
-        <option value="Pending">Pending</option>
-      </select>
+        <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
+        <span>{{ isFormVisible ? 'Close Form' : 'Add Medication' }}</span>
+      </button>
+      </div>
     </div>
   </div>
 

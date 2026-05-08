@@ -21,7 +21,7 @@
                     type="text"
                     placeholder="Type patient name..."
                     name="patientName"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
             </div>
             <!-- Radiologist -->
             <div class="flex flex-col space-y-2">
@@ -32,7 +32,7 @@
 
                 <select
                     name="radiologist"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
 
                     <option disabled>Choose Radiologist...</option>
                     <option value="Herve">Herve</option>
@@ -49,7 +49,7 @@
             <!-- Exam type -->
             <div class="flex flex-col space-y-2">
                 <label for="examType" class="text-gray-300">Type</label>
-                <select name="examType" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                <select name="examType" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                     <option value="" disabled>Choose exam type</option>
                     <option value="X-Ray">X-Ray</option>
                     <option value="MRI">MRI</option>
@@ -68,7 +68,7 @@
 
                 <select
                     name="testType"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                     <option value="" disabled>Choose part...</option>
                     <option value="Chest">Chest</option>
                     <option value="Brain">Brain</option>
@@ -91,14 +91,14 @@
             <input
                 type="date"
                 name="date"
-                class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
             >
 
         </div>
 
         <!-- Buttons -->
         <div class="flex justify-end space-x-4">
-            <button type="submit" class="bg-blue-800 hover:bg-blue-700 text-white transition px-6 py-2 rounded-lg font-semibold">
+            <button type="submit" class="bg-sky-500 hover:bg-sky-600 text-white transition px-6 py-2 rounded-lg font-semibold">
                     Add Exam
             </button>
             <button type="button" (click)="closeForm()" class="bg-red-600 text-white hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">

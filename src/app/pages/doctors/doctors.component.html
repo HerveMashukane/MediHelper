@@ -13,14 +13,7 @@
             class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
         >
         <!-- add doctor -->
-        <div class="flex space-x-4">
-            <button 
-                (click)="toggleForm()"
-                class="text-white py-2 px-3 rounded-md mt-2 transition flex items-center space-x-1"
-                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-sky-500 hover:bg-sky-600'">
-                <span>{{ isFormVisible ? 'Close Form' : 'New Doctor' }}</span>
-            </button>
-
+        <div class="flex gap-4 flex-wrap">
             <select [(ngModel)]="selectedSpeciality" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                 <option value="All" selected>All specialists</option>
                 <option value="Generalist">Generalist</option>
@@ -30,6 +23,13 @@
                 <option value="Surgeon">Surgeon</option>
                 <option value="Oncologist">Oncologist</option>
             </select>
+
+            <button 
+                (click)="toggleForm()"
+                class="text-white py-2 px-3 rounded-md mt-2 transition flex items-center space-x-1"
+                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-sky-500 hover:bg-sky-600'">
+                <span>{{ isFormVisible ? 'Close Form' : 'New Doctor' }}</span>
+            </button>
         </div>
     </div>
 

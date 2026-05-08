@@ -122,16 +122,6 @@ export class RadiologyComponent {
   currentFilter: string = 'All'
   isFormVisible = false
 
-
-  // filter options
-  statusFilters: string[] = [
-    'All',
-    'Pending',
-    'In Review',
-    'Completed',
-    'Urgent'
-  ]
-
   // three dots toggle for actions in table
   activeMenuIndex: number | null = null;
   toggleMenu(index: number) {

@@ -11,15 +11,6 @@
                 Manage imaging exams, reports and results
             </p>
         </div>
-
-        <button
-            (click)="toggleForm()"
-            class="py-2 px-5 rounded-md transition flex gap-2 items-center font-medium"
-            [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700 text-white' : 'bg-sky-500 hover:bg-sky-600 text-white'"
-        >
-            <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
-            {{ isFormVisible ? 'Close Form' : 'New Radiology Exam' }}
-        </button>
     </div>
 
     <!-- SEARCH + FILTERS -->
@@ -33,14 +24,24 @@
                 class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md w-64 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
             >
 
-            <div class="flex gap-2 flex-wrap">
+            <div class="flex gap-4 flex-wrap">
+                <select 
+                    class="bg-gray-900 border border-gray-700 px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                    >
+                    <option value="All" selected>All Exams</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Review">In Review</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Urgent">Urgent</option>
+                </select>
+
                 <button
-                    *ngFor="let filter of statusFilters"
-                    (click)="setFilter(filter)"
-                    class="px-3 py-1 rounded-full border border-gray-700 transition"
-                    [ngClass]="currentFilter === filter ? 'bg-sky-600 text-white' : 'text-gray-300 hover:bg-gray-800'"
+                    (click)="toggleForm()"
+                    class="py-2 px-5 rounded-md transition flex gap-2 items-center font-medium"
+                    [ngClass]="isFormVisible ? 'bg-red-800 hover:bg-red-700 text-white' : 'bg-sky-500 hover:bg-sky-600 text-white'"
                 >
-                    {{ filter }}
+                    <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
+                    {{ isFormVisible ? 'Close Form' : 'New Radiology Exam' }}
                 </button>
             </div>
 
@@ -161,7 +162,7 @@
         <button class="px-3 py-1 bg-gray-800 rounded">
             Prev
         </button>
-        <button class="px-3 py-1 bg-sky-500 rounded">
+        <button class="px-3 py-1 bg-sky-500 text-white rounded">
             1
         </button>
         <button class="px-3 py-1 bg-gray-800 text-white rounded">
