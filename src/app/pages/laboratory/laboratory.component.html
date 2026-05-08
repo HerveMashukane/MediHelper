@@ -49,9 +49,9 @@
   <div class="bg-gradient-to-br from-gray-900 to-gray-950 p-4 rounded-xl transition cursor-pointer shadow flex gap-4">
     <input
       type="text"
-      placeholder="Search patient or technologist by name.."
       [(ngModel)]="searchTerm"
       (ngModelChange)="searchTerm$.next($event)"
+      placeholder="Search patient or technologist by name.."
       class="w-64 px-3 py-2 bg-gray-900 border text-white border-gray-700 rounded-lg text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
     />
 
@@ -94,7 +94,7 @@
           </tr>
           <!-- ROW DATA -->
           <tr 
-            *ngFor="let test of tests | async; let i = index"
+            *ngFor="let test of tests; let i = index"
             class="border-t border-gray-800 hover:bg-gray-800 transition">
             <td class="p-3">{{ test.patientName }}</td>
             <td class="p-3">{{ test.testType }}</td>

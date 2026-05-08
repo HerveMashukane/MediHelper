@@ -22,7 +22,7 @@ export class LaboratoryComponent {
   constructor(private laboratoryService: LaboratoryService){
     this.tests$ = this.laboratoryService.tests$;
 
-    // reactive laboratory filter
+    // reactive laboratory tests filter
     this.filteredTests$ = combineLatest([
       this.tests$,
       this.searchTerm$
@@ -30,10 +30,11 @@ export class LaboratoryComponent {
       map(([tests, searchTerm]) => {
         return tests.filter(test => {
           const matchesSearch = 
-            test.patientName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-            test.technologistName.toLowerCase().includes(this.searchTerm.toLowerCase())
+          test.patientName.toLowerCase().includes(searchTerm.toLowerCase());
+          test.technologistName.toLowerCase().includes(searchTerm.toLowerCase());
+          test.testType.toLowerCase().includes(searchTerm.toLowerCase());
 
-          return matchesSearch
+          return matchesSearch;
         })
       })
     )
