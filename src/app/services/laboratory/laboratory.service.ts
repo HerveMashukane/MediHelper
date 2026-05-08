@@ -44,7 +44,7 @@ export class LaboratoryService {
     testType: 'BloodTest',
     technologistName: 'Dr. Lee',
     date: '2026-04-12',
-    status: 'Canceled',
+    status: 'Critical',
   },
   {
     id: 5,
