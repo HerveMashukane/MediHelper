@@ -22,20 +22,22 @@
 
 
   <!-- KPI Statistics -->
-  <div class="grid grid-cols-4 gap-6">
+  <div 
+    *ngIf="laboTestStats$ | async as stats"
+    class="grid grid-cols-4 gap-6">
     <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-gray-400">
       <p class="text-gray-400 text-sm">Total Tests</p>
-      <h2 class="text-white text-2xl font-bold mt-2">152</h2>
+      <h2 class="text-white text-2xl font-bold mt-2">{{stats.Total}}</h2>
     </div>
 
     <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-yellow-500">
       <p class="text-gray-400 text-sm">Pending</p>
-      <h2 class="text-yellow-400 text-2xl font-bold mt-2">24</h2>
+      <h2 class="text-yellow-400 text-2xl font-bold mt-2">{{stats.Pending}}</h2>
     </div>
 
     <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-green-500">
       <p class="text-gray-400 text-sm">Completed</p>
-      <h2 class="text-green-400 text-2xl font-bold mt-2">108</h2>
+      <h2 class="text-green-400 text-2xl font-bold mt-2">{{stats.Completed}}</h2>
     </div>
 
     <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-red-400">
@@ -55,19 +57,25 @@
       class="w-64 px-3 py-2 bg-gray-900 border text-white border-gray-700 rounded-lg text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
     />
 
-    <select class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
-      <option value="" selected>All Tests</option>
-      <option>Blood Test</option>
-      <option>Urine Test</option>
-      <option>Whole Body Test</option>
+    <select 
+      [(ngModel)]="selectedTestType"
+      (ngModelChange)="selectedTestType$.next($event)"
+      class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
+      <option value="All" selected>All Tests</option>
+      <option value="BloodTest">Blood Test</option>
+      <option value="UrineTest">Urine Test</option>
+      <option value="BodyTest">Whole Body Test</option>
     </select>
 
-    <select class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
-      <option value="" disabled selected>Status</option>
-      <option>Active</option>
-      <option>Pending</option>
-      <option>Completed</option>
-      <option>Canceled</option>
+    <select 
+      [(ngModel)]="selectedStatus"
+      (ngModelChange)="selectedStatus$.next($event)"
+      class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
+      <option value="All" selected>Filter by status</option>
+      <option value="Active">Active</option>
+      <option value="Pending">Pending</option>
+      <option value="Completed">Completed</option>
+      <option value="Canceled">Canceled</option>
     </select>
   </div>
   <!-- LAB TABLE TESTS -->

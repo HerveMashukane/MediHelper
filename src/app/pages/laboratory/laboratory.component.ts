@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LaboratoryService, LaboTest } from '../../services/laboratory/laboratory.service';
-import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, merge, Observable } from 'rxjs';
 import { LaboratoryFormComponent } from './laboratory-form/laboratory-form.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,32 +13,72 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './laboratory.component.css'
 })
 export class LaboratoryComponent {
+  // observable list of all tests
   tests$: Observable<LaboTest[]>;
-  filteredTests$: Observable<LaboTest[]>;
-
   // filters
+  filteredTests$: Observable<LaboTest[]>;
   searchTerm = "";
+  selectedTestType: string = "All";
+  selectedStatus: string = "All";
   searchTerm$ = new BehaviorSubject<string>("");
+  selectedTestType$ = new BehaviorSubject<string>("");
+  selectedStatus$ = new BehaviorSubject<string>("");
   constructor(private laboratoryService: LaboratoryService){
     this.tests$ = this.laboratoryService.tests$;
 
     // reactive laboratory tests filter
     this.filteredTests$ = combineLatest([
       this.tests$,
-      this.searchTerm$
+      this.searchTerm$,
+      this.selectedTestType$,
+      this.selectedStatus$
     ]).pipe(
       map(([tests, searchTerm]) => {
         return tests.filter(test => {
           const matchesSearch = 
-          test.patientName.toLowerCase().includes(searchTerm.toLowerCase());
-          test.technologistName.toLowerCase().includes(searchTerm.toLowerCase());
-          test.testType.toLowerCase().includes(searchTerm.toLowerCase());
+            test.patientName.toLowerCase().includes(searchTerm.toLowerCase());
+            test.technologistName.toLowerCase().includes(searchTerm.toLowerCase());
+            test.testType.toLowerCase().includes(searchTerm.toLowerCase());
 
-          return matchesSearch;
+          const matchesType = 
+            this.selectedTestType === "All" || test.testType === this.selectedTestType
+
+          const matchesStatus = 
+            this.selectedStatus === "All" || test.status === this.selectedStatus
+          return matchesSearch && matchesType && matchesStatus;
         })
+      })
+    );
+
+    // KPI cards test status stats
+    this.laboTestStats$ = this.tests$.pipe(
+      map((tests) => {
+        const stats = {
+          Active: 0,
+          Pending: 0,
+          Completed: 0,
+          Canceled: 0,
+          Total: 0
+        }
+        for(let test of tests) {
+          if(stats[test.status as keyof typeof stats] !== undefined) {
+            stats[test.status as keyof typeof stats]++;
+            stats.Total++;
+          }
+        }
+        return stats
       })
     )
   }
+
+  // KPI cards test status stats
+  laboTestStats$: Observable<{
+    Active: number;
+    Pending: number;
+    Completed: number;
+    Canceled: number;
+    Total: number;
+  }>;
 
   // toggle form visibility
   isFormVisible: boolean = false;

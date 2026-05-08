@@ -17,7 +17,7 @@ export class LaboratoryService {
   {
     id: 1,
     patientName: 'John Smith',
-    testType: 'Blood Test',
+    testType: 'BloodTest',
     technologistName: 'Dr. Carter',
     date: '2026-04-09',
     status: 'Completed',
@@ -25,7 +25,7 @@ export class LaboratoryService {
   {
     id: 2,
     patientName: 'Maria Lopez',
-    testType: 'Urine Test',
+    testType: 'UrineTest',
     technologistName: 'Dr. Evans',
     date: '2026-04-10',
     status: 'Pending',
@@ -33,7 +33,7 @@ export class LaboratoryService {
   {
     id: 3,
     patientName: 'David Brown',
-    testType: 'Whole Body Test',
+    testType: 'BodyTest',
     technologistName: 'Dr. Wilson',
     date: '2026-04-11',
     status: 'Active',
@@ -41,7 +41,7 @@ export class LaboratoryService {
   {
     id: 4,
     patientName: 'Sophia Johnson',
-    testType: 'Blood Test',
+    testType: 'BloodTest',
     technologistName: 'Dr. Lee',
     date: '2026-04-12',
     status: 'Canceled',
@@ -49,7 +49,7 @@ export class LaboratoryService {
   {
     id: 5,
     patientName: 'Paul Mukendi',
-    testType: 'Urine Test',
+    testType: 'UrineTest',
     technologistName: 'Dr. Carter',
     date: '2026-04-13',
     status: 'Completed',
@@ -57,7 +57,7 @@ export class LaboratoryService {
   {
     id: 6,
     patientName: 'John Smith',
-    testType: 'Blood Test',
+    testType: 'BloodTest',
     technologistName: 'Dr. Carter',
     date: '2026-04-09',
     status: 'Completed',
@@ -65,7 +65,7 @@ export class LaboratoryService {
   {
     id: 7,
     patientName: 'Maria Lopez',
-    testType: 'Urine Test',
+    testType: 'UrineTest',
     technologistName: 'Dr. Evans',
     date: '2026-04-10',
     status: 'Pending',
