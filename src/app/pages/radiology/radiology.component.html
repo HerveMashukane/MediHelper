@@ -38,7 +38,7 @@
                     *ngFor="let filter of statusFilters"
                     (click)="setFilter(filter)"
                     class="px-3 py-1 rounded-full border border-gray-700 transition"
-                    [ngClass]="currentFilter === filter ? 'bg-blue-700 text-white' : 'text-gray-300 hover:bg-gray-800'"
+                    [ngClass]="currentFilter === filter ? 'bg-sky-600 text-white' : 'text-gray-300 hover:bg-gray-800'"
                 >
                     {{ filter }}
                 </button>
