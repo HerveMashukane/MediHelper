@@ -27,6 +27,8 @@
 
             <div class="flex gap-4 flex-wrap">
                 <select 
+                    [(ngModel)]="selectedStatus"
+                    (ngModelChange)="selectedStatus$.next($event)"
                     class="bg-gray-900 border border-gray-700 px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     >
                     <option value="All" selected>All Exams</option>

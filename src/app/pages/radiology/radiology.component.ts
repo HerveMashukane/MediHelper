@@ -17,8 +17,10 @@ export class RadiologyComponent {
   filteredRadioExams$: Observable<RadiologyExam[]>;
 
   // filters
-  searchTerm = '';
+  searchTerm = "";
+  selectedStatus = "All"
   searchTerm$ = new BehaviorSubject<string>("");
+  selectedStatus$ = new BehaviorSubject<string>("All");
 
   constructor(public radiologyExamsService: RadiologyExamsService) {
     this.radioExams$ = radiologyExamsService.radioExams$;
@@ -26,15 +28,22 @@ export class RadiologyComponent {
     // reactive radiology exams filter
     this.filteredRadioExams$ = combineLatest([
       this.radioExams$,
-      this.searchTerm$
+      this.searchTerm$,
+      this.selectedStatus$
     ]).pipe(
-      map(([radioExams, searchTerm]) => {
+      map(([radioExams, searchTerm, selectedStatus]) => {
         return radioExams.filter(exam => {
+          // input filter
           const matchesSearch = 
             exam.patient.toLowerCase().includes(searchTerm.toLowerCase()) ||
             exam.radiologist.toLowerCase().includes(searchTerm.toLowerCase()) ||
             exam.examType.toLowerCase().includes(searchTerm.toLowerCase());
-          return matchesSearch
+
+          // status filter
+          const matchesStatus = 
+            this.selectedStatus === "All" || exam.status === this.selectedStatus;
+
+          return matchesSearch && matchesStatus
         })
       })
     )
