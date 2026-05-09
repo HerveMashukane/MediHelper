@@ -15,14 +15,17 @@
         <div class="grid grid-cols-2 gap-4">
             <!-- Patient Name -->
             <div class="flex flex-col space-y-2">
-                <label for="patientName" class="text-gray-300">Patient Name</label>
+                <label for="patientName" class="text-gray-300">
+                    Patient Name
+                </label>
 
                 <input
                     type="text"
                     placeholder="Type patient name..."
-                    [(ngModel)]="patientName"
-                    name="patientName"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
+                    [(ngModel)]="form.patientName"
+                    name="form.patientName"
+                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
+                >
             </div>
             <!-- Technologist name -->
             <div class="flex flex-col space-y-2">
@@ -31,16 +34,15 @@
                     Select Technologist
                 </label>
                 <select
-                    [(ngModel)]="technologistName"
-                    name="technologistName"
+                    [(ngModel)]="form.technologistName"
+                    name="form.technologistName"
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                    <option value="" disabled>Choose Technologist...</option>
+                    <option value="" selected>Choose Technologist...</option>
                     <option value="Herve">Herve</option>
                     <option value="Hiro">Hiro</option>
                     <option value="Patricia">Patricia</option>
                     <option value="Sylvie">Sylvie</option>
                 </select>
-
             </div>
         </div>
 
@@ -48,12 +50,14 @@
         <div class="grid grid-cols-2 gap-4">
             <!-- test status -->
             <div class="flex flex-col space-y-2">
-                <label for="status" class="text-gray-300">Status</label>
+                <label for="status" class="text-gray-300">
+                    Test Status
+                </label>
                 <select 
-                    [(ngModel)]="status" 
-                    name="status" 
+                    [(ngModel)]="form.status" 
+                    name="form.status" 
                     class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                    <option value="" disabled>Choose status</option>
+                    <option value="" selected>Choose status</option>
                     <option value="Active">Active</option>
                     <option value="Completed">Completed</option>
                     <option value="Pending">Pending</option>
@@ -67,8 +71,10 @@
                 <label for="testType" class="text-gray-300">
                     Select Test type
                 </label>
-                <select name="testType" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                    <option value="" disabled>Choose test type</option>
+                <select 
+                    [(ngModel)]="form.testType"
+                    name="form.testType" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
+                    <option value="" selected>Choose test type</option>
                     <option value="Blood">Blood</option>
                     <option value="Urine">Urine</option>
                     <option value="Body">Body</option>
@@ -88,8 +94,8 @@
 
             <input
                 type="date"
-                [(ngModel)]="date"
-                name="date"
+                [(ngModel)]="form.date"
+                name="form.date"
                 class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
 
         </div>

@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class LaboratoryComponent {
   // observable list of all tests
-  tests$: Observable<LaboTest[]>;
+  laboTests$: Observable<LaboTest[]>;
   // filters
   filteredTests$: Observable<LaboTest[]>;
   searchTerm = "";
@@ -24,11 +24,11 @@ export class LaboratoryComponent {
   selectedTestType$ = new BehaviorSubject<string>("");
   selectedStatus$ = new BehaviorSubject<string>("");
   constructor(private laboratoryService: LaboratoryService){
-    this.tests$ = this.laboratoryService.tests$;
+    this.laboTests$ = this.laboratoryService.laboTests$;
 
     // reactive laboratory tests filter
     this.filteredTests$ = combineLatest([
-      this.tests$,
+      this.laboTests$,
       this.searchTerm$,
       this.selectedTestType$,
       this.selectedStatus$
@@ -51,7 +51,7 @@ export class LaboratoryComponent {
     );
 
     // KPI cards test status stats
-    this.laboTestStats$ = this.tests$.pipe(
+    this.laboTestStats$ = this.laboTests$.pipe(
       map((tests) => {
         const stats = {
           Active: 0,

@@ -71,7 +71,7 @@ export class LaboratoryService {
     status: 'Pending',
   },
 ]);
-  tests$ = this.laboTestSource.asObservable();
+  laboTests$ = this.laboTestSource.asObservable();
 
   constructor() { }
 

@@ -2,10 +2,10 @@
 
   <!-- Page Header -->
   <div class="flex justify-between items-center">
-    <div *ngIf="filteredTests$ | async as tests">
+    <div *ngIf="filteredTests$ | async as laboTests">
       <h1 class="text-3xl font-bold text-white">
-        Laboratory Management | Tests • 
-        <span>{{ tests.length }}</span>
+        Laboratory Tests Management • 
+        <span>{{ laboTests.length }}</span>
       </h1>
       <p class="text-gray-300 text-sm">
         Manage lab tests, results and patient samples
@@ -93,16 +93,16 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf="filteredTests$ | async as tests">
+        <ng-container *ngIf="filteredTests$ | async as laboTests">
           <!-- EMPTY STATE -->
-          <tr *ngIf="tests.length === 0">
+          <tr *ngIf="laboTests.length === 0">
               <td colspan="7" class="text-center text-2xl text-gray-500 py-6">
                   No appointments found.
               </td>
           </tr>
           <!-- ROW DATA -->
           <tr 
-            *ngFor="let test of tests; let i = index"
+            *ngFor="let test of laboTests; let i = index"
             class="border-t border-gray-800 hover:bg-gray-800 transition">
             <td class="p-3">{{ test.patientName }}</td>
             <td class="p-3">{{ test.testType }}</td>

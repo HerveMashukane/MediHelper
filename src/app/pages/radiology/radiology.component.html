@@ -2,10 +2,10 @@
 
     <!-- PAGE HEADER -->
     <div class="flex justify-between items-center">
-        <div *ngIf="filteredRadioExams$ | async as exams">
+        <div *ngIf="filteredRadioExams$ | async as radioExams">
             <h2 class="text-3xl font-semibold text-white">
-                Radiology Center | Exams • 
-            <span>{{ exams.length }}</span>
+                Radiology Exams • 
+            <span>{{ radioExams.length }}</span>
             </h2>
             <p class="text-gray-400 text-sm">
                 Manage imaging exams, reports and results
@@ -69,16 +69,16 @@
             </thead>
 
             <tbody>
-                <ng-container *ngIf="filteredRadioExams$ | async as exams">
+                <ng-container *ngIf="filteredRadioExams$ | async as radioExams">
                     <!-- EMPTY STATE -->
-                    <tr *ngIf="exams.length === 0">
+                    <tr *ngIf="radioExams.length === 0">
                         <td colspan="7" class="text-center text-2xl text-gray-500 py-6">
                             No appointments found.
                         </td>
                     </tr>
                     <!-- ROW DATA -->
                     <tr
-                        *ngFor="let exam of exams; let i = index"
+                        *ngFor="let exam of radioExams; let i = index"
                         class="border-t border-gray-800 hover:bg-gray-800 transition"
                     >
 
