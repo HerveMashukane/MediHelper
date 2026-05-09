@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export interface RadiologyExam {
-  id: string;
-  patient: string
+  id: number;
+  patientName: string;
   examType: string;
   bodyPart: string;
   radiologist: string;
@@ -22,8 +22,8 @@ export class RadiologyExamsService {
   // MOCK DATA (Temporary until backend)
   public radioExamsSource = new BehaviorSubject<RadiologyExam[]>([
   {
-    id: '1',
-    patient: 'John Smith',
+    id: 1,
+    patientName: 'John Smith',
     examType: 'X-Ray',
     bodyPart: 'Chest',
     radiologist: 'Dr. Adams',
@@ -34,8 +34,8 @@ export class RadiologyExamsService {
   },
 
   {
-    id: '2',
-    patient: 'Maria Lopez',
+    id: 2,
+    patientName: 'Maria Lopez',
     examType: 'MRI',
     bodyPart: 'Brain',
     radiologist: 'Dr. Evans',
@@ -45,8 +45,8 @@ export class RadiologyExamsService {
   },
 
   {
-    id: '3',
-    patient: 'David Brown',
+    id: 3,
+    patientName: 'David Brown',
     examType: 'CT Scan',
     bodyPart: 'Abdomen',
     radiologist: 'Dr. Wilson',
@@ -55,8 +55,8 @@ export class RadiologyExamsService {
   },
 
   {
-    id: '4',
-    patient: 'Sophia Johnson',
+    id: 4,
+    patientName: 'Sophia Johnson',
       examType: 'Ultrasound',
       bodyPart: 'Kidney',
       radiologist: 'Dr. Lee',
@@ -66,8 +66,8 @@ export class RadiologyExamsService {
     },
 
     {
-      id: '5',
-      patient: 'Michael Tan',
+      id: 5,
+      patientName: 'Michael Tan',
       examType: 'X-Ray',
       bodyPart: 'Spine',
       radiologist: 'Dr. Adams',
@@ -77,8 +77,8 @@ export class RadiologyExamsService {
     },
 
     {
-      id: '6',
-      patient: 'Grace Mutesi',
+      id: 6,
+      patientName: 'Grace Mutesi',
       examType: 'CT Scan',
       bodyPart: 'Chest',
       radiologist: 'Dr. Evans',
@@ -87,8 +87,8 @@ export class RadiologyExamsService {
     },
 
     {
-      id: '7',
-      patient: 'Paul Mukendi',
+      id: 7,
+      patientName: 'Paul Mukendi',
       examType: 'MRI',
       bodyPart: 'Knee',
       radiologist: 'Dr. Wilson',
@@ -97,8 +97,8 @@ export class RadiologyExamsService {
     },
 
     {
-      id: '8',
-      patient: 'Linda Kabila',
+      id: 8,
+      patientName: 'Linda Kabila',
       examType: 'Ultrasound',
       bodyPart: 'Abdomen',
       radiologist: 'Dr. Lee',
@@ -110,4 +110,11 @@ export class RadiologyExamsService {
   radioExams$ = this.radioExamsSource.asObservable(); // radiology exams observable
   
   constructor() { }
+
+  // add new radiology exam
+  addRadioExam(radioExam: RadiologyExam) {
+    const currentExams = this.radioExamsSource.value;
+    const updatedExams = [...currentExams, radioExam];
+    this.radioExamsSource.next(updatedExams);
+  }
 }
