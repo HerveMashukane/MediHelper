@@ -31,7 +31,9 @@ export class RadiologyComponent {
       map(([radioExams, searchTerm]) => {
         return radioExams.filter(exam => {
           const matchesSearch = 
-            exam.patient.toLowerCase().includes(searchTerm.toLowerCase());
+            exam.patient.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            exam.radiologist.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            exam.examType.toLowerCase().includes(searchTerm.toLowerCase());
           return matchesSearch
         })
       })

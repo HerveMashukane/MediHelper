@@ -4,11 +4,11 @@ import { BehaviorSubject } from 'rxjs';
 export interface RadiologyExam {
   id: string;
   patient: string
-  examType: 'X-Ray' | 'MRI' | 'CT Scan' | 'Ultrasound';
+  examType: string;
   bodyPart: string;
   radiologist: string;
   date: string
-  status: 'Pending' | 'In Review' | 'Completed' | 'Urgent';
+  status: string;
   report?: string;
   imageUrl?: string;
 }
@@ -22,7 +22,7 @@ export class RadiologyExamsService {
   // MOCK DATA (Temporary until backend)
   public radioExamsSource = new BehaviorSubject<RadiologyExam[]>([
   {
-    id: 'RX-1001',
+    id: '1',
     patient: 'John Smith',
     examType: 'X-Ray',
     bodyPart: 'Chest',
@@ -34,7 +34,7 @@ export class RadiologyExamsService {
   },
 
   {
-    id: 'RX-1002',
+    id: '2',
     patient: 'Maria Lopez',
     examType: 'MRI',
     bodyPart: 'Brain',
@@ -45,7 +45,7 @@ export class RadiologyExamsService {
   },
 
   {
-    id: 'RX-1003',
+    id: '3',
     patient: 'David Brown',
     examType: 'CT Scan',
     bodyPart: 'Abdomen',
@@ -55,7 +55,7 @@ export class RadiologyExamsService {
   },
 
   {
-    id: 'RX-1004',
+    id: '4',
     patient: 'Sophia Johnson',
       examType: 'Ultrasound',
       bodyPart: 'Kidney',
@@ -66,7 +66,7 @@ export class RadiologyExamsService {
     },
 
     {
-      id: 'RX-1005',
+      id: '5',
       patient: 'Michael Tan',
       examType: 'X-Ray',
       bodyPart: 'Spine',
@@ -77,7 +77,7 @@ export class RadiologyExamsService {
     },
 
     {
-      id: 'RX-1006',
+      id: '6',
       patient: 'Grace Mutesi',
       examType: 'CT Scan',
       bodyPart: 'Chest',
@@ -87,7 +87,7 @@ export class RadiologyExamsService {
     },
 
     {
-      id: 'RX-1007',
+      id: '7',
       patient: 'Paul Mukendi',
       examType: 'MRI',
       bodyPart: 'Knee',
@@ -97,7 +97,7 @@ export class RadiologyExamsService {
     },
 
     {
-      id: 'RX-1008',
+      id: '8',
       patient: 'Linda Kabila',
       examType: 'Ultrasound',
       bodyPart: 'Abdomen',
