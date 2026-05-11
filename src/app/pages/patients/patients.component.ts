@@ -52,6 +52,10 @@ export class PatientsComponent {
   // toggle patient form
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
+
+    if (!this.isFormVisible) {
+      this.editingPatient = null; // reset edit mode
+    }
   }
 
   // filters variables
@@ -81,7 +85,9 @@ export class PatientsComponent {
   }
 
   // edit patients
+  editingPatient: Patient | null = null;
   editPatient(patient: Patient) {
-    this.toggleForm()
+    this.editingPatient = { ...patient }; // copy existing data
+    this.isFormVisible = true;
   }
 }

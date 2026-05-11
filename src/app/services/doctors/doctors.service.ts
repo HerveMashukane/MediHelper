@@ -65,13 +65,28 @@ export class DoctorsService {
   }
 
   // remove doctors
-  removeDoctor(doctorId: number) {
+  removeDoctor(removedPatient: number) {
     const currentDoctors = this.doctorsSource.value;
-    const index = currentDoctors.findIndex(d => d.id === doctorId);
+    const index = currentDoctors.findIndex(d => d.id === removedPatient);
 
     if(index !== -1) {
       const updatedDoctors = [...currentDoctors];
       updatedDoctors.splice(index, 1)
+      this.doctorsSource.next(updatedDoctors);
+      this.saveDoctorsToLocalStorage(updatedDoctors);
+    }
+  }
+
+  // edit doctor
+  updateDoctor(updatedDoctor: Doctor) {
+    const currentDoctors = this.doctorsSource.value;
+
+    const index = currentDoctors.findIndex(d => d.id === updatedDoctor.id);
+
+    if(index !== -1) {
+      const updatedDoctors = [...currentDoctors];
+      updatedDoctors[index] = updatedDoctor;
+
       this.doctorsSource.next(updatedDoctors);
       this.saveDoctorsToLocalStorage(updatedDoctors);
     }

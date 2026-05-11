@@ -1,5 +1,5 @@
 import { Patient, PatientsService } from '../../../services/patients/patients.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,48 +10,69 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './patients-form.component.css'
 })
 export class PatientsFormComponent {
-  id = 0;
-  preferedName = '';
-  image = '';
-  fullName = '';
-  email = '';
-  phone = '';
-  department = '';
-  age = '';
-  bloodGroup = '';
+  formData: Patient = {
+    id: 0,
+    preferedName: '',
+    image: '',
+    fullName: '',
+    email: '',
+    phone: '',
+    department: '',
+    age: '',
+    bloodGroup: ''
+  };
 
   constructor(private patientsService: PatientsService) {}
 
+  // populate form on edit
+  ngOnInit() {
+    if (this.patient) {
+      this.formData = { ...this.patient };
+    }
+  }
   // patients data submission
   onSubmit() {
-    if(this.preferedName && this.fullName && this.email && this.phone && this.department && this.age && this.bloodGroup) {
-      const newPatient: Patient = {
-        id: this.id,
-        preferedName: this.preferedName,
-        image: this.image,
-        fullName: this.fullName,
-        email: this.email,
-        phone: this.phone,
-        department: this.department,
-        age: this.age,
-        bloodGroup: this.bloodGroup,
+    // EDIT MODE (has id means already exists)
+    if (this.formData.id) {
+
+      // No strict validation required here
+      // Even if user changes nothing, we allow save
+      this.patientsService.updatePatient(this.formData);
+
+    } else {
+
+      // CREATE MODE (create new patient must validate first)
+      if (
+        this.formData.preferedName && 
+        this.formData.fullName && 
+        this.formData.email && 
+        this.formData.phone && 
+        this.formData.department && 
+        this.formData.age && 
+        this.formData.bloodGroup
+      ) {
+
+        const newPatient: Patient = {
+          ...this.formData,
+          id: Date.now()    // ensure ID is generated
+        };
+
+        this.patientsService.addPatient(newPatient);
+
+      } else {
+        // Optional but important UX feedback
+        alert('Please fill all required fields');
+        return; // stop execution
       }
-      this.patientsService.addPatient(newPatient);
-      this.close.emit();
     }
-    this.preferedName = '';
-    this.preferedName = '';
-    this.image = '';
-    this.fullName = '';
-    this.email = '';
-    this.phone = '';
-    this.department = '';
-    this.age = '';
-    this.bloodGroup = '';
+
+    this.close.emit(); // close form after success
   }
 
-  @Output() close = new EventEmitter<void>();
+
+  @Input() patient: Patient | null = null;
   // cancel patients form
+  @Output() close = new EventEmitter<void>();
   onCancel() {
     this.close.emit();
   }
@@ -62,7 +83,7 @@ export class PatientsFormComponent {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-       this.image = reader.result as string; // base64 data
+       this.formData.image = reader.result as string; // base64 data
       };
       reader.readAsDataURL(file);
     }

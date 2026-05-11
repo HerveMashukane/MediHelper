@@ -38,6 +38,10 @@ export class DoctorsComponent {
   isFormVisible: boolean = false;
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
+
+    if(!this.isFormVisible) {
+      this.editingDoctor = null;
+    }
   }
 
   // view doctor's details
@@ -78,5 +82,12 @@ export class DoctorsComponent {
     })
     if(!ok) return;
     this.doctorsService.removeDoctor(id);
+  }
+
+  // edit doctor
+  editingDoctor: Doctor | null = null;
+  editDoctor(doctor: Doctor) {
+    this.editingDoctor = { ...doctor } // copy existing data
+    this.isFormVisible = true;
   }
 }

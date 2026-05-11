@@ -75,14 +75,29 @@ export class PatientsService {
   }
 
   // remove patient
-  removePatient(patientId: number) {
+  removePatient(removedPatient: number) {
     const currentPatients = this.patientsSource.value;
 
-    const index = currentPatients.findIndex(p => p.id === patientId);
+    const index = currentPatients.findIndex(p => p.id === removedPatient);
 
     if(index !== -1) {
       const updatedPatients = [...currentPatients];
       updatedPatients.splice(index, 1);
+      this.patientsSource.next(updatedPatients);
+      this.savePatientsToLocalStorage(updatedPatients);
+    }
+  }
+
+  // edit patient
+  updatePatient(updatedPatient: Patient) {
+    const currentPatients = this.patientsSource.value;
+
+    const index = currentPatients.findIndex(p => p.id === updatedPatient.id);
+
+    if (index !== -1) {
+      const updatedPatients = [...currentPatients];
+      updatedPatients[index] = updatedPatient;
+
       this.patientsSource.next(updatedPatients);
       this.savePatientsToLocalStorage(updatedPatients);
     }
