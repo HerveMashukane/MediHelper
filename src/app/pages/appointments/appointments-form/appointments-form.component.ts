@@ -72,7 +72,7 @@ export class AppointmentsFormComponent {
     if (this.appointment) {
       this.formData = { 
         ...this.appointment,
-        
+        notes: this.appointment.notes?? ''
       };
     }
   }
