@@ -77,10 +77,9 @@ export class DoctorsService {
     }
   }
 
-  // edit doctor
-  updateDoctor(updatedDoctor: Doctor) {
+  // edit doctor properties
+  updateDoctors(updatedDoctor: Doctor) {
     const currentDoctors = this.doctorsSource.value;
-
     const index = currentDoctors.findIndex(d => d.id === updatedDoctor.id);
 
     if(index !== -1) {

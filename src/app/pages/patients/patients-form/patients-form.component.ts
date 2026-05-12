@@ -37,7 +37,7 @@ export class PatientsFormComponent {
 
       // No strict validation required here
       // Even if user changes nothing, we allow save
-      this.patientsService.updatePatient(this.formData);
+      this.patientsService.updatePatients(this.formData);
 
     } else {
 

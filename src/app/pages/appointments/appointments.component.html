@@ -103,6 +103,7 @@
                 <th class="p-4">Time</th>
                 <th class="p-4">Type</th>
                 <th class="p-4">Status</th>
+                <th class="p-4">Notes</th>
                 <th class="p-4">Actions</th>
                 </tr>
             </thead>
@@ -156,6 +157,9 @@
                             {{ app.status }}
                             </span>
                         </td>
+                        <td class="p-4 text-sm text-gray-400">
+                            {{ app.notes }}
+                        </td>
 
                         <!-- ACTIONS -->
                         <td class="p-4 relative">
@@ -174,7 +178,9 @@
                                     View
                                 </button>
 
-                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800">
+                                <button 
+                                    (click)="editAppointment(app)"
+                                    class="w-full text-left px-4 py-2 hover:bg-gray-800">
                                     Edit
                                 </button>
 
@@ -227,6 +233,7 @@
   <!-- FORM -->
   <app-appointments-form
     *ngIf="isFormVisible"
+    [appointment]="editingAppointment"
     (close)="toggleFormVisibility()"
   ></app-appointments-form>
 </section>

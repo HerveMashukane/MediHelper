@@ -10,7 +10,7 @@ export interface Appointment {
   time: string;
   status: string;
   type: string;
-  message?: string;
+  notes?: string;
 }
 
 @Injectable({
@@ -30,7 +30,7 @@ export class AppointmentService {
       time: '09:00',
       status: 'Active',
       type: 'Consultation',
-      message: 'First visit for general checkup'
+      notes: 'First visit for general checkup'
     },
     {
       id: 2,
@@ -40,7 +40,7 @@ export class AppointmentService {
       time: '09:30',
       status: 'Upcoming',
       type: 'Consultation',
-      message: 'First visit for general checkup'
+      notes: 'First visit for general checkup'
     },
     {
       id: 3,
@@ -50,7 +50,7 @@ export class AppointmentService {
       time: '08:30',
       status: 'Completed',
       type: 'Consultation',
-      message: 'First visit for general checkup'
+      notes: 'First visit for general checkup'
     },
     {
       id: 4,
@@ -60,7 +60,7 @@ export class AppointmentService {
       time: '09:00',
       status: 'Pending',
       type: 'Consultation',
-      message: 'First visit for general checkup'
+      notes: 'First visit for general checkup'
     },
     {
       id: 5,
@@ -70,7 +70,7 @@ export class AppointmentService {
       time: '09:00',
       status: 'Canceled',
       type: 'Consultation',
-      message: 'First visit for general checkup'
+      notes: 'First visit for general checkup'
     },
   ]);
   // get observable list of appointments
@@ -100,5 +100,17 @@ export class AppointmentService {
     const currentAppointments = this.appointmentsSource.value;
     const updatedAppointments = [...currentAppointments, appointment]
     this.appointmentsSource.next(updatedAppointments);
+  }
+
+  // update appointments
+  updateAppointments(updatedApp: Appointment) {
+    const currentAppointments = this.appointmentsSource.value;
+    const index = currentAppointments.findIndex(app => app.id === updatedApp.id);
+
+    if(index !== -1) {
+      const updatedAppointments = [...currentAppointments];
+      updatedAppointments[index] = updatedApp;
+      this.appointmentsSource.next(updatedAppointments);
+    }
   }
 }

@@ -88,8 +88,8 @@ export class PatientsService {
     }
   }
 
-  // edit patient
-  updatePatient(updatedPatient: Patient) {
+  // edit patient properties
+  updatePatients(updatedPatient: Patient) {
     const currentPatients = this.patientsSource.value;
 
     const index = currentPatients.findIndex(p => p.id === updatedPatient.id);

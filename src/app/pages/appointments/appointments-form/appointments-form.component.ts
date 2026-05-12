@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SlotsService } from '../../../services/slots/slots.service';
-import { AppointmentService } from '../../../services/appointments/appointment.service';
+import { Appointment, AppointmentService } from '../../../services/appointments/appointment.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -20,16 +20,16 @@ export class AppointmentsFormComponent {
   ];
 
   // ================= FORM STATE =================
-  form = {
+  formData = {
+    id: 0,
     patientName: '',
-    doctor: '',
+    doctorName: '',
     date: '',
     time: '',
     status: 'Pending',
     type: '',
-    notes: ''
+    notes: '',
   };
-
   // ================= SLOTS =================
   slots: any[] = [];
   selectedDoctor: any = null;
@@ -43,10 +43,10 @@ export class AppointmentsFormComponent {
   loadSlots() {
     // find selected doctor object
     this.selectedDoctor = this.doctors.find(
-      d => d.name === this.form.doctor
+      d => d.name === this.formData.doctorName
     );
 
-    if (!this.selectedDoctor || !this.form.date) return;
+    if (!this.selectedDoctor || !this.formData.date) return;
 
     this.slots = this.slotsService.generateSlots(
       this.selectedDoctor.startTime,
@@ -61,10 +61,21 @@ export class AppointmentsFormComponent {
   selectSlot(slot: any) {
     if (!slot.booked) {
       this.selectedSlot = slot.time;
-      this.form.time = slot.time;
+      this.formData.time = slot.time;
     }
   }
 
+  // get data from parent and display in the form
+  @Input() appointment: Appointment | null = null;
+  // copy data of editing doctor and display in the form
+  ngOnInit() {
+    if (this.appointment) {
+      this.formData = { 
+        ...this.appointment,
+        
+      };
+    }
+  }
   // ================= CLOSE FORM =================
   @Output() close = new EventEmitter<void>();
   onCancel() {
@@ -73,23 +84,20 @@ export class AppointmentsFormComponent {
 
   // ================= BOOK APPOINTMENT =================
   bookAppointment() {
+    if(this.formData.id) {
+      this.appointmentService.updateAppointments(this.formData);
+    }
     if(
-      this.form.patientName &&
-      this.form.doctor &&
-      this.form.date &&
-      this.form.status &&
-      this.form.time &&
-      this.form.type
+      this.formData.patientName &&
+      this.formData.doctorName &&
+      this.formData.date &&
+      this.formData.status &&
+      this.formData.time &&
+      this.formData.type
     ){
       const newAppointment = {
+        ...this.formData,
         id: Date.now(),
-        patientName: this.form.patientName,
-        doctorName: this.form.doctor,
-        date: this.form.date,
-        time: this.form.time,
-        status: this.form.status,
-        type: this.form.type,
-        notes: this.form.notes
       }
       // add appointment
       this.appointmentService.addAppointment(newAppointment);
@@ -102,9 +110,10 @@ export class AppointmentsFormComponent {
 
   // ================= RESET FORM =================
   resetForm() {
-    this.form = {
+    this.formData = {
+      id: 0,
       patientName: '',
-      doctor: '',
+      doctorName: '',
       date: '',
       time: '',
       status: 'Active',

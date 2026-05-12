@@ -70,4 +70,11 @@ export class AppointmentsComponent {
   toggleMenu(index: number) {
     this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
   }
+
+  // edit uppointment
+  editingAppointment: Appointment | null = null;
+  editAppointment(app: Appointment) {
+    this.editingAppointment = {...app};
+    this.isFormVisible = true;
+  }
 }
