@@ -84,28 +84,24 @@ export class AppointmentsFormComponent {
 
   // ================= BOOK APPOINTMENT =================
   bookAppointment() {
-    if(this.formData.id) {
-      this.appointmentService.updateAppointments(this.formData);
-    }
-    if(
-      this.formData.patientName &&
-      this.formData.doctorName &&
-      this.formData.date &&
-      this.formData.status &&
-      this.formData.time &&
-      this.formData.type
-    ){
-      const newAppointment = {
+    // Determine if we are editing or creating
+    const isEditing = this.formData.id !== 0;
+
+    if (isEditing) {
+      // UPDATE EXISTING APPOINTMENT
+      this.appointmentService.updateAppointments({...this.formData});
+
+    } else {
+      // CREATE NEW APPOINTMENT
+      const newAppointment: Appointment = {
         ...this.formData,
-        id: Date.now(),
-      }
-      // add appointment
+        id: Date.now() // generate unique id for new entry
+      };
       this.appointmentService.addAppointment(newAppointment);
-      // reset form after submit
-      this.resetForm();
-      // close form
-      this.onCancel();
     }
+    // reset && close after creating or updating
+    this.resetForm();
+    this.onCancel();
   }
 
   // ================= RESET FORM =================
