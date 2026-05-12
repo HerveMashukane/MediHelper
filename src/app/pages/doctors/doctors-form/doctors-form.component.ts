@@ -39,11 +39,12 @@ export class DoctorsFormComponent {
 
   onSubmit() {
     // EDIT MODE (has id means already exists)
-    if (this.formData.id) {
+    const isEditing = this.formData.id !== 0;
+    if (isEditing) {
 
       // No strict validation required here
       // Even if user changes nothing, we allow save
-      this.doctorsService.updateDoctors(this.formData);
+      this.doctorsService.updateDoctors({...this.formData});
 
     } else {
 
@@ -70,8 +71,22 @@ export class DoctorsFormComponent {
         return; // stop execution
       }
     }
+    this.resetForm()
+    this.cancel.emit();
+  }
 
-    this.cancel.emit(); // close form after success
+  // reset form 
+  resetForm() {
+    this.formData = {
+      id: 0,
+      image: "",
+      fullName: "",
+      preferedName: "",
+      email: "",
+      phone: "",
+      speciality: "",
+      hospital: "",
+    }
   }
   // Handle file doctor selection
   onFileSelected(event: any) {

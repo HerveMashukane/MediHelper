@@ -33,11 +33,11 @@ export class PatientsFormComponent {
   // patients data submission
   onSubmit() {
     // EDIT MODE (has id means already exists)
-    if (this.formData.id) {
-
+    const isEditing = this.formData.id !== 0;
+    if (isEditing) {
       // No strict validation required here
       // Even if user changes nothing, we allow save
-      this.patientsService.updatePatients(this.formData);
+      this.patientsService.updatePatients({...this.formData});
 
     } else {
 
@@ -65,10 +65,24 @@ export class PatientsFormComponent {
         return; // stop execution
       }
     }
-
-    this.close.emit(); // close form after success
+    this.resetForm();
+    this.close.emit();
   }
 
+  // reset form after successful submission
+  resetForm() {
+    this.formData = {
+      id: 0,
+      preferedName: '',
+      image: '',
+      fullName: '',
+      email: '',
+      phone: '',
+      department: '',
+      age: '',
+      bloodGroup: ''
+  };
+  }
 
   @Input() patient: Patient | null = null;
   // cancel patients form
