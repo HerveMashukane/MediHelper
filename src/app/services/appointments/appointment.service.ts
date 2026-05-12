@@ -30,7 +30,7 @@ export class AppointmentService {
       time: '09:00',
       status: 'Active',
       type: 'Consultation',
-      notes: 'First visit for general checkup'
+      notes: ''
     },
     {
       id: 2,
