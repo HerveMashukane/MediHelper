@@ -1,5 +1,5 @@
 <section class="fixed inset-0 flex items-center justify-center bg-black/70 p-4 lg:p-8 animate-pageFlip">
-        <form (ngSubmit)="addMedication()" class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 text-white w-full max-w-lg p-8 space-y-6 rounded-xl shadow-2xl">
+        <form (ngSubmit)="submitMedication()" class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 text-white w-full max-w-lg p-8 space-y-6 rounded-xl shadow-2xl">
                 <!-- Header -->
                 <div class="flex justify-between items-center border-b border-blue-950 pb-4">
                         <h2 class="text-2xl font-bold">Medication's Form</h2>
@@ -17,7 +17,7 @@
                                         name="medName" 
                                         type="text" 
                                         placeholder="Type medication name..."
-                                        [(ngModel)]="medName"
+                                        [(ngModel)]="formData.medName"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"/>
                         </div>
@@ -28,7 +28,7 @@
                                         name="doctorName" 
                                         type="text" 
                                         placeholder="Type doctor name..." 
-                                        [(ngModel)]="doctorName"
+                                        [(ngModel)]="formData.doctorName"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"/>
                         </div>
@@ -42,7 +42,7 @@
                                 <select 
                                         name="schedule" 
                                         id="schedule"
-                                        [(ngModel)]="schedule"
+                                        [(ngModel)]="formData.schedule"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                                         <option value="" disabled>Select schedule</option>
@@ -60,7 +60,7 @@
                                 <select 
                                         name="status" 
                                         id="status"
-                                        [(ngModel)]="status"
+                                        [(ngModel)]="formData.status"
                                         required
                                         class="block bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                                         <option value="" disabled selected>Choose status</option>
@@ -79,7 +79,7 @@
                                 <select 
                                         id="dosage" 
                                         name="dosage" 
-                                        [(ngModel)]="dosage"
+                                        [(ngModel)]="formData.dosage"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                                         <option value="" disabled selected>Select Medication dose</option>
@@ -94,7 +94,7 @@
                                 <select 
                                         name="dosageUnit" 
                                         id="currency"
-                                        [(ngModel)]="dosageUnit"
+                                        [(ngModel)]="formData.dosageUnit"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                                         <option value="" disabled selected>Dosage Unit</option>
@@ -112,7 +112,7 @@
                                         type="date"
                                         id="startDate" 
                                         name="startDate" 
-                                        [(ngModel)]="startDate"
+                                        [(ngModel)]="formData.startDate"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                         </div>
@@ -123,7 +123,7 @@
                                         type="date"
                                         id="endDate" 
                                         name="endDate" 
-                                        [(ngModel)]="endDate"
+                                        [(ngModel)]="formData.endDate"
                                         required
                                         class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
                         </div>
@@ -134,7 +134,7 @@
                         <textarea 
                                 id="notes" 
                                 name="notes" 
-                                [(ngModel)]="notes"
+                                [(ngModel)]="formData.notes"
                                  placeholder="Additional notes about the medication..." 
                                  rows="4"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">

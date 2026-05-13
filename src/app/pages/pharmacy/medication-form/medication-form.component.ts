@@ -29,7 +29,13 @@ export class MedicationFormComponent {
   constructor(private medicationService: MedicationService){}
 
   // add new medication
-  addMedication() {
+  submitMedication() {
+    // check if form is editing or adding new medication
+    const isEditMode = this.formData.id !== 0;
+
+    if(isEditMode) {
+      this.medicationService.updateMedcations({...this.formData});
+    }
     if (
       this.formData.medName &&
       this.formData.doctorName &&
