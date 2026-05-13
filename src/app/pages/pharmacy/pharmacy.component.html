@@ -138,7 +138,9 @@
                       View
                     </button>
 
-                    <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-yellow-400">
+                    <button 
+                      (click)="editMedications(med)"
+                      class="w-full text-left px-4 py-2 hover:bg-gray-800 text-yellow-400">
                       Edit
                     </button>
 
@@ -162,7 +164,7 @@
   </div>
 
 </section>
-
+editMedications(med: Medication)
 <!-- PAGINATION -->
 <div *ngIf="(medications$ | async) as meds" class="flex justify-between items-center text-sm text-gray-400 mt-4">
   <p>
@@ -187,6 +189,7 @@
 </div>
 <app-medication-form
   *ngIf="isFormVisible"
+  [medication]="isEditing"
   (cancel)="closeFromChild()"
   class="text-white"
 >

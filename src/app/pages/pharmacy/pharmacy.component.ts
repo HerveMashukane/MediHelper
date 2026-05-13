@@ -86,4 +86,11 @@ export class PharmacyComponent {
   toggleMenu(index: number) {
     this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
   }
+
+  // edit medications
+  isEditing: Medication | null = null;
+  editMedications(med: Medication) {
+    this.isEditing = {...med};
+    this.isFormVisible = true;
+  }
 }

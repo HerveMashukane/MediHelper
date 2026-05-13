@@ -24,7 +24,7 @@ export interface Medication {
 })
 export class MedicationService {
 
-  // medications observable list
+  // MEDICATIONS OBSERVABLE LIST
   public medicationsSource = new BehaviorSubject<Medication[]>([
     {
       id: 1,
@@ -152,7 +152,7 @@ export class MedicationService {
     }
   ]);
   medications$ = this.medicationsSource.asObservable();
-  // reactive stats of medications
+  // MEDICATION REACTIVE STATS
   medicationStats$ = this.medications$.pipe(
     map((medications) => {
       const stats = {
@@ -178,5 +178,18 @@ export class MedicationService {
     const currentMedications = this.medicationsSource.value;
     const updatedMedications = [...currentMedications, medication];
     this.medicationsSource.next(updatedMedications);
+  }
+
+  // UPDATE MEDICATIONS
+  updateMedcations(updatedMed: Medication) {
+    const currentMedications = this.medicationsSource.value;
+    const index = currentMedications.findIndex(med => med.id === updatedMed.id);
+
+    if(index !== -1) {
+      const updatedMedications = [...currentMedications];
+      updatedMedications[index] = updatedMed;
+
+      this.medicationsSource.next(updatedMedications);
+    }
   }
 }
