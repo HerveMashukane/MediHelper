@@ -189,7 +189,7 @@ editMedications(med: Medication)
 </div>
 <app-medication-form
   *ngIf="isFormVisible"
-  [medication]="isEditing"
+  [medication]="editingMedication"
   (cancel)="closeFromChild()"
   class="text-white"
 >

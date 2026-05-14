@@ -96,4 +96,11 @@ export class LaboratoryComponent {
   toggleMenu(index: number) {
     this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
   }
+
+  // EDIT LABO TEST
+  editingLaboTest: LaboTest | null = null;
+  editLaboTest(labTest: LaboTest) {
+    this.editingLaboTest = { ...labTest};
+    this.isFormVisible = true;
+  }
 }

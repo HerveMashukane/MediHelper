@@ -30,7 +30,8 @@
                                         placeholder="Type doctor name..." 
                                         [(ngModel)]="formData.doctorName"
                                         required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"/>
+                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
+                                />
                         </div>
                 </div>
 
@@ -144,7 +145,7 @@
                 <!-- Buttons -->
                 <div class="flex justify-end space-x-4">
                         <button type="submit" class="bg-sky-500 hover:bg-sky-600 transition px-6 py-2 rounded-lg font-semibold">
-                                Add Medication
+                                {{formData.id ? "Save Changes" : "Add Medication"}}
                         </button>
                         <button type="button" (click)="closeForm()" class="bg-red-600 hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
                                 Cancel

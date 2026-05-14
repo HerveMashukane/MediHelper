@@ -66,7 +66,7 @@ export class PatientsFormComponent {
       }
     }
     this.resetForm();
-    this.close.emit();
+    this.onCancel()
   }
 
   // reset form after successful submission
@@ -81,7 +81,7 @@ export class PatientsFormComponent {
       department: '',
       age: '',
       bloodGroup: ''
-  };
+    };
   }
 
   @Input() patient: Patient | null = null;

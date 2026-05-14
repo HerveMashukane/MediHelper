@@ -129,7 +129,9 @@
                                     View Report
                                 </button>
 
-                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-yellow-400">
+                                <button
+                                    (click)="editRadioExam(exam)"
+                                    class="w-full text-left px-4 py-2 hover:bg-gray-800 text-yellow-400">
                                     Edit
                                 </button>
 
@@ -172,5 +174,6 @@
 
 <app-radiology-form
     *ngIf="isFormVisible"
+    [radioExam]="editingRadioExam"
     (cancel)="closeFormFromChild()">
 </app-radiology-form>

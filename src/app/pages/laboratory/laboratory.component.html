@@ -140,6 +140,12 @@
                   View
                 </button>
 
+                <button
+                  (click)="editLaboTest(test)"
+                  class="w-full text-left px-4 py-2 hover:bg-gray-800 text-yellow-400">
+                  Edit
+                </button>
+
                 <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-sky-500">
                   Result
                 </button>
@@ -185,5 +191,6 @@
 </div>
 <app-laboratory-form
   *ngIf="isFormVisible"
+  [laboTest]="editingLaboTest"
   (cancel)="closeFromChild()">
 </app-laboratory-form>

@@ -78,7 +78,7 @@ export class AppointmentsFormComponent {
   }
   // ================= CLOSE FORM =================
   @Output() close = new EventEmitter<void>();
-  onCancel() {
+  closeForm() {
     this.close.emit();
   }
 
@@ -101,7 +101,7 @@ export class AppointmentsFormComponent {
     }
     // reset && close after creating or updating
     this.resetForm();
-    this.onCancel();
+    this.closeForm();
   }
 
   // ================= RESET FORM =================

@@ -66,4 +66,11 @@ export class RadiologyComponent {
   closeFormFromChild() {
     this.isFormVisible = false
   }
+
+  // edit form
+  editingRadioExam: RadiologyExam | null = null;
+  editRadioExam(laboExam: RadiologyExam) {
+    this.editingRadioExam = { ...laboExam}
+    this.isFormVisible = true;
+  }
 }

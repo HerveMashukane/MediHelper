@@ -76,9 +76,24 @@ export class LaboratoryService {
   constructor() { }
 
 
+  // ADD NEW LABO TEST
   addLaboTest(test: LaboTest) {
-    const currentTests = this.laboTestSource.value;
-    const updatedTests = [...currentTests, test];
-    this.laboTestSource.next(updatedTests);
+    const currentLabTests = this.laboTestSource.value;
+    const updatedLabTests = [...currentLabTests, test];
+    this.laboTestSource.next(updatedLabTests);
+  }
+
+  // UPDATE LABO TESTS
+  updateLabTests(updatedTest: LaboTest) {
+    const currentLabTests = this.laboTestSource.value;
+
+    const index = currentLabTests.findIndex(labTest => labTest.id === updatedTest.id);
+
+    if(index !== -1) {
+      const updatedLabTests = [...currentLabTests];
+      updatedLabTests[index] = updatedTest;
+
+      this.laboTestSource.next(updatedLabTests);
+    }
   }
 }

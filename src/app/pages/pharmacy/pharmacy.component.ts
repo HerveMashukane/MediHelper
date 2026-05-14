@@ -88,9 +88,9 @@ export class PharmacyComponent {
   }
 
   // edit medications
-  isEditing: Medication | null = null;
+  editingMedication: Medication | null = null;
   editMedications(med: Medication) {
-    this.isEditing = {...med};
+    this.editingMedication = { ...med};
     this.isFormVisible = true;
   }
 }

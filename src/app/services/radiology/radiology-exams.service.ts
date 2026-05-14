@@ -113,8 +113,20 @@ export class RadiologyExamsService {
 
   // add new radiology exam
   addRadioExam(radioExam: RadiologyExam) {
-    const currentExams = this.radioExamsSource.value;
-    const updatedExams = [...currentExams, radioExam];
-    this.radioExamsSource.next(updatedExams);
+    const currentRadioExams = this.radioExamsSource.value;
+    const updatedRadioExams = [...currentRadioExams, radioExam];
+    this.radioExamsSource.next(updatedRadioExams);
+  }
+
+  // UPDATE RADIOLOGY EXAM
+  updateRadioExam(updatedExam: RadiologyExam) {
+    const currentRadioExams = this.radioExamsSource.value;
+    const index = currentRadioExams.findIndex(exam => exam.id === updatedExam.id);
+    if(index !== 0) {
+      const updatedRadioExams = [...currentRadioExams];
+      updatedRadioExams[index] = updatedExam;
+
+      this.radioExamsSource.next(updatedRadioExams);
+    }
   }
 }
