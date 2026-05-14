@@ -63,6 +63,7 @@ export class AppointmentsComponent {
   isFormVisible: boolean = false;
   toggleFormVisibility() {
     this.isFormVisible = !this.isFormVisible;
+    this.editingAppointment = null;
   }
 
   // toggle menu actions in the appointments table

@@ -60,6 +60,7 @@ export class PharmacyComponent {
   }
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
+    this.editingMedication = null;
   }
 
   // get medication progress dynamically

@@ -84,6 +84,7 @@ export class LaboratoryComponent {
   isFormVisible: boolean = false;
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
+    this.editingLaboTest = null;
   }
 
   // close form from chuld component

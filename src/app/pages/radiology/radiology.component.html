@@ -125,22 +125,39 @@
                                 class="absolute right-2 mt-2 w-44 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 overflow-hidden"
                             >
 
-                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-white">
-                                    View Report
-                                </button>
+                                <div>
+                                    <button 
+                                        title="View"
+                                        class="flex space-x-3 w-full text-left px-4 py-2 hover:bg-gray-800 text-white">
+                                        <i class="bi bi-eye-fill"></i>
+                                        <span>View Report</span>
+                                    </button>
+                                </div>
 
-                                <button
-                                    (click)="editRadioExam(exam)"
-                                    class="w-full text-left px-4 py-2 hover:bg-gray-800 text-yellow-400">
-                                    Edit
-                                </button>
+                                <div>
+                                    <button
+                                        (click)="editRadioExam(exam)"
+                                        title="Edit"
+                                        class="flex space-x-3 w-full text-left px-4 py-2 hover:bg-gray-800 text-yellow-400">
+                                        <i class="bi bi-pen"></i>
+                                        <span>Edit</span>
+                                    </button>
+                                </div>
 
-                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-green-400">
-                                    Upload Image
-                                </button>
+                                <div>
+                                    <button 
+                                        title="Upload Image"
+                                        class="flex space-x-3 w-full text-left px-4 py-2 hover:bg-gray-800 text-green-400">
+                                        <i class="bi bi-cloud-upload"></i>
+                                        <span>Upload Image</span>
+                                    </button>
+                                </div>
 
-                                <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
-                                    Delete
+                                <button 
+                                    title="Delete"
+                                    class="flex space-x-3 w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
+                                    <i class="bi bi-trash"></i>
+                                    <span>Delete</span>
                                 </button>
 
                             </div>

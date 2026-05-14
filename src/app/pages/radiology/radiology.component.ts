@@ -60,14 +60,15 @@ export class RadiologyComponent {
   // form control methods
 
   toggleForm() {
-    this.isFormVisible = !this.isFormVisible
+    this.isFormVisible = !this.isFormVisible;
+    this.editingRadioExam = null;
   }
 
   closeFormFromChild() {
     this.isFormVisible = false
   }
 
-  // edit form
+  // edit radio Exam
   editingRadioExam: RadiologyExam | null = null;
   editRadioExam(laboExam: RadiologyExam) {
     this.editingRadioExam = { ...laboExam}
