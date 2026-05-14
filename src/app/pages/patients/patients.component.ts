@@ -36,17 +36,17 @@ export class PatientsComponent {
   }
 
   // remove patient from list
-  async removePatient(id: number, fullName: string) {
+  async removePatient(p: Patient) {
     const ok = await this.confirm.request({
       title: 'Delete Patient',
       message: 'Are you sure you want to delete ',
-      hightlight: `${fullName}`,
+      highlight: `${p}`,
       confirmText: 'Yes, delete',
       cancelText: 'Cancel',
     });
 
     if (!ok) return;
-    this.patientsService.removePatient(id);
+    this.patientsService.removePatient(p);
   }
 
   // toggle patient form

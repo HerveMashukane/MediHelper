@@ -193,6 +193,7 @@
 
                                 <div>
                                     <button 
+                                        (click)="removeAppointment(app.id, app.patientName)"
                                         title="Delete"
                                         class="flex space-x-3 w-full text-red-500 py-1 px-3 rounded-md mt-2 hover:bg-gray-800 transition">
                                         <i class="bi bi-trash"></i>

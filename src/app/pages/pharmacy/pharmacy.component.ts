@@ -4,6 +4,7 @@ import { MedicationFormComponent } from './medication-form/medication-form.compo
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Medication, MedicationService } from '../../services/medication/medication.service';
+import { ConfirmDialogService } from '../../confirm-dialog.service';
 
 @Component({
   selector: 'app-pharmacy',
@@ -30,7 +31,7 @@ export class PharmacyComponent {
   searchTerm$ = new BehaviorSubject<string>("");
   selectedStatus$ = new BehaviorSubject<string>("All");
 
-  constructor(private medicationService: MedicationService){
+  constructor(private medicationService: MedicationService, private confirm: ConfirmDialogService){
     this.medications$ = this.medicationService.medications$;
     this.medicationStats$ = this.medicationService.medicationStats$;
 
@@ -88,10 +89,23 @@ export class PharmacyComponent {
     this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
   }
 
-  // edit medications
+  // EDIT MEDICATION
   editingMedication: Medication | null = null;
   editMedications(med: Medication) {
     this.editingMedication = { ...med};
     this.isFormVisible = true;
+  }
+
+  // DELETE MEDICATION
+  async removeMedication(id: number, medName: string) {
+    const ok = await this.confirm.request({
+      title: 'Delete Medication',
+      message: 'Are you sure you want to delete',
+      highlight: `${medName}?`,
+      confirmText: 'Yes, delete',
+      cancelText: 'Cancel',
+    })
+    if(!ok) return;
+    this.medicationService.removeMedication(id);
   }
 }

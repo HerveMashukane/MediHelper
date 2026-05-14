@@ -65,9 +65,9 @@ export class DoctorsService {
   }
 
   // remove doctors
-  removeDoctor(removedPatient: number) {
+  removeDoctor(removedPatient: Doctor) {
     const currentDoctors = this.doctorsSource.value;
-    const index = currentDoctors.findIndex(d => d.id === removedPatient);
+    const index = currentDoctors.findIndex(d => d.id === removedPatient.id);
 
     if(index !== -1) {
       const updatedDoctors = [...currentDoctors];

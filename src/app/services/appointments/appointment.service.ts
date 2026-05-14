@@ -96,13 +96,27 @@ export class AppointmentService {
     })
   )
 
+  // ADD NEW APPOINTMENT
   addAppointment(appointment: Appointment) {
     const currentAppointments = this.appointmentsSource.value;
     const updatedAppointments = [...currentAppointments, appointment]
     this.appointmentsSource.next(updatedAppointments);
   }
 
-  // update appointments
+  // REMOVE APPOINTMENTS
+  removeAppointment(removedApp: number) {
+    const currentAppointments = this.appointmentsSource.value;
+    const index = currentAppointments.findIndex(app => app.id === removedApp);
+
+    if(index !== -1) {
+      const updatedAppointments = [...currentAppointments];
+      updatedAppointments.splice(index, 1);
+
+      this.appointmentsSource.next(updatedAppointments);
+    }
+  }
+
+  // UPDATE APPOINTMENTS
   updateAppointments(updatedApp: Appointment) {
     const currentAppointments = this.appointmentsSource.value;
     const index = currentAppointments.findIndex(app => app.id === updatedApp.id);

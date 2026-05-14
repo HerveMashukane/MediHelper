@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AppointmentsFormComponent } from './appointments-form/appointments-form.component';
 import { AppointmentService, Appointment } from '../../services/appointments/appointment.service';
+import { ConfirmDialogService } from '../../confirm-dialog.service';
 import { Observable } from 'rxjs';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -24,7 +25,7 @@ export class AppointmentsComponent {
   searchTerm$ = new BehaviorSubject<string>('');
   selectedStatus$ = new BehaviorSubject<string>('All');
 
-  constructor(private appointmentService: AppointmentService) {
+  constructor(private appointmentService: AppointmentService, private confirm: ConfirmDialogService) {
     this.appointments$ = this.appointmentService.appointments$;
     this.appointmentStats$ = this.appointmentService.appointmentStats$;
   }
@@ -72,7 +73,20 @@ export class AppointmentsComponent {
     this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
   }
 
-  // edit uppointment
+  // REMOVE APPOINTMENTS
+  async removeAppointment(id: number, fullName: string) {
+    const ok = await this.confirm.request({
+      title: 'Delete Appointment',
+      message: 'Are you sure you want to delete the',
+      highlight: `${fullName}'s appointment ?`,
+      confirmText: 'Yes, delete',
+      cancelText: 'Cancel',
+    })
+    if(!ok) return;
+    this.appointmentService.removeAppointment(id);
+  }
+
+  // EDIT APPOINTMENTS
   editingAppointment: Appointment | null = null;
   editAppointment(app: Appointment) {
     this.editingAppointment = {...app};

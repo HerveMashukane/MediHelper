@@ -72,16 +72,16 @@ export class DoctorsComponent {
   }
 
   // remove dotors
-  async removeDoctor(id: number, fullName: string) {
+  async removeDoctor(d: Doctor) {
     const ok = await this.confirm.request({
       title: 'Delete Doctor',
       message: 'Are you sure you want to delete the',
-      hightlight: `Dr. ${fullName}`,
+      highlight: `Dr. ${d}`,
       confirmText: 'Yes, delete',
       cancelText: 'Cancel',
     })
     if(!ok) return;
-    this.doctorsService.removeDoctor(id);
+    this.doctorsService.removeDoctor(d);
   }
 
   // edit doctor

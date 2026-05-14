@@ -157,6 +157,7 @@
                     </button>
 
                     <button 
+                      (click)="removeMedication(med.id, med.medName)"
                       title="Delete"
                       class="flex space-x-3 w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
                       <i class="bi bi-trash"></i>

@@ -192,4 +192,16 @@ export class MedicationService {
       this.medicationsSource.next(updatedMedications);
     }
   }
+
+  // REMOVE MEDICATION
+  removeMedication(removedMed: number) {
+    const currentMedications = this.medicationsSource.value;
+    const index = currentMedications.findIndex(med => med.id === removedMed)
+
+    if(index !== -1) {
+      const updateMedcations = [...currentMedications];
+      updateMedcations.splice(index, 1);
+      this.medicationsSource.next(updateMedcations);
+    }
+  }
 }
