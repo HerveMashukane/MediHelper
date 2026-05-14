@@ -107,11 +107,11 @@ export class LaboratoryComponent {
   }
 
   // REMOVE LABO TEST
-  async removeLabTest(id: number, labTestName: string) {
+  async removeLabTest(id: number, labTestType: string) {
     const ok = await this.confirm.request({
       title: 'Delete Laboratory Test',
       message: 'are you sure you want to delete the',
-      highlight: `${labTestName} ?`,
+      highlight: `${labTestType} ?`,
       cancelText: 'Cancel',
       confirmText: 'Yes, delete'
     })

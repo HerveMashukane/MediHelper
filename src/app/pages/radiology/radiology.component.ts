@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms'
 import { RadiologyFormComponent } from './radiology-form/radiology-form.component'
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs'
 import { RadiologyExam, RadiologyExamsService } from '../../services/radiology/radiology-exams.service'
+import { ConfirmDialogService } from '../../confirm-dialog.service'
 
 @Component({
   selector: 'app-radiology',
@@ -22,7 +23,7 @@ export class RadiologyComponent {
   searchTerm$ = new BehaviorSubject<string>("");
   selectedStatus$ = new BehaviorSubject<string>("All");
 
-  constructor(public radiologyExamsService: RadiologyExamsService) {
+  constructor(public radiologyExamsService: RadiologyExamsService, private confirm: ConfirmDialogService) {
     this.radioExams$ = radiologyExamsService.radioExams$;
 
     // reactive radiology exams filter
@@ -68,10 +69,23 @@ export class RadiologyComponent {
     this.isFormVisible = false
   }
 
-  // edit radio Exam
+  // EDIT RADIO EXAM
   editingRadioExam: RadiologyExam | null = null;
   editRadioExam(laboExam: RadiologyExam) {
     this.editingRadioExam = { ...laboExam}
     this.isFormVisible = true;
+  }
+
+  // REMOVE RADIO EXAM
+  async removeRadioExam(id: number, radioExamType: string) {
+    const ok = await this.confirm.request({
+      title: 'Delete Radiology Exam',
+      message: 'Are you sure you want to delete the',
+      highlight: `${radioExamType} exam ?`,
+      cancelText: 'Cancel',
+      confirmText: 'Yes, delete'
+    })
+    if(!ok) return;
+    this.radiologyExamsService.removeRadioExam(id);
   }
 }

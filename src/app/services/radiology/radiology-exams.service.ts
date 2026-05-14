@@ -129,4 +129,17 @@ export class RadiologyExamsService {
       this.radioExamsSource.next(updatedRadioExams);
     }
   }
+
+  // REMOVE RADIO EXAM
+  removeRadioExam(removedExam: number) {
+    const currentRadioExams = this.radioExamsSource.value;
+    const index = currentRadioExams.findIndex(exam => exam.id === removedExam);
+
+    if(index !== -1) {
+      const updatedRadioExams = [...currentRadioExams];
+      updatedRadioExams.splice(index, 1);
+
+      this.radioExamsSource.next(updatedRadioExams);
+    }
+  }
 }
