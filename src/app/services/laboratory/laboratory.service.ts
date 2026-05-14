@@ -96,4 +96,16 @@ export class LaboratoryService {
       this.laboTestSource.next(updatedLabTests);
     }
   }
+
+  // REMOVE RADIOLOGY TEST
+  removeRadioTest(removedLabTest: number) {
+    const currentLabTests = this.laboTestSource.value;
+    const index = currentLabTests.findIndex(labTest => labTest.id === removedLabTest);
+
+    if(index !== -1) {
+      const updatedLabTests = [...currentLabTests];
+      updatedLabTests.splice(index, 1);
+      this.laboTestSource.next(updatedLabTests);
+    }
+  }
 }

@@ -173,11 +173,14 @@
                   </button>
                 </div>
 
-                <button 
-                  
-                  class="w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
-                  Delete
-                </button>
+                <div>
+                  <button 
+                    (click)="removeLabTest(test.id, test.testType)"
+                    class="flex space-x-3 w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
+                    <i class="bi bi-trash"></i>
+                    <span>Delete</span>
+                  </button>
+                </div>
 
               </div>
 

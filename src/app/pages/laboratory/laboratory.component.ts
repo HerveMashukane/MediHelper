@@ -4,6 +4,7 @@ import { BehaviorSubject, combineLatest, map, merge, Observable } from 'rxjs';
 import { LaboratoryFormComponent } from './laboratory-form/laboratory-form.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ConfirmDialogService } from '../../confirm-dialog.service';
 
 @Component({
   selector: 'app-laboratory',
@@ -23,7 +24,7 @@ export class LaboratoryComponent {
   searchTerm$ = new BehaviorSubject<string>("");
   selectedTestType$ = new BehaviorSubject<string>("");
   selectedStatus$ = new BehaviorSubject<string>("");
-  constructor(private laboratoryService: LaboratoryService){
+  constructor(private laboratoryService: LaboratoryService, private confirm: ConfirmDialogService){
     this.laboTests$ = this.laboratoryService.laboTests$;
 
     // reactive laboratory tests filter
@@ -103,5 +104,18 @@ export class LaboratoryComponent {
   editLaboTest(labTest: LaboTest) {
     this.editingLaboTest = { ...labTest};
     this.isFormVisible = true;
+  }
+
+  // REMOVE LABO TEST
+  async removeLabTest(id: number, labTestName: string) {
+    const ok = await this.confirm.request({
+      title: 'Delete Laboratory Test',
+      message: 'are you sure you want to delete the',
+      highlight: `${labTestName} ?`,
+      cancelText: 'Cancel',
+      confirmText: 'Yes, delete'
+    })
+    if(!ok) return;
+    this.laboratoryService.removeRadioTest(id);
   }
 }
