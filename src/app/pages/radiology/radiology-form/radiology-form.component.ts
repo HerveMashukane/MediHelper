@@ -39,7 +39,7 @@ export class RadiologyFormComponent {
   // EDIT/ADD RADIO EXAMS
   @Input() radioExam: RadiologyExam | null = null;
   submitRadioExam() {
-    // edit
+    // EDIT
     const isEditing = this.formData.id !== 0;
     if(isEditing) {
       this.radiologyExamsService.updateRadioExam({...this.formData});

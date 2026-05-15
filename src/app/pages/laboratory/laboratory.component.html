@@ -24,7 +24,7 @@
   <!-- KPI Statistics -->
   <div 
     *ngIf="laboTestStats$ | async as stats"
-    class="grid grid-cols-4 gap-6">
+    class="grid grid-cols-5 gap-6">
     <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-gray-400">
       <p class="text-gray-400 text-sm">Total Tests</p>
       <h2 class="text-white text-2xl font-bold mt-2">{{stats.Total}}</h2>
@@ -38,6 +38,11 @@
     <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-green-500">
       <p class="text-gray-400 text-sm">Completed</p>
       <h2 class="text-green-400 text-2xl font-bold mt-2">{{stats.Completed}}</h2>
+    </div>
+
+    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-red-400">
+      <p class="text-gray-400 text-sm">Canceled</p>
+      <h2 class="text-red-400 text-2xl font-bold mt-2">{{stats.Canceled}}</h2>
     </div>
 
     <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 hover:border-red-400">
@@ -75,6 +80,7 @@
       <option value="Active">Active</option>
       <option value="Pending">Pending</option>
       <option value="Completed">Completed</option>
+      <option value="Canceled">Canceled</option>
       <option value="Critical">Critical</option>
     </select>
   </div>
@@ -115,6 +121,7 @@
                   'bg-green-700 text-white': test.status === 'Completed',
                   'bg-yellow-700 text-white': test.status === 'Pending',
                   'bg-sky-500 text-white': test.status === 'Active',
+                  'bg-red-800 text-white': test.status === 'Canceled',
                   'bg-red-700 text-white': test.status === 'Critical'
                 }"
               >

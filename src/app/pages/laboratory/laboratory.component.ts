@@ -58,6 +58,7 @@ export class LaboratoryComponent {
           Active: 0,
           Pending: 0,
           Completed: 0,
+          Canceled: 0,
           Critical: 0,
           Total: 0
         }
@@ -77,6 +78,7 @@ export class LaboratoryComponent {
     Active: number;
     Pending: number;
     Completed: number;
+    Canceled: number,
     Critical: number;
     Total: number;
   }>;
