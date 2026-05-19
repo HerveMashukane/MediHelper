@@ -1,7 +1,7 @@
 import { Patient, PatientsService } from '../../services/patients/patients.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { PatientsFormComponent } from '../patients/patients-form/patients-form.component';
+import { PatientsFormComponent } from './patients-form/patients-form.component';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { ConfirmDialogService } from '../../confirm-dialog.service';
