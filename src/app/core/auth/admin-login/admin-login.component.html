@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="flex justify-center items-center">
+        <div class="bg-gray-900 max-w-[500px] p-10 flex justify-center rounded-xl items-center">
+            <!-- header -->
+            <div>
+                <!-- logo -->
+                <div>
+                    <img
+                        src="branding/logo.svg"
+                        alt="MediHelp Logo"
+                        class="h-10 w-auto object-contain drop-shadow-[0_0_6px_rgba(59,130,246,0.35)] select-none"
+                    />
+                    <p class="text-gray-400 text-center m-8">
+                        Admin Hospital Operations Platform
+                    </p>
+                </div>
+
+                <!-- login field -->
+                <div>
+                    <!-- mail -->
+                    <div class="flex flex-col space-y-4">
+                        <label for="email">Admin Email</label>
+                        <input 
+                            type="email" 
+                            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
+                        >
+                    </div>
+                    <!-- password -->
+                    <div class="flex flex-col space-y-4">
+                        <label for="password">Admin Password</label>
+                        <input 
+                            type="password"
+                            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
+                        >
+                    </div>
+
+                    <!-- login btn -->
+                    <button>Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
