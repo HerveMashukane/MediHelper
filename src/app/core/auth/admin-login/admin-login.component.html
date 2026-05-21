@@ -10,7 +10,7 @@
 <body class="bg-gray-100">
 
   <!-- Overlay -->
-  <div class="fixed inset-0 bg-black/60 flex items-center justify-center">
+  <div class="fixed inset-0 bg-black flex items-center justify-center">
 
     <!-- Modal -->
     <div class="bg-gray-900 text-white w-full max-w-md p-8 rounded-2xl shadow-2xl">
@@ -34,36 +34,46 @@
 
         <!-- Email -->
         <div>
-          <label class="block text-sm text-gray-300 mb-1">
+          <label class="block text-md text-gray-300 mb-1">
             Admin Email
           </label>
           <input
             type="email"
-            placeholder="Enter your email"
+            name="adminEmail"
+            [(ngModel)]="adminEmail"
+            placeholder="Enter valid admin email"
             class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition"
           />
         </div>
 
         <!-- Password -->
         <div>
-          <label class="block text-sm text-gray-300 mb-1">
+          <label class="block text-md text-gray-300 mb-1">
             Admin Password
           </label>
           <input
             type="password"
-            placeholder="Enter your password"
+            name="adminPassword"
+            [(ngModel)]="adminPassword"
+            placeholder="Enter admin password"
             class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition"
           />
         </div>
 
         <!-- Button -->
         <button
-          type="submit"
-          class="w-full bg-sky-600 hover:bg-sky-700 transition duration-200 py-2 rounded-lg font-medium shadow-lg"
+            (click)="adminLogin()"
+            class="w-full bg-sky-600 hover:bg-sky-700 transition duration-200 py-2 rounded-lg font-medium shadow-lg"
         >
           Login
         </button>
       </form>
+        <!-- error message -->
+        <div>
+            <p class="text-center text-red-500 p-4 rounded-md">
+                {{ errorMessage }}
+            </p>
+        </div>
     </div>
   </div>
 
