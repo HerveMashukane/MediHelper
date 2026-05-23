@@ -12,14 +12,15 @@ import { InsuranceComponent } from './AdminPages/insurance/insurance.component';
 import { ReportsComponent } from './AdminPages/reports/reports.component';
 import { PharmacyComponent } from './AdminPages/pharmacy/pharmacy.component';
 import { AdminLoginComponent } from './core/auth/admin-login/admin-login.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
 
 export const routes: Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'}, //default route
+  { path: 'login', component: AdminLoginComponent },
   {
     path: '',
     component: LayoutComponent,
     children: [
-      {path: '', redirectTo: 'login', pathMatch: 'full'}, //default route
-      { path: 'login', component: AdminLoginComponent },
       { path: 'adminDashboard', component: DashboardComponent },
       { path: 'patients', component: PatientsComponent },
       {path: 'doctors', component: DoctorsComponent},
