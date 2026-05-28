@@ -12,7 +12,6 @@ import { InsuranceComponent } from './AdminPages/insurance/insurance.component';
 import { ReportsComponent } from './AdminPages/reports/reports.component';
 import { PharmacyComponent } from './AdminPages/pharmacy/pharmacy.component';
 import { AdminLoginComponent } from './core/auth/admin-login/admin-login.component';
-import { NavbarComponent } from './layout/navbar/navbar.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'}, //default route

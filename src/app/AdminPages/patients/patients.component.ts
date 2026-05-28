@@ -40,7 +40,7 @@ export class PatientsComponent {
     const ok = await this.confirm.request({
       title: 'Delete Patient',
       message: 'Are you sure you want to delete ',
-      highlight: `${p}`,
+      highlight: `${p.preferedName}`,
       confirmText: 'Yes, delete',
       cancelText: 'Cancel',
     });
