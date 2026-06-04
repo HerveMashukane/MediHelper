@@ -5,13 +5,13 @@ import { ROLE_LABELS, ROLES, UserRole } from '../../constants/roles';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-admin-login',
+  selector: 'app-login-page',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './admin-login.component.html',
-  styleUrl: './admin-login.component.css',
+  templateUrl: './login-page.component.html',
+  styleUrl: './login-page.component.css',
 })
-export class AdminLoginComponent {
+export class LoginPageComponent {
   userName = 'Herve Mashukane';
   email = 'herve@gmail.com';
   password = '1234';

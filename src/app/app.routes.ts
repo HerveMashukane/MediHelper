@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-import { AdminLoginComponent } from './core/auth/login-page/login-page.component';
+import { LoginPageComponent } from './core/auth/login-page/login-page.component';
 
 // Admin
 import { AdminDashboardComponent } from './features/admin/dashboard/admin-dashboard.component';
@@ -52,7 +52,7 @@ const adminChildren: Routes = [
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: AdminLoginComponent },
+  { path: 'login', component: LoginPageComponent },
 
   {
     path: '',
