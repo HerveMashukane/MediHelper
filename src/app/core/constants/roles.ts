@@ -1,4 +1,4 @@
-/** System roles — align with NestJS guards & Prisma Role enum */
+/** System roles (align with NestJS guards & Prisma Role enum) */
 export const ROLES = {
   ADMIN: 'admin',
   DOCTOR: 'doctor',
