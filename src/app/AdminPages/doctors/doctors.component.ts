@@ -1,93 +1,89 @@
 import { Component } from '@angular/core';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import { DoctorsFormComponent } from './doctors-form/doctors-form.component';
-import { Observable } from 'rxjs';
 import { Doctor, DoctorsService } from '../../services/doctors/doctors.service';
 import { FormsModule } from '@angular/forms';
 import { ConfirmDialogService } from '../../confirm-dialog.service';
-import { CardModalComponent } from '../../reusable-components/card-modal/card-modal.component';
+import { DetailModalComponent, DetailField } from '../../shared/components/detail-modal/detail-modal.component';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { AppButtonComponent } from '../../shared/components/app-button/app-button.component';
 
 @Component({
   selector: 'app-doctors',
   standalone: true,
-  imports: [CommonModule, FormsModule, DoctorsFormComponent, CardModalComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    DoctorsFormComponent,
+    DetailModalComponent,
+    PageHeaderComponent,
+    AppButtonComponent,
+  ],
   templateUrl: './doctors.component.html',
-  styleUrl: './doctors.component.css'
+  styleUrl: './doctors.component.css',
 })
 export class DoctorsComponent {
-  doctors$: Observable<Doctor[]>;
-  doctorStats: Observable<{
-    Generalist: number,
-    Cardiologist: number,
-    Dermatologist: number,
-    Neurologist: number,
-    Surgeon: number,
-    Oncologist: number,
-    Total: number,
-  }>;
+  isFormVisible = false;
+  selectedDoctor: Doctor | null = null;
+  isModalOpen = false;
+  selectedSpeciality = 'All';
+  searchDoctor = '';
+  editingDoctor: Doctor | null = null;
+  modalFields: DetailField[] = [];
 
   constructor(
     private doctorsService: DoctorsService,
-    private confirm: ConfirmDialogService,
-  ) {
-    this.doctors$ = this.doctorsService.doctors$;
-    this.doctorStats = this.doctorsService.doctorStats$
+    private confirm: ConfirmDialogService
+  ) {}
+
+  get filteredDoctors(): Doctor[] {
+    return this.doctorsService.doctorsSource.value.filter(
+      (d) =>
+        (this.selectedSpeciality === 'All' ||
+          d.speciality.toLowerCase() === this.selectedSpeciality.toLowerCase()) &&
+        (this.searchDoctor === '' ||
+          d.fullName.toLowerCase().includes(this.searchDoctor.toLowerCase()))
+    );
   }
 
-  // toggle form
-  isFormVisible: boolean = false;
-  toggleForm() {
+  toggleForm(): void {
     this.isFormVisible = !this.isFormVisible;
-
-    if(!this.isFormVisible) {
+    if (!this.isFormVisible) {
       this.editingDoctor = null;
     }
   }
 
-  // view doctor's details
-  selectedDoctor: Doctor | null = null;
-  isModalOpen: boolean = false;
-
-  viewDoctor(doctor: Doctor) {
+  viewDoctor(doctor: Doctor): void {
     this.selectedDoctor = doctor;
+    this.modalFields = [
+      { label: 'Full Name', value: doctor.fullName },
+      { label: 'Speciality', value: doctor.speciality },
+      { label: 'Hospital', value: doctor.hospital },
+      { label: 'Email', value: doctor.email },
+      { label: 'Phone', value: doctor.phone },
+    ];
     this.isModalOpen = true;
   }
 
-  // close details
-  closeModel() {
+  closeModel(): void {
     this.selectedDoctor = null;
     this.isModalOpen = false;
   }
 
-  // filter doctors
-  selectedSpeciality: string = 'All';
-  searchDoctor: string = '';
-
-  get filteredDoctors() {
-    const allDoctors = this.doctorsService.doctorsSource.value;
-    return allDoctors.filter(d =>
-    (this.selectedSpeciality === 'All' || d.speciality.toLowerCase() === this.selectedSpeciality.toLowerCase()) &&
-    (this.searchDoctor === '' || d.fullName.toLowerCase().includes(this.searchDoctor.toLowerCase()))
-    );
-  }
-
-  // remove dotors
-  async removeDoctor(d: Doctor) {
+  async removeDoctor(d: Doctor): Promise<void> {
     const ok = await this.confirm.request({
       title: 'Delete Doctor',
       message: 'Are you sure you want to delete the',
       highlight: `Dr. ${d.preferedName}`,
       confirmText: 'Yes, delete',
       cancelText: 'Cancel',
-    })
-    if(!ok) return;
+    });
+    if (!ok) return;
     this.doctorsService.removeDoctor(d);
   }
 
-  // edit doctor
-  editingDoctor: Doctor | null = null;
-  editDoctor(doctor: Doctor) {
-    this.editingDoctor = { ...doctor } // copy existing data
+  editDoctor(doctor: Doctor): void {
+    this.editingDoctor = { ...doctor };
     this.isFormVisible = true;
   }
 }

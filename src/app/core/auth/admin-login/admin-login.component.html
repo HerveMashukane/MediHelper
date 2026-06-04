@@ -1,81 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MediHelp Admin Login</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+<div class="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+  <div class="clinical-card w-full max-w-md p-8">
+    <div class="text-center mb-6">
+      <h2 class="text-xl font-semibold text-white">MediHelper Sign In</h2>
+      <p class="text-clinical-muted text-sm mt-2">Hospital Operations Platform</p>
+    </div>
 
-<body class="bg-gray-100">
-
-  <!-- Overlay -->
-  <div class="fixed inset-0 bg-black/70 flex items-center justify-center">
-
-    <!-- Modal -->
-    <div class="bg-gray-900 text-white w-full max-w-md p-8 rounded-2xl shadow-2xl">
-
-      <!-- Header -->
-      <div class="text-center">
-        <img 
-          src="branding/logo.svg"
-          alt="MediHelp Logo"
-          class="h-12 mx-auto mb-4"
+    <form class="space-y-4" (ngSubmit)="login()">
+      <div>
+        <label class="block text-sm text-slate-300 mb-1">UserName</label>
+        <input
+          type="text"
+          name="userName"
+          [(ngModel)]="userName"
+          class="clinical-input w-full"
+          placeholder="Herve Mashukane"
         />
-
-        <h2 class="text-xl font-semibold">Admin Login</h2>
-        <p class="text-gray-400 text-sm mt-2">
-          Hospital Operations Platform
-        </p>
+      </div>
+      <div>
+        <label class="block text-sm text-slate-300 mb-1">Email</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          class="clinical-input w-full"
+          placeholder="you@hospital.org"
+        />
       </div>
 
-      <!-- Form -->
-      <form class="mt-6 space-y-5">
+      <div>
+        <label class="block text-sm text-slate-300 mb-1">Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          class="clinical-input w-full"
+          placeholder="••••••••"
+        />
+      </div>
 
-        <!-- Email -->
-        <div>
-          <label class="block text-md text-gray-300 mb-1">
-            Admin Email
-          </label>
-          <input
-            type="email"
-            name="adminEmail"
-            [(ngModel)]="adminEmail"
-            placeholder="Enter valid admin email"
-            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition"
-          />
-        </div>
+      <div>
+        <label class="block text-sm text-slate-300 mb-1">Select Role</label>
+        <select [(ngModel)]="selectedRole" name="role" class="clinical-input w-full">
+          @for (role of roles; track role) {
+            <option [value]="role">{{ roleLabels[role] }}</option>
+          }
+        </select>
+      </div>
 
-        <!-- Password -->
-        <div>
-          <label class="block text-md text-gray-300 mb-1">
-            Admin Password
-          </label>
-          <input
-            type="password"
-            name="adminPassword"
-            [(ngModel)]="adminPassword"
-            placeholder="Enter admin password"
-            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition"
-          />
-        </div>
+      @if (errorMessage) {
+        <p class="text-sm text-red-400">{{ errorMessage }}</p>
+      }
 
-        <!-- Button -->
-        <button
-            (click)="adminLogin()"
-            class="w-full bg-sky-600 hover:bg-sky-700 transition duration-200 py-2 rounded-lg font-medium shadow-lg"
-        >
-          Login
-        </button>
-      </form>
-        <!-- error message -->
-        <div>
-            <p class="text-center text-red-500 p-4 rounded-md">
-                {{ errorMessage }}
-            </p>
-        </div>
-    </div>
+      <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 transition py-2.5 rounded-lg font-medium text-white">
+        Sign In
+      </button>
+    </form>
   </div>
-
-</body>
-</html>
+</div>

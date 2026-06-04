@@ -5,38 +5,51 @@ import { PatientsFormComponent } from './patients-form/patients-form.component';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { ConfirmDialogService } from '../../confirm-dialog.service';
-import { CardModalComponent } from '../../reusable-components/card-modal/card-modal.component';
+import { DetailModalComponent, DetailField } from '../../shared/components/detail-modal/detail-modal.component';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { AppButtonComponent } from '../../shared/components/app-button/app-button.component';
 
 @Component({
   selector: 'app-patients',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardModalComponent, PatientsFormComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    DetailModalComponent,
+    PatientsFormComponent,
+    PageHeaderComponent,
+    AppButtonComponent,
+  ],
   templateUrl: './patients.component.html',
-  styleUrl: './patients.component.css'
+  styleUrl: './patients.component.css',
 })
 export class PatientsComponent {
   patients$: Observable<Patient[]>;
-  patientStats$: Observable<{
-    Pediatry: number,
-    Cardiology: number,
-    Dermatology: number,
-    Neurology: number,
-    Surgery: number,
-    Oncology: number,
-    Total: number,
-  }>;
-  isFormVisible: boolean = false;
+  isFormVisible = false;
+  selectedDepartment = 'All';
+  searchPatient = '';
+  selectedPatient: Patient | null = null;
+  isModelOpen = false;
+  editingPatient: Patient | null = null;
+  modalFields: DetailField[] = [];
 
-   constructor(
+  constructor(
     private patientsService: PatientsService,
     private confirm: ConfirmDialogService
   ) {
     this.patients$ = this.patientsService.patients$;
-    this.patientStats$ = this.patientsService.patientStats$;
   }
 
-  // remove patient from list
-  async removePatient(p: Patient) {
+  get filteredPatients(): Patient[] {
+    return this.patientsService.patientsSource.value.filter(
+      (p) =>
+        (this.selectedDepartment === 'All' || p.department === this.selectedDepartment) &&
+        (this.searchPatient === '' ||
+          p.fullName.toLowerCase().includes(this.searchPatient.toLowerCase()))
+    );
+  }
+
+  async removePatient(p: Patient): Promise<void> {
     const ok = await this.confirm.request({
       title: 'Delete Patient',
       message: 'Are you sure you want to delete ',
@@ -44,50 +57,36 @@ export class PatientsComponent {
       confirmText: 'Yes, delete',
       cancelText: 'Cancel',
     });
-
     if (!ok) return;
     this.patientsService.removePatient(p);
   }
 
-  // toggle patient form
-  toggleForm() {
+  toggleForm(): void {
     this.isFormVisible = !this.isFormVisible;
-
     if (!this.isFormVisible) {
-      this.editingPatient = null; // reset edit mode
+      this.editingPatient = null;
     }
   }
 
-  // filters variables
-  selectedDepartment: string = 'All';
-  searchPatient: string = '';
-
-  // getter to filter patients by department and name
-  get filteredPatients() {
-    const allPatients = this.patientsService.patientsSource.value;
-
-    return allPatients.filter(p => 
-      (this.selectedDepartment === 'All' || p.department === this.selectedDepartment) && 
-      (this.searchPatient === '' || p.fullName.toLowerCase().includes(this.searchPatient.toLowerCase()))
-    );
-  }
-
-  // view patient
-  selectedPatient: Patient | null = null;
-  isModelOpen: boolean = false;
-  closeModel() {
+  closeModel(): void {
     this.isModelOpen = false;
   }
-  
-  viewPatient(patient: Patient) {
+
+  viewPatient(patient: Patient): void {
     this.selectedPatient = patient;
+    this.modalFields = [
+      { label: 'Full Name', value: patient.fullName },
+      { label: 'Department', value: patient.department },
+      { label: 'Email', value: patient.email },
+      { label: 'Phone', value: patient.phone },
+      { label: 'Age', value: patient.age },
+      { label: 'Blood Group', value: patient.bloodGroup },
+    ];
     this.isModelOpen = true;
   }
 
-  // edit patients
-  editingPatient: Patient | null = null;
-  editPatient(patient: Patient) {
-    this.editingPatient = { ...patient }; // copy existing data
+  editPatient(patient: Patient): void {
+    this.editingPatient = { ...patient };
     this.isFormVisible = true;
   }
 }

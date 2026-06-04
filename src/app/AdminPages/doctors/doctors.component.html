@@ -1,91 +1,58 @@
-<section class="p-10 relative flex flex-col bg-gray-900 animate-pageFlip rounded-lg">
-    <h2 class="text-3xl text-white font-semibold">
-        Doctors List • 
-        <span>{{ filteredDoctors.length }}</span>
-    </h2>
+<section class="page-container animate-pageFlip">
+  <app-page-header [title]="'Doctors'" [subtitle]="filteredDoctors.length + ' registered'">
+    <app-button
+      [variant]="isFormVisible ? 'danger' : 'primary'"
+      (clicked)="toggleForm()"
+    >
+      {{ isFormVisible ? 'Close Form' : 'New Doctor' }}
+    </app-button>
+  </app-page-header>
 
-    <!-- filters -->
-    <div class="flex justify-between py-4">
-        <input 
-            type="search" 
-            placeholder="Search doctor..." 
-            [(ngModel)]="searchDoctor"
-            class="bg-gray-950 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
-        >
-        <!-- add doctor -->
-        <div class="flex gap-4 flex-wrap">
-            <select [(ngModel)]="selectedSpeciality" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                <option value="All" selected>All specialists</option>
-                <option value="Generalist">Generalist</option>
-                <option value="Cardiologist">Cardiologist</option>
-                <option value="Dermatologist">Dermatologist</option>
-                <option value="Neurologist">Neurologist</option>
-                <option value="Surgeon">Surgeon</option>
-                <option value="Oncologist">Oncologist</option>
-            </select>
+  <div class="flex flex-col sm:flex-row gap-4 mb-6">
+    <input type="search" [(ngModel)]="searchDoctor" placeholder="Search doctor..." class="clinical-input max-w-md" />
+    <select [(ngModel)]="selectedSpeciality" class="clinical-input max-w-xs">
+      <option value="All">All specialists</option>
+      <option value="Generalist">Generalist</option>
+      <option value="Cardiologist">Cardiologist</option>
+      <option value="Dermatologist">Dermatologist</option>
+      <option value="Neurologist">Neurologist</option>
+      <option value="Surgeon">Surgeon</option>
+      <option value="Oncologist">Oncologist</option>
+    </select>
+  </div>
 
-            <button 
-                (click)="toggleForm()"
-                class="text-white py-2 px-3 rounded-md mt-2 transition flex items-center space-x-1"
-                [ngClass]="isFormVisible ? 'bi bi-x bg-red-800 hover:bg-red-700' : 'bi bi-plus bg-sky-500 hover:bg-sky-600'">
-                <span>{{ isFormVisible ? 'Close Form' : 'New Doctor' }}</span>
-            </button>
+  @if (filteredDoctors.length > 0) {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      @for (doctor of filteredDoctors; track doctor.id) {
+        <div class="clinical-card p-4 flex flex-col items-center text-center">
+          <p class="text-sm text-slate-400 italic">Dr. {{ doctor.preferedName }}</p>
+          @if (doctor.image) {
+            <img [src]="doctor.image" [alt]="doctor.preferedName" class="w-20 h-20 rounded-full object-cover border border-slate-600 mt-2" />
+          }
+          <p class="font-semibold text-white mt-2">{{ doctor.fullName }}</p>
+          <p class="text-sm text-slate-400">{{ doctor.speciality }}</p>
+          <div class="flex gap-2 mt-4">
+            <app-button size="sm" variant="primary" icon="bi bi-eye-fill" (clicked)="viewDoctor(doctor)" />
+            <app-button size="sm" variant="secondary" icon="bi bi-pen" (clicked)="editDoctor(doctor)" />
+            <app-button size="sm" variant="danger" icon="bi bi-trash" (clicked)="removeDoctor(doctor)" />
+          </div>
         </div>
+      }
     </div>
-
-    <!-- doctor cards -->
-    <div>
-        <div 
-            *ngIf="filteredDoctors.length > 0; else noDoctors"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
-            <div 
-                *ngFor="let doctor of doctors$ | async"
-                class="flex flex-col items-center bg-gray-950 p-4 shadow-lg rounded-md transition cursor-pointer hover:scale-105">
-                <div class="space-y-4">
-                    <p class="text-sm text-gray-300 italic">Dr. <span>{{ doctor.preferedName }}</span></p>
-                    <img [src]="doctor.image" [alt]="doctor.preferedName" class="object-cover w-20 h-20 rounded-full border border-white">
-                    
-                    <p class="flex flex-col font-semibold text-lg pb-2">
-                        {{ doctor.fullName }}
-                        <span class="font-normal text-base text-gray-300">{{ doctor.speciality }}</span>
-                    </p>
-                </div>
-                <div class="flex space-x-4">
-                    <button 
-                        (click)="viewDoctor(doctor)"
-                        class="bg-sky-500 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-sky-600 transition">
-                        <i class="bi bi-eye-fill"></i>
-                    </button>
-                    <button 
-                        (click)="editDoctor(doctor)"
-                        class="bg-yellow-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-yellow-700 transition">
-                        <i class="bi bi-pen"></i>
-                    </button>
-                    <button 
-                        (click)="removeDoctor(doctor)"
-                        class="bg-red-800 text-white py-1 px-3 font-semibold rounded-md mt-2 hover:bg-red-700 transition">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <ng-template #noDoctors>
-            <h2 class="text-gray-500 text-2xl text-center">Doctors no found...</h2>
-        </ng-template>
-    </div>
+  } @else {
+    <div class="clinical-card p-12 text-center text-clinical-muted">No doctors found.</div>
+  }
 </section>
 
-<!-- doctor card modal -->
-<app-card-modal
-    [doctor]="selectedDoctor"
-    [isDoctorsModalOpen]="isModalOpen"
-    (close)="closeModel()">
-</app-card-modal>
+<app-detail-modal
+  [open]="isModalOpen"
+  [title]="'Dr. ' + (selectedDoctor?.preferedName ?? '')"
+  [subtitle]="selectedDoctor?.speciality"
+  [imageUrl]="selectedDoctor?.image"
+  [fields]="modalFields"
+  (close)="closeModel()"
+/>
 
-<!-- doctor form -->
- <app-doctors-form
-    *ngIf="isFormVisible"
-    [doctor]="editingDoctor"
-    (cancel)="toggleForm()" 
-    class="fixed top-0 lg:w-[400px] lg:left-1/3 md:left-1/3 sm:w-[350px] w-full">
-</app-doctors-form>
+@if (isFormVisible) {
+  <app-doctors-form [doctor]="editingDoctor" (close)="toggleForm()" />
+}

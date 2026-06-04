@@ -2,8 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .page-container {
+    @apply p-6 md:p-8 bg-slate-950 text-slate-100 min-h-full rounded-xl;
+  }
+
+  .clinical-card {
+    @apply bg-slate-900 rounded-xl border border-slate-800;
+  }
+
+  .clinical-input {
+    @apply bg-slate-950 text-white border border-slate-700 rounded-lg px-3 py-2 w-full
+      focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition;
+  }
+
+  .text-clinical-muted {
+    @apply text-slate-400;
+  }
+}
+
 body {
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    background-color: rgb(2 6 23);
-    color: rgb(226 232 240);
+  font-family: Inter, system-ui, Arial, Helvetica, sans-serif;
+  background-color: rgb(2 6 23);
+  color: rgb(226 232 240);
 }

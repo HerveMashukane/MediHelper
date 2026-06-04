@@ -2,7 +2,7 @@
 
   <!-- LEFT : Logo -->
   <div
-    routerLink="/adminDashboard"
+    [routerLink]="dashboardLink()"
     class="flex items-center space-x-2 cursor-pointer hover:scale-105 transition"
   >
     <img
@@ -92,8 +92,9 @@
             />
 
             <div>
-              <p class="text-sm font-semibold leading-none">Hervé Mashukane</p>
-              <p class="text-xs text-sky-500">Super Admin</p>
+              <p class="text-sm font-semibold leading-none">{{ displayName() }}</p>
+              <p class="text-sm font-semibold leading-none">{{ displayMail() }}</p>
+              <p class="text-xs text-sky-500">{{ roleLabel() }}</p>
             </div>
           </div>
 
@@ -116,9 +117,9 @@
           Settings
         </a>
 
-        <a class="block px-4 py-2 hover:bg-gray-800 cursor-pointer text-red-400">
+        <button type="button" (click)="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer text-red-400">
           Logout
-        </a>
+        </button>
 
       </div>
 

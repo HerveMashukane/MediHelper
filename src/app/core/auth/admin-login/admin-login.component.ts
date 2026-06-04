@@ -1,29 +1,34 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ROLE_LABELS, ROLES, UserRole } from '../../constants/roles';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './admin-login.component.html',
-  styleUrl: './admin-login.component.css'
+  styleUrl: './admin-login.component.css',
 })
 export class AdminLoginComponent {
-  
-  constructor(private router: Router) {}
-  // login variables
-  adminEmail = "herve@gmail.com";
-  adminPassword = "1234";
-  errorMessage = "";
+  userName = 'Herve Mashukane';
+  email = 'herve@gmail.com';
+  password = '1234';
+  selectedRole: UserRole = ROLES.ADMIN;
+  errorMessage = '';
 
-  adminLogin() {
-    const email = this.adminEmail.trim();
-    const password = this.adminPassword.trim();
-    if (email && password) {
-      this.router.navigate(["adminDashboard"]);
+  readonly roles = Object.values(ROLES);
+  readonly roleLabels = ROLE_LABELS;
+
+  constructor(private auth: AuthService) {}
+
+  login(): void {
+    const ok = this.auth.login(this.userName, this.email, this.password, this.selectedRole);
+    if (!ok) {
+      this.errorMessage = 'Enter email and password to continue.';
     } else {
-      this.errorMessage = "Invalid credentials";
+      this.errorMessage = '';
     }
   }
 }

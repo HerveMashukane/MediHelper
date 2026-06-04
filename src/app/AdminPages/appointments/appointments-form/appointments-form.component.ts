@@ -21,7 +21,7 @@ export class AppointmentsFormComponent {
 
   // ================= FORM STATE =================
   formData = {
-    id: 0,
+    id: '',
     patientName: '',
     doctorName: '',
     date: '',
@@ -85,7 +85,7 @@ export class AppointmentsFormComponent {
   // ================= BOOK APPOINTMENT =================
   bookAppointment() {
     // Determine if we are editing or creating
-    const isEditing = this.formData.id !== 0;
+    const isEditing = !!this.formData.id;
 
     if (isEditing) {
       // UPDATE EXISTING APPOINTMENT
@@ -95,7 +95,7 @@ export class AppointmentsFormComponent {
       // CREATE NEW APPOINTMENT
       const newAppointment: Appointment = {
         ...this.formData,
-        id: Date.now() // generate unique id for new entry
+        id: String(Date.now())
       };
       this.appointmentService.addAppointment(newAppointment);
     }
@@ -107,7 +107,7 @@ export class AppointmentsFormComponent {
   // ================= RESET FORM =================
   resetForm() {
     this.formData = {
-      id: 0,
+      id: '',
       patientName: '',
       doctorName: '',
       date: '',

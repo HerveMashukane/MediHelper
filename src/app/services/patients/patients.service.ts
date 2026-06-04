@@ -1,29 +1,25 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { API_ENDPOINTS } from '../../core/constants/api-endpoints';
+import { ApiResourceContract } from '../../core/contracts/api-resource.contract';
+import { ApiResponse } from '../../core/models/api-response.model';
+import {
+  CreatePatientDto,
+  Patient,
+  UpdatePatientDto,
+} from '../../core/models/patient.model';
+import { ApiBaseService } from '../../core/services/api-base.service';
+import { newEntityId, toEntityId } from '../../core/utils/id.util';
 
-// patients interface
-export interface Patient {
-  id: number;
-  preferedName: string;
-  image: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  department: string;
-  age: string;
-  bloodGroup: string;
-}
+export type { Patient } from '../../core/models/patient.model';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class PatientsService {
+@Injectable({ providedIn: 'root' })
+export class PatientsService implements ApiResourceContract<Patient, CreatePatientDto, UpdatePatientDto> {
+  private readonly endpoint = API_ENDPOINTS.patients;
+  public patientsSource = new BehaviorSubject<Patient[]>(this.loadPatientsFromLocalStorage());
+  patients$ = this.patientsSource.asObservable();
 
-  // observable list of patients
-  public patientsSource = new BehaviorSubject<Patient[]>(this.loadPatientsFromLocalStorage());// initialize patients list from local storage
-  patients$ = this.patientsSource.asObservable(); // observable list of patients
-  // reactive patient stats
   patientStats$ = this.patients$.pipe(
     map((patients) => {
       const stats = {
@@ -34,11 +30,11 @@ export class PatientsService {
         Surgery: 0,
         Oncology: 0,
         Total: 0,
-
-      }
-      for(let p of patients) {
-        if(stats[p.department as keyof typeof stats] !== undefined) {
-          stats[p.department as keyof typeof stats]++;
+      };
+      for (const p of patients) {
+        const key = p.department as keyof typeof stats;
+        if (key in stats && key !== 'Total') {
+          stats[key]++;
           stats.Total++;
         }
       }
@@ -46,62 +42,84 @@ export class PatientsService {
     })
   );
 
-  private formVisibleSubject = new BehaviorSubject<Patient[]>([]);
-  isFormVisible$ = this.formVisibleSubject.asObservable();
+  constructor(private api: ApiBaseService) {}
 
-  // save patients to local storage
-  private savePatientsToLocalStorage(patients: Patient[]) {
+  getAll(): Observable<ApiResponse<Patient[]>> {
+    return this.api.mockResponse(this.patientsSource.value);
+  }
+
+  getById(id: string): Observable<ApiResponse<Patient>> {
+    const patient = this.patientsSource.value.find((p) => p.id === id);
+    return patient
+      ? this.api.mockResponse(patient)
+      : this.api.mockError('Patient not found', 404);
+  }
+
+  create(dto: CreatePatientDto): Observable<ApiResponse<Patient>> {
+    const patient: Patient = { ...dto, id: newEntityId() };
+    this.addPatient(patient);
+    return this.api.mockResponse(patient);
+  }
+
+  update(id: string, dto: UpdatePatientDto): Observable<ApiResponse<Patient>> {
+    const current = this.patientsSource.value.find((p) => p.id === id);
+    if (!current) {
+      return this.api.mockError('Patient not found', 404);
+    }
+    const updated = { ...current, ...dto };
+    this.updatePatients(updated);
+    return this.api.mockResponse(updated);
+  }
+
+  delete(id: string): Observable<ApiResponse<void>> {
+    const patient = this.patientsSource.value.find((p) => p.id === id);
+    if (patient) {
+      this.removePatient(patient);
+    }
+    return this.api.mockResponse(undefined as void);
+  }
+
+  addPatient(patient: Patient): void {
+    const current = this.patientsSource.value;
+    const withId = { ...patient, id: patient.id || newEntityId() };
+    const updated = [...current, withId];
+    this.patientsSource.next(updated);
+    this.savePatientsToLocalStorage(updated);
+  }
+
+  removePatient(removedPatient: Patient): void {
+    const updated = this.patientsSource.value.filter((p) => p.id !== removedPatient.id);
+    this.patientsSource.next(updated);
+    this.savePatientsToLocalStorage(updated);
+  }
+
+  updatePatients(updatedPatient: Patient): void {
+    const current = this.patientsSource.value;
+    const index = current.findIndex((p) => p.id === updatedPatient.id);
+    if (index !== -1) {
+      const updated = [...current];
+      updated[index] = updatedPatient;
+      this.patientsSource.next(updated);
+      this.savePatientsToLocalStorage(updated);
+    }
+  }
+
+  listUrl(): string {
+    return this.api.resolveUrl(this.endpoint);
+  }
+
+  private savePatientsToLocalStorage(patients: Patient[]): void {
     localStorage.setItem('patients', JSON.stringify(patients));
   }
 
-  // load patients from local storage
-  private loadPatientsFromLocalStorage() {
-    const storedPatients = localStorage.getItem('patients');
-    return storedPatients ? JSON.parse(storedPatients) : [];
-  }
-  
-  // add new patient
-  addPatient(patient: Patient) {
-    const currentPatients = this.patientsSource.value;
-
-    // assign id to patient
-    if(!patient.id) {
-      patient.id = Date.now();
-    }
-    
-    const updatedPatients = [...currentPatients, patient]; // immutable patients list
-    this.patientsSource.next(updatedPatients); // update observable list of patients
-    this.savePatientsToLocalStorage(updatedPatients); //save patients to local storage
-  }
-
-  // remove patient
-  removePatient(removedPatient: Patient) {
-    const currentPatients = this.patientsSource.value;
-
-    const index = currentPatients.findIndex(p => p.id === removedPatient.id);
-
-    if(index !== -1) {
-      const updatedPatients = [...currentPatients];
-      updatedPatients.splice(index, 1);
-      this.patientsSource.next(updatedPatients);
-      this.savePatientsToLocalStorage(updatedPatients);
-    }
-  }
-
-  // edit patient properties
-  updatePatients(updatedPatient: Patient) {
-    const currentPatients = this.patientsSource.value;
-
-    const index = currentPatients.findIndex(p => p.id === updatedPatient.id);
-
-    if (index !== -1) {
-      const updatedPatients = [...currentPatients];
-      updatedPatients[index] = updatedPatient;
-
-      this.patientsSource.next(updatedPatients);
-      this.savePatientsToLocalStorage(updatedPatients);
+  private loadPatientsFromLocalStorage(): Patient[] {
+    try {
+      const stored = localStorage.getItem('patients');
+      if (!stored) return [];
+      const parsed = JSON.parse(stored) as Patient[];
+      return parsed.map((p) => ({ ...p, id: toEntityId(p.id) }));
+    } catch {
+      return [];
     }
   }
 }
-
-

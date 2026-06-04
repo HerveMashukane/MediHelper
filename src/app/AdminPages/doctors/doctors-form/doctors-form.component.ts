@@ -1,109 +1,77 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Doctor, DoctorsService } from '../../../services/doctors/doctors.service';
-import { EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { DynamicFormComponent } from '../../../shared/components/dynamic-form/dynamic-form.component';
+import { DOCTOR_FORM_CONFIG } from '../../../features/clinical/config/doctor-form.schema';
 
 @Component({
   selector: 'app-doctors-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './doctors-form.component.html',
-  styleUrl: './doctors-form.component.css',
+  imports: [DynamicFormComponent],
+  template: `
+    <app-dynamic-form
+      [config]="formConfig"
+      [initialValue]="initialValue"
+      [isEdit]="isEdit"
+      (submitted)="onSubmit($event)"
+      (cancelled)="onCancel()"
+      (fileSelected)="onFileSelected($event)"
+    />
+  `,
 })
-export class DoctorsFormComponent {
-
-  // copy existing data and display them in the form when editing
-  ngOnInit() {
-    if (this.doctor) {
-      this.formData = { ...this.doctor };
-    }
-  }
-
-  // gather form data
-  formData = {
-    id: 0,
-    image: "",
-    fullName: "",
-    preferedName: "",
-    email: "",
-    phone: "",
-    speciality: "",
-    hospital: "",
-  }
-
-  // cancel form
-  @Output() cancel = new EventEmitter<void>();
+export class DoctorsFormComponent implements OnChanges {
+  formConfig = DOCTOR_FORM_CONFIG;
+  initialValue: Record<string, unknown> | null = null;
+  isEdit = false;
+  private imageData = '';
 
   constructor(private doctorsService: DoctorsService) {}
 
-  onSubmit() {
-    // EDIT MODE (has id means already exists)
-    const isEditing = this.formData.id !== 0;
-    if (isEditing) {
+  @Input() doctor: Doctor | null = null;
+  @Output() close = new EventEmitter<void>();
 
-      // No strict validation required here
-      // Even if user changes nothing, we allow save
-      this.doctorsService.updateDoctors({...this.formData});
-
-    } else {
-
-      // CREATE MODE (create new doctor must validate first)
-      if (
-        this.formData.preferedName && 
-        this.formData.fullName && 
-        this.formData.email && 
-        this.formData.phone && 
-        this.formData.speciality && 
-        this.formData.hospital
-      ) {
-
-        const newDoctor: Doctor = {
-          ...this.formData,
-          id: Date.now()    // ensure ID is generated
-        };
-
-        this.doctorsService.addDoctor(newDoctor);
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['doctor']) {
+      if (this.doctor?.id) {
+        this.isEdit = true;
+        this.initialValue = { ...this.doctor };
+        this.imageData = this.doctor.image ?? '';
       } else {
-        // Optional but important UX feedback
-        alert('Please fill all required fields');
-        return; // stop execution
+        this.isEdit = false;
+        this.initialValue = null;
       }
     }
-    this.resetForm()
-    this.cancel.emit();
   }
 
-  // reset form 
-  resetForm() {
-    this.formData = {
-      id: 0,
-      image: "",
-      fullName: "",
-      preferedName: "",
-      email: "",
-      phone: "",
-      speciality: "",
-      hospital: "",
+  onSubmit(value: Record<string, unknown>): void {
+    const payload: Doctor = {
+      id: this.doctor?.id ?? '',
+      fullName: String(value['fullName'] ?? ''),
+      preferedName: String(value['preferedName'] ?? ''),
+      email: String(value['email'] ?? ''),
+      phone: String(value['phone'] ?? ''),
+      speciality: String(value['speciality'] ?? ''),
+      hospital: String(value['hospital'] ?? ''),
+      image: this.imageData || this.doctor?.image || '',
+    };
+
+    if (this.isEdit && payload.id) {
+      this.doctorsService.updateDoctors(payload);
+    } else {
+      this.doctorsService.addDoctor({ ...payload, id: '' });
     }
-  }
-  // Handle file doctor selection
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-       this.formData.image = reader.result as string; // base64 data
-      };
-      reader.readAsDataURL(file);
-    }
+    this.onCancel();
   }
 
-  @Input() doctor: Doctor | null = null;
-  // cancel form
-  onCancel() {
-    this.cancel.emit();
+  onCancel(): void {
+    this.close.emit();
   }
 
+  onFileSelected(event: { field: string; file: File }): void {
+    if (event.field !== 'image') return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageData = reader.result as string;
+    };
+    reader.readAsDataURL(event.file);
+  }
 }

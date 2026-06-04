@@ -74,7 +74,7 @@ export class AppointmentsComponent {
   }
 
   // REMOVE APPOINTMENTS
-  async removeAppointment(id: number, fullName: string) {
+  async removeAppointment(id: string, fullName: string) {
     const ok = await this.confirm.request({
       title: 'Delete Appointment',
       message: 'Are you sure you want to delete the',

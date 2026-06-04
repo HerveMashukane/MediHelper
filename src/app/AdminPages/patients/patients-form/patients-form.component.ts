@@ -1,105 +1,79 @@
 import { Patient, PatientsService } from '../../../services/patients/patients.service';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { DynamicFormComponent } from '../../../shared/components/dynamic-form/dynamic-form.component';
+import { PATIENT_FORM_CONFIG } from '../../../features/clinical/config/patient-form.schema';
 
 @Component({
   selector: 'app-patients-form',
   standalone: true,
-  imports: [FormsModule],
-  templateUrl: './patients-form.component.html',
-  styleUrl: './patients-form.component.css'
+  imports: [DynamicFormComponent],
+  template: `
+    <app-dynamic-form
+      [config]="formConfig"
+      [initialValue]="initialValue"
+      [isEdit]="isEdit"
+      (submitted)="onSubmit($event)"
+      (cancelled)="onCancel()"
+      (fileSelected)="onFileSelected($event)"
+    />
+  `,
 })
-export class PatientsFormComponent {
-  formData: Patient = {
-    id: 0,
-    preferedName: '',
-    image: '',
-    fullName: '',
-    email: '',
-    phone: '',
-    department: '',
-    age: '',
-    bloodGroup: ''
-  };
+export class PatientsFormComponent implements OnChanges {
+  formConfig = PATIENT_FORM_CONFIG;
+  initialValue: Record<string, unknown> | null = null;
+  isEdit = false;
+  private imageData = '';
 
   constructor(private patientsService: PatientsService) {}
 
-  // populate form on edit
-  ngOnInit() {
-    if (this.patient) {
-      this.formData = { ...this.patient };
-    }
-  }
-  // patients data submission
-  onSubmit() {
-    // EDIT MODE (has id means already exists)
-    const isEditing = this.formData.id !== 0;
-    if (isEditing) {
-      // No strict validation required here
-      // Even if user changes nothing, we allow save
-      this.patientsService.updatePatients({...this.formData});
+  @Input() patient: Patient | null = null;
+  @Output() close = new EventEmitter<void>();
 
-    } else {
-
-      // CREATE MODE (create new patient must validate first)
-      if (
-        this.formData.preferedName && 
-        this.formData.fullName && 
-        this.formData.email && 
-        this.formData.phone && 
-        this.formData.department && 
-        this.formData.age && 
-        this.formData.bloodGroup
-      ) {
-
-        const newPatient: Patient = {
-          ...this.formData,
-          id: Date.now()    // ensure ID is generated
-        };
-
-        this.patientsService.addPatient(newPatient);
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['patient']) {
+      if (this.patient?.id) {
+        this.isEdit = true;
+        this.initialValue = { ...this.patient };
+        this.imageData = this.patient.image ?? '';
       } else {
-        // Optional but important UX feedback
-        alert('Please fill all required fields');
-        return; // stop execution
+        this.isEdit = false;
+        this.initialValue = null;
+        this.imageData = '';
       }
     }
-    this.resetForm();
-    this.onCancel()
   }
 
-  // reset form after successful submission
-  resetForm() {
-    this.formData = {
-      id: 0,
-      preferedName: '',
-      image: '',
-      fullName: '',
-      email: '',
-      phone: '',
-      department: '',
-      age: '',
-      bloodGroup: ''
+  onSubmit(value: Record<string, unknown>): void {
+    const payload: Patient = {
+      id: this.patient?.id ?? '',
+      preferedName: String(value['preferedName'] ?? ''),
+      fullName: String(value['fullName'] ?? ''),
+      email: String(value['email'] ?? ''),
+      phone: String(value['phone'] ?? ''),
+      department: String(value['department'] ?? ''),
+      age: String(value['age'] ?? ''),
+      bloodGroup: String(value['bloodGroup'] ?? ''),
+      image: this.imageData || this.patient?.image || '',
     };
+
+    if (this.isEdit && payload.id) {
+      this.patientsService.updatePatients(payload);
+    } else {
+      this.patientsService.addPatient({ ...payload, id: '' });
+    }
+    this.onCancel();
   }
 
-  @Input() patient: Patient | null = null;
-  // cancel patients form
-  @Output() close = new EventEmitter<void>();
-  onCancel() {
+  onCancel(): void {
     this.close.emit();
   }
 
-  // Handle file patient selection
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-       this.formData.image = reader.result as string; // base64 data
-      };
-      reader.readAsDataURL(file);
-    }
+  onFileSelected(event: { field: string; file: File }): void {
+    if (event.field !== 'image') return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageData = reader.result as string;
+    };
+    reader.readAsDataURL(event.file);
   }
 }
