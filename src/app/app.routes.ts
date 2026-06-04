@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-import { AdminLoginComponent } from './core/auth/admin-login/admin-login.component';
+import { AdminLoginComponent } from './core/auth/login-page/login-page.component';
 
 // Admin
 import { AdminDashboardComponent } from './features/admin/dashboard/admin-dashboard.component';
