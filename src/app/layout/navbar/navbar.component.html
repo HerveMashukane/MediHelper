@@ -70,7 +70,7 @@
       <div 
         class="hidden md:block text-left leading-tight cursor-pointer animate-pageFlip"
         (click)="toggleDropdown()">
-        <p class="text-sm font-semibold">Hervé Mashukane</p>
+        <p class="text-sm font-semibold">{{ displayName() }}</p>
         <p class="text-xs text-sky-500">MediHelper Admin</p>
       </div>
 
@@ -91,10 +91,9 @@
               alt="User"
             />
 
-            <div>
-              <p class="text-sm font-semibold leading-none">{{ displayName() }}</p>
-              <p class="text-xs leading-none">{{ displayMail() }}</p>
-              <p class="text-xs text-sky-500">{{ roleLabel() }}</p>
+            <div class="space-y-1">
+              <p class="text-sm leading-none">{{ displayMail() }}</p>
+              <p class="text-sm text-sky-500">{{ roleLabel() }}</p>
             </div>
           </div>
 
