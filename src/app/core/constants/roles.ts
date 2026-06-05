@@ -13,7 +13,7 @@ export const STAFF_UNITS = ['pharmacy', 'laboratory', 'radiology'] as const;
 export type StaffUnit = (typeof STAFF_UNITS)[number];
 
 export const ROLE_LABELS: Record<UserRole, string> = {
-  [ROLES.ADMIN]: 'Administrator',
+  [ROLES.ADMIN]: 'Admin',
   [ROLES.DOCTOR]: 'Doctor',
   [ROLES.PATIENT]: 'Patient',
   [ROLES.RECEPTIONIST]: 'Receptionist',
