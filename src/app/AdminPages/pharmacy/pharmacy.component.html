@@ -1,55 +1,41 @@
 <section class="page-container animate-pageFlip">
+  <app-page-header
+    [title]="'Medication Tracker'"
+    [subtitle]="((filteredMedications$ | async)?.length ?? 0) + ' medications'"
+  >
+    <app-button
+      [variant]="isFormVisible ? 'danger' : 'primary'"
+      [icon]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"
+      (clicked)="toggleForm()"
+    >
+      {{ isFormVisible ? 'Close Form' : 'Add Medication' }}
+    </app-button>
+  </app-page-header>
 
-  <!-- ================= TOOLBAR ================= -->
-  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-
-    <!-- SEARCH -->
+  <div class="toolbar-panel">
     <input
       type="text"
       placeholder="Search medication..."
       [(ngModel)]="searchTerm"
       (ngModelChange)="searchTerm$.next($event)"
-      class="clinical-input w-full lg:w-80"
+      class="clinical-input max-w-xs"
     />
-
-    <div class="flex flex-col sm:flex-row gap-4">
-
-      <!-- FILTER -->
-      <select
-        [(ngModel)]="selectedStatus"
-        (ngModelChange)="selectedStatus$.next($event)"
-        class="clinical-input w-full sm:w-60"
-      >
-        <option value="All">All Medications</option>
-        <option value="Active">Active</option>
-        <option value="Inactive">Inactive</option>
-        <option value="Completed">Completed</option>
-        <option value="Pending">Pending</option>
-      </select>
-
-      <!-- PRIMARY ACTION -->
-      <button
-        (click)="toggleForm()"
-        class="btn"
-        [ngClass]="isFormVisible ? 'btn-danger' : 'btn-primary'"
-      >
-        <i [class]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"></i>
-        <span class="ml-2">
-          {{ isFormVisible ? 'Close Form' : 'Add Medication' }}
-        </span>
-      </button>
-
-    </div>
-
+    <select
+      [(ngModel)]="selectedStatus"
+      (ngModelChange)="selectedStatus$.next($event)"
+      class="clinical-input max-w-xs"
+    >
+      <option value="All" selected>All Medications</option>
+      <option value="Active">Active</option>
+      <option value="Inactive">Inactive</option>
+      <option value="Completed">Completed</option>
+      <option value="Pending">Pending</option>
+    </select>
   </div>
 
-  <!-- ================= TABLE ================= -->
-  <div class="table-wrapper mt-6">
-
-    <table class="table">
-
+  <div class="table-wrapper">
+    <table class="table text-left">
       <thead class="table-head">
-
         <tr>
           <th class="table-cell">Medication</th>
           <th class="table-cell">Dosage</th>
@@ -61,134 +47,71 @@
           <th class="table-cell">Status</th>
           <th class="table-cell">Actions</th>
         </tr>
-
       </thead>
-
       <tbody>
-
         <ng-container *ngIf="filteredMedications$ | async as meds">
-
-          <!-- EMPTY STATE -->
           <tr *ngIf="meds.length === 0">
-            <td colspan="9" class="text-center text-clinical-muted py-8">
-              No medications found.
-            </td>
+            <td colspan="9" class="table-empty">No medications found.</td>
           </tr>
-
-          <!-- ROWS -->
-          <tr
-            *ngFor="let med of meds; let i = index"
-            class="table-row"
-          >
-
-            <td class="table-cell font-semibold">
-              {{ med.medName }}
-            </td>
-
-            <td class="table-cell">
-              {{ med.dosage }} {{ med.dosageUnit }}
-            </td>
-
-            <td class="table-cell">
-              {{ med.schedule }}
-            </td>
-
-            <td class="table-cell text-brand-primary">
-              {{ med.doctorName }}
-            </td>
-
-            <td class="table-cell">
-              {{ med.startDate }}
-            </td>
-
-            <td class="table-cell">
-              {{ med.endDate }}
-            </td>
-
-            <!-- ================= PROGRESS ================= -->
-            <td class="table-cell w-44">
-
-              <div class="w-full bg-surface-2 rounded-full h-2 overflow-hidden">
-
-                <div
-                  class="h-2 bg-success transition-all duration-300"
-                  [style.width.%]="getProgress(med)"
-                ></div>
-
+          <tr *ngFor="let med of meds; let i = index" class="table-row">
+            <td class="table-cell font-semibold">{{ med.medName }}</td>
+            <td class="table-cell">{{ med.dosage }}{{ med.dosageUnit }}</td>
+            <td class="table-cell">{{ med.schedule }}</td>
+            <td class="table-cell text-clinical-accent">{{ med.doctorName }}</td>
+            <td class="table-cell">{{ med.startDate }}</td>
+            <td class="table-cell">{{ med.endDate }}</td>
+            <td class="table-cell w-40">
+              <div class="progress-track">
+                <div class="progress-fill" [style.width.%]="getProgress(med)"></div>
               </div>
-
-              <span class="text-xs text-clinical-muted">
-                {{ getProgress(med) }}%
-              </span>
-
+              <span class="text-xs text-clinical-muted">{{ getProgress(med) }}%</span>
             </td>
-
-            <!-- ================= STATUS ================= -->
             <td class="table-cell">
-
-              <span
-                class="px-3 py-1 text-xs rounded-full"
-                [ngClass]="{
-                  'bg-success/20 text-success': med.status === 'Active',
-                  'bg-warning/20 text-warning': med.status === 'Pending',
-                  'bg-danger/20 text-danger': med.status === 'Inactive',
-                  'bg-brand-primary/20 text-brand-primary': med.status === 'Completed'
-                }"
-              >
-                {{ med.status }}
-              </span>
-
+              <span [ngClass]="getStatusClass(med.status)">{{ med.status }}</span>
             </td>
-
-            <!-- ================= ACTIONS ================= -->
             <td class="table-cell relative">
-
-              <button
-                (click)="toggleMenu(i)"
-                class="btn btn-ghost px-2 py-1"
-              >
-                ⋮
-              </button>
-
-              <div
-                *ngIf="activeMenuIndex === i"
-                class="absolute right-2 mt-2 w-44 bg-surface-1 border border-surface-2 rounded-xl shadow-card z-50 overflow-hidden"
-              >
-
-                <button class="w-full text-left px-4 py-2 text-brand-primary hover:bg-surface-2">
-                  <i class="bi bi-eye-fill mr-2"></i> View
+              <button (click)="toggleMenu(i)" class="btn-icon">⋮</button>
+              <div *ngIf="activeMenuIndex === i" class="dropdown-menu">
+                <button title="View" class="dropdown-item-view">
+                  <i class="bi bi-eye-fill"></i>
+                  <span>View</span>
                 </button>
-
-                <button
-                  (click)="editMedications(med)"
-                  class="w-full text-left px-4 py-2 text-warning hover:bg-surface-2"
-                >
-                  <i class="bi bi-pen mr-2"></i> Edit
+                <button (click)="editMedications(med)" title="Edit" class="dropdown-item-edit">
+                  <i class="bi bi-pen"></i>
+                  <span>Edit</span>
                 </button>
-
-                <button class="w-full text-left px-4 py-2 text-info hover:bg-surface-2">
-                  <i class="bi bi-patch-check-fill mr-2"></i> Adherent
+                <button title="Adherent" class="dropdown-item-view">
+                  <i class="bi bi-patch-check-fill"></i>
+                  <span>Adherent</span>
                 </button>
-
-                <button
-                  (click)="removeMedication(med.id, med.medName)"
-                  class="w-full text-left px-4 py-2 text-danger hover:bg-surface-2"
-                >
-                  <i class="bi bi-trash mr-2"></i> Delete
+                <button (click)="removeMedication(med.id, med.medName)" title="Delete" class="dropdown-item-delete">
+                  <i class="bi bi-trash"></i>
+                  <span>Delete</span>
                 </button>
-
               </div>
-
             </td>
-
           </tr>
-
         </ng-container>
-
       </tbody>
-
     </table>
-
   </div>
 
+  <div *ngIf="medications$ | async as meds" class="pagination">
+    <p>
+      Showing 1 – {{ meds.length }} of {{ meds.length }}
+      medication<span *ngIf="meds.length !== 1">s</span>
+    </p>
+    <div class="space-x-2">
+      <button class="pagination-btn">Prev</button>
+      <button class="pagination-btn-active">1</button>
+      <button class="pagination-btn">2</button>
+      <button class="pagination-btn">Next</button>
+    </div>
+  </div>
 </section>
+
+<app-medication-form
+  *ngIf="isFormVisible"
+  [medication]="editingMedication"
+  (cancel)="closeFromChild()"
+></app-medication-form>

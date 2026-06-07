@@ -21,7 +21,7 @@ import { AppointmentService } from '../../../services/appointments/appointment.s
     >
       <div class="clinical-card p-6">
         <h2 class="text-lg font-semibold text-white mb-3">Desk checklist</h2>
-        <ul class="text-sm text-slate-300 space-y-2">
+        <ul class="text-sm text-clinical-body space-y-2">
           <li>Verify insurance for afternoon appointments</li>
           <li>Print visit summaries for discharged patients</li>
           <li>Update no-show status for missed slots</li>
@@ -42,10 +42,10 @@ export class ReceptionDashboardComponent {
       this.appointmentService.appointmentStats$,
     ]).pipe(
       map(([p, a]): DashboardKpi[] => [
-        { title: 'Registered Patients', value: p.Total, icon: 'fa-users', accent: 'green', link: '/receptionist/patients' },
-        { title: 'Appointments Today', value: a.Active + a.Upcoming, icon: 'fa-calendar-day', accent: 'sky', link: '/receptionist/appointments' },
-        { title: 'Pending Check-in', value: a.Pending, icon: 'fa-clock', accent: 'yellow' },
-        { title: 'Cancellations', value: a.Canceled, icon: 'fa-ban', accent: 'red' },
+        { title: 'Registered Patients', value: p.Total, icon: 'fa-users', accent: 'patient', link: '/receptionist/patients' },
+        { title: 'Appointments Today', value: a.Active + a.Upcoming, icon: 'fa-calendar-day', accent: 'appointment', link: '/receptionist/appointments' },
+        { title: 'Pending Check-in', value: a.Pending, icon: 'fa-clock', accent: 'medication' },
+        { title: 'Cancellations', value: a.Canceled, icon: 'fa-ban', accent: 'critical' },
       ])
     );
   }

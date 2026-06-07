@@ -28,8 +28,11 @@ export interface DashboardKpi {
         <div class="flex items-center gap-4 text-sm">
           @if (showConnection) {
             <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full" [ngClass]="connected ? 'bg-emerald-500' : 'bg-red-500'"></span>
-              <span [ngClass]="connected ? 'text-emerald-400' : 'text-red-400'">
+              <span
+                class="w-2 h-2 rounded-full"
+                [ngClass]="connected ? 'connection-dot-online' : 'connection-dot-offline'"
+              ></span>
+              <span [ngClass]="connected ? 'connection-text-online' : 'connection-text-offline'">
                 {{ connected ? 'System Connected' : 'System Disconnected' }}
               </span>
             </div>
@@ -39,24 +42,24 @@ export interface DashboardKpi {
       </header>
 
       @if (alertMessage) {
-        <div class="bg-red-950/40 border border-red-800 p-4 rounded-xl flex justify-between items-center gap-4">
-          <p class="text-sm text-red-200">{{ alertMessage }}</p>
+        <div class="alert-danger">
+          <p class="alert-danger-text">{{ alertMessage }}</p>
           @if (alertActionRoute) {
-            <a [routerLink]="alertActionRoute" class="text-sm bg-red-800 hover:bg-red-700 px-4 py-1.5 rounded-lg transition shrink-0">
+            <a [routerLink]="alertActionRoute" class="btn-danger btn-sm shrink-0">
               {{ alertActionLabel ?? 'View' }}
             </a>
           }
         </div>
       }
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div class="kpi-grid">
         @for (kpi of kpis; track kpi.title) {
           <app-kpi-card
             [title]="kpi.title"
             [value]="kpi.value"
             [trend]="kpi.trend"
             [icon]="kpi.icon"
-            [accent]="kpi.accent ?? 'sky'"
+            [accent]="kpi.accent ?? 'appointment'"
             [link]="kpi.link"
           />
         }

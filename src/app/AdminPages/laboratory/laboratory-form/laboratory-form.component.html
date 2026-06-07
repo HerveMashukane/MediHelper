@@ -1,114 +1,68 @@
-<section class="fixed inset-0 flex items-center justify-center bg-black/70 p-4 lg:p-8 animate-pageFlip">
-    <!-- LABORATORY FORM -->
-    <form (ngSubmit)="submitLabTest()" class="bg-gray-900 p-8 rounded-xl border border-gray-800 space-y-5">
-        <!-- text header -->
-        <div class="flex flex-col space-y-4">
-            <h2 class="text-2xl text-white font-semibold">
-                Laboratory exams form
-            </h2>
-            <h3 class="text-lg text-white font-semibold">
-                Laboratory details
-            </h3>
-        </div>
+<section class="form-overlay">
+  <form (ngSubmit)="submitLabTest()" class="form-panel">
+    <div class="form-panel-header">
+      <div>
+        <h2 class="form-panel-title">Laboratory Exam Form</h2>
+        <p class="text-clinical-muted text-sm mt-1">Laboratory details</p>
+      </div>
+      <button type="button" (click)="closeForm()" class="form-close-btn">
+        <i class="bi bi-x-circle text-2xl"></i>
+      </button>
+    </div>
 
-        <!-- patient and doctor names -->
-        <div class="grid grid-cols-2 gap-4">
-            <!-- Patient Name -->
-            <div class="flex flex-col space-y-2">
-                <label for="patientName" class="text-gray-300">
-                    Patient Name
-                </label>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="patientName" class="form-label">Patient Name</label>
+        <input type="text" placeholder="Type patient name..." [(ngModel)]="formData.patientName" name="formData.patientName" class="clinical-input" />
+      </div>
+      <div class="flex flex-col">
+        <label for="technologistName" class="form-label">Select Technologist</label>
+        <select [(ngModel)]="formData.technologistName" name="formData.technologistName" class="clinical-input">
+          <option value="" selected>Choose Technologist...</option>
+          <option value="Herve">Herve</option>
+          <option value="Hiro">Hiro</option>
+          <option value="Patricia">Patricia</option>
+          <option value="Sylvie">Sylvie</option>
+        </select>
+      </div>
+    </div>
 
-                <input
-                    type="text"
-                    placeholder="Type patient name..."
-                    [(ngModel)]="formData.patientName"
-                    name="formData.patientName"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
-                >
-            </div>
-            <!-- Technologist name -->
-            <div class="flex flex-col space-y-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="status" class="form-label">Test Status</label>
+        <select [(ngModel)]="formData.status" name="form.status" class="clinical-input">
+          <option value="" selected>Choose status</option>
+          <option value="Active">Active</option>
+          <option value="Completed">Completed</option>
+          <option value="Pending">Pending</option>
+          <option value="Canceled">Canceled</option>
+          <option value="Critical">Critical</option>
+        </select>
+      </div>
+      <div class="flex flex-col">
+        <label for="testType" class="form-label">Select Test type</label>
+        <select [(ngModel)]="formData.testType" name="form.testType" class="clinical-input">
+          <option value="" selected>Choose test type</option>
+          <option value="Blood">Blood</option>
+          <option value="Urine">Urine</option>
+          <option value="Body">Body</option>
+          <option value="HIV">HIV</option>
+          <option value="Malaria">Malaria</option>
+          <option value="">Other</option>
+        </select>
+      </div>
+    </div>
 
-                <label for="technologistName" class="text-gray-300">
-                    Select Technologist
-                </label>
-                <select
-                    [(ngModel)]="formData.technologistName"
-                    name="formData.technologistName"
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                    <option value="" selected>Choose Technologist...</option>
-                    <option value="Herve">Herve</option>
-                    <option value="Hiro">Hiro</option>
-                    <option value="Patricia">Patricia</option>
-                    <option value="Sylvie">Sylvie</option>
-                </select>
-            </div>
-        </div>
+    <div class="flex flex-col">
+      <label for="date" class="form-label">Test Taken Date</label>
+      <input type="date" [(ngModel)]="formData.date" name="formData.date" class="clinical-input" />
+    </div>
 
-        <!-- exam status and type -->
-        <div class="grid grid-cols-2 gap-4">
-            <!-- test status -->
-            <div class="flex flex-col space-y-2">
-                <label for="status" class="text-gray-300">
-                    Test Status
-                </label>
-                <select 
-                    [(ngModel)]="formData.status" 
-                    name="form.status" 
-                    class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                    <option value="" selected>Choose status</option>
-                    <option value="Active">Active</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Pending"form>Pending</option>
-                    <option value="Canceled">Canceled</option>
-                    <option value="Critical">Critical</option>
-                </select>
-            </div>
-
-            <!-- Test Type -->
-            <div class="flex flex-col space-y-2">
-
-                <label for="testType" class="text-gray-300">
-                    Select Test type
-                </label>
-                <select 
-                    [(ngModel)]="formData.testType"
-                    name="form.testType" class="bg-gray-900 text-white border border-gray-700 p-2 rounded-md focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                    <option value="" selected>Choose test type</option>
-                    <option value="Blood">Blood</option>
-                    <option value="Urine">Urine</option>
-                    <option value="Body">Body</option>
-                    <option value="HIV">HIV</option>
-                    <option value="Malaria">Malaria</option>
-                    <option value="">Other</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Date -->
-        <div class="flex flex-col space-y-2">
-
-            <label for="date" class="text-gray-300">
-                Test Taken Date
-            </label>
-
-            <input
-                type="date"
-                [(ngModel)]="formData.date"
-                name="formData.date"
-                class="bg-gray-950 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-
-        </div>
-
-        <!-- Buttons -->
-        <div class="flex justify-end space-x-4">
-            <button type="submit" class="bg-sky-500 hover:bg-sky-600 text-white transition px-6 py-2 rounded-lg font-semibold">
-                    {{ formData.id ? "Save Changes" : "Add Test"}}
-            </button>
-            <button type="button" (click)="closeForm()" class="bg-red-600 hover:bg-red-500 text-white transition px-6 py-2 rounded-lg font-semibold">
-                    Cancel
-            </button>
-        </div>
-    </form>
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">
+        {{ formData.id ? 'Save Changes' : 'Add Test' }}
+      </button>
+      <button type="button" (click)="closeForm()" class="btn-danger">Cancel</button>
+    </div>
+  </form>
 </section>

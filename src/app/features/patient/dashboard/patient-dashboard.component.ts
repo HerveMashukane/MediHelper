@@ -18,11 +18,11 @@ import { AppointmentService } from '../../../services/appointments/appointment.s
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="clinical-card p-6">
           <h2 class="text-lg font-semibold text-white mb-2">Next appointment</h2>
-          <p class="text-slate-300 text-sm">Check Appointments for your full schedule.</p>
+          <p class="text-clinical-body text-sm">Check Appointments for your full schedule.</p>
         </div>
         <div class="clinical-card p-6">
           <h2 class="text-lg font-semibold text-white mb-2">Health summary</h2>
-          <p class="text-slate-300 text-sm">View records for prescriptions, labs, and visit history.</p>
+          <p class="text-clinical-body text-sm">View records for prescriptions, labs, and visit history.</p>
         </div>
       </div>
     </app-dashboard-shell>
@@ -34,10 +34,10 @@ export class PatientDashboardComponent {
   constructor(private appointmentService: AppointmentService) {
     this.kpis$ = this.appointmentService.appointmentStats$.pipe(
       map((a): DashboardKpi[] => [
-        { title: 'Upcoming Visits', value: a.Upcoming, icon: 'fa-calendar-check', accent: 'sky', link: '/patient/appointments' },
-        { title: 'Completed Visits', value: a.Completed, icon: 'fa-clipboard-check', accent: 'green' },
-        { title: 'Active Prescriptions', value: 2, icon: 'fa-pills', accent: 'yellow' },
-        { title: 'Messages', value: 0, trend: 'No unread', icon: 'fa-envelope', accent: 'slate' },
+        { title: 'Upcoming Visits', value: a.Upcoming, icon: 'fa-calendar-check', accent: 'appointment', link: '/patient/appointments' },
+        { title: 'Completed Visits', value: a.Completed, icon: 'fa-clipboard-check', accent: 'patient' },
+        { title: 'Active Prescriptions', value: 2, icon: 'fa-pills', accent: 'medication' },
+        { title: 'Messages', value: 0, trend: 'No unread', icon: 'fa-envelope', accent: 'neutral' },
       ])
     );
   }

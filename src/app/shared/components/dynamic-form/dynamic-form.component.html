@@ -1,24 +1,24 @@
-<section class="fixed inset-0 flex items-center justify-center bg-black/70 p-4 z-50 animate-pageFlip">
+<section class="form-overlay">
   <form
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
-    class="flex flex-col w-full max-w-lg max-h-[90vh] overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-950 text-white p-8 space-y-6 rounded-xl shadow-2xl border border-slate-800"
+    class="form-panel"
   >
-    <div class="flex justify-between items-center border-b border-slate-800 pb-4">
-      <h2 class="text-2xl font-bold">{{ config.title }}</h2>
-      <button type="button" (click)="onCancel()" class="text-slate-400 hover:text-red-400 transition" aria-label="Close">
+    <div class="form-panel-header">
+      <h2 class="form-panel-title">{{ config.title }}</h2>
+      <button type="button" (click)="onCancel()" class="form-close-btn" aria-label="Close">
         <i class="bi bi-x-circle text-2xl"></i>
       </button>
     </div>
 
     @if (validationError) {
-      <p class="text-sm text-red-400 bg-red-950/40 border border-red-900 rounded-lg px-3 py-2">{{ validationError }}</p>
+      <p class="form-error">{{ validationError }}</p>
     }
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       @for (field of config.fields; track field.field) {
         <div class="flex flex-col" [ngClass]="fieldColClass(field)">
-          <label [for]="field.field" class="font-medium text-sm text-slate-300 mb-1">{{ field.label }}</label>
+          <label [for]="field.field" class="form-label">{{ field.label }}</label>
 
           @switch (field.type) {
             @case ('select') {
@@ -26,7 +26,7 @@
                 [id]="field.field"
                 [formControlName]="field.field"
                 class="clinical-input"
-                [class.border-red-600]="isInvalid(field.field)"
+                [class.input-invalid]="isInvalid(field.field)"
               >
                 <option value="" disabled>{{ field.placeholder ?? 'Select...' }}</option>
                 @for (opt of field.options; track opt.value) {
@@ -41,7 +41,7 @@
                 [placeholder]="field.placeholder ?? ''"
                 rows="3"
                 class="clinical-input"
-                [class.border-red-600]="isInvalid(field.field)"
+                [class.input-invalid]="isInvalid(field.field)"
               ></textarea>
             }
             @case ('file') {
@@ -61,7 +61,7 @@
                 [min]="field.min"
                 [readonly]="field.readonly"
                 class="clinical-input"
-                [class.border-red-600]="isInvalid(field.field)"
+                [class.input-invalid]="isInvalid(field.field)"
               />
             }
           }
@@ -69,7 +69,7 @@
       }
     </div>
 
-    <div class="flex justify-end gap-3 pt-2">
+    <div class="form-actions">
       <app-button type="submit" variant="primary">{{ submitLabel() }}</app-button>
       <app-button type="button" variant="danger" (clicked)="onCancel()">Cancel</app-button>
     </div>

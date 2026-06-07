@@ -1,66 +1,75 @@
 <section class="page-container animate-pageFlip">
+  <app-page-header
+    [title]="'Laboratory Tests'"
+    [subtitle]="((filteredTests$ | async)?.length ?? 0) + ' tests'"
+  >
+    <app-button
+      [variant]="isFormVisible ? 'danger' : 'primary'"
+      [icon]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"
+      (clicked)="toggleForm()"
+    >
+      {{ isFormVisible ? 'Close Form' : 'New Lab Test' }}
+    </app-button>
+  </app-page-header>
 
-  <!-- ================= KPI GRID ================= -->
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-6">
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Pending</p>
-      <h2 class="kpi-value text-warning">{{ stats.Pending }}</h2>
+  <div *ngIf="laboTestStats$ | async as stats" class="kpi-grid">
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Total Tests</p>
+      <h2 class="text-2xl font-semibold mt-2">{{ stats.Total }}</h2>
     </div>
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Completed</p>
-      <h2 class="kpi-value text-success">{{ stats.Completed }}</h2>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Pending</p>
+      <h2 class="text-2xl font-semibold mt-2 kpi-accent-medication">{{ stats.Pending }}</h2>
     </div>
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Canceled</p>
-      <h2 class="kpi-value text-danger">{{ stats.Canceled }}</h2>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Completed</p>
+      <h2 class="text-2xl font-semibold mt-2 kpi-accent-patient">{{ stats.Completed }}</h2>
     </div>
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Critical Results</p>
-      <h2 class="kpi-value text-danger">{{ stats.Critical }}</h2>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Canceled</p>
+      <h2 class="text-2xl font-semibold mt-2 kpi-accent-critical">{{ stats.Canceled }}</h2>
     </div>
-
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Critical Results</p>
+      <h2 class="text-2xl font-semibold mt-2 kpi-accent-critical">{{ stats.Critical }}</h2>
+    </div>
   </div>
 
-  <!-- ================= FILTER BAR ================= -->
-  <div class="flex flex-col md:flex-row gap-4 mb-6">
-
+  <div class="toolbar-panel">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="searchTerm$.next($event)"
+      placeholder="Search patient or technologist..."
+      class="clinical-input max-w-xs"
+    />
     <select
       [(ngModel)]="selectedTestType"
       (ngModelChange)="selectedTestType$.next($event)"
-      class="clinical-input w-full md:w-60"
+      class="clinical-input max-w-xs"
     >
-      <option value="All">All Tests</option>
+      <option value="All" selected>All Tests</option>
       <option value="BloodTest">Blood Test</option>
       <option value="UrineTest">Urine Test</option>
       <option value="BodyTest">Whole Body Test</option>
     </select>
-
     <select
       [(ngModel)]="selectedStatus"
       (ngModelChange)="selectedStatus$.next($event)"
-      class="clinical-input w-full md:w-60"
+      class="clinical-input max-w-xs"
     >
-      <option value="All">Filter by status</option>
+      <option value="All" selected>Filter by status</option>
       <option value="Active">Active</option>
       <option value="Pending">Pending</option>
       <option value="Completed">Completed</option>
       <option value="Canceled">Canceled</option>
       <option value="Critical">Critical</option>
     </select>
-
   </div>
 
-  <!-- ================= TABLE ================= -->
   <div class="table-wrapper">
-
-    <table class="table">
-
+    <table class="table text-left">
       <thead class="table-head">
-
         <tr>
           <th class="table-cell">Patient</th>
           <th class="table-cell">Test</th>
@@ -69,113 +78,66 @@
           <th class="table-cell">Status</th>
           <th class="table-cell">Actions</th>
         </tr>
-
       </thead>
-
       <tbody>
-
         <ng-container *ngIf="filteredTests$ | async as laboTests">
-
-          <!-- EMPTY STATE -->
           <tr *ngIf="laboTests.length === 0">
-            <td colspan="6" class="text-center text-clinical-muted py-8">
-              No laboratory tests found.
-            </td>
+            <td colspan="6" class="table-empty">No lab tests found.</td>
           </tr>
-
-          <!-- ROWS -->
-          <tr
-            *ngFor="let test of laboTests; let i = index"
-            class="table-row"
-          >
-
+          <tr *ngFor="let test of laboTests; let i = index" class="table-row">
+            <td class="table-cell">{{ test.patientName }}</td>
+            <td class="table-cell">{{ test.testType }}</td>
+            <td class="table-cell">{{ test.technologistName }}</td>
+            <td class="table-cell">{{ test.date }}</td>
             <td class="table-cell">
-              {{ test.patientName }}
+              <span [ngClass]="getStatusClass(test.status)">{{ test.status }}</span>
             </td>
-
-            <td class="table-cell font-medium">
-              {{ test.testType }}
-            </td>
-
-            <td class="table-cell text-brand-primary">
-              {{ test.technologistName }}
-            </td>
-
-            <td class="table-cell">
-              {{ test.date }}
-            </td>
-
-            <!-- ================= STATUS ================= -->
-            <td class="table-cell">
-
-              <span
-                class="px-3 py-1 text-xs rounded-full"
-                [ngClass]="{
-                  'bg-success/20 text-success': test.status === 'Completed',
-                  'bg-warning/20 text-warning': test.status === 'Pending',
-                  'bg-brand-primary/20 text-brand-primary': test.status === 'Active',
-                  'bg-danger/20 text-danger': test.status === 'Canceled',
-                  'bg-danger/30 text-danger': test.status === 'Critical'
-                }"
-              >
-                {{ test.status }}
-              </span>
-
-            </td>
-
-            <!-- ================= ACTIONS ================= -->
             <td class="table-cell relative">
-
-              <button
-                (click)="toggleMenu(i)"
-                class="btn btn-ghost px-2 py-1"
-              >
-                ⋮
-              </button>
-
-              <div
-                *ngIf="activeMenuIndex === i"
-                class="absolute right-2 mt-2 w-44 bg-surface-1 border border-surface-2 rounded-xl shadow-card z-50 overflow-hidden"
-              >
-
-                <button class="w-full text-left px-4 py-2 text-brand-primary hover:bg-surface-2">
-                  <i class="bi bi-eye-fill mr-2"></i> View
+              <button (click)="toggleMenu(i)" class="btn-icon">⋮</button>
+              <div *ngIf="activeMenuIndex === i" class="dropdown-menu">
+                <button title="View" class="dropdown-item-view">
+                  <i class="bi bi-eye-fill"></i>
+                  <span>View</span>
                 </button>
-
-                <button
-                  (click)="editLaboTest(test)"
-                  class="w-full text-left px-4 py-2 text-warning hover:bg-surface-2"
-                >
-                  <i class="bi bi-pen mr-2"></i> Edit
+                <button (click)="editLaboTest(test)" title="Edit" class="dropdown-item-edit">
+                  <i class="bi bi-pen"></i>
+                  <span>Edit</span>
                 </button>
-
-                <button class="w-full text-left px-4 py-2 text-info hover:bg-surface-2">
-                  <i class="bi bi-clipboard-data mr-2"></i> Result
+                <button title="Result" class="dropdown-item-view">
+                  <i class="bi bi-clipboard-data"></i>
+                  <span>Result</span>
                 </button>
-
-                <button class="w-full text-left px-4 py-2 text-success hover:bg-surface-2">
-                  <i class="bi bi-patch-check-fill mr-2"></i> Validate
+                <button title="Validate" class="dropdown-item-view">
+                  <i class="bi bi-patch-check-fill"></i>
+                  <span>Validate</span>
                 </button>
-
-                <button
-                  (click)="removeLabTest(test.id, test.testType)"
-                  class="w-full text-left px-4 py-2 text-danger hover:bg-surface-2"
-                >
-                  <i class="bi bi-trash mr-2"></i> Delete
+                <button (click)="removeLabTest(test.id, test.testType)" class="dropdown-item-delete">
+                  <i class="bi bi-trash"></i>
+                  <span>Delete</span>
                 </button>
-
               </div>
-
             </td>
-
           </tr>
-
         </ng-container>
-
       </tbody>
-
     </table>
-
   </div>
 
+  <div class="pagination">
+    <p *ngIf="filteredTests$ | async as tests">
+      Showing 1 – {{ tests.length }} of {{ tests.length }} tests
+    </p>
+    <div class="space-x-2">
+      <button class="pagination-btn">Prev</button>
+      <button class="pagination-btn-active">1</button>
+      <button class="pagination-btn">2</button>
+      <button class="pagination-btn">Next</button>
+    </div>
+  </div>
 </section>
+
+<app-laboratory-form
+  *ngIf="isFormVisible"
+  [laboTest]="editingLaboTest"
+  (cancel)="closeFromChild()"
+></app-laboratory-form>

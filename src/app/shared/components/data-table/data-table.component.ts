@@ -13,36 +13,36 @@ export interface TableColumn<T = unknown> {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="clinical-card overflow-hidden">
+    <div class="table-wrapper">
       @if (loading) {
         <div class="p-8 text-center text-clinical-muted">Loading records...</div>
       } @else if (error) {
-        <div class="p-8 text-center text-red-400">{{ error }}</div>
+        <div class="p-8 text-center text-clinical-error">{{ error }}</div>
       } @else if (!rows?.length) {
         <div class="p-8 text-center text-clinical-muted">{{ emptyMessage }}</div>
       } @else {
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm">
-            <thead class="bg-slate-800/80 text-slate-300">
+          <table class="table text-left">
+            <thead class="table-head">
               <tr>
                 @for (col of columns; track col.key) {
-                  <th class="p-4 font-medium" [style.width]="col.width">{{ col.header }}</th>
+                  <th class="table-cell font-medium" [style.width]="col.width">{{ col.header }}</th>
                 }
                 @if (actionsTemplate) {
-                  <th class="p-4 w-24">Actions</th>
+                  <th class="table-cell w-24">Actions</th>
                 }
               </tr>
             </thead>
             <tbody>
               @for (row of rows; track trackByFn($index, row)) {
-                <tr class="border-t border-slate-800 hover:bg-slate-800/50 transition">
+                <tr class="table-row">
                   @for (col of columns; track col.key) {
-                    <td class="p-4 text-slate-200">
+                    <td class="table-cell">
                       {{ col.cell ? col.cell(row) : getCellValue(row, col.key) }}
                     </td>
                   }
                   @if (actionsTemplate) {
-                    <td class="p-4">
+                    <td class="table-cell">
                       <ng-container *ngTemplateOutlet="actionsTemplate; context: { $implicit: row }"></ng-container>
                     </td>
                   }

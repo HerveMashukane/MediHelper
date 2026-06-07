@@ -1,97 +1,63 @@
 <section class="page-container animate-pageFlip">
+  <app-page-header
+    [title]="'Appointments'"
+    [subtitle]="((filteredAppointments$ | async)?.length ?? 0) + ' scheduled'"
+  >
+    <app-button
+      [variant]="isFormVisible ? 'danger' : 'primary'"
+      [icon]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"
+      (clicked)="toggleFormVisibility()"
+    >
+      {{ isFormVisible ? 'Close Form' : 'New Appointment' }}
+    </app-button>
+    <app-button variant="ghost">Calendar</app-button>
+  </app-page-header>
 
-  <!-- ================= HEADER ================= -->
-  <div class="page-header">
-
-    <div>
-      <h1 *ngIf="filteredAppointments$ | async as apps">
-        Total Appointments • <span>{{ apps.length }}</span>
-      </h1>
-
-      <p class="text-clinical-muted">
-        Manage patient appointments and scheduling
-      </p>
+  <div *ngIf="appointmentStats$ | async as stats" class="kpi-grid">
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Active</p>
+      <h2 class="text-2xl font-semibold mt-2 kpi-accent-appointment">{{ stats.Active }}</h2>
     </div>
-
-    <div class="flex items-center gap-3">
-
-      <!-- PRIMARY ACTION -->
-      <button
-        (click)="toggleFormVisibility()"
-        class="btn"
-        [ngClass]="isFormVisible ? 'btn-danger' : 'btn-primary'"
-      >
-        {{ isFormVisible ? 'Close Form' : 'New Appointment' }}
-      </button>
-
-      <!-- SECONDARY ACTION -->
-      <button class="btn btn-ghost">
-        Calendar
-      </button>
-
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Upcoming</p>
+      <h2 class="text-2xl font-semibold mt-2">{{ stats.Upcoming }}</h2>
     </div>
-
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Completed</p>
+      <h2 class="text-2xl font-semibold mt-2 kpi-accent-patient">{{ stats.Completed }}</h2>
+    </div>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Pending</p>
+      <h2 class="text-2xl font-semibold mt-2 kpi-accent-medication">{{ stats.Pending }}</h2>
+    </div>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Canceled</p>
+      <h2 class="text-2xl font-semibold mt-2 kpi-accent-critical">{{ stats.Canceled }}</h2>
+    </div>
   </div>
 
-  <!-- ================= STATS ================= -->
-  <div *ngIf="appointmentStats$ | async as stats" class="grid grid-cols-1 md:grid-cols-5 gap-5">
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Active</p>
-      <h2 class="kpi-value text-brand-primary">{{ stats.Active }}</h2>
-    </div>
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Upcoming</p>
-      <h2 class="kpi-value">{{ stats.Upcoming }}</h2>
-    </div>
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Completed</p>
-      <h2 class="kpi-value text-success">{{ stats.Completed }}</h2>
-    </div>
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Pending</p>
-      <h2 class="kpi-value text-warning">{{ stats.Pending }}</h2>
-    </div>
-
-    <div class="kpi-card card-hover">
-      <p class="kpi-label">Canceled</p>
-      <h2 class="kpi-value text-danger">{{ stats.Canceled }}</h2>
-    </div>
-
-  </div>
-
-  <!-- ================= TOOLBAR ================= -->
-  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-6">
-
+  <div class="toolbar">
     <input
       [(ngModel)]="searchTerm"
       (ngModelChange)="searchTerm$.next($event)"
       placeholder="Search patient, doctor..."
-      class="clinical-input w-full md:w-80"
+      class="clinical-input max-w-md"
     />
-
     <select
       [(ngModel)]="selectedStatus"
       (ngModelChange)="selectedStatus$.next($event)"
-      class="clinical-input w-full md:w-60"
+      class="clinical-input max-w-xs"
     >
-      <option value="All">All</option>
+      <option value="All" selected>All</option>
       <option value="Upcoming">Upcoming</option>
       <option value="Completed">Completed</option>
       <option value="Pending">Pending</option>
       <option value="Canceled">Canceled</option>
     </select>
-
   </div>
 
-  <!-- ================= TABLE ================= -->
-  <div class="table-wrapper mt-6">
-
-    <table class="table">
-
+  <div class="table-wrapper">
+    <table class="table text-left">
       <thead class="table-head">
         <tr>
           <th class="table-cell">Patient</th>
@@ -104,119 +70,64 @@
           <th class="table-cell">Actions</th>
         </tr>
       </thead>
-
       <tbody>
-
         <ng-container *ngIf="filteredAppointments$ | async as apps">
-
-          <!-- EMPTY STATE -->
           <tr *ngIf="apps.length === 0">
-            <td colspan="8" class="text-center text-clinical-muted py-8">
-              No appointments found.
-            </td>
+            <td colspan="8" class="table-empty">No appointments found.</td>
           </tr>
-
-          <!-- ROWS -->
           <tr *ngFor="let app of apps; let i = index" class="table-row">
-
             <td class="table-cell font-medium">{{ app.patientName }}</td>
             <td class="table-cell">{{ app.doctorName }}</td>
             <td class="table-cell">{{ app.date }}</td>
             <td class="table-cell">{{ app.time }}</td>
             <td class="table-cell text-clinical-muted">{{ app.type }}</td>
-
-            <!-- STATUS -->
             <td class="table-cell">
-
-              <span
-                class="px-3 py-1 text-xs rounded-full"
-                [ngClass]="{
-                  'bg-brand-primary/20 text-brand-primary': app.status === 'Active',
-                  'bg-success/20 text-success': app.status === 'Completed',
-                  'bg-warning/20 text-warning': app.status === 'Pending',
-                  'bg-danger/20 text-danger': app.status === 'Canceled',
-                  'bg-surface-3 text-neutral-300': app.status === 'Upcoming'
-                }"
-              >
-                {{ app.status }}
-              </span>
-
+              <span [ngClass]="getStatusClass(app.status)">{{ app.status }}</span>
             </td>
-
-            <td class="table-cell text-clinical-muted">
-              {{ app.notes || '___' }}
-            </td>
-
-            <!-- ACTIONS -->
+            <td class="table-cell text-clinical-muted">{{ app.notes || '—' }}</td>
             <td class="table-cell relative">
-
-              <button
-                (click)="toggleMenu(i)"
-                class="btn btn-ghost px-2 py-1"
-              >
-                ⋮
-              </button>
-
-              <div
-                *ngIf="activeMenuIndex === i"
-                class="absolute right-2 mt-2 w-44 bg-surface-1 border border-surface-2 rounded-xl shadow-card z-50 overflow-hidden"
-              >
-
-                <button class="w-full text-left px-4 py-2 text-brand-primary hover:bg-surface-2">
-                  <i class="bi bi-eye-fill mr-2"></i> View
+              <button (click)="toggleMenu(i)" class="btn-icon">⋮</button>
+              <div *ngIf="activeMenuIndex === i" class="dropdown-menu">
+                <button title="View" class="dropdown-item-view">
+                  <i class="bi bi-eye-fill"></i>
+                  <span>View</span>
                 </button>
-
-                <button
-                  (click)="editAppointment(app)"
-                  class="w-full text-left px-4 py-2 text-warning hover:bg-surface-2"
-                >
-                  <i class="bi bi-pen mr-2"></i> Edit
+                <button (click)="editAppointment(app)" title="Edit" class="dropdown-item-edit">
+                  <i class="bi bi-pen"></i>
+                  <span>Edit</span>
                 </button>
-
                 <button
                   (click)="removeAppointment(app.id, app.patientName)"
-                  class="w-full text-left px-4 py-2 text-danger hover:bg-surface-2"
+                  title="Delete"
+                  class="dropdown-item-delete"
                 >
-                  <i class="bi bi-trash mr-2"></i> Delete
+                  <i class="bi bi-trash"></i>
+                  <span>Delete</span>
                 </button>
-
               </div>
-
             </td>
-
           </tr>
-
         </ng-container>
-
       </tbody>
-
     </table>
-
   </div>
 
-  <!-- ================= PAGINATION ================= -->
-  <div class="flex-between mt-4 text-sm text-clinical-muted">
-
+  <div class="pagination">
     <p *ngIf="filteredAppointments$ | async as apps">
-      Showing 1 - {{ apps.length }} of {{ apps.length }} appointment(s)
+      Showing 1 – {{ apps.length }} of {{ apps.length }}
+      appointment<span *ngIf="apps.length !== 1">s</span>
     </p>
-
     <div class="space-x-2">
-
-      <button class="btn btn-ghost px-3 py-1">Prev</button>
-      <button class="btn btn-primary px-3 py-1">1</button>
-      <button class="btn btn-ghost px-3 py-1">2</button>
-      <button class="btn btn-ghost px-3 py-1">Next</button>
-
+      <button class="pagination-btn">Prev</button>
+      <button class="pagination-btn-active">1</button>
+      <button class="pagination-btn">2</button>
+      <button class="pagination-btn">Next</button>
     </div>
-
   </div>
 
+  <app-appointments-form
+    *ngIf="isFormVisible"
+    [appointment]="editingAppointment"
+    (close)="toggleFormVisibility()"
+  ></app-appointments-form>
 </section>
-
-<!-- ================= FORM ================= -->
-<app-appointments-form
-  *ngIf="isFormVisible"
-  [appointment]="editingAppointment"
-  (close)="toggleFormVisibility()"
-/>

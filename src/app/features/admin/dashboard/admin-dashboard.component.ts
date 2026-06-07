@@ -37,7 +37,7 @@ import { ConnectionStatusService } from '../../../services/connection-status/con
         </div>
         <div class="clinical-card p-6">
           <h2 class="text-lg font-semibold text-white mb-4">Today&apos;s Insights</h2>
-          <ul class="space-y-2 text-sm text-slate-300">
+          <ul class="space-y-2 text-sm text-clinical-body">
             <li>Peak hours: 10AM – 12PM</li>
             <li>Most active department: Cardiology</li>
             <li>Review billing queue before end of day</li>
@@ -74,11 +74,11 @@ export class AdminDashboardComponent {
       this.medicationService.medicationStats$,
     ]).pipe(
       map(([p, d, a, m]): DashboardKpi[] => [
-        { title: 'Patients', value: p.Total, trend: 'Registered in system', icon: 'fa-user-injured', accent: 'green', link: '/admin/patients' },
-        { title: 'Doctors', value: d.Total, trend: 'Active staff', icon: 'fa-user-doctor', accent: 'green', link: '/admin/doctors' },
-        { title: 'Appointments', value: a.Total, trend: 'All statuses', icon: 'fa-calendar-check', accent: 'sky', link: '/admin/appointments' },
-        { title: 'Medications Due', value: m.Total, trend: 'Pharmacy queue', icon: 'fa-pills', accent: 'yellow', link: '/admin/pharmacy' },
-        { title: 'Critical Alerts', value: 2, trend: 'Requires attention', icon: 'fa-triangle-exclamation', accent: 'red' },
+        { title: 'Patients', value: p.Total, trend: 'Registered in system', icon: 'fa-user-injured', accent: 'patient', link: '/admin/patients' },
+        { title: 'Doctors', value: d.Total, trend: 'Active staff', icon: 'fa-user-doctor', accent: 'doctor', link: '/admin/doctors' },
+        { title: 'Appointments', value: a.Total, trend: 'All statuses', icon: 'fa-calendar-check', accent: 'appointment', link: '/admin/appointments' },
+        { title: 'Medications Due', value: m.Total, trend: 'Pharmacy queue', icon: 'fa-pills', accent: 'medication', link: '/admin/pharmacy' },
+        { title: 'Critical Alerts', value: 2, trend: 'Requires attention', icon: 'fa-triangle-exclamation', accent: 'critical' },
       ])
     );
     this.recentAppointments$ = this.appointmentService.appointments$.pipe(

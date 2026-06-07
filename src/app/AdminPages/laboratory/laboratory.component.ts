@@ -5,11 +5,13 @@ import { LaboratoryFormComponent } from './laboratory-form/laboratory-form.compo
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConfirmDialogService } from '../../confirm-dialog.service';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { AppButtonComponent } from '../../shared/components/app-button/app-button.component';
 
 @Component({
   selector: 'app-laboratory',
   standalone: true,
-  imports: [LaboratoryFormComponent, CommonModule, FormsModule],
+  imports: [LaboratoryFormComponent, CommonModule, FormsModule, PageHeaderComponent, AppButtonComponent],
   templateUrl: './laboratory.component.html',
   styleUrl: './laboratory.component.css'
 })
@@ -119,5 +121,16 @@ export class LaboratoryComponent {
     })
     if(!ok) return;
     this.laboratoryService.removeRadioTest(id);
+  }
+
+  getStatusClass(status: string): string {
+    const map: Record<string, string> = {
+      Active: 'status-info',
+      Pending: 'status-warning',
+      Completed: 'status-success',
+      Canceled: 'status-danger',
+      Critical: 'status-danger',
+    };
+    return map[status] ?? 'status-neutral';
   }
 }

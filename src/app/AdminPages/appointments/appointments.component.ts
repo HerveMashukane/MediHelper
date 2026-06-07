@@ -7,11 +7,13 @@ import { Observable } from 'rxjs';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { AppButtonComponent } from '../../shared/components/app-button/app-button.component';
 
 @Component({
   selector: 'app-appointments',
   standalone: true,
-  imports: [CommonModule, AppointmentsFormComponent, FormsModule],
+  imports: [CommonModule, AppointmentsFormComponent, FormsModule, PageHeaderComponent, AppButtonComponent],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.css'
 })
@@ -91,5 +93,16 @@ export class AppointmentsComponent {
   editAppointment(app: Appointment) {
     this.editingAppointment = {...app};
     this.isFormVisible = true;
+  }
+
+  getStatusClass(status: string): string {
+    const map: Record<string, string> = {
+      Active: 'status-info',
+      Upcoming: 'status-neutral',
+      Completed: 'status-success',
+      Pending: 'status-warning',
+      Canceled: 'status-danger',
+    };
+    return map[status] ?? 'status-neutral';
   }
 }

@@ -1,155 +1,90 @@
-<section class="fixed inset-0 flex items-center justify-center bg-black/70 p-4 lg:p-8 animate-pageFlip">
-        <form (ngSubmit)="submitMedication()" class="flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 text-white w-full max-w-lg p-8 space-y-6 rounded-xl shadow-2xl">
-                <!-- Header -->
-                <div class="flex justify-between items-center border-b border-blue-950 pb-4">
-                        <h2 class="text-2xl font-bold">Medication's Form</h2>
-                        <button type="button" (click)="closeForm()" type="button" class="text-white hover:text-red-500 transition">
-                                <i class="bi bi-x-circle text-2xl"></i>
-                        </button>
-                </div>
+<section class="form-overlay">
+  <form (ngSubmit)="submitMedication()" class="form-panel">
+    <div class="form-panel-header">
+      <h2 class="form-panel-title">Medication Form</h2>
+      <button type="button" (click)="closeForm()" class="form-close-btn">
+        <i class="bi bi-x-circle text-2xl"></i>
+      </button>
+    </div>
 
-                <!-- Medicaton name & Doctor -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex flex-col">
-                                <label for="medName" name="medName" class="font-medium">Medication name</label>
-                                <input 
-                                        id="medName" 
-                                        name="medName" 
-                                        type="text" 
-                                        placeholder="Type medication name..."
-                                        [(ngModel)]="formData.medName"
-                                        required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"/>
-                        </div>
-                        <div class="flex flex-col">
-                                <label for="doctorName" class="font-medium">Doctor Name</label>
-                                <input 
-                                        id="doctorName" 
-                                        name="doctorName" 
-                                        type="text" 
-                                        placeholder="Type doctor name..." 
-                                        [(ngModel)]="formData.doctorName"
-                                        required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition"
-                                />
-                        </div>
-                </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="medName" class="form-label">Medication name</label>
+        <input id="medName" name="medName" type="text" placeholder="Type medication name..." [(ngModel)]="formData.medName" required class="clinical-input mt-1" />
+      </div>
+      <div class="flex flex-col">
+        <label for="doctorName" class="form-label">Doctor Name</label>
+        <input id="doctorName" name="doctorName" type="text" placeholder="Type doctor name..." [(ngModel)]="formData.doctorName" required class="clinical-input mt-1" />
+      </div>
+    </div>
 
-                <!-- schedule and status -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- schedule -->
-                        <div class="flex flex-col">
-                                <label for="schedule" class="font-medium">Schedue</label>
-                                <select 
-                                        name="schedule" 
-                                        id="schedule"
-                                        [(ngModel)]="formData.schedule"
-                                        required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                                        <option value="" disabled>Select schedule</option>
-                                        <option value="Morning(06-08AM)">Morning(06-08AM)</option>
-                                        <option value="Noon(12-2PM)">Noon(12-2PM)</option>
-                                        <option value="Evenening(6-8PM)">Evenening(6-8PM)</option>
-                                        <option value="Once(a day)">Once(a day)</option>
-                                        <option value="Twice(a day)">Twice(a day)</option>
-                                        <option value="Three-Times(a day)">Three-Times(a day)</option>
-                                </select>
-                        </div>
-                        <!-- status -->
-                        <div class="flex flex-col">
-                                <label for="status" class="font-medium">Medication Status</label>
-                                <select 
-                                        name="status" 
-                                        id="status"
-                                        [(ngModel)]="formData.status"
-                                        required
-                                        class="block bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 text-white focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                                        <option value="" disabled selected>Choose status</option>
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Completed">Completed</option>
-                                </select>
-                        </div>
-                </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="schedule" class="form-label">Schedule</label>
+        <select name="schedule" id="schedule" [(ngModel)]="formData.schedule" required class="clinical-input mt-1">
+          <option value="" disabled>Select schedule</option>
+          <option value="Morning(06-08AM)">Morning(06-08AM)</option>
+          <option value="Noon(12-2PM)">Noon(12-2PM)</option>
+          <option value="Evenening(6-8PM)">Evenening(6-8PM)</option>
+          <option value="Once(a day)">Once(a day)</option>
+          <option value="Twice(a day)">Twice(a day)</option>
+          <option value="Three-Times(a day)">Three-Times(a day)</option>
+        </select>
+      </div>
+      <div class="flex flex-col">
+        <label for="status" class="form-label">Medication Status</label>
+        <select name="status" id="status" [(ngModel)]="formData.status" required class="clinical-input mt-1">
+          <option value="" disabled selected>Choose status</option>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+          <option value="Pending">Pending</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+    </div>
 
-                <!-- Dosage & currency -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex flex-col">
-                                <label for="dosage" class="font-medium">Dosage</label>
-                                <select 
-                                        id="dosage" 
-                                        name="dosage" 
-                                        [(ngModel)]="formData.dosage"
-                                        required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                                        <option value="" disabled selected>Select Medication dose</option>
-                                        <option value="100">100</option>
-                                        <option value="200">200</option>
-                                        <option value="500">500</option>
-                                        <option value="1000">1000</option>
-                                </select>
-                        </div>
-                        <div class="flex flex-col">
-                                <label for="currency" class="font-medium">Dosage Unit</label>
-                                <select 
-                                        name="dosageUnit" 
-                                        id="currency"
-                                        [(ngModel)]="formData.dosageUnit"
-                                        required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                                        <option value="" disabled selected>Dosage Unit</option>
-                                        <option value="mg">mg</option>
-                                        <option value="g">g</option>
-                                </select>
-                        </div>
-                </div>
-                <!-- start date & end date -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- start date -->
-                        <div class="flex flex-col">
-                                <label for="status" class="font-medium">Start Date</label>
-                                <input 
-                                        type="date"
-                                        id="startDate" 
-                                        name="startDate" 
-                                        [(ngModel)]="formData.startDate"
-                                        required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                        </div>
-                        <!-- end date -->
-                        <div>
-                                <label for="progress" class="font-medium">End Date</label>
-                                <input 
-                                        type="date"
-                                        id="endDate" 
-                                        name="endDate" 
-                                        [(ngModel)]="formData.endDate"
-                                        required
-                                        class="bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                        </div>
-                </div>
-                <!-- notes(optional) -->
-                <div class="flex flex-col">
-                        <label for="notes" class="font-medium">Notes (Optional)</label>
-                        <textarea 
-                                id="notes" 
-                                name="notes" 
-                                [(ngModel)]="formData.notes"
-                                 placeholder="Additional notes about the medication..." 
-                                 rows="4"
-                                class="w-full bg-gray-950 border border-gray-700 rounded-lg p-3 mt-1 focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition">
-                        </textarea>
-                </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="dosage" class="form-label">Dosage</label>
+        <select id="dosage" name="dosage" [(ngModel)]="formData.dosage" required class="clinical-input mt-1">
+          <option value="" disabled selected>Select Medication dose</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+        </select>
+      </div>
+      <div class="flex flex-col">
+        <label for="currency" class="form-label">Dosage Unit</label>
+        <select name="dosageUnit" id="currency" [(ngModel)]="formData.dosageUnit" required class="clinical-input mt-1">
+          <option value="" disabled selected>Dosage Unit</option>
+          <option value="mg">mg</option>
+          <option value="g">g</option>
+        </select>
+      </div>
+    </div>
 
-                <!-- Buttons -->
-                <div class="flex justify-end space-x-4">
-                        <button type="submit" class="bg-sky-500 hover:bg-sky-600 transition px-6 py-2 rounded-lg font-semibold">
-                                {{formData.id ? "Save Changes" : "Add Medication"}}
-                        </button>
-                        <button type="button" (click)="closeForm()" class="bg-red-600 hover:bg-red-500 transition px-6 py-2 rounded-lg font-semibold">
-                                Cancel
-                        </button>
-                </div>
-        </form>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input type="date" id="startDate" name="startDate" [(ngModel)]="formData.startDate" required class="clinical-input mt-1" />
+      </div>
+      <div class="flex flex-col">
+        <label for="endDate" class="form-label">End Date</label>
+        <input type="date" id="endDate" name="endDate" [(ngModel)]="formData.endDate" required class="clinical-input mt-1" />
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="notes" class="form-label">Notes (Optional)</label>
+      <textarea id="notes" name="notes" [(ngModel)]="formData.notes" placeholder="Additional notes about the medication..." rows="4" class="clinical-input mt-1"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">
+        {{ formData.id ? 'Save Changes' : 'Add Medication' }}
+      </button>
+      <button type="button" (click)="closeForm()" class="btn-danger">Cancel</button>
+    </div>
+  </form>
 </section>

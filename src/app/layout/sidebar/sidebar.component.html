@@ -1,17 +1,17 @@
-<aside class="h-[calc(100vh-64px)] w-64 bg-slate-900 border-r border-slate-800 overflow-y-auto rounded-md shrink-0">
+<aside class="sidebar">
   <div class="px-5 pt-4 pb-2">
-    <p class="text-xs uppercase tracking-wide text-slate-500">Role</p>
-    <p class="text-sm font-medium text-sky-400 capitalize">{{ roleLabel() }}</p>
+    <p class="sidebar-label">Role</p>
+    <p class="sidebar-role">{{ roleLabel() }}</p>
   </div>
 
-  <ul class="flex flex-col p-4 pt-2 text-slate-300">
+  <ul class="flex flex-col p-4 pt-2 text-clinical-body">
     @for (group of navSections(); track group.section) {
-      <p class="text-xs uppercase text-slate-500 px-3 mb-2 mt-3 first:mt-0">{{ group.section }}</p>
+      <p class="nav-section-title">{{ group.section }}</p>
       @for (item of group.items; track item.route) {
         <li
           [routerLink]="item.route"
-          routerLinkActive="bg-slate-800 text-sky-400 font-semibold"
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-sky-500 transition cursor-pointer mb-1"
+          routerLinkActive="nav-link-active"
+          class="nav-link"
         >
           <i class="fa-solid {{ item.icon }} w-5 text-center"></i>
           <span class="text-sm">{{ item.label }}</span>

@@ -2,22 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ================= BASE SYSTEM ================= */
+/* ================= BASE RULES ================= */
 @layer base {
   body {
-    @apply bg-surface-0 text-neutral-100 font-sans;
+    @apply font-sans bg-surface-0 text-neutral-100;
   }
 
   h1 {
-    @apply font-heading text-3xl font-semibold text-neutral-50;
+    @apply font-heading text-3xl font-bold text-neutral-100;
   }
 
   h2 {
-    @apply font-heading text-2xl font-semibold text-neutral-100;
+    @apply font-heading text-2xl font-semibold text-neutral-200;
   }
 
   h3 {
-    @apply font-heading text-xl font-semibold text-neutral-200;
+    @apply font-heading text-xl font-semibold text-neutral-300;
   }
 
   p {
@@ -25,163 +25,399 @@
   }
 }
 
-/* ================= LAYOUT SYSTEM ================= */
-@layer components {
-
-  .page-container {
-    @apply min-h-screen p-6 md:p-8 bg-surface-0;
-  }
-
-  .page-header {
-    @apply flex items-center justify-between mb-6;
-  }
-
-  .section {
-    @apply space-y-4 mb-6;
-  }
-
-  .flex-between {
-    @apply flex items-center justify-between;
-  }
-}
-
-/* ================= CARD SYSTEM ================= */
-@layer components {
-
-  .clinical-card {
-    @apply bg-surface-1 border border-surface-2 rounded-xl shadow-card p-5;
-  }
-
-  .card-hover {
-    @apply hover:border-brand-primary transition duration-250;
-  }
-
-  .kpi-card {
-    @apply clinical-card cursor-pointer;
-  }
-
-  .kpi-value {
-    @apply text-2xl font-semibold mt-2;
-  }
-
-  .kpi-label {
-    @apply text-sm text-neutral-400;
-  }
-
-  .kpi-trend {
-    @apply text-xs mt-1;
-  }
-}
-
 /* ================= BUTTON SYSTEM ================= */
 @layer components {
-
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-medium transition duration-250;
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-medium transition duration-200;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-2.5;
   }
 
   .btn-primary {
-    @apply btn bg-brand-primary text-white hover:bg-blue-700;
+    @apply btn bg-brand-primary text-white hover:brightness-110;
+  }
+
+  .btn-secondary {
+    @apply btn bg-brand-secondary text-white hover:brightness-110;
+  }
+
+  .btn-outline {
+    @apply btn border border-brand-primary text-brand-primary hover:brightness-110;
   }
 
   .btn-danger {
-    @apply btn bg-danger text-white hover:bg-red-600;
-  }
-
-  .btn-success {
-    @apply btn bg-success text-white hover:opacity-90;
+    @apply btn bg-danger text-white hover:brightness-110;
   }
 
   .btn-ghost {
-    @apply btn bg-transparent text-neutral-300 hover:bg-surface-2;
+    @apply btn bg-transparent border border-surface-2 text-neutral-300 hover:opacity-90;
+  }
+
+  .btn-icon {
+    @apply px-3 py-1 bg-surface-2 rounded-xl transition hover:opacity-90;
   }
 }
 
-/* ================= STATUS SYSTEM ================= */
+/* ================= PAGE LAYOUT ================= */
 @layer components {
-
-  .status-dot {
-    @apply w-2 h-2 rounded-full;
+  .page-container {
+    @apply p-8 bg-surface-0 text-neutral-100 min-h-screen space-y-6;
   }
 
-  .status-online {
-    @apply bg-success;
+  .auth-shell {
+    @apply min-h-screen bg-surface-0 flex items-center justify-center p-4;
   }
 
-  .status-offline {
-    @apply bg-danger;
+  .text-clinical-muted {
+    @apply text-neutral-400;
   }
 
-  .status-warning {
-    @apply bg-warning;
+  .text-clinical-body {
+    @apply text-neutral-300;
   }
 
-  .status-text-online {
-    @apply text-success;
+  .text-clinical-accent {
+    @apply text-info;
   }
 
-  .status-text-offline {
+  .text-clinical-error {
     @apply text-danger;
   }
-}
 
-/* ================= ALERT SYSTEM ================= */
-@layer components {
-
-  .alert {
-    @apply p-4 rounded-xl border flex items-center justify-between;
+  .form-label {
+    @apply block text-sm text-neutral-300 mb-1;
   }
 
-  .alert-critical {
-    @apply alert bg-danger/10 border-danger/40 text-red-200;
-  }
-
-  .alert-warning {
-    @apply alert bg-warning/10 border-warning/40 text-yellow-200;
-  }
-
-  .alert-info {
-    @apply alert bg-info/10 border-info/30 text-sky-200;
+  .link-action {
+    @apply text-sm text-info transition hover:opacity-90;
   }
 }
 
-/* ================= FORM SYSTEM ================= */
+/* ================= CARDS ================= */
 @layer components {
+  .card {
+    @apply bg-white rounded-xl shadow-card p-4;
+  }
 
+  .clinical-card {
+    @apply bg-surface-1 rounded-xl border border-surface-2;
+  }
+
+  .card-header {
+    @apply font-heading text-lg font-semibold mb-2;
+  }
+
+  .card-body {
+    @apply text-sm text-neutral-400;
+  }
+
+  .kpi-grid {
+    @apply grid grid-cols-1 md:grid-cols-5 gap-4;
+  }
+
+  .kpi-accent-patient {
+    @apply text-patient;
+  }
+
+  .kpi-accent-doctor {
+    @apply text-doctor;
+  }
+
+  .kpi-accent-appointment {
+    @apply text-appointment;
+  }
+
+  .kpi-accent-medication {
+    @apply text-medication;
+  }
+
+  .kpi-accent-critical {
+    @apply text-critical;
+  }
+
+  .kpi-accent-neutral {
+    @apply text-neutral-300;
+  }
+}
+
+/* ================= FORMS ================= */
+@layer components {
   .form-group {
-    @apply space-y-1 mb-4;
+    @apply mb-4;
   }
 
   .label {
-    @apply block text-sm text-neutral-300;
+    @apply block text-sm font-medium text-neutral-300 mb-1;
   }
 
   .input {
-    @apply w-full px-3 py-2 rounded-xl bg-surface-2 border border-surface-3
+    @apply w-full px-3 py-2 border border-neutral-300 rounded-xl
+           focus:outline-none focus:ring-2 focus:ring-brand-secondary;
+  }
+
+  .clinical-input {
+    @apply w-full px-3 py-2 rounded-xl bg-surface-1 border border-surface-2
            text-neutral-100 focus:outline-none focus:ring-2 focus:ring-brand-primary;
+  }
+
+  .input-invalid {
+    @apply border-danger;
+  }
+
+  .form-overlay {
+    @apply fixed inset-0 flex items-center justify-center bg-black/70 p-4 z-50;
+  }
+
+  .form-panel {
+    @apply flex flex-col w-full max-w-lg max-h-[90vh] overflow-y-auto
+           clinical-card text-neutral-100 p-8 space-y-6 shadow-card;
+  }
+
+  .form-panel-wide {
+    @apply form-panel max-w-none lg:w-[80%];
+  }
+
+  .form-panel-header {
+    @apply flex justify-between items-center border-b border-surface-2 pb-4;
+  }
+
+  .form-panel-title {
+    @apply text-2xl font-bold;
+  }
+
+  .form-close-btn {
+    @apply text-clinical-muted transition hover:opacity-90;
+  }
+
+  .form-error {
+    @apply text-sm text-clinical-error bg-danger/10 border border-danger/30 rounded-xl px-3 py-2;
+  }
+
+  .form-actions {
+    @apply flex justify-end gap-3 pt-2;
+  }
+
+  .slot-btn {
+    @apply text-white py-2 rounded-xl transition bg-surface-2 hover:opacity-90;
+  }
+
+  .slot-btn-booked {
+    @apply slot-btn bg-danger cursor-not-allowed opacity-60;
+  }
+
+  .toolbar {
+    @apply flex flex-col md:flex-row md:items-center md:justify-between gap-4;
+  }
+
+  .toolbar-panel {
+    @apply clinical-card p-4 flex flex-wrap gap-4 items-center;
+  }
+}
+
+/* ================= LAYOUT (NAV / SIDEBAR) ================= */
+@layer components {
+  .navbar {
+    @apply sticky top-0 z-50 flex items-center justify-between px-8 py-3
+           bg-surface-1 shadow-soft text-neutral-100;
+  }
+
+  .navbar-search {
+    @apply w-full pl-10 pr-4 py-2 clinical-input text-sm;
+  }
+
+  .navbar-icon-btn {
+    @apply p-2 rounded-xl bg-surface-2 transition hover:opacity-90;
+  }
+
+  .navbar-badge {
+    @apply absolute -top-1 -right-1 bg-danger text-xs px-1 rounded-full;
+  }
+
+  .nav-dropdown {
+    @apply absolute right-0 top-14 w-64 bg-surface-1 border border-surface-2
+           rounded-xl shadow-card z-50 overflow-hidden;
+  }
+
+  .nav-dropdown-header {
+    @apply flex items-center justify-between px-4 py-3 border-b border-surface-2;
+  }
+
+  .nav-dropdown-item {
+    @apply block w-full text-left px-4 py-2 transition hover:opacity-90 cursor-pointer;
+  }
+
+  .nav-dropdown-item-danger {
+    @apply nav-dropdown-item text-danger;
+  }
+
+  .sidebar {
+    @apply h-[calc(100vh-64px)] w-64 bg-surface-1 border-r border-surface-2
+           overflow-y-auto rounded-md shrink-0;
+  }
+
+  .sidebar-label {
+    @apply text-xs uppercase tracking-wide text-neutral-500;
+  }
+
+  .sidebar-role {
+    @apply text-sm font-medium text-info capitalize;
+  }
+
+  .nav-section-title {
+    @apply text-xs uppercase text-neutral-500 px-3 mb-2 mt-3 first:mt-0;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg transition cursor-pointer
+           mb-1 text-neutral-300 hover:opacity-90;
+  }
+
+  .nav-link-active {
+    @apply bg-surface-2 text-info font-semibold;
   }
 }
 
 /* ================= TABLE SYSTEM ================= */
 @layer components {
-
   .table-wrapper {
-    @apply w-full overflow-hidden rounded-xl border border-surface-2;
+    @apply bg-surface-1 border border-surface-2 rounded-xl overflow-hidden;
   }
 
   .table {
-    @apply w-full text-left text-sm;
+    @apply w-full text-sm text-neutral-200;
   }
 
   .table-head {
-    @apply bg-surface-2 text-neutral-300;
+    @apply bg-surface-2 text-neutral-300 text-xs uppercase;
   }
 
   .table-row {
-    @apply border-t border-surface-2 hover:bg-surface-2/60;
+    @apply border-t border-surface-2 transition hover:opacity-90;
   }
 
   .table-cell {
-    @apply p-4;
+    @apply p-3;
+  }
+
+  .table-empty {
+    @apply text-center text-clinical-muted py-6 text-lg;
+  }
+}
+
+/* ================= STATUS TOKENS ================= */
+@layer components {
+  .status-success {
+    @apply text-success bg-success/10 px-3 py-1 rounded-full text-xs;
+  }
+
+  .status-warning {
+    @apply text-warning bg-warning/10 px-3 py-1 rounded-full text-xs;
+  }
+
+  .status-danger {
+    @apply text-danger bg-danger/10 px-3 py-1 rounded-full text-xs;
+  }
+
+  .status-info {
+    @apply text-info bg-info/10 px-3 py-1 rounded-full text-xs;
+  }
+
+  .status-neutral {
+    @apply text-neutral-300 bg-neutral-600/20 px-3 py-1 rounded-full text-xs;
+  }
+}
+
+/* ================= ALERTS & CONNECTION ================= */
+@layer components {
+  .alert-banner {
+    @apply border p-4 rounded-xl flex justify-between items-center gap-4;
+  }
+
+  .alert-danger {
+    @apply alert-banner bg-danger/10 border-danger/30;
+  }
+
+  .alert-danger-text {
+    @apply text-sm text-danger;
+  }
+
+  .connection-dot-online {
+    @apply bg-success;
+  }
+
+  .connection-dot-offline {
+    @apply bg-danger;
+  }
+
+  .connection-text-online {
+    @apply text-success;
+  }
+
+  .connection-text-offline {
+    @apply text-danger;
+  }
+}
+
+/* ================= DROPDOWN & PAGINATION ================= */
+@layer components {
+  .dropdown-menu {
+    @apply absolute right-2 mt-2 w-44 bg-surface-1 border border-surface-2
+           rounded-xl shadow-card z-50 overflow-hidden;
+  }
+
+  .dropdown-item {
+    @apply flex items-center gap-3 w-full text-left px-4 py-2 transition hover:opacity-90;
+  }
+
+  .dropdown-item-view {
+    @apply dropdown-item text-info;
+  }
+
+  .dropdown-item-edit {
+    @apply dropdown-item text-warning;
+  }
+
+  .dropdown-item-delete {
+    @apply dropdown-item text-danger;
+  }
+
+  .pagination {
+    @apply flex justify-between items-center text-sm text-clinical-muted;
+  }
+
+  .pagination-btn {
+    @apply px-3 py-1 bg-surface-2 rounded-xl transition hover:opacity-90;
+  }
+
+  .pagination-btn-active {
+    @apply pagination-btn bg-brand-primary text-white;
+  }
+}
+
+/* ================= PROGRESS ================= */
+@layer components {
+  .progress-track {
+    @apply w-full bg-surface-2 rounded-full h-2;
+  }
+
+  .progress-fill {
+    @apply bg-success h-2 rounded-full transition-all duration-500;
+  }
+}
+
+/* ================= AVATAR ================= */
+@layer components {
+  .avatar {
+    @apply rounded-full object-cover border border-surface-2;
+  }
+
+  .avatar-placeholder {
+    @apply rounded-full bg-surface-2 flex items-center justify-center text-neutral-500;
   }
 }

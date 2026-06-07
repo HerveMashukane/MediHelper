@@ -75,6 +75,17 @@ export default {
       },
 
       /* ================= ANIMATION TOKENS (NEW) ================= */
+      animation: {
+        pageFlip: "pageFlip 0.4s ease-out",
+      },
+
+      keyframes: {
+        pageFlip: {
+          "0%": { opacity: "0", transform: "perspective(400px) rotateY(-8deg)" },
+          "100%": { opacity: "1", transform: "perspective(400px) rotateY(0)" },
+        },
+      },
+
       transitionDuration: {
         250: "250ms",
       },

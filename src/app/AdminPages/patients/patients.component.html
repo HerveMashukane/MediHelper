@@ -1,6 +1,4 @@
 <section class="page-container animate-pageFlip">
-
-  <!-- ================= HEADER ================= -->
   <app-page-header
     [title]="'Patient Records'"
     [subtitle]="filteredPatients.length + ' patients'"
@@ -14,20 +12,14 @@
     </app-button>
   </app-page-header>
 
-  <!-- ================= FILTER BAR ================= -->
   <div class="flex flex-col sm:flex-row gap-4 mb-6">
-
     <input
       type="search"
       [(ngModel)]="searchPatient"
       placeholder="Search patient..."
       class="clinical-input max-w-md"
     />
-
-    <select
-      [(ngModel)]="selectedDepartment"
-      class="clinical-input max-w-xs"
-    >
+    <select [(ngModel)]="selectedDepartment" class="clinical-input max-w-xs">
       <option value="All">All Departments</option>
       <option value="Pediatry">Pediatry</option>
       <option value="Cardiology">Cardiology</option>
@@ -36,96 +28,36 @@
       <option value="Surgery">Surgery</option>
       <option value="Oncology">Oncology</option>
     </select>
-
   </div>
 
-  <!-- ================= PATIENT GRID ================= -->
   @if (filteredPatients.length > 0) {
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       @for (p of filteredPatients; track p.id) {
-
-        <div class="clinical-card text-center hover:border-surface-3 transition card-hover">
-
-          <!-- PATIENT IMAGE -->
-          <div class="flex flex-col items-center">
-
-            <p class="text-sm text-clinical-muted italic">
-              {{ p.preferedName }}
-            </p>
-
-            @if (p.image) {
-              <img
-                [src]="p.image"
-                [alt]="p.preferedName"
-                class="w-20 h-20 rounded-full object-cover border border-surface-3 mt-3"
-              />
-            } @else {
-              <div class="w-20 h-20 rounded-full bg-surface-2 flex items-center justify-center mt-3 text-clinical-muted">
-                <i class="fa-solid fa-user text-2xl"></i>
-              </div>
-            }
-
-            <!-- PATIENT INFO -->
-            <p class="font-semibold mt-3 text-neutral-100">
-              {{ p.fullName }}
-            </p>
-
-            <p class="text-sm text-clinical-muted">
-              {{ p.department }}
-            </p>
-
-            <p class="text-sm text-clinical-muted mt-1">
-              Age {{ p.age }} • {{ p.bloodGroup }}
-            </p>
-
+        <div class="clinical-card p-4 flex flex-col items-center text-center">
+          <p class="text-sm text-clinical-muted italic">{{ p.preferedName }}</p>
+          @if (p.image) {
+            <img [src]="p.image" [alt]="p.preferedName" class="avatar object-cover w-20 h-20 mt-2" />
+          } @else {
+            <div class="avatar-placeholder w-20 h-20 mt-2">
+              <i class="fa-solid fa-user text-2xl"></i>
+            </div>
+          }
+          <p class="font-semibold text-white mt-2">{{ p.fullName }}</p>
+          <p class="text-sm text-clinical-muted">{{ p.department }}</p>
+          <p class="text-sm text-clinical-muted mt-1">Age {{ p.age }} • {{ p.bloodGroup }}</p>
+          <div class="flex gap-2 mt-4">
+            <app-button size="sm" variant="primary" icon="bi bi-eye-fill" (clicked)="viewPatient(p)" />
+            <app-button size="sm" variant="secondary" icon="bi bi-pen" (clicked)="editPatient(p)" />
+            <app-button size="sm" variant="danger" icon="bi bi-trash" (clicked)="removePatient(p)" />
           </div>
-
-          <!-- ACTIONS -->
-          <div class="flex justify-center gap-2 mt-4">
-
-            <app-button
-              size="sm"
-              variant="primary"
-              icon="bi bi-eye-fill"
-              (clicked)="viewPatient(p)"
-            />
-
-            <app-button
-              size="sm"
-              variant="secondary"
-              icon="bi bi-pen"
-              (clicked)="editPatient(p)"
-            />
-
-            <app-button
-              size="sm"
-              variant="danger"
-              icon="bi bi-trash"
-              (clicked)="removePatient(p)"
-            />
-
-          </div>
-
         </div>
-
       }
-
     </div>
-
   } @else {
-
-    <!-- ================= EMPTY STATE ================= -->
-    <div class="clinical-card p-12 text-center text-clinical-muted">
-      No patients found.
-    </div>
-
+    <div class="clinical-card p-12 text-center text-clinical-muted">No patients found.</div>
   }
-
 </section>
 
-<!-- ================= MODAL ================= -->
 <app-detail-modal
   [open]="isModelOpen"
   [title]="selectedPatient?.fullName ?? 'Patient'"
@@ -135,10 +67,6 @@
   (close)="closeModel()"
 />
 
-<!-- ================= FORM ================= -->
 @if (isFormVisible) {
-  <app-patients-form
-    [patient]="editingPatient"
-    (close)="toggleForm()"
-  />
+  <app-patients-form [patient]="editingPatient" (close)="toggleForm()" />
 }

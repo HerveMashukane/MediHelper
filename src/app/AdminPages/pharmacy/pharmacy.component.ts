@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Medication, MedicationService } from '../../services/medication/medication.service';
 import { ConfirmDialogService } from '../../confirm-dialog.service';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { AppButtonComponent } from '../../shared/components/app-button/app-button.component';
 
 @Component({
   selector: 'app-pharmacy',
   standalone: true,
-  imports: [CommonModule, MedicationFormComponent, FormsModule],
+  imports: [CommonModule, MedicationFormComponent, FormsModule, PageHeaderComponent, AppButtonComponent],
   templateUrl: './pharmacy.component.html',
   styleUrl: './pharmacy.component.css'
 })
@@ -107,5 +109,15 @@ export class PharmacyComponent {
     })
     if(!ok) return;
     this.medicationService.removeMedication(id);
+  }
+
+  getStatusClass(status: string): string {
+    const map: Record<string, string> = {
+      Active: 'status-success',
+      Pending: 'status-warning',
+      Inactive: 'status-danger',
+      Completed: 'status-info',
+    };
+    return map[status] ?? 'status-neutral';
   }
 }
