@@ -1,0 +1,117 @@
+<section class="page-container animate-pageFlip">
+  <app-page-header
+    [title]="'Medication Tracker'"
+    [subtitle]="((filteredMedications$ | async)?.length ?? 0) + ' medications'"
+  >
+    <app-button
+      [variant]="isFormVisible ? 'danger' : 'primary'"
+      [icon]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"
+      (clicked)="toggleForm()"
+    >
+      {{ isFormVisible ? 'Close Form' : 'Add Medication' }}
+    </app-button>
+  </app-page-header>
+
+  <div class="toolbar-panel">
+    <input
+      type="text"
+      placeholder="Search medication..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="searchTerm$.next($event)"
+      class="clinical-input max-w-xs"
+    />
+    <select
+      [(ngModel)]="selectedStatus"
+      (ngModelChange)="selectedStatus$.next($event)"
+      class="clinical-input max-w-xs"
+    >
+      <option value="All" selected>All Medications</option>
+      <option value="Active">Active</option>
+      <option value="Inactive">Inactive</option>
+      <option value="Completed">Completed</option>
+      <option value="Pending">Pending</option>
+    </select>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="table text-left">
+      <thead class="table-head">
+        <tr>
+          <th class="table-cell">Medication</th>
+          <th class="table-cell">Dosage</th>
+          <th class="table-cell">Schedule</th>
+          <th class="table-cell">Doctor</th>
+          <th class="table-cell">Start</th>
+          <th class="table-cell">End</th>
+          <th class="table-cell">Progress</th>
+          <th class="table-cell">Status</th>
+          <th class="table-cell">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="filteredMedications$ | async as meds">
+          <tr *ngIf="meds.length === 0">
+            <td colspan="9" class="table-empty">No medications found.</td>
+          </tr>
+          <tr *ngFor="let med of meds; let i = index" class="table-row">
+            <td class="table-cell font-semibold">{{ med.medName }}</td>
+            <td class="table-cell">{{ med.dosage }}{{ med.dosageUnit }}</td>
+            <td class="table-cell">{{ med.schedule }}</td>
+            <td class="table-cell text-clinical-accent">{{ med.doctorName }}</td>
+            <td class="table-cell">{{ med.startDate }}</td>
+            <td class="table-cell">{{ med.endDate }}</td>
+            <td class="table-cell w-40">
+              <div class="progress-track">
+                <div class="progress-fill" [style.width.%]="getProgress(med)"></div>
+              </div>
+              <span class="text-xs text-clinical-muted">{{ getProgress(med) }}%</span>
+            </td>
+            <td class="table-cell">
+              <span [ngClass]="getStatusClass(med.status)">{{ med.status }}</span>
+            </td>
+            <td class="table-cell relative">
+              <button (click)="toggleMenu(i)" class="btn-icon">⋮</button>
+              <div *ngIf="activeMenuIndex === i" class="dropdown-menu">
+                <button title="View" class="dropdown-item-view">
+                  <i class="bi bi-eye-fill"></i>
+                  <span>View</span>
+                </button>
+                <button (click)="editMedications(med)" title="Edit" class="dropdown-item-edit">
+                  <i class="bi bi-pen"></i>
+                  <span>Edit</span>
+                </button>
+                <button title="Adherent" class="dropdown-item-view">
+                  <i class="bi bi-patch-check-fill"></i>
+                  <span>Adherent</span>
+                </button>
+                <button (click)="removeMedication(med.id, med.medName)" title="Delete" class="dropdown-item-delete">
+                  <i class="bi bi-trash"></i>
+                  <span>Delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="medications$ | async as meds" class="pagination">
+    <p>
+      Showing 1 – {{ meds.length }} of {{ meds.length }}
+      medication<span *ngIf="meds.length !== 1">s</span>
+    </p>
+    <div class="space-x-2">
+      <button class="pagination-btn">Prev</button>
+      <button class="pagination-btn-active">1</button>
+      <button class="pagination-btn">2</button>
+      <button class="pagination-btn">Next</button>
+    </div>
+  </div>
+</section>
+
+<app-medication-form
+  *ngIf="isFormVisible"
+  [medication]="editingMedication"
+  (cancel)="closeFromChild()"
+></app-medication-form>

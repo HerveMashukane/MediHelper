@@ -1,36 +1,16 @@
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
-  <div
-    class="w-full max-w-sm rounded-2xl bg-gray-900 p-6 shadow-xl animate-fadeIn"
-  >
-    <h3 class="text-lg font-semibold text-white">
-      {{ title }}
-    </h3>
+<div class="dialog-overlay">
+  <div class="dialog-panel animate-fadeIn">
+    <h3 class="text-lg font-semibold text-white">{{ title }}</h3>
 
-    <p class="mt-2 text-sm text-gray-400">
+    <p class="mt-2 text-sm text-clinical-muted">
       {{ message }}
-      <span
-          *ngIf="hightlight"
-          class="font-semibold text-white"
-        >
-        {{ hightlight }}
-      </span>
-      ? This action cannot be undone!
+      <span *ngIf="highlight" class="font-semibold text-white">{{ highlight }}</span>
+      This action cannot be undone!
     </p>
 
-    <div class="mt-6 flex justify-end gap-3">
-      <button
-        (click)="onCancel()"
-        class="rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300 transition"
-      >
-        {{ cancelText }}
-      </button>
-
-      <button
-        (click)="onConfirm()"
-        class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 transition"
-      >
-        {{ confirmText }}
-      </button>
+    <div class="form-actions mt-6">
+      <button (click)="onCancel()" class="btn-ghost">{{ cancelText }}</button>
+      <button (click)="onConfirm()" class="btn-danger">{{ confirmText }}</button>
     </div>
   </div>
 </div>

@@ -1,0 +1,129 @@
+<section class="page-container animate-pageFlip">
+  <app-page-header
+    title="Medical Reports Dashboard"
+    subtitle="Overview of patient activity, appointments, and medication adherence"
+  >
+    <input type="search" placeholder="Search patients, reports, metrics..." class="clinical-input max-w-xs" />
+    <app-button variant="primary">Export Reports</app-button>
+  </app-page-header>
+
+  <div class="kpi-grid-4">
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Total Patients</p>
+      <h2 class="text-2xl font-semibold mt-2">250</h2>
+      <span class="text-xs kpi-accent-patient">+5% this month</span>
+    </div>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Appointments Today</p>
+      <h2 class="text-2xl font-semibold mt-2">34</h2>
+      <span class="text-xs kpi-accent-medication">Scheduled</span>
+    </div>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Medications Administered</p>
+      <h2 class="text-2xl font-semibold mt-2">128</h2>
+      <span class="text-xs kpi-accent-appointment">On Time</span>
+    </div>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Missed Medications</p>
+      <h2 class="text-2xl font-semibold mt-2">6</h2>
+      <span class="text-xs kpi-accent-critical">Critical</span>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <select class="clinical-input max-w-xs">
+      <option>All Departments</option>
+      <option>Cardiology</option>
+      <option>General</option>
+      <option>Pediatrics</option>
+    </select>
+    <select class="clinical-input max-w-xs">
+      <option>All Doctors</option>
+      <option>Dr. Hervé</option>
+      <option>Dr. Christelle</option>
+    </select>
+    <input type="date" class="clinical-input max-w-xs" />
+    <input type="date" class="clinical-input max-w-xs" />
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="chart-panel">
+      <h2 class="chart-title">Appointments Trend</h2>
+      <canvas id="appointmentsTrendChart" class="w-full h-64"></canvas>
+    </div>
+    <div class="chart-panel">
+      <h2 class="chart-title">Medications Compliance</h2>
+      <canvas id="medicationsComplianceChart" class="w-full h-64"></canvas>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="table-wrapper">
+      <div class="table-section-header"><h2 class="table-section-title">Patient Activity</h2></div>
+      <table class="table text-left">
+        <thead class="table-head">
+          <tr>
+            <th class="table-cell">Patient</th>
+            <th class="table-cell">Doctor</th>
+            <th class="table-cell">Appointments</th>
+            <th class="table-cell">Medications</th>
+            <th class="table-cell">Compliance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-row">
+            <td class="table-cell">Hervé Mashukane</td>
+            <td class="table-cell">Dr. Hervé</td>
+            <td class="table-cell">3</td>
+            <td class="table-cell">5</td>
+            <td class="table-cell"><span class="status-success">100%</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="table-cell">Christelle Pelaya</td>
+            <td class="table-cell">Dr. Christelle</td>
+            <td class="table-cell">2</td>
+            <td class="table-cell">4</td>
+            <td class="table-cell"><span class="status-warning">75%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrapper">
+      <div class="table-section-header"><h2 class="table-section-title">Medications Log</h2></div>
+      <table class="table text-left">
+        <thead class="table-head">
+          <tr>
+            <th class="table-cell">Patient</th>
+            <th class="table-cell">Medication</th>
+            <th class="table-cell">Scheduled Time</th>
+            <th class="table-cell">Status</th>
+            <th class="table-cell">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-row">
+            <td class="table-cell">Hervé Mashukane</td>
+            <td class="table-cell">Amoxicillin</td>
+            <td class="table-cell">09:00 AM</td>
+            <td class="table-cell"><span class="status-success">Taken</span></td>
+            <td class="table-cell flex gap-2">
+              <button class="btn-primary btn-sm">View</button>
+              <button class="btn-danger btn-sm">Flag</button>
+            </td>
+          </tr>
+          <tr class="table-row">
+            <td class="table-cell">Christelle Pelaya</td>
+            <td class="table-cell">Vitamin C</td>
+            <td class="table-cell">06:00 PM</td>
+            <td class="table-cell"><span class="status-warning">Missed</span></td>
+            <td class="table-cell flex gap-2">
+              <button class="btn-primary btn-sm">View</button>
+              <button class="btn-danger btn-sm">Flag</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

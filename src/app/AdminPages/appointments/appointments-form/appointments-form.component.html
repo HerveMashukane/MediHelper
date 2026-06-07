@@ -1,0 +1,118 @@
+<section class="form-overlay">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 form-panel-wide">
+
+    <form class="clinical-card p-8 space-y-5" (ngSubmit)="bookAppointment()">
+      <div class="space-y-2">
+        <h2 class="form-panel-title">Book Appointment</h2>
+        <p class="text-clinical-muted text-sm">Fill patient and scheduling details</p>
+      </div>
+
+      <div class="flex flex-col">
+        <label class="form-label">Patient Name</label>
+        <input
+          type="text"
+          [(ngModel)]="formData.patientName"
+          name="patientName"
+          placeholder="Enter patient name"
+          class="clinical-input"
+        />
+      </div>
+
+      <div class="flex flex-col space-y-2">
+        <label class="form-label">Select Doctor</label>
+        <select
+          [(ngModel)]="formData.doctorName"
+          name="doctor"
+          (change)="loadSlots()"
+          class="clinical-input"
+        >
+          <option value="" disabled selected>Choose doctor...</option>
+          <option *ngFor="let doctor of doctors" [value]="doctor.name">
+            {{ doctor.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex flex-col space-y-2">
+        <label class="form-label">Date</label>
+        <input
+          type="date"
+          [(ngModel)]="formData.date"
+          name="date"
+          (change)="loadSlots()"
+          class="clinical-input"
+        />
+      </div>
+
+      <div class="flex flex-col space-y-2">
+        <label class="form-label">Selected Time</label>
+        <input type="text" [value]="formData.time" readonly class="clinical-input" />
+      </div>
+
+      <div class="flex flex-col space-y-2">
+        <label class="form-label">Status</label>
+        <select [(ngModel)]="formData.status" name="status" class="clinical-input">
+          <option value="Upcoming">Upcoming</option>
+          <option value="Pending">Pending</option>
+          <option value="Active">Active</option>
+          <option value="Completed">Completed</option>
+          <option value="Canceled">Canceled</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col space-y-2">
+        <label class="form-label">Appointment Type</label>
+        <input
+          type="text"
+          [(ngModel)]="formData.type"
+          name="type"
+          placeholder="Consultation, checkup..."
+          class="clinical-input"
+        />
+      </div>
+
+      <div class="flex flex-col space-y-2">
+        <label class="form-label">Notes (optional)</label>
+        <textarea
+          rows="4"
+          [(ngModel)]="formData.notes"
+          name="notes"
+          placeholder="Additional information"
+          class="clinical-input"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary w-full">
+        {{ formData.id ? 'Save Changes' : 'Book Appointment' }}
+      </button>
+    </form>
+
+    <div class="clinical-card p-8 space-y-6">
+      <div class="form-panel-header">
+        <h3 class="text-lg text-white font-semibold">Available Time Slots</h3>
+        <button (click)="closeForm()" type="button" class="form-close-btn">
+          <i class="bi bi-x-circle text-2xl"></i>
+        </button>
+      </div>
+
+      <div class="clinical-card p-4 flex justify-between items-center">
+        <div>
+          <p class="text-white font-medium">{{ formData.doctorName || 'Select doctor' }}</p>
+          <p class="text-sm text-clinical-muted">{{ formData.date || 'Choose date' }}</p>
+        </div>
+        <i class="bi bi-person-badge text-clinical-accent text-xl"></i>
+      </div>
+
+      <div class="grid grid-cols-4 gap-3">
+        <button
+          *ngFor="let slot of slots"
+          (click)="selectSlot(slot)"
+          [disabled]="slot.booked"
+          [ngClass]="slot.booked ? 'slot-btn-booked' : 'slot-btn'"
+        >
+          {{ slot.time }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

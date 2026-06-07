@@ -1,26 +1,26 @@
-<nav class="sticky top-0 z-50 flex items-center justify-between px-8 py-3 bg-gray-950 border-b border-gray-800 shadow-xl text-white">
+<nav class="navbar">
 
   <!-- LEFT : Logo -->
   <div
-    routerLink="/dashboard"
-    class="flex items-center cursor-pointer hover:scale-105 transition"
+    [routerLink]="dashboardLink()"
+    class="flex items-center space-x-2 cursor-pointer transition hover:opacity-90"
   >
     <img
-      src="assets/images/MediHelp.png"
+      src="branding/logo.svg"
       alt="MediHelp Logo"
-      class="h-10 w-auto object-contain drop-shadow-[0_0_6px_rgba(59,130,246,0.35)] select-none"
+      class="h-10 w-auto object-contain select-none"
     />
   </div>
 
 
   <!-- CENTER : Search -->
   <div class="relative w-1/3">
-    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-clinical-muted"></i>
 
     <input
-      type="text"
+      type="search"
       placeholder="Search patients, doctors, appointments..."
-      class="w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+      class="navbar-search"
     />
   </div>
 
@@ -29,17 +29,21 @@
   <div class="flex items-center gap-6">
 
     <!-- Theme toggle -->
-    <button class="text-xl text-gray-400 hover:text-yellow-400 transition">
+    <button class="navbar-icon-btn text-xl text-clinical-muted">
       <i class="bi bi-sun"></i>
     </button>
 
     <!-- Notifications -->
-    <button class="relative bg-gray-900 p-2 rounded-lg hover:bg-gray-800 transition">
-      <i class="bi bi-bell text-yellow-400"></i>
-      <span class="absolute -top-1 -right-1 bg-red-500 text-xs px-1 rounded-full">
-        3
-      </span>
+    <button class="navbar-icon-btn relative">
+      <i class="bi bi-bell text-warning"></i>
+      <span class="navbar-badge">3</span>
     </button>
+
+    <!-- Language -->
+    <select class="btn-primary btn-sm cursor-pointer">
+      <option>🇬🇧 EN</option>
+      <option>🇫🇷 FR</option>
+    </select>
 
     <!-- Profile -->
     <div class="flex items-center gap-3 relative">
@@ -49,77 +53,63 @@
         <img
           src="/assets/images/herve.jpg"
           (click)="toggleDropdown()"
-          class="w-10 h-10 rounded-full object-cover border border-gray-700 cursor-pointer"
+          class="avatar w-10 h-10 cursor-pointer"
           alt="User"
         />
 
         <!-- Online indicator -->
-        <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-gray-950 rounded-full"></span>
+        <span
+          class="absolute bottom-0 right-0 w-3 h-3 border-2 border-surface-0 rounded-full"
+          [ngClass]="(isOnline$ | async) ? 'connection-dot-online' : 'connection-dot-offline'"
+        ></span>
       </div>
 
       <!-- Name visible directly -->
-      <div 
+      <div
         class="hidden md:block text-left leading-tight cursor-pointer animate-pageFlip"
-        (click)="toggleDropdown()">
-        <p class="text-sm font-semibold">Hervé Mashukane</p>
-        <p class="text-xs text-blue-400">Super Admin</p>
+        (click)="toggleDropdown()"
+      >
+        <p class="text-sm font-semibold">{{ displayName() }}</p>
+        <p class="text-xs text-clinical-accent">MediHelper {{ roleLabel() }}</p>
       </div>
 
       <!-- Dropdown -->
-      <div
-        *ngIf="isDropdownOpen"
-        class="absolute right-0 top-14 w-64 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50 overflow-hidden"
-      >
+      <div *ngIf="isDropdownOpen" class="nav-dropdown">
 
-        <!-- HEADER (FIXED) -->
-        <div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">
+        <!-- HEADER -->
+        <div class="nav-dropdown-header">
 
           <!-- User info -->
           <div class="flex items-center gap-3">
             <img
               src="/assets/images/herve.jpg"
-              class="w-10 h-10 rounded-full object-cover border border-gray-700"
+              class="avatar w-10 h-10"
               alt="User"
             />
 
-            <div>
-              <p class="text-sm font-semibold leading-none">Hervé Mashukane</p>
-              <p class="text-xs text-blue-400">Super Admin</p>
+            <div class="space-y-1">
+              <p class="text-sm leading-none">{{ displayMail() }}</p>
+              <p class="text-sm text-clinical-accent">{{ roleLabel() }}</p>
             </div>
           </div>
 
           <!-- Close -->
-          <button
-            (click)="toggleDropdown()"
-            class="text-gray-400 hover:text-red-500 transition"
-          >
+          <button (click)="toggleDropdown()" class="text-clinical-muted transition hover:opacity-90">
             <i class="bi bi-x-lg text-sm"></i>
           </button>
 
         </div>
 
         <!-- MENU -->
-        <a class="block px-4 py-2 hover:bg-gray-800 cursor-pointer">
-          Profile
-        </a>
-
-        <a class="block px-4 py-2 hover:bg-gray-800 cursor-pointer">
-          Settings
-        </a>
-
-        <a class="block px-4 py-2 hover:bg-gray-800 cursor-pointer text-red-400">
+        <a class="nav-dropdown-item">Profile</a>
+        <a class="nav-dropdown-item">Settings</a>
+        <button type="button" (click)="logout()" class="nav-dropdown-item-danger">
           Logout
-        </a>
+        </button>
 
       </div>
 
     </div>
-
-    <!-- Language -->
-    <select class="bg-blue-900 text-white text-sm px-2 py-1 rounded-full cursor-pointer">
-      <option>🇬🇧 EN</option>
-      <option>🇫🇷 FR</option>
-    </select>
 
   </div>
 </nav>

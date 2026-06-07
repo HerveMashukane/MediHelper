@@ -1,0 +1,58 @@
+<section class="page-container animate-pageFlip">
+  <app-page-header [title]="'Doctors'" [subtitle]="filteredDoctors.length + ' registered'">
+    <app-button
+      [variant]="isFormVisible ? 'danger' : 'primary'"
+      (clicked)="toggleForm()"
+    >
+      {{ isFormVisible ? 'Close Form' : 'New Doctor' }}
+    </app-button>
+  </app-page-header>
+
+  <div class="flex flex-col sm:flex-row gap-4 mb-6">
+    <input type="search" [(ngModel)]="searchDoctor" placeholder="Search doctor..." class="clinical-input max-w-md" />
+    <select [(ngModel)]="selectedSpeciality" class="clinical-input max-w-xs">
+      <option value="All">All specialists</option>
+      <option value="Generalist">Generalist</option>
+      <option value="Cardiologist">Cardiologist</option>
+      <option value="Dermatologist">Dermatologist</option>
+      <option value="Neurologist">Neurologist</option>
+      <option value="Surgeon">Surgeon</option>
+      <option value="Oncologist">Oncologist</option>
+    </select>
+  </div>
+
+  @if (filteredDoctors.length > 0) {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      @for (doctor of filteredDoctors; track doctor.id) {
+        <div class="clinical-card p-4 flex flex-col items-center text-center">
+          <p class="text-sm text-clinical-muted italic">Dr. {{ doctor.preferedName }}</p>
+          @if (doctor.image) {
+            <img [src]="doctor.image" [alt]="doctor.preferedName" class="avatar w-20 h-20 object-cover mt-2" />
+          }
+          <p class="font-semibold text-white mt-2">{{ doctor.fullName }}</p>
+          <p class="text-sm text-clinical-muted">{{ doctor.speciality }}</p>
+          <div class="flex gap-2 mt-4">
+            <app-button size="sm" variant="primary" icon="bi bi-eye-fill" (clicked)="viewDoctor(doctor)" />
+            <app-button size="sm" variant="secondary" icon="bi bi-pen" (clicked)="editDoctor(doctor)" />
+            <app-button size="sm" variant="danger" icon="bi bi-trash" (clicked)="removeDoctor(doctor)" />
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="clinical-card p-12 text-center text-clinical-muted">No doctors found.</div>
+  }
+</section>
+
+<app-detail-modal
+  [open]="isModalOpen"
+  [title]="'Dr. ' + (selectedDoctor?.preferedName ?? '')"
+  [subtitle]="selectedDoctor?.speciality"
+  [imageUrl]="selectedDoctor?.image"
+  [fields]="modalFields"
+  (close)="closeModel()"
+/>
+
+@if (isFormVisible) {
+  <app-doctors-form [doctor]="editingDoctor" (close)="toggleForm()" />
+}

@@ -1,0 +1,59 @@
+<div class="auth-shell">
+  <div class="clinical-card w-full max-w-md p-8">
+    <div class="text-center mb-6">
+      <h2 class="text-xl font-semibold text-white">MediHelper Sign In</h2>
+      <p class="text-clinical-muted text-sm mt-2">Hospital Operations Platform</p>
+    </div>
+
+    <form class="space-y-4" (ngSubmit)="login()">
+      <div>
+        <label class="form-label">UserName</label>
+        <input
+          type="text"
+          name="userName"
+          [(ngModel)]="userName"
+          class="clinical-input w-full"
+          placeholder="Herve Mashukane"
+        />
+      </div>
+      <div>
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          class="clinical-input w-full"
+          placeholder="you@hospital.org"
+        />
+      </div>
+
+      <div>
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          class="clinical-input w-full"
+          placeholder="••••••••"
+        />
+      </div>
+
+      <div>
+        <label class="form-label">Select Role</label>
+        <select [(ngModel)]="selectedRole" name="role" class="clinical-input w-full">
+          @for (role of roles; track role) {
+            <option [value]="role">{{ roleLabels[role] }}</option>
+          }
+        </select>
+      </div>
+
+      @if (errorMessage) {
+        <p class="text-sm text-clinical-error">{{ errorMessage }}</p>
+      }
+
+      <button type="submit" class="btn-primary btn-lg w-full">
+        Sign In
+      </button>
+    </form>
+  </div>
+</div>

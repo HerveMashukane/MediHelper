@@ -1,0 +1,103 @@
+<section class="page-container animate-pageFlip">
+  <app-page-header
+    [title]="'Radiology Exams'"
+    [subtitle]="((filteredRadioExams$ | async)?.length ?? 0) + ' exams'"
+  >
+    <app-button
+      [variant]="isFormVisible ? 'danger' : 'primary'"
+      [icon]="isFormVisible ? 'bi bi-x' : 'bi bi-plus'"
+      (clicked)="toggleForm()"
+    >
+      {{ isFormVisible ? 'Close Form' : 'New Radiology Exam' }}
+    </app-button>
+  </app-page-header>
+
+  <div class="toolbar-panel">
+    <input
+      type="text"
+      placeholder="Search patient or exam..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="searchTerm$.next($event)"
+      class="clinical-input max-w-xs"
+    />
+    <select
+      [(ngModel)]="selectedStatus"
+      (ngModelChange)="selectedStatus$.next($event)"
+      class="clinical-input max-w-xs"
+    >
+      <option value="All" selected>All Exams</option>
+      <option value="Pending">Pending</option>
+      <option value="In Review">In Review</option>
+      <option value="Completed">Completed</option>
+      <option value="Urgent">Urgent</option>
+    </select>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="table text-left">
+      <thead class="table-head">
+        <tr>
+          <th class="table-cell">Patient</th>
+          <th class="table-cell">Exam</th>
+          <th class="table-cell">Radiologist</th>
+          <th class="table-cell">Body Part</th>
+          <th class="table-cell">Date</th>
+          <th class="table-cell">Status</th>
+          <th class="table-cell">Report</th>
+          <th class="table-cell">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="filteredRadioExams$ | async as radioExams">
+          <tr *ngIf="radioExams.length === 0">
+            <td colspan="8" class="table-empty">No radiology exams found.</td>
+          </tr>
+          <tr *ngFor="let exam of radioExams; let i = index" class="table-row">
+            <td class="table-cell font-semibold">{{ exam.patientName }}</td>
+            <td class="table-cell">{{ exam.examType }}</td>
+            <td class="table-cell">{{ exam.radiologist }}</td>
+            <td class="table-cell">{{ exam.bodyPart }}</td>
+            <td class="table-cell">{{ exam.date }}</td>
+            <td class="table-cell">
+              <span [ngClass]="getStatusClass(exam.status)">{{ exam.status }}</span>
+            </td>
+            <td class="table-cell text-clinical-muted">{{ exam.report || 'No report yet' }}</td>
+            <td class="table-cell relative">
+              <button (click)="toggleMenu(i)" class="btn-icon">⋮</button>
+              <div *ngIf="activeMenuIndex === i" class="dropdown-menu">
+                <button title="View" class="dropdown-item-view">
+                  <i class="bi bi-eye-fill"></i><span>View Report</span>
+                </button>
+                <button (click)="editRadioExam(exam)" title="Edit" class="dropdown-item-edit">
+                  <i class="bi bi-pen"></i><span>Edit</span>
+                </button>
+                <button title="Upload Image" class="dropdown-item-export">
+                  <i class="bi bi-cloud-upload"></i><span>Upload Image</span>
+                </button>
+                <button (click)="removeRadioExam(exam.id, exam.examType)" title="Delete" class="dropdown-item-delete">
+                  <i class="bi bi-trash"></i><span>Delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <p>Showing radiology exam records</p>
+    <div class="space-x-2">
+      <button class="pagination-btn">Prev</button>
+      <button class="pagination-btn-active">1</button>
+      <button class="pagination-btn">2</button>
+      <button class="pagination-btn">Next</button>
+    </div>
+  </div>
+</section>
+
+<app-radiology-form
+  *ngIf="isFormVisible"
+  [radioExam]="editingRadioExam"
+  (cancel)="closeFormFromChild()"
+></app-radiology-form>

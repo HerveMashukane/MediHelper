@@ -1,0 +1,153 @@
+<section class="page-container animate-pageFlip">
+  <app-page-header
+    title="Insurance Dashboard"
+    subtitle="Overview of policies, claims, and client insights"
+  >
+    <input type="search" placeholder="Search clients, policies, claims..." class="clinical-input max-w-xs" />
+    <app-button variant="primary">+ New Policy</app-button>
+  </app-page-header>
+
+  <div class="kpi-grid-4">
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Total Policies</p>
+      <h2 class="text-2xl font-semibold mt-2">1,250</h2>
+      <span class="text-xs kpi-accent-patient">+8% this month</span>
+    </div>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Active Claims</p>
+      <h2 class="text-2xl font-semibold mt-2">32</h2>
+      <span class="text-xs kpi-accent-medication">Pending attention</span>
+    </div>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Closed Claims</p>
+      <h2 class="text-2xl font-semibold mt-2">98</h2>
+      <span class="text-xs kpi-accent-appointment">Resolved</span>
+    </div>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Overdue Claims</p>
+      <h2 class="text-2xl font-semibold mt-2">5</h2>
+      <span class="text-xs kpi-accent-critical">Needs urgent action</span>
+    </div>
+  </div>
+
+  <div class="chart-panel">
+    <h2 class="chart-title">Claims Overview</h2>
+    <canvas id="claimsChart" class="w-full h-64"></canvas>
+  </div>
+
+  <div class="content-grid-3">
+    <div class="content-main">
+      <div class="filter-row">
+        <select class="clinical-input max-w-xs">
+          <option>All Status</option>
+          <option>Active</option>
+          <option>Expired</option>
+          <option>Pending Renewal</option>
+        </select>
+        <input type="month" class="clinical-input max-w-xs" />
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-section-header"><h2 class="table-section-title">Recent Policies</h2></div>
+        <table class="table text-left">
+          <thead class="table-head">
+            <tr>
+              <th class="table-cell">Policy #</th>
+              <th class="table-cell">Client</th>
+              <th class="table-cell">Type</th>
+              <th class="table-cell">Premium</th>
+              <th class="table-cell">Status</th>
+              <th class="table-cell">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row">
+              <td class="table-cell">POL-0012</td>
+              <td class="table-cell">Herve Mashukane</td>
+              <td class="table-cell">Health</td>
+              <td class="table-cell">$1,200</td>
+              <td class="table-cell"><span class="status-success">Active</span></td>
+              <td class="table-cell flex gap-2">
+                <button class="btn-primary btn-sm">View</button>
+                <button class="btn-secondary btn-sm">Renew</button>
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="table-cell">POL-0011</td>
+              <td class="table-cell">Christelle Pelaya</td>
+              <td class="table-cell">Vehicle</td>
+              <td class="table-cell">$800</td>
+              <td class="table-cell"><span class="status-warning">Pending Renewal</span></td>
+              <td class="table-cell flex gap-2">
+                <button class="btn-primary btn-sm">View</button>
+                <button class="btn-danger btn-sm">Cancel</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-section-header"><h2 class="table-section-title">Recent Claims</h2></div>
+        <table class="table text-left">
+          <thead class="table-head">
+            <tr>
+              <th class="table-cell">Claim #</th>
+              <th class="table-cell">Policy</th>
+              <th class="table-cell">Client</th>
+              <th class="table-cell">Amount</th>
+              <th class="table-cell">Status</th>
+              <th class="table-cell">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row">
+              <td class="table-cell">CLM-1001</td>
+              <td class="table-cell">POL-0012</td>
+              <td class="table-cell">Herve Mashukane</td>
+              <td class="table-cell">$500</td>
+              <td class="table-cell"><span class="status-warning">Pending</span></td>
+              <td class="table-cell flex gap-2">
+                <button class="btn-primary btn-sm">View</button>
+                <button class="btn-secondary btn-sm">Approve</button>
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="table-cell">CLM-1000</td>
+              <td class="table-cell">POL-0011</td>
+              <td class="table-cell">Christelle Pelaya</td>
+              <td class="table-cell">$1,200</td>
+              <td class="table-cell"><span class="status-danger">Denied</span></td>
+              <td class="table-cell flex gap-2">
+                <button class="btn-primary btn-sm">View</button>
+                <button class="btn-ghost btn-sm">Export</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <div class="clinical-card p-6">
+        <h2 class="table-section-title mb-4">Quick Actions</h2>
+        <div class="action-stack">
+          <button class="btn-primary">Add Policy</button>
+          <button class="btn-secondary">Approve Claim</button>
+          <button class="btn-danger">Deny Claim</button>
+          <button class="btn-ghost">Export CSV</button>
+        </div>
+      </div>
+      <div class="clinical-card p-6">
+        <h2 class="table-section-title mb-4">Monthly Summary</h2>
+        <div class="space-y-2 text-sm">
+          <div class="summary-row"><span>Total Policies</span><span class="summary-value-success">1,250</span></div>
+          <div class="summary-row"><span>New Policies</span><span class="summary-value-success">48</span></div>
+          <div class="summary-row"><span>Claims Submitted</span><span class="summary-value-warning">32</span></div>
+          <div class="summary-row"><span>Claims Closed</span><span class="summary-value-info">98</span></div>
+          <div class="summary-row"><span>Overdue Claims</span><span class="summary-value-danger">5</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

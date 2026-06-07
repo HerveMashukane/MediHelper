@@ -11,7 +11,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ConfirmDialogComponent {
   @Input() title = 'Confirm action';
   @Input() message = 'Are you sure you want to proceed ?';
-  @Input() hightlight = '';
+  @Input() highlight = '';
   @Input() confirmText = 'Confirm';
   @Input() cancelText = 'Cancel';
 

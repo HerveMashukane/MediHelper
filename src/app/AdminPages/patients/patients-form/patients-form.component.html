@@ -1,0 +1,72 @@
+<section class="form-overlay">
+  <form (ngSubmit)="onSubmit()" class="form-panel">
+
+    <div class="form-panel-header">
+      <h2 class="form-panel-title">Patient Registration</h2>
+      <button (click)="onCancel()" type="button" class="form-close-btn">
+        <i class="bi bi-x-circle text-2xl"></i>
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input [(ngModel)]="formData.fullName" id="fullName" name="fullName" type="text" placeholder="eg: Herve Imani" required class="clinical-input mt-1" />
+      </div>
+      <div class="flex flex-col">
+        <label for="preferedName" class="form-label">Preferred Name</label>
+        <input [(ngModel)]="formData.preferedName" id="preferedName" name="preferedName" type="text" placeholder="eg: Imani" required class="clinical-input mt-1" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="department" class="form-label">Department</label>
+        <select [(ngModel)]="formData.department" id="department" name="department" class="clinical-input mt-1">
+          <option value="" disabled selected>Choose department</option>
+          <option value="Pediatry">Pediatry</option>
+          <option value="Cardiology">Cardiology</option>
+          <option value="Dermatology">Dermatology</option>
+          <option value="Neurology">Neurology</option>
+          <option value="Surgey">Surgery</option>
+          <option value="Oncology">Oncology</option>
+        </select>
+      </div>
+      <div class="flex flex-col">
+        <label for="dob" class="form-label">Age</label>
+        <input [(ngModel)]="formData.age" id="date" name="age" type="number" placeholder="eg: 100" required min="0" class="clinical-input mt-1" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="email" class="form-label">Patient Email</label>
+        <input [(ngModel)]="formData.email" id="email" name="email" type="email" placeholder="eg: patient@example.com" required class="clinical-input mt-1" />
+      </div>
+      <div class="flex flex-col">
+        <label for="phone" class="form-label">Patient Phone</label>
+        <input [(ngModel)]="formData.phone" id="phone" name="phone" type="tel" placeholder="eg: +243979594795" required class="clinical-input mt-1" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="image" class="form-label">Profile Picture</label>
+        <input type="file" id="image" name="image" (change)="onFileSelected($event)" class="clinical-input mt-1" />
+      </div>
+      <div class="flex flex-col">
+        <label for="bloodGroup" class="form-label">Blood Group</label>
+        <input [(ngModel)]="formData.bloodGroup" id="bloodGroup" name="bloodGroup" type="text" placeholder="eg: A+" required class="clinical-input mt-1" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">
+        {{ formData.id ? 'Save Changes' : 'Add Patient' }}
+      </button>
+      <button (click)="onCancel()" type="button" class="btn-danger">
+        Cancel
+      </button>
+    </div>
+  </form>
+</section>

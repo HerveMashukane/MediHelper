@@ -1,27 +1,63 @@
-# MediHelpApp
+![Angular](https://img.shields.io/badge/Angular-Framework-red)
+![TypeScript](https://img.shields.io/badge/TypeScript-Language-blue)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-UI-green)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.14.
+# MediHelper - Healthcare Management Dashboard
 
-## Development server
+MediHelper is a scalable healthcare management dashboard interface built using Angular, TypeScript, and Tailwind CSS.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Features
 
-## Code scaffolding
+- Dashboard overview interface
+- Patient management UI
+- Doctor management system
+- Appointment scheduling interface
+- Billing and insurance modules
+- Laboratory, pharmacy, and radiology sections
+- Administrative and system settings UI
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠 Tech Stack
 
-## Build
+- Angular
+- TypeScript
+- Tailwind CSS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🎯 Purpose
 
-## Running unit tests
+This project demonstrates the ability to design and build complex, real-world dashboard interfaces with multiple interconnected modules.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🧱 Architecture
 
-## Running end-to-end tests
+- Modular and scalable frontend structure
+- Feature-based organization
+- Reusable UI components
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 📸 Screenshots
 
-## Further help
+![medihelper screenshot](medihelper_overview.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🌐 Live Demo
+https://medihelper-app.netlify.app/
+
+## ⚙️ Getting Started (Clone & Run)
+
+Follow these steps to run the project locally:
+
+### 1. Clone the repository
+git clone https://github.com/HerveMashukane/MediHelpApp
+
+### 2. Navigate into the project
+cd MediHelpApp
+
+### 3. Install dependencies
+npm install
+
+### 4. Run the development server
+ng serve
+
+### 5. Open in browser
+http://localhost:4200
+
+## 📌 Notes
+
+This project focuses on frontend architecture and UI design for large-scale applications.

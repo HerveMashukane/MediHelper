@@ -1,0 +1,89 @@
+<section class="page-container animate-pageFlip">
+  <app-page-header title="Admin Settings" subtitle="Manage your platform configuration">
+    <app-button variant="danger">Reset</app-button>
+    <app-button variant="primary">Save</app-button>
+  </app-page-header>
+
+  <div class="settings-layout">
+    <aside class="settings-sidebar">
+      <div class="space-y-6 text-sm">
+        <div>
+          <p class="settings-section-title">Core</p>
+          <button (click)="activeTab='organization'" [ngClass]="activeTab==='organization' ? 'settings-tab-active' : 'settings-tab'">Organization</button>
+          <button (click)="activeTab='users'" [ngClass]="activeTab==='users' ? 'settings-tab-active' : 'settings-tab'">Users</button>
+        </div>
+        <div>
+          <p class="settings-section-title">Clinical</p>
+          <button (click)="activeTab='clinical'" [ngClass]="activeTab==='clinical' ? 'settings-tab-active' : 'settings-tab'">Clinical</button>
+          <button (click)="activeTab='services'" [ngClass]="activeTab==='services' ? 'settings-tab-active' : 'settings-tab'">Services</button>
+        </div>
+        <div>
+          <p class="settings-section-title">System</p>
+          <button (click)="activeTab='security'" [ngClass]="activeTab==='security' ? 'settings-tab-active' : 'settings-tab'">Security</button>
+          <button (click)="activeTab='integrations'" [ngClass]="activeTab==='integrations' ? 'settings-tab-active' : 'settings-tab'">Integrations</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="settings-panel animate-fadeIn" *ngIf="activeTab==='organization'">
+      <h2 class="settings-panel-title">Organization</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input class="clinical-input" placeholder="Hospital Name" />
+        <input class="clinical-input" placeholder="License" />
+      </div>
+      <input class="clinical-input" placeholder="Address" />
+      <div class="toggle-row">
+        <span>Multi-Branch</span>
+        <label class="toggle-switch">
+          <input type="checkbox" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-panel animate-fadeIn" *ngIf="activeTab==='users'">
+      <h2 class="settings-panel-title">Users & Roles</h2>
+      <div class="toggle-row">
+        <span>Enable RBAC</span>
+        <label class="toggle-switch">
+          <input type="checkbox" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span>Session Timeout</span>
+        <input class="clinical-input w-24" type="number" value="30" />
+      </div>
+    </div>
+
+    <div class="settings-panel animate-fadeIn" *ngIf="activeTab==='security'">
+      <h2 class="settings-panel-title">Security</h2>
+      <div class="toggle-row">
+        <span>2FA</span>
+        <label class="toggle-switch">
+          <input type="checkbox" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span>Strong Passwords</span>
+        <label class="toggle-switch">
+          <input type="checkbox" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-panel animate-fadeIn" *ngIf="activeTab==='integrations'">
+      <h2 class="settings-panel-title">Integrations</h2>
+      <div class="integration-row">
+        <span>Stripe</span>
+        <button class="btn-primary btn-sm">Connect</button>
+      </div>
+      <div class="integration-row">
+        <span>Google</span>
+        <button class="btn-primary btn-sm">Connect</button>
+      </div>
+    </div>
+  </div>
+</section>

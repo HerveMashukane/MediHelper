@@ -1,120 +1,22 @@
-<aside class="h-[calc(100vh-64px)] w-64 bg-gray-950 border-r border-gray-800 overflow-y-auto">
+<aside class="sidebar">
+  <div class="px-5 pt-4 pb-2">
+    <p class="sidebar-label">Role</p>
+    <p class="sidebar-role">{{ roleLabel() }}</p>
+  </div>
 
-  <ul class="flex flex-col p-5 text-gray-300">
-
-    <!-- DASHBOARD -->
-    <li
-      routerLink="/dashboard"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer mb-4"
-    >
-      <i class="fa-solid fa-gauge"></i>
-      <span>Dashboard</span>
-    </li>
-
-
-    <!-- CLINICAL -->
-    <p class="text-xs uppercase text-gray-500 px-4 mb-2">Clinical</p>
-
-    <li
-      routerLink="/patients"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer"
-    >
-      <i class="fa-solid fa-user-injured"></i>
-      <span>Patients</span>
-    </li>
-
-    <li
-      routerLink="/doctors"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer"
-    >
-      <i class="fa-solid fa-user-doctor"></i>
-      <span>Doctors</span>
-    </li>
-
-    <li
-      routerLink="/appointments"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer mb-4"
-    >
-      <i class="fa-solid fa-calendar-check"></i>
-      <span>Appointments</span>
-    </li>
-
-    <!-- MEDICAL SERVICES -->
-    <p class="text-xs uppercase text-gray-500 px-4 mb-2">Medical Services</p>
-
-    <li
-      routerLink="/pharmacy"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer"
-    >
-      <i class="fa-solid fa-pills"></i>
-      <span>Pharmacy</span>
-    </li>
-
-    <li
-      routerLink="/laboratory"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer"
-    >
-      <i class="fa-solid fa-flask"></i>
-      <span>Laboratory</span>
-    </li>
-
-    <li
-      routerLink="/radiology"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer mb-4"
-    >
-      <i class="fa-solid fa-x-ray"></i>
-      <span>Radiology</span>
-    </li>
-
-
-    <!-- ADMINISTRATION -->
-    <p class="text-xs uppercase text-gray-500 px-4 mb-2">Administration</p>
-
-    <li
-      routerLink="/billing"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer"
-    >
-      <i class="fa-solid fa-file-invoice-dollar"></i>
-      <span>Billing</span>
-    </li>
-
-    <li
-      routerLink="/insurance"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer"
-    >
-      <i class="fa-solid fa-shield-heart"></i>
-      <span>Insurance</span>
-    </li>
-
-    <li
-      routerLink="/reports"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer mb-4"
-    >
-      <i class="fa-solid fa-chart-line"></i>
-      <span>Reports</span>
-    </li>
-
-
-    <!-- SYSTEM -->
-    <p class="text-xs uppercase text-gray-500 px-4 mb-2">System</p>
-
-    <li
-      routerLink="/settings"
-      routerLinkActive="bg-blue-900 text-white"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 hover:text-white transition cursor-pointer"
-    >
-      <i class="fa-solid fa-gear"></i>
-      <span>Settings</span>
-    </li>
+  <ul class="flex flex-col p-4 pt-2 text-clinical-body">
+    @for (group of navSections(); track group.section) {
+      <p class="nav-section-title">{{ group.section }}</p>
+      @for (item of group.items; track item.route) {
+        <li
+          [routerLink]="item.route"
+          routerLinkActive="nav-link-active"
+          class="nav-link"
+        >
+          <i class="fa-solid {{ item.icon }} w-5 text-center"></i>
+          <span class="text-sm">{{ item.label }}</span>
+        </li>
+      }
+    }
   </ul>
 </aside>

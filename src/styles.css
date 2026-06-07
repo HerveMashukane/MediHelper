@@ -2,7 +2,649 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(to bottom right, #030712, #111827);
+/* ================= BASE RULES ================= */
+@layer base {
+  body {
+    @apply font-sans bg-surface-0 text-neutral-100;
+  }
+
+  h1 {
+    @apply font-heading text-3xl font-bold text-neutral-100;
+  }
+
+  h2 {
+    @apply font-heading text-2xl font-semibold text-neutral-200;
+  }
+
+  h3 {
+    @apply font-heading text-xl font-semibold text-neutral-300;
+  }
+
+  p {
+    @apply text-sm text-neutral-400;
+  }
+}
+
+/* ================= BUTTON SYSTEM ================= */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-medium transition duration-200;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-2.5;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-primary text-white hover:brightness-110;
+  }
+
+  .btn-secondary {
+    @apply btn bg-brand-secondary text-white hover:brightness-110;
+  }
+
+  .btn-outline {
+    @apply btn border border-brand-primary text-brand-primary hover:brightness-110;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger text-white hover:brightness-110;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent border border-surface-2 text-neutral-300 hover:opacity-90;
+  }
+
+  .btn-icon {
+    @apply px-3 py-1 bg-surface-2 rounded-xl transition hover:opacity-90;
+  }
+}
+
+/* ================= PAGE LAYOUT ================= */
+@layer components {
+  .page-container {
+    @apply p-8 bg-surface-0 text-neutral-100 min-h-screen space-y-6;
+  }
+
+  .auth-shell {
+    @apply min-h-screen bg-surface-0 flex items-center justify-center p-4;
+  }
+
+  .text-clinical-muted {
+    @apply text-neutral-400;
+  }
+
+  .text-clinical-body {
+    @apply text-neutral-300;
+  }
+
+  .text-clinical-accent {
+    @apply text-info;
+  }
+
+  .text-clinical-error {
+    @apply text-danger;
+  }
+
+  .form-label {
+    @apply block text-sm text-neutral-300 mb-1;
+  }
+
+  .link-action {
+    @apply text-sm text-info transition hover:opacity-90;
+  }
+}
+
+/* ================= CARDS ================= */
+@layer components {
+  .card {
+    @apply bg-white rounded-xl shadow-card p-4;
+  }
+
+  .clinical-card {
+    @apply bg-surface-1 rounded-xl border border-surface-2;
+  }
+
+  .card-header {
+    @apply font-heading text-lg font-semibold mb-2;
+  }
+
+  .card-body {
+    @apply text-sm text-neutral-400;
+  }
+
+  .kpi-grid {
+    @apply grid grid-cols-1 md:grid-cols-5 gap-4;
+  }
+
+  .kpi-accent-patient {
+    @apply text-patient;
+  }
+
+  .kpi-accent-doctor {
+    @apply text-doctor;
+  }
+
+  .kpi-accent-appointment {
+    @apply text-appointment;
+  }
+
+  .kpi-accent-medication {
+    @apply text-medication;
+  }
+
+  .kpi-accent-critical {
+    @apply text-critical;
+  }
+
+  .kpi-accent-neutral {
+    @apply text-neutral-300;
+  }
+}
+
+/* ================= FORMS ================= */
+@layer components {
+  .form-group {
+    @apply mb-4;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-neutral-300 mb-1;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 border border-neutral-300 rounded-xl
+           focus:outline-none focus:ring-2 focus:ring-brand-secondary;
+  }
+
+  .clinical-input {
+    @apply w-full px-3 py-2 rounded-xl bg-surface-1 border border-surface-2
+           text-neutral-100 focus:outline-none focus:ring-2 focus:ring-brand-primary;
+  }
+
+  .input-invalid {
+    @apply border-danger;
+  }
+
+  .form-overlay {
+    @apply fixed inset-0 flex items-center justify-center bg-black/70 p-4 z-50;
+  }
+
+  .form-panel {
+    @apply flex flex-col w-full max-w-lg max-h-[90vh] overflow-y-auto
+           clinical-card text-neutral-100 p-8 space-y-6 shadow-card;
+  }
+
+  .form-panel-wide {
+    @apply form-panel max-w-none lg:w-[80%];
+  }
+
+  .form-panel-header {
+    @apply flex justify-between items-center border-b border-surface-2 pb-4;
+  }
+
+  .form-panel-title {
+    @apply text-2xl font-bold;
+  }
+
+  .form-close-btn {
+    @apply text-clinical-muted transition hover:opacity-90;
+  }
+
+  .form-error {
+    @apply text-sm text-clinical-error bg-danger/10 border border-danger/30 rounded-xl px-3 py-2;
+  }
+
+  .form-actions {
+    @apply flex justify-end gap-3 pt-2;
+  }
+
+  .slot-btn {
+    @apply text-white py-2 rounded-xl transition bg-surface-2 hover:opacity-90;
+  }
+
+  .slot-btn-booked {
+    @apply slot-btn bg-danger cursor-not-allowed opacity-60;
+  }
+
+  .toolbar {
+    @apply flex flex-col md:flex-row md:items-center md:justify-between gap-4;
+  }
+
+  .toolbar-panel {
+    @apply clinical-card p-4 flex flex-wrap gap-4 items-center;
+  }
+}
+
+/* ================= LAYOUT (NAV / SIDEBAR) ================= */
+@layer components {
+  .navbar {
+    @apply sticky top-0 z-50 flex items-center justify-between px-8 py-3
+           bg-surface-1 shadow-soft text-neutral-100;
+  }
+
+  .navbar-search {
+    @apply w-full pl-10 pr-4 py-2 clinical-input text-sm;
+  }
+
+  .navbar-icon-btn {
+    @apply p-2 rounded-xl bg-surface-2 transition hover:opacity-90;
+  }
+
+  .navbar-badge {
+    @apply absolute -top-1 -right-1 bg-danger text-xs px-1 rounded-full;
+  }
+
+  .nav-dropdown {
+    @apply absolute right-0 top-14 w-64 bg-surface-1 border border-surface-2
+           rounded-xl shadow-card z-50 overflow-hidden;
+  }
+
+  .nav-dropdown-header {
+    @apply flex items-center justify-between px-4 py-3 border-b border-surface-2;
+  }
+
+  .nav-dropdown-item {
+    @apply block w-full text-left px-4 py-2 transition hover:opacity-90 cursor-pointer;
+  }
+
+  .nav-dropdown-item-danger {
+    @apply nav-dropdown-item text-danger;
+  }
+
+  .sidebar {
+    @apply h-[calc(100vh-64px)] w-64 bg-surface-1 border-r border-surface-2
+           overflow-y-auto rounded-md shrink-0;
+  }
+
+  .sidebar-label {
+    @apply text-xs uppercase tracking-wide text-neutral-500;
+  }
+
+  .sidebar-role {
+    @apply text-sm font-medium text-info capitalize;
+  }
+
+  .nav-section-title {
+    @apply text-xs uppercase text-neutral-500 px-3 mb-2 mt-3 first:mt-0;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg transition cursor-pointer
+           mb-1 text-neutral-300 hover:opacity-90;
+  }
+
+  .nav-link-active {
+    @apply bg-surface-2 text-info font-semibold;
+  }
+}
+
+/* ================= TABLE SYSTEM ================= */
+@layer components {
+  .table-wrapper {
+    @apply bg-surface-1 border border-surface-2 rounded-xl overflow-hidden;
+  }
+
+  .table {
+    @apply w-full text-sm text-neutral-200;
+  }
+
+  .table-head {
+    @apply bg-surface-2 text-neutral-300 text-xs uppercase;
+  }
+
+  .table-row {
+    @apply border-t border-surface-2 transition hover:opacity-90;
+  }
+
+  .table-cell {
+    @apply p-3;
+  }
+
+  .table-empty {
+    @apply text-center text-clinical-muted py-6 text-lg;
+  }
+}
+
+/* ================= STATUS TOKENS ================= */
+@layer components {
+  .status-success {
+    @apply text-success bg-success/10 px-3 py-1 rounded-full text-xs;
+  }
+
+  .status-warning {
+    @apply text-warning bg-warning/10 px-3 py-1 rounded-full text-xs;
+  }
+
+  .status-danger {
+    @apply text-danger bg-danger/10 px-3 py-1 rounded-full text-xs;
+  }
+
+  .status-info {
+    @apply text-info bg-info/10 px-3 py-1 rounded-full text-xs;
+  }
+
+  .status-neutral {
+    @apply text-neutral-300 bg-neutral-600/20 px-3 py-1 rounded-full text-xs;
+  }
+}
+
+/* ================= ALERTS & CONNECTION ================= */
+@layer components {
+  .alert-banner {
+    @apply border p-4 rounded-xl flex justify-between items-center gap-4;
+  }
+
+  .alert-danger {
+    @apply alert-banner bg-danger/10 border-danger/30;
+  }
+
+  .alert-danger-text {
+    @apply text-sm text-danger;
+  }
+
+  .connection-dot-online {
+    @apply bg-success;
+  }
+
+  .connection-dot-offline {
+    @apply bg-danger;
+  }
+
+  .connection-text-online {
+    @apply text-success;
+  }
+
+  .connection-text-offline {
+    @apply text-danger;
+  }
+}
+
+/* ================= DROPDOWN & PAGINATION ================= */
+@layer components {
+  .dropdown-menu {
+    @apply absolute right-2 mt-2 w-44 bg-surface-1 border border-surface-2
+           rounded-xl shadow-card z-50 overflow-hidden;
+  }
+
+  .dropdown-item {
+    @apply flex items-center gap-3 w-full text-left px-4 py-2 transition hover:opacity-90;
+  }
+
+  .dropdown-item-view {
+    @apply dropdown-item text-info;
+  }
+
+  .dropdown-item-edit {
+    @apply dropdown-item text-warning;
+  }
+
+  .dropdown-item-delete {
+    @apply dropdown-item text-danger;
+  }
+
+  .pagination {
+    @apply flex justify-between items-center text-sm text-clinical-muted;
+  }
+
+  .pagination-btn {
+    @apply px-3 py-1 bg-surface-2 rounded-xl transition hover:opacity-90;
+  }
+
+  .pagination-btn-active {
+    @apply pagination-btn bg-brand-primary text-white;
+  }
+}
+
+/* ================= PROGRESS ================= */
+@layer components {
+  .progress-track {
+    @apply w-full bg-surface-2 rounded-full h-2;
+  }
+
+  .progress-fill {
+    @apply bg-success h-2 rounded-full transition-all duration-500;
+  }
+}
+
+/* ================= AVATAR ================= */
+@layer components {
+  .avatar {
+    @apply rounded-full object-cover border border-surface-2;
+  }
+
+  .avatar-placeholder {
+    @apply rounded-full bg-surface-2 flex items-center justify-center text-neutral-500;
+  }
+}
+
+/* ================= CHARTS ================= */
+@layer components {
+  .chart-panel {
+    @apply clinical-card p-6;
+  }
+
+  .chart-title {
+    @apply text-lg font-semibold text-white mb-4;
+  }
+
+  .chart-bars {
+    @apply flex items-end gap-3 h-40;
+  }
+
+  .chart-bar {
+    @apply w-10 rounded-t;
+  }
+
+  .chart-bar-primary {
+    @apply chart-bar bg-brand-primary;
+  }
+
+  .chart-bar-success {
+    @apply chart-bar bg-success;
+  }
+
+  .chart-bar-warning {
+    @apply chart-bar bg-warning;
+  }
+
+  .chart-labels {
+    @apply flex justify-between text-xs text-clinical-muted;
+  }
+}
+
+/* ================= SUMMARY & LAYOUT ================= */
+@layer components {
+  .kpi-grid-4 {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-4;
+  }
+
+  .content-grid-3 {
+    @apply grid grid-cols-1 xl:grid-cols-3 gap-6;
+  }
+
+  .content-main {
+    @apply xl:col-span-2 space-y-6;
+  }
+
+  .action-stack {
+    @apply flex flex-col gap-3;
+  }
+
+  .filter-row {
+    @apply flex flex-wrap gap-3;
+  }
+
+  .table-section-header {
+    @apply p-6;
+  }
+
+  .table-section-title {
+    @apply text-lg font-semibold text-white;
+  }
+
+  .summary-row {
+    @apply flex justify-between text-sm;
+  }
+
+  .summary-value-success {
+    @apply text-success;
+  }
+
+  .summary-value-warning {
+    @apply text-warning;
+  }
+
+  .summary-value-info {
+    @apply text-info;
+  }
+
+  .summary-value-danger {
+    @apply text-danger;
+  }
+}
+
+/* ================= MODALS & DIALOGS ================= */
+@layer components {
+  .modal-overlay {
+    @apply fixed inset-0 flex items-center justify-center bg-black/70 z-50 animate-pageFlip;
+  }
+
+  .modal-panel {
+    @apply clinical-card w-[90%] max-w-md p-6 shadow-card animate-pageFlip;
+  }
+
+  .modal-panel-header {
+    @apply flex justify-between items-center border-b border-surface-2 pb-4 mb-4;
+  }
+
+  .modal-panel-title {
+    @apply text-xl font-semibold text-white;
+  }
+
+  .modal-info-box {
+    @apply clinical-card p-3 text-sm;
+  }
+
+  .modal-highlight {
+    @apply text-medication font-semibold;
+  }
+
+  .modal-icon-accent {
+    @apply text-medication;
+  }
+
+  .dialog-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/70;
+  }
+
+  .dialog-panel {
+    @apply clinical-card w-full max-w-sm p-6 shadow-card;
+  }
+
+  .detail-row {
+    @apply flex justify-between gap-4 border-b border-surface-2 pb-2;
+  }
+
+  .dropdown-item-neutral {
+    @apply dropdown-item text-neutral-100;
+  }
+
+  .dropdown-item-send {
+    @apply dropdown-item text-info;
+  }
+
+  .dropdown-item-export {
+    @apply dropdown-item text-success;
+  }
+}
+
+/* ================= FOOTER ================= */
+@layer components {
+  .app-footer {
+    @apply h-12 bg-surface-0 text-neutral-100 text-center content-center;
+  }
+
+  .app-footer-accent {
+    @apply text-danger;
+  }
+}
+
+/* ================= SETTINGS ================= */
+@layer components {
+  .settings-layout {
+    @apply grid grid-cols-1 lg:grid-cols-5 gap-6;
+  }
+
+  .settings-sidebar {
+    @apply clinical-card p-3;
+  }
+
+  .settings-section-title {
+    @apply nav-section-title px-4;
+  }
+
+  .settings-tab {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition cursor-pointer mb-4 w-full text-left text-clinical-muted hover:opacity-90;
+  }
+
+  .settings-tab-active {
+    @apply settings-tab bg-surface-2 text-info font-semibold;
+  }
+
+  .settings-panel {
+    @apply clinical-card p-6 space-y-4 lg:col-span-4;
+  }
+
+  .settings-panel-title {
+    @apply text-lg font-semibold text-white;
+  }
+
+  .toggle-row {
+    @apply flex justify-between items-center;
+  }
+
+  .toggle-switch {
+    @apply relative inline-block w-11 h-6;
+  }
+
+  .toggle-switch input {
+    @apply opacity-0 w-0 h-0;
+  }
+
+  .toggle-slider {
+    @apply absolute cursor-pointer inset-0 bg-surface-3 transition rounded-full;
+  }
+
+  .toggle-switch input:checked + .toggle-slider {
+    @apply bg-brand-primary;
+  }
+
+  .integration-row {
+    @apply clinical-card p-3 flex justify-between items-center;
+  }
+
+  .timeline-badge-neutral {
+    @apply px-2 py-1 rounded-xl text-xs bg-surface-2 text-neutral-300;
+  }
+
+  .timeline-badge-info {
+    @apply px-2 py-1 rounded-xl text-xs bg-info/20 text-info;
+  }
+}
+
+/* ================= TOGGLE SLIDER KNOB ================= */
+@layer components {
+  .toggle-slider::before {
+    content: "";
+    @apply absolute h-4 w-4 left-1 bottom-1 bg-neutral-100 transition rounded-full;
+  }
+
+  .toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(20px);
+  }
 }
