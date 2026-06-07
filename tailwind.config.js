@@ -8,10 +8,10 @@ export default {
       /* ================= BRAND CORE ================= */
       colors: {
         brand: {
-          primary: "#3B82F6",
-          secondary: "#1E40AF",
-          accent: "#F59E0B",
-        },
+        primary: "#0EA5E9",   // logo cyan (main identity)
+        secondary: "#0284C7", // deeper cyan (hover/emphasis)
+        accent: "#F59E0B",    // keep as-is (warnings/attention)
+      },
 
         /* ================= DARK SURFACE SYSTEM ================= */
         surface: {
