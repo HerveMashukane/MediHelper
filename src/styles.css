@@ -421,3 +421,230 @@
     @apply rounded-full bg-surface-2 flex items-center justify-center text-neutral-500;
   }
 }
+
+/* ================= CHARTS ================= */
+@layer components {
+  .chart-panel {
+    @apply clinical-card p-6;
+  }
+
+  .chart-title {
+    @apply text-lg font-semibold text-white mb-4;
+  }
+
+  .chart-bars {
+    @apply flex items-end gap-3 h-40;
+  }
+
+  .chart-bar {
+    @apply w-10 rounded-t;
+  }
+
+  .chart-bar-primary {
+    @apply chart-bar bg-brand-primary;
+  }
+
+  .chart-bar-success {
+    @apply chart-bar bg-success;
+  }
+
+  .chart-bar-warning {
+    @apply chart-bar bg-warning;
+  }
+
+  .chart-labels {
+    @apply flex justify-between text-xs text-clinical-muted;
+  }
+}
+
+/* ================= SUMMARY & LAYOUT ================= */
+@layer components {
+  .kpi-grid-4 {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-4;
+  }
+
+  .content-grid-3 {
+    @apply grid grid-cols-1 xl:grid-cols-3 gap-6;
+  }
+
+  .content-main {
+    @apply xl:col-span-2 space-y-6;
+  }
+
+  .action-stack {
+    @apply flex flex-col gap-3;
+  }
+
+  .filter-row {
+    @apply flex flex-wrap gap-3;
+  }
+
+  .table-section-header {
+    @apply p-6;
+  }
+
+  .table-section-title {
+    @apply text-lg font-semibold text-white;
+  }
+
+  .summary-row {
+    @apply flex justify-between text-sm;
+  }
+
+  .summary-value-success {
+    @apply text-success;
+  }
+
+  .summary-value-warning {
+    @apply text-warning;
+  }
+
+  .summary-value-info {
+    @apply text-info;
+  }
+
+  .summary-value-danger {
+    @apply text-danger;
+  }
+}
+
+/* ================= MODALS & DIALOGS ================= */
+@layer components {
+  .modal-overlay {
+    @apply fixed inset-0 flex items-center justify-center bg-black/70 z-50 animate-pageFlip;
+  }
+
+  .modal-panel {
+    @apply clinical-card w-[90%] max-w-md p-6 shadow-card animate-pageFlip;
+  }
+
+  .modal-panel-header {
+    @apply flex justify-between items-center border-b border-surface-2 pb-4 mb-4;
+  }
+
+  .modal-panel-title {
+    @apply text-xl font-semibold text-white;
+  }
+
+  .modal-info-box {
+    @apply clinical-card p-3 text-sm;
+  }
+
+  .modal-highlight {
+    @apply text-medication font-semibold;
+  }
+
+  .modal-icon-accent {
+    @apply text-medication;
+  }
+
+  .dialog-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/70;
+  }
+
+  .dialog-panel {
+    @apply clinical-card w-full max-w-sm p-6 shadow-card;
+  }
+
+  .detail-row {
+    @apply flex justify-between gap-4 border-b border-surface-2 pb-2;
+  }
+
+  .dropdown-item-neutral {
+    @apply dropdown-item text-neutral-100;
+  }
+
+  .dropdown-item-send {
+    @apply dropdown-item text-info;
+  }
+
+  .dropdown-item-export {
+    @apply dropdown-item text-success;
+  }
+}
+
+/* ================= FOOTER ================= */
+@layer components {
+  .app-footer {
+    @apply h-12 bg-surface-0 text-neutral-100 text-center content-center;
+  }
+
+  .app-footer-accent {
+    @apply text-danger;
+  }
+}
+
+/* ================= SETTINGS ================= */
+@layer components {
+  .settings-layout {
+    @apply grid grid-cols-1 lg:grid-cols-5 gap-6;
+  }
+
+  .settings-sidebar {
+    @apply clinical-card p-3;
+  }
+
+  .settings-section-title {
+    @apply nav-section-title px-4;
+  }
+
+  .settings-tab {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition cursor-pointer mb-4 w-full text-left text-clinical-muted hover:opacity-90;
+  }
+
+  .settings-tab-active {
+    @apply settings-tab bg-surface-2 text-info font-semibold;
+  }
+
+  .settings-panel {
+    @apply clinical-card p-6 space-y-4 lg:col-span-4;
+  }
+
+  .settings-panel-title {
+    @apply text-lg font-semibold text-white;
+  }
+
+  .toggle-row {
+    @apply flex justify-between items-center;
+  }
+
+  .toggle-switch {
+    @apply relative inline-block w-11 h-6;
+  }
+
+  .toggle-switch input {
+    @apply opacity-0 w-0 h-0;
+  }
+
+  .toggle-slider {
+    @apply absolute cursor-pointer inset-0 bg-surface-3 transition rounded-full;
+  }
+
+  .toggle-switch input:checked + .toggle-slider {
+    @apply bg-brand-primary;
+  }
+
+  .integration-row {
+    @apply clinical-card p-3 flex justify-between items-center;
+  }
+
+  .timeline-badge-neutral {
+    @apply px-2 py-1 rounded-xl text-xs bg-surface-2 text-neutral-300;
+  }
+
+  .timeline-badge-info {
+    @apply px-2 py-1 rounded-xl text-xs bg-info/20 text-info;
+  }
+}
+
+/* ================= TOGGLE SLIDER KNOB ================= */
+@layer components {
+  .toggle-slider::before {
+    content: "";
+    @apply absolute h-4 w-4 left-1 bottom-1 bg-neutral-100 transition rounded-full;
+  }
+
+  .toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(20px);
+  }
+}

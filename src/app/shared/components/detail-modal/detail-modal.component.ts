@@ -12,11 +12,8 @@ export interface DetailField {
   imports: [CommonModule],
   template: `
     @if (open) {
-      <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" (click)="onBackdrop()">
-        <div
-          class="clinical-card w-full max-w-md p-6 space-y-4"
-          (click)="$event.stopPropagation()"
-        >
+      <div class="form-overlay" (click)="onBackdrop()">
+        <div class="clinical-card w-full max-w-md p-6 space-y-4" (click)="$event.stopPropagation()">
           <div class="flex justify-between items-start">
             <div>
               <h3 class="text-xl font-semibold text-white">{{ title }}</h3>
@@ -24,16 +21,16 @@ export interface DetailField {
                 <p class="text-clinical-muted text-sm">{{ subtitle }}</p>
               }
             </div>
-            <button type="button" class="text-slate-400 hover:text-white" (click)="close.emit()" aria-label="Close">
+            <button type="button" class="form-close-btn" (click)="close.emit()" aria-label="Close">
               <i class="bi bi-x-lg"></i>
             </button>
           </div>
           @if (imageUrl) {
-            <img [src]="imageUrl" [alt]="title" class="w-24 h-24 rounded-full object-cover border border-slate-600 mx-auto" />
+            <img [src]="imageUrl" [alt]="title" class="avatar w-24 h-24 mx-auto" />
           }
           <dl class="space-y-2 text-sm">
             @for (f of fields; track f.label) {
-              <div class="flex justify-between gap-4 border-b border-slate-800 pb-2">
+              <div class="detail-row">
                 <dt class="text-clinical-muted">{{ f.label }}</dt>
                 <dd class="text-white text-right">{{ f.value || '—' }}</dd>
               </div>

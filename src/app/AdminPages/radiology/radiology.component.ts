@@ -5,11 +5,13 @@ import { RadiologyFormComponent } from './radiology-form/radiology-form.componen
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs'
 import { RadiologyExam, RadiologyExamsService } from '../../services/radiology/radiology-exams.service'
 import { ConfirmDialogService } from '../../confirm-dialog.service'
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component'
+import { AppButtonComponent } from '../../shared/components/app-button/app-button.component'
 
 @Component({
   selector: 'app-radiology',
   standalone: true,
-  imports: [RadiologyFormComponent, CommonModule, FormsModule],
+  imports: [RadiologyFormComponent, CommonModule, FormsModule, PageHeaderComponent, AppButtonComponent],
   templateUrl: './radiology.component.html',
   styleUrls: ['./radiology.component.css']
 })
@@ -87,5 +89,15 @@ export class RadiologyComponent {
     })
     if(!ok) return;
     this.radiologyExamsService.removeRadioExam(id);
+  }
+
+  getStatusClass(status: string): string {
+    const map: Record<string, string> = {
+      Pending: 'status-warning',
+      'In Review': 'status-info',
+      Completed: 'status-success',
+      Urgent: 'status-danger',
+    };
+    return map[status] ?? 'status-neutral';
   }
 }

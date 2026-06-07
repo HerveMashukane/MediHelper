@@ -1,108 +1,73 @@
 <!-- Doctors Modal Overlay -->
-<div *ngIf="isDoctorsModalOpen" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 animate-pageFlip">
-  
-    <!-- Doctors Modal Box -->
-    <div class="bg-gray-900 text-white rounded-lg shadow-lg p-4 w-[90%] max-w-md animate-pageFlip">
-        <!-- Header -->
-        <div class="flex justify-between items-center border-b border-b-blue-950 pb-2 mb-4">
-            <h3 class="text-xl font-semibold text-yellow-600">{{ doctor?.fullName }}</h3>
-            <button (click)="onClose()" class="text-white hover:text-red-700 text-2xl">
-                <i class="bi bi-x-circle text-xl"></i>
-            </button>
-        </div>
-
-        <!-- Body details -->
-        <!-- Image -->
-        <div>
-            <img [src]="doctor?.image" [alt]="doctor?.preferedName" class="object-cover w-24 h-24 rounded-full border border-white mx-auto">
-        </div>
-        <div class="flex justify-between text-sm my-4 space-x-4 text-white w-full">
-            <!-- Doctor's information -->
-            <div class="border border-gray-700 p-2 rounded-md shadow-lg">
-                <p><strong><i class="bi bi-person-lines-fill text-yellow-600"></i></strong> Dr. {{doctor?.preferedName}}</p>
-                <p><strong><i class="bi bi-heart-pulse-fill text-yellow-600"></i></strong> {{doctor?.speciality}}</p>
-                <p><strong><i class="bi bi-hospital-fill text-yellow-600"></i></strong> {{doctor?.hospital}}</p>
-                <p><strong><i class="bi bi-envelope-fill text-yellow-600"></i></strong> {{doctor?.email}}</p>
-                <p><strong><i class="bi bi-phone-fill text-yellow-600"></i></strong> {{doctor?.phone}}</p>
-            </div>
-
-            <!-- Biography Box -->
-            <div class="text-sm text-white border border-gray-700 p-2 rounded-md shadow-lg w-full">
-                <p>
-                    The Dr. <strong class="text-yellow-600">{{ doctor?.preferedName }}</strong> is a 
-                    <strong class="text-yellow-600">{{ doctor?.speciality }}</strong> specialist, 
-                    with a high performance and strong background in medicine. 
-                    Besides other particular experiences, he has been working 
-                    as a <strong class="text-yellow-600">{{ doctor?.speciality }}</strong> 
-                    for +3years.
-                </p>
-                <p class="text-yellow-600">
-                    Dr. {{doctor?.preferedName}} id: 
-                    <strong class="text-neutral-50">{{doctor?.id}}</strong>
-                </p>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="flex justify-end space-x-3 mt-4">
-            <button (click)="onClose()" class="bg-red-800 text-white-600 px-4 py-2 rounded-md hover:bg-red-700 transition">
-                Close
-            </button>
-            <button class="bg-blue-950 text-white px-4 py-2 rounded-md hover:bg-blue-900">
-                Contact
-            </button>
-        </div>
+<div *ngIf="isDoctorsModalOpen" class="modal-overlay">
+  <div class="modal-panel">
+    <div class="modal-panel-header">
+      <h3 class="modal-panel-title">{{ doctor?.fullName }}</h3>
+      <button (click)="onClose()" class="form-close-btn">
+        <i class="bi bi-x-circle text-xl"></i>
+      </button>
     </div>
+
+    <img [src]="doctor?.image" [alt]="doctor?.preferedName" class="avatar w-24 h-24 mx-auto" />
+
+    <div class="flex justify-between text-sm my-4 gap-4 w-full">
+      <div class="modal-info-box">
+        <p><i class="bi bi-person-lines-fill modal-icon-accent"></i> Dr. {{ doctor?.preferedName }}</p>
+        <p><i class="bi bi-heart-pulse-fill modal-icon-accent"></i> {{ doctor?.speciality }}</p>
+        <p><i class="bi bi-hospital-fill modal-icon-accent"></i> {{ doctor?.hospital }}</p>
+        <p><i class="bi bi-envelope-fill modal-icon-accent"></i> {{ doctor?.email }}</p>
+        <p><i class="bi bi-phone-fill modal-icon-accent"></i> {{ doctor?.phone }}</p>
+      </div>
+      <div class="modal-info-box w-full">
+        <p>
+          Dr. <span class="modal-highlight">{{ doctor?.preferedName }}</span> is a
+          <span class="modal-highlight">{{ doctor?.speciality }}</span> specialist with strong background in medicine.
+        </p>
+        <p class="modal-highlight">
+          Dr. {{ doctor?.preferedName }} id: <strong>{{ doctor?.id }}</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button (click)="onClose()" class="btn-danger">Close</button>
+      <button class="btn-primary">Contact</button>
+    </div>
+  </div>
 </div>
 
 <!-- Patients Modal Overlay -->
-<div *ngIf="isPatientsModalOpen" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 animate-fadeIn">
-  
-    <!-- Patients Modal Box -->
-    <div class="bg-gray-900 text-white rounded-lg shadow-lg p-4 w-[90%] max-w-md animate-fadeIn">
-        <!-- Header -->
-        <div class="flex justify-between items-center border-b border-b-blue-950 pb-2 mb-4">
-            <h3 class="text-xl font-semibold text-yellow-600">{{ doctor?.fullName }}</h3>
-            <button (click)="onClose()" class="text-white hover:text-red-700 text-2xl">
-                <i class="bi bi-x-circle text-xl"></i>
-            </button>
-        </div>
-
-        <!-- Body details -->
-        <!-- Image -->
-        <div>
-            <img [src]="patient?.image" [alt]="patient?.preferedName" class="object-cover w-24 h-24 rounded-full border border-white mx-auto">
-        </div>
-        <div class="flex justify-between text-sm my-4 space-x-4 text-white w-full">
-            <!-- Doctor's information -->
-            <div class="border border-gray-700 p-2 rounded-md shadow-lg">
-                <p><strong><i class="bi bi-person-lines-fill text-yellow-600"></i></strong> {{patient?.preferedName}}</p>
-                <p><strong><i class="bi bi-envelope-fill text-yellow-600"></i></strong> {{patient?.email}}</p>
-                <p><strong><i class="bi bi-phone-fill text-yellow-600"></i></strong> {{patient?.phone}}</p>
-            </div>
-
-            <!-- Biography Box -->
-            <div class="text-sm text-white border border-gray-700 p-2 rounded-md shadow-lg w-full">
-                <p>
-                    <strong class="text-yellow-600">{{ patient?.preferedName }}</strong> is a patient in 
-                    Heal Africa hospital, with blood group <strong>{{patient?.bloodGroup}}</strong>
-                    , please check him in <strong>{{patient?.department}} department</strong>
-                </p>
-                <p class="text-yellow-600">
-                    {{patient?.preferedName}} id: 
-                    <strong class="text-neutral-50">{{patient?.id}}</strong>
-                </p>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="flex justify-end space-x-3 mt-4">
-            <button (click)="onClose()" class="bg-red-800 text-white-600 px-4 py-2 rounded-md hover:bg-red-700 transition">
-                Close
-            </button>
-            <button class="bg-blue-950 text-white px-4 py-2 rounded-md hover:bg-blue-900">
-                Contact
-            </button>
-        </div>
+<div *ngIf="isPatientsModalOpen" class="modal-overlay">
+  <div class="modal-panel animate-fadeIn">
+    <div class="modal-panel-header">
+      <h3 class="modal-panel-title">{{ patient?.fullName }}</h3>
+      <button (click)="onClose()" class="form-close-btn">
+        <i class="bi bi-x-circle text-xl"></i>
+      </button>
     </div>
+
+    <img [src]="patient?.image" [alt]="patient?.preferedName" class="avatar w-24 h-24 mx-auto" />
+
+    <div class="flex justify-between text-sm my-4 gap-4 w-full">
+      <div class="modal-info-box">
+        <p><i class="bi bi-person-lines-fill modal-icon-accent"></i> {{ patient?.preferedName }}</p>
+        <p><i class="bi bi-envelope-fill modal-icon-accent"></i> {{ patient?.email }}</p>
+        <p><i class="bi bi-phone-fill modal-icon-accent"></i> {{ patient?.phone }}</p>
+      </div>
+      <div class="modal-info-box w-full">
+        <p>
+          <span class="modal-highlight">{{ patient?.preferedName }}</span> is a patient in Heal Africa hospital,
+          blood group <strong>{{ patient?.bloodGroup }}</strong>, department <strong>{{ patient?.department }}</strong>.
+        </p>
+        <p class="modal-highlight">
+          {{ patient?.preferedName }} id: <strong>{{ patient?.id }}</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button (click)="onClose()" class="btn-danger">Close</button>
+      <button class="btn-primary">Contact</button>
+    </div>
+  </div>
 </div>

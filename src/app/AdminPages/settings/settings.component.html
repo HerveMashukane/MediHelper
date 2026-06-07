@@ -1,319 +1,89 @@
-<section class="p-8 bg-[#0a0f1c] text-white min-h-screen animate-pageFlip">
+<section class="page-container animate-pageFlip">
+  <app-page-header title="Admin Settings" subtitle="Manage your platform configuration">
+    <app-button variant="danger">Reset</app-button>
+    <app-button variant="primary">Save</app-button>
+  </app-page-header>
 
-  <!-- HEADER -->
-  <div class="flex items-center justify-between mb-8">
-    <div>
-      <h1 class="text-3xl font-semibold tracking-tight">Admin Settings</h1>
-      <p class="text-gray-400 text-sm">Manage your platform like a pro</p>
-    </div>
-
-    <div class="flex gap-3">
-      <button class="bg-red-700 hover:bg-red-800 text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1">
-        Reset
-      </button>
-      <button class="bg-sky-500 hover:bg-sky-600 text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1">
-        Save
-      </button>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-5 gap-6">
-
-    <!-- SIDEBAR -->
-    <aside class="col-span-1 bg-[#0f172a] rounded-2xl p-3 border border-gray-800">
-
+  <div class="settings-layout">
+    <aside class="settings-sidebar">
       <div class="space-y-6 text-sm">
-
         <div>
-          <p class="menu-title">Core</p>
-          <button 
-            (click)="activeTab='organization'" 
-            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-sky-600 hover:font-semibold transition cursor-pointer mb-4" 
-            [ngClass]="activeTab==='organization' ? 'menu bg-gray-800 text-sky-500 font-semibold' : 'menu'">
-            Organization
-          </button>
-          <button 
-            (click)="activeTab='users'" 
-            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-sky-600 hover:font-semibold transition cursor-pointer mb-4"
-            [ngClass]="activeTab==='users' ? 'menu bg-gray-800 text-sky-500 font-semibold' : 'menu'">
-            Users
-          </button>
+          <p class="settings-section-title">Core</p>
+          <button (click)="activeTab='organization'" [ngClass]="activeTab==='organization' ? 'settings-tab-active' : 'settings-tab'">Organization</button>
+          <button (click)="activeTab='users'" [ngClass]="activeTab==='users' ? 'settings-tab-active' : 'settings-tab'">Users</button>
         </div>
-
         <div>
-          <p class="menu-title">Clinical</p>
-          <button 
-            (click)="activeTab='clinical'" 
-            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-sky-600 hover:font-semibold transition cursor-pointer mb-4"
-            [ngClass]="activeTab==='clinical' ? 'menu bg-gray-800 text-sky-500 font-semibold' : 'menu'">
-            Clinical
-          </button>
-          <button 
-            (click)="activeTab='services'" 
-            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-sky-600 hover:font-semibold transition cursor-pointer mb-4"
-            [ngClass]="activeTab==='services' ? 'menu bg-gray-800 text-sky-500 font-semibold' : 'menu'">
-            Services
-          </button>
+          <p class="settings-section-title">Clinical</p>
+          <button (click)="activeTab='clinical'" [ngClass]="activeTab==='clinical' ? 'settings-tab-active' : 'settings-tab'">Clinical</button>
+          <button (click)="activeTab='services'" [ngClass]="activeTab==='services' ? 'settings-tab-active' : 'settings-tab'">Services</button>
         </div>
-
         <div>
-          <p class="menu-title">System</p>
-          <button 
-            (click)="activeTab='security'" 
-            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-sky-600 hover:font-semibold transition cursor-pointer mb-4"
-            [ngClass]="activeTab==='security' ? 'menu bg-gray-800 text-sky-500 font-semibold' : 'menu'">
-            Security
-          </button>
-          <button 
-            (click)="activeTab='integrations'" 
-            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-sky-600 hover:font-semibold transition cursor-pointer mb-4"
-            [ngClass]="activeTab==='integrations' ? 'menu bg-gray-800 text-sky-500 font-semibold' : 'menu'">
-            Integrations
-          </button>
+          <p class="settings-section-title">System</p>
+          <button (click)="activeTab='security'" [ngClass]="activeTab==='security' ? 'settings-tab-active' : 'settings-tab'">Security</button>
+          <button (click)="activeTab='integrations'" [ngClass]="activeTab==='integrations' ? 'settings-tab-active' : 'settings-tab'">Integrations</button>
         </div>
-
       </div>
-
     </aside>
 
-    <!-- CONTENT -->
-    <div class="col-span-4 space-y-6">
-
-      <!-- ORGANIZATION -->
-      <div *ngIf="activeTab==='organization'" class="card fade-in">
-        <h2 class="title">Organization</h2>
-
-        <div class="grid grid-cols-2 gap-4">
-          <input class="input" placeholder="Hospital Name" class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
-          <input class="input" placeholder="License" class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
-        </div>
-
-        <input class="input" placeholder="Address" class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
-
-        <div class="toggle-row">
-          <span>Multi-Branch</span>
-          <label class="switch">
-            <input type="checkbox" class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
-            <span class="slider"></span>
-          </label>
-        </div>
+    <div class="settings-panel animate-fadeIn" *ngIf="activeTab==='organization'">
+      <h2 class="settings-panel-title">Organization</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input class="clinical-input" placeholder="Hospital Name" />
+        <input class="clinical-input" placeholder="License" />
       </div>
-
-      <!-- USERS -->
-      <div *ngIf="activeTab==='users'" class="card fade-in">
-        <h2 class="title">Users & Roles</h2>
-
-        <div class="toggle-row">
-          <span>Enable RBAC</span>
-          <label class="switch">
-            <input type="checkbox" checked class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="flex justify-between items-center">
-          <span>Session Timeout</span>
-          <input class="input w-24" type="number" value="30" class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
-        </div>
+      <input class="clinical-input" placeholder="Address" />
+      <div class="toggle-row">
+        <span>Multi-Branch</span>
+        <label class="toggle-switch">
+          <input type="checkbox" />
+          <span class="toggle-slider"></span>
+        </label>
       </div>
+    </div>
 
-      <!-- SECURITY -->
-      <div *ngIf="activeTab==='security'" class="card fade-in">
-        <h2 class="title">Security</h2>
-
-        <div class="toggle-row">
-          <span>2FA</span>
-          <label class="switch">
-            <input type="checkbox" checked class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="toggle-row">
-          <span>Strong Passwords</span>
-          <label class="switch">
-            <input type="checkbox" checked class="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
-            <span class="slider"></span>
-          </label>
-        </div>
+    <div class="settings-panel animate-fadeIn" *ngIf="activeTab==='users'">
+      <h2 class="settings-panel-title">Users & Roles</h2>
+      <div class="toggle-row">
+        <span>Enable RBAC</span>
+        <label class="toggle-switch">
+          <input type="checkbox" checked />
+          <span class="toggle-slider"></span>
+        </label>
       </div>
-
-      <!-- INTEGRATIONS -->
-      <div *ngIf="activeTab==='integrations'" class="card fade-in">
-        <h2 class="title">Integrations</h2>
-
-        <div class="integration">
-          <span>Stripe</span>
-          <button class="bg-sky-500 hover:bg-sky-600 text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1">
-            Connect
-          </button>
-        </div>
-
-        <div class="integration">
-          <span>Google</span>
-          <button class="bg-sky-500 hover:bg-sky-600 text-white py-1 px-3 rounded-md mt-2 transition flex items-center space-x-1">
-            Connect
-          </button>
-        </div>
+      <div class="toggle-row">
+        <span>Session Timeout</span>
+        <input class="clinical-input w-24" type="number" value="30" />
       </div>
+    </div>
 
+    <div class="settings-panel animate-fadeIn" *ngIf="activeTab==='security'">
+      <h2 class="settings-panel-title">Security</h2>
+      <div class="toggle-row">
+        <span>2FA</span>
+        <label class="toggle-switch">
+          <input type="checkbox" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span>Strong Passwords</span>
+        <label class="toggle-switch">
+          <input type="checkbox" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-panel animate-fadeIn" *ngIf="activeTab==='integrations'">
+      <h2 class="settings-panel-title">Integrations</h2>
+      <div class="integration-row">
+        <span>Stripe</span>
+        <button class="btn-primary btn-sm">Connect</button>
+      </div>
+      <div class="integration-row">
+        <span>Google</span>
+        <button class="btn-primary btn-sm">Connect</button>
+      </div>
     </div>
   </div>
-
 </section>
-
-<style>
-  /* MENU */
-  .menu {
-    width: 100%;
-    text-align: left;
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: #9ca3af;
-    transition: background 0.2s;
-  }
-  .menu:hover {
-    background: #1f2937;
-  }
-
-  .menu-active {
-    width: 100%;
-    text-align: left;
-    padding: 8px 12px;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-  }
-
-  /* MENU TITLE */
-  .menu-title {
-    font-size: 12px;
-    color: #6b7280;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-  }
-
-  /* CARD */
-  .card {
-    background: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  /* TITLE */
-  .title {
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  /* INPUT */
-  .input {
-    background: #020617;
-    border: 1px solid #374151;
-    border-radius: 8px;
-    padding: 12px;
-    outline: none;
-    width: 100%;
-  }
-  .input:focus {
-    border-color: #3b82f6;
-  }
-
-  /* BUTTONS */
-  .btn-primary {
-    background: #2563eb;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: background 0.2s;
-  }
-  .btn-primary:hover {
-    background: #3b82f6;
-  }
-
-  .btn-ghost {
-    background: #1f2937;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: background 0.2s;
-  }
-  .btn-ghost:hover {
-    background: #374151;
-  }
-
-  /* TOGGLE SWITCH */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 42px;
-    height: 22px;
-  }
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    background-color: #374151;
-    transition: .3s;
-    border-radius: 999px;
-  }
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .3s;
-    border-radius: 50%;
-  }
-  input:checked + .slider {
-    background-color: #2563eb;
-  }
-  input:checked + .slider:before {
-    transform: translateX(20px);
-  }
-
-  /* ROW */
-  .toggle-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  /* INTEGRATION ROW */
-  .integration {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #020617;
-    border: 1px solid #1f2937;
-    padding: 12px;
-    border-radius: 12px;
-  }
-
-  /* ANIMATION */
-  .fade-in {
-    animation: fadeIn .3s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

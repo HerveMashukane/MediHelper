@@ -1,306 +1,121 @@
-<section class="p-8 bg-gray-950 text-white min-h-screen space-y-8 animate-pageFlip">
+<section class="page-container animate-pageFlip">
+  <app-page-header
+    title="Billing Dashboard"
+    subtitle="Track invoices, payments, and revenue trends"
+  >
+    <input type="search" placeholder="Search invoices, clients..." class="clinical-input max-w-xs" />
+    <app-button variant="primary">+ New Invoice</app-button>
+  </app-page-header>
 
-  <!-- HEADER -->
-  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-    <div>
-      <h1 class="text-3xl font-semibold">Billing Dashboard</h1>
-      <p class="text-gray-400 text-sm">
-        Track invoices, payments, and revenue trends
-      </p>
-    </div>
-
-    <div class="flex gap-3">
-      <input
-        type="search"
-        placeholder="Search invoices, clients..."
-        class="px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
-      />
-      <button class="bg-sky-500 hover:bg-sky-600 px-4 py-2 rounded-lg text-sm font-medium transition">
-        + New Invoice
-      </button>
-    </div>
-  </div>
-
-  <!-- KPI CARDS -->
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
-
-    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-      <p class="text-gray-400 text-sm">Total Revenue</p>
+  <div class="kpi-grid-4">
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Total Revenue</p>
       <h2 class="text-2xl font-semibold mt-2">$25,400</h2>
-      <span class="text-xs text-green-400">+12% this month</span>
+      <span class="text-xs kpi-accent-patient">+12% this month</span>
     </div>
-
-    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-      <p class="text-gray-400 text-sm">Pending Invoices</p>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Pending Invoices</p>
       <h2 class="text-2xl font-semibold mt-2">8</h2>
-      <span class="text-xs text-yellow-400">Needs follow-up</span>
+      <span class="text-xs kpi-accent-medication">Needs follow-up</span>
     </div>
-
-    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-      <p class="text-gray-400 text-sm">Paid Invoices</p>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Paid Invoices</p>
       <h2 class="text-2xl font-semibold mt-2">32</h2>
-      <span class="text-xs text-sky-500">On time</span>
+      <span class="text-xs kpi-accent-appointment">On time</span>
     </div>
-
-    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
-      <p class="text-gray-400 text-sm">Overdue</p>
+    <div class="clinical-card p-5">
+      <p class="text-clinical-muted text-sm">Overdue</p>
       <h2 class="text-2xl font-semibold mt-2">3</h2>
-      <span class="text-xs text-red-400">Urgent</span>
+      <span class="text-xs kpi-accent-critical">Urgent</span>
     </div>
-
   </div>
 
-  <!-- REVENUE CHART -->
-  <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 mt-6">
-    <h2 class="text-lg font-semibold mb-4">Revenue Trends</h2>
-
+  <div class="chart-panel">
+    <h2 class="chart-title">Revenue Trends</h2>
     <div class="space-y-4">
-
-      <!-- bars -->
-      <div class="flex items-end gap-3 h-40">
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 60%"></div>
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 80%"></div>
-
-        <div class="w-10 bg-green-600 rounded-t"
-            style="height: 50%"></div>
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 90%"></div>
-
-        <div class="w-10 bg-yellow-600 rounded-t"
-            style="height: 70%"></div>
-
-        <div class="w-10 bg-green-500 rounded-t"
-            style="height: 95%"></div>
-            <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 50%"></div>
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 30%"></div>
-
-        <div class="w-10 bg-green-600 rounded-t"
-            style="height: 40%"></div>
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 90%"></div>
-
-        <div class="w-10 bg-yellow-600 rounded-t"
-            style="height: 70%"></div>
-
-        <div class="w-10 bg-green-500 rounded-t"
-            style="height: 98%"></div>
-            <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 10%"></div>
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 47%"></div>
-
-        <div class="w-10 bg-green-600 rounded-t"
-            style="height: 80%"></div>
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 85%"></div>
-
-        <div class="w-10 bg-yellow-600 rounded-t"
-            style="height: 70%"></div>
-
-        <div class="w-10 bg-green-500 rounded-t"
-            style="height: 15%"></div>
-            <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 20%"></div>
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 30%"></div>
-
-        <div class="w-10 bg-green-600 rounded-t"
-            style="height: 40%"></div>
-
-        <div class="w-10 bg-sky-600 rounded-t"
-            style="height: 50%"></div>
-
-        <div class="w-10 bg-yellow-600 rounded-t"
-            style="height: 60%"></div>
-
-        <div class="w-10 bg-green-500 rounded-t"
-            style="height: 80%"></div>
-            
-
+      <div class="chart-bars">
+        <div class="chart-bar-primary" style="height: 60%"></div>
+        <div class="chart-bar-primary" style="height: 80%"></div>
+        <div class="chart-bar-success" style="height: 50%"></div>
+        <div class="chart-bar-primary" style="height: 90%"></div>
+        <div class="chart-bar-warning" style="height: 70%"></div>
+        <div class="chart-bar-success" style="height: 95%"></div>
       </div>
-
-      <!-- labels -->
-      <div class="flex justify-between text-xs text-gray-400">
-        <span>Jan</span>
-        <span>Feb</span>
-        <span>Mar</span>
-        <span>Apr</span>
-        <span>May</span>
-        <span>Jun</span>
+      <div class="chart-labels">
+        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
       </div>
-
     </div>
   </div>
 
-  <!-- MAIN GRID -->
-  <div class="grid grid-cols-3 gap-6 mt-6">
-
-    <!-- LEFT -->
-    <div class="col-span-2 space-y-6">
-
-      <!-- FILTERS -->
-      <div class="flex gap-3 mb-4">
-        <select class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500">
+  <div class="content-grid-3">
+    <div class="content-main">
+      <div class="filter-row">
+        <select class="clinical-input max-w-xs">
           <option>All Status</option>
           <option>Paid</option>
           <option>Pending</option>
           <option>Overdue</option>
         </select>
-
-        <input
-          type="month"
-          class="bg-gray-900 border border-gray-700 text-white text-sm px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-        />
+        <input type="month" class="clinical-input max-w-xs" />
       </div>
 
-      <!-- TABLE -->
-      <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
-
-        <div class="p-6">
-          <h2 class="text-lg font-semibold">Recent Invoices</h2>
+      <div class="table-wrapper">
+        <div class="table-section-header">
+          <h2 class="table-section-title">Recent Invoices</h2>
         </div>
-
-        <table class="w-full text-left">
-
-          <thead class="bg-gray-800 text-gray-300 text-sm">
+        <table class="table text-left">
+          <thead class="table-head">
             <tr>
-              <th class="p-4">Invoice #</th>
-              <th class="p-4">Client</th>
-              <th class="p-4">Amount</th>
-              <th class="p-4">Due Date</th>
-              <th class="p-4">Status</th>
-              <th class="p-4">Actions</th>
+              <th class="table-cell">Invoice #</th>
+              <th class="table-cell">Client</th>
+              <th class="table-cell">Amount</th>
+              <th class="table-cell">Due Date</th>
+              <th class="table-cell">Status</th>
+              <th class="table-cell">Actions</th>
             </tr>
           </thead>
-
           <tbody>
-
-            <tr
-              *ngFor="let invoice of invoices; let i = index"
-              class="border-t border-gray-800 hover:bg-gray-800 transition"
-            >
-
-              <td class="p-4 font-medium">{{ invoice.id }}</td>
-              <td class="p-4">{{ invoice.client }}</td>
-              <td class="p-4">${{ invoice.amount }}</td>
-              <td class="p-4">{{ invoice.dueDate }}</td>
-
-              <!-- STATUS -->
-              <td class="p-4">
-                <span
-                  class="px-3 py-1 text-xs rounded-full font-semibold"
-                  [ngClass]="{
-                    'bg-green-700 text-white': invoice.status === 'Paid',
-                    'bg-yellow-700 text-white': invoice.status === 'Pending',
-                    'bg-red-700 text-white': invoice.status === 'Overdue'
-                  }"
-                >
-                  {{ invoice.status }}
-                </span>
+            <tr *ngFor="let invoice of invoices; let i = index" class="table-row">
+              <td class="table-cell font-medium">{{ invoice.id }}</td>
+              <td class="table-cell">{{ invoice.client }}</td>
+              <td class="table-cell">${{ invoice.amount }}</td>
+              <td class="table-cell">{{ invoice.dueDate }}</td>
+              <td class="table-cell">
+                <span [ngClass]="getStatusClass(invoice.status)">{{ invoice.status }}</span>
               </td>
-
-              <!-- ACTIONS (3 DOT MENU) -->
-              <td class="p-4 relative">
-
-                <button
-                  (click)="toggleMenu(i)"
-                  class="bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-md text-white transition"
-                >
-                  ⋮
-                </button>
-
-                <div
-                  *ngIf="activeMenuIndex === i"
-                  class="absolute right-2 mt-2 w-44 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 overflow-hidden"
-                >
-
-                  <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-white">
-                    View Invoice
-                  </button>
-
-                  <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-sky-500">
-                    Send
-                  </button>
-
-                  <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-green-400">
-                    Export
-                  </button>
-
-                  <button class="w-full text-left px-4 py-2 hover:bg-gray-800 text-red-400">
-                    Mark Overdue
-                  </button>
-
+              <td class="table-cell relative">
+                <button (click)="toggleMenu(i)" class="btn-icon">⋮</button>
+                <div *ngIf="activeMenuIndex === i" class="dropdown-menu">
+                  <button class="dropdown-item-neutral">View Invoice</button>
+                  <button class="dropdown-item-send">Send</button>
+                  <button class="dropdown-item-export">Export</button>
+                  <button class="dropdown-item-delete">Mark Overdue</button>
                 </div>
-
               </td>
-
             </tr>
-
           </tbody>
-
         </table>
-
       </div>
-
     </div>
 
-    <!-- RIGHT PANEL -->
     <div class="space-y-6">
-
-      <!-- QUICK ACTIONS -->
-      <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-        <h2 class="text-lg font-semibold mb-4">Quick Actions</h2>
-
-        <div class="flex flex-col gap-3">
-          <button class="bg-sky-500 hover:bg-sky-600 py-2 px-4 rounded-lg transition">
-            Create Invoice
-          </button>
-          <button class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-lg transition">
-            Send Reminder
-          </button>
-          <button class="bg-red-700 hover:bg-red-600 py-2 px-4 rounded-lg transition">
-            Mark Overdue
-          </button>
-          <button class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-lg transition">
-            Export CSV
-          </button>
+      <div class="clinical-card p-6">
+        <h2 class="table-section-title mb-4">Quick Actions</h2>
+        <div class="action-stack">
+          <button class="btn-primary">Create Invoice</button>
+          <button class="btn-secondary">Send Reminder</button>
+          <button class="btn-danger">Mark Overdue</button>
+          <button class="btn-ghost">Export CSV</button>
         </div>
       </div>
-
-      <!-- MONTHLY REVENUE -->
-      <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-        <h2 class="text-lg font-semibold mb-4">Monthly Revenue</h2>
-
+      <div class="clinical-card p-6">
+        <h2 class="table-section-title mb-4">Monthly Revenue</h2>
         <div class="space-y-2 text-sm">
-          <div class="flex justify-between">
-            <span>March 2026</span>
-            <span class="text-green-400">$12,000</span>
-          </div>
-
-          <div class="flex justify-between">
-            <span>February 2026</span>
-            <span class="text-green-400">$9,500</span>
-          </div>
-
-          <div class="flex justify-between">
-            <span>January 2026</span>
-            <span class="text-green-400">$10,000</span>
-          </div>
+          <div class="summary-row"><span>March 2026</span><span class="summary-value-success">$12,000</span></div>
+          <div class="summary-row"><span>February 2026</span><span class="summary-value-success">$9,500</span></div>
+          <div class="summary-row"><span>January 2026</span><span class="summary-value-success">$10,000</span></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
