@@ -2,27 +2,186 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .page-container {
-    @apply p-6 md:p-8 bg-slate-950 text-slate-100 min-h-full rounded-xl;
+/* ================= BASE SYSTEM ================= */
+@layer base {
+  body {
+    @apply bg-surface-0 text-neutral-100 font-sans;
   }
 
-  .clinical-card {
-    @apply bg-slate-900 rounded-xl border border-slate-800;
+  h1 {
+    @apply font-heading text-3xl font-semibold text-neutral-50;
   }
 
-  .clinical-input {
-    @apply bg-slate-950 text-white border border-slate-700 rounded-lg px-3 py-2 w-full
-      focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition;
+  h2 {
+    @apply font-heading text-2xl font-semibold text-neutral-100;
   }
 
-  .text-clinical-muted {
-    @apply text-slate-400;
+  h3 {
+    @apply font-heading text-xl font-semibold text-neutral-200;
+  }
+
+  p {
+    @apply text-sm text-neutral-400;
   }
 }
 
-body {
-  font-family: Inter, system-ui, Arial, Helvetica, sans-serif;
-  background-color: rgb(2 6 23);
-  color: rgb(226 232 240);
+/* ================= LAYOUT SYSTEM ================= */
+@layer components {
+
+  .page-container {
+    @apply min-h-screen p-6 md:p-8 bg-surface-0;
+  }
+
+  .page-header {
+    @apply flex items-center justify-between mb-6;
+  }
+
+  .section {
+    @apply space-y-4 mb-6;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+}
+
+/* ================= CARD SYSTEM ================= */
+@layer components {
+
+  .clinical-card {
+    @apply bg-surface-1 border border-surface-2 rounded-xl shadow-card p-5;
+  }
+
+  .card-hover {
+    @apply hover:border-brand-primary transition duration-250;
+  }
+
+  .kpi-card {
+    @apply clinical-card cursor-pointer;
+  }
+
+  .kpi-value {
+    @apply text-2xl font-semibold mt-2;
+  }
+
+  .kpi-label {
+    @apply text-sm text-neutral-400;
+  }
+
+  .kpi-trend {
+    @apply text-xs mt-1;
+  }
+}
+
+/* ================= BUTTON SYSTEM ================= */
+@layer components {
+
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-medium transition duration-250;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-primary text-white hover:bg-blue-700;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger text-white hover:bg-red-600;
+  }
+
+  .btn-success {
+    @apply btn bg-success text-white hover:opacity-90;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-neutral-300 hover:bg-surface-2;
+  }
+}
+
+/* ================= STATUS SYSTEM ================= */
+@layer components {
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-online {
+    @apply bg-success;
+  }
+
+  .status-offline {
+    @apply bg-danger;
+  }
+
+  .status-warning {
+    @apply bg-warning;
+  }
+
+  .status-text-online {
+    @apply text-success;
+  }
+
+  .status-text-offline {
+    @apply text-danger;
+  }
+}
+
+/* ================= ALERT SYSTEM ================= */
+@layer components {
+
+  .alert {
+    @apply p-4 rounded-xl border flex items-center justify-between;
+  }
+
+  .alert-critical {
+    @apply alert bg-danger/10 border-danger/40 text-red-200;
+  }
+
+  .alert-warning {
+    @apply alert bg-warning/10 border-warning/40 text-yellow-200;
+  }
+
+  .alert-info {
+    @apply alert bg-info/10 border-info/30 text-sky-200;
+  }
+}
+
+/* ================= FORM SYSTEM ================= */
+@layer components {
+
+  .form-group {
+    @apply space-y-1 mb-4;
+  }
+
+  .label {
+    @apply block text-sm text-neutral-300;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 rounded-xl bg-surface-2 border border-surface-3
+           text-neutral-100 focus:outline-none focus:ring-2 focus:ring-brand-primary;
+  }
+}
+
+/* ================= TABLE SYSTEM ================= */
+@layer components {
+
+  .table-wrapper {
+    @apply w-full overflow-hidden rounded-xl border border-surface-2;
+  }
+
+  .table {
+    @apply w-full text-left text-sm;
+  }
+
+  .table-head {
+    @apply bg-surface-2 text-neutral-300;
+  }
+
+  .table-row {
+    @apply border-t border-surface-2 hover:bg-surface-2/60;
+  }
+
+  .table-cell {
+    @apply p-4;
+  }
 }
