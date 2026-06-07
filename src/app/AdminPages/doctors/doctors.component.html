@@ -1,5 +1,10 @@
 <section class="page-container animate-pageFlip">
-  <app-page-header [title]="'Doctors'" [subtitle]="filteredDoctors.length + ' registered'">
+
+  <!-- ================= HEADER ================= -->
+  <app-page-header
+    [title]="'Doctors'"
+    [subtitle]="filteredDoctors.length + ' registered'"
+  >
     <app-button
       [variant]="isFormVisible ? 'danger' : 'primary'"
       (clicked)="toggleForm()"
@@ -8,9 +13,20 @@
     </app-button>
   </app-page-header>
 
+  <!-- ================= FILTER BAR ================= -->
   <div class="flex flex-col sm:flex-row gap-4 mb-6">
-    <input type="search" [(ngModel)]="searchDoctor" placeholder="Search doctor..." class="clinical-input max-w-md" />
-    <select [(ngModel)]="selectedSpeciality" class="clinical-input max-w-xs">
+
+    <input
+      type="search"
+      [(ngModel)]="searchDoctor"
+      placeholder="Search doctor..."
+      class="clinical-input max-w-md"
+    />
+
+    <select
+      [(ngModel)]="selectedSpeciality"
+      class="clinical-input max-w-xs"
+    >
       <option value="All">All specialists</option>
       <option value="Generalist">Generalist</option>
       <option value="Cardiologist">Cardiologist</option>
@@ -19,31 +35,93 @@
       <option value="Surgeon">Surgeon</option>
       <option value="Oncologist">Oncologist</option>
     </select>
+
   </div>
 
+  <!-- ================= DOCTOR GRID ================= -->
   @if (filteredDoctors.length > 0) {
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
       @for (doctor of filteredDoctors; track doctor.id) {
-        <div class="clinical-card p-4 flex flex-col items-center text-center">
-          <p class="text-sm text-slate-400 italic">Dr. {{ doctor.preferedName }}</p>
+
+        <div class="clinical-card text-center card-hover">
+
+          <!-- SPECIAL TITLE -->
+          <p class="text-sm text-clinical-muted italic">
+            Dr. {{ doctor.preferedName }}
+          </p>
+
+          <!-- IMAGE -->
           @if (doctor.image) {
-            <img [src]="doctor.image" [alt]="doctor.preferedName" class="w-20 h-20 rounded-full object-cover border border-slate-600 mt-2" />
+
+            <img
+              [src]="doctor.image"
+              [alt]="doctor.preferedName"
+              class="w-20 h-20 rounded-full object-cover border border-surface-3 mt-3 mx-auto"
+            />
+
+          } @else {
+
+            <div class="w-20 h-20 rounded-full bg-surface-2 flex items-center justify-center mt-3 mx-auto text-clinical-muted">
+              <i class="fa-solid fa-user-doctor text-2xl"></i>
+            </div>
+
           }
-          <p class="font-semibold text-white mt-2">{{ doctor.fullName }}</p>
-          <p class="text-sm text-slate-400">{{ doctor.speciality }}</p>
-          <div class="flex gap-2 mt-4">
-            <app-button size="sm" variant="primary" icon="bi bi-eye-fill" (clicked)="viewDoctor(doctor)" />
-            <app-button size="sm" variant="secondary" icon="bi bi-pen" (clicked)="editDoctor(doctor)" />
-            <app-button size="sm" variant="danger" icon="bi bi-trash" (clicked)="removeDoctor(doctor)" />
+
+          <!-- INFO -->
+          <p class="font-semibold mt-3 text-neutral-100">
+            {{ doctor.fullName }}
+          </p>
+
+          <p class="text-sm text-clinical-muted">
+            {{ doctor.speciality }}
+          </p>
+
+          <!-- ACTIONS -->
+          <div class="flex justify-center gap-2 mt-4">
+
+            <app-button
+              size="sm"
+              variant="primary"
+              icon="bi bi-eye-fill"
+              (clicked)="viewDoctor(doctor)"
+            />
+
+            <app-button
+              size="sm"
+              variant="secondary"
+              icon="bi bi-pen"
+              (clicked)="editDoctor(doctor)"
+            />
+
+            <app-button
+              size="sm"
+              variant="danger"
+              icon="bi bi-trash"
+              (clicked)="removeDoctor(doctor)"
+            />
+
           </div>
+
         </div>
+
       }
+
     </div>
+
   } @else {
-    <div class="clinical-card p-12 text-center text-clinical-muted">No doctors found.</div>
+
+    <!-- ================= EMPTY STATE ================= -->
+    <div class="clinical-card p-12 text-center text-clinical-muted">
+      No doctors found.
+    </div>
+
   }
+
 </section>
 
+<!-- ================= MODAL ================= -->
 <app-detail-modal
   [open]="isModalOpen"
   [title]="'Dr. ' + (selectedDoctor?.preferedName ?? '')"
@@ -53,6 +131,10 @@
   (close)="closeModel()"
 />
 
+<!-- ================= FORM ================= -->
 @if (isFormVisible) {
-  <app-doctors-form [doctor]="editingDoctor" (close)="toggleForm()" />
+  <app-doctors-form
+    [doctor]="editingDoctor"
+    (close)="toggleForm()"
+  />
 }
