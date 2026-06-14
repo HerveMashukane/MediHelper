@@ -1,13 +1,19 @@
-<div class="auth-shell">
+<div class="min-h-screen bg-slate-950 flex items-center justify-center p-4">
   <div class="clinical-card w-full max-w-md p-8">
-    <div class="text-center mb-6">
-      <h2 class="text-xl font-semibold text-white">MediHelper Sign In</h2>
+    <div class="text-center mb-2">
+      <!-- logo and text -->
+      <div class="flex justify-center items-center space-x-4">
+        <img src="assets/images/logo.svg" alt="logo" class="h-10">
+        <h2 class="text-xl font-semibold text-white">
+          MediHelper
+        </h2>
+      </div>
       <p class="text-clinical-muted text-sm mt-2">Hospital Operations Platform</p>
     </div>
 
     <form class="space-y-4" (ngSubmit)="login()">
       <div>
-        <label class="form-label">UserName</label>
+        <label class="block text-sm text-slate-300 mb-1">UserName</label>
         <input
           type="text"
           name="userName"
@@ -17,7 +23,7 @@
         />
       </div>
       <div>
-        <label class="form-label">Email</label>
+        <label class="block text-sm text-slate-300 mb-1">Email</label>
         <input
           type="email"
           name="email"
@@ -28,7 +34,7 @@
       </div>
 
       <div>
-        <label class="form-label">Password</label>
+        <label class="block text-sm text-slate-300 mb-1">Password</label>
         <input
           type="password"
           name="password"
@@ -39,7 +45,7 @@
       </div>
 
       <div>
-        <label class="form-label">Select Role</label>
+        <label class="block text-sm text-slate-300 mb-1">Select Role</label>
         <select [(ngModel)]="selectedRole" name="role" class="clinical-input w-full">
           @for (role of roles; track role) {
             <option [value]="role">{{ roleLabels[role] }}</option>
@@ -48,10 +54,10 @@
       </div>
 
       @if (errorMessage) {
-        <p class="text-sm text-clinical-error">{{ errorMessage }}</p>
+        <p class="text-sm text-red-400">{{ errorMessage }}</p>
       }
 
-      <button type="submit" class="btn-primary btn-lg w-full">
+      <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 transition py-2.5 rounded-lg font-medium text-white">
         Sign In
       </button>
     </form>
