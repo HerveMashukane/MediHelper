@@ -25,7 +25,7 @@ export class AuthService {
   constructor(private router: Router) {}
 
   login(userName: string, email: string, password: string, role: UserRole): boolean {
-    if (!userName.trim() || !email?.trim() || !password?.trim()) {
+    if (!userName.trim() || !email.trim() || !password.trim()) {
       return false;
     }
     const user: AuthUser = {
