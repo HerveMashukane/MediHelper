@@ -18,7 +18,7 @@ export class NavbarComponent {
   isDropdownOpen = false;
 
   readonly displayName = computed(() => this.auth.user()?.displayName ?? 'User');
-  readonly displayMail = computed(() => this.auth.user()?.displayMail ?? 'User');
+  readonly displayEmail = computed(() => this.auth.user()?.displayEmail ?? 'User');
   readonly roleLabel = computed(() => {
     const role = this.auth.role();
     return role ? ROLE_LABELS[role] : 'Guest';

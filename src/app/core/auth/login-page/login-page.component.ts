@@ -26,7 +26,7 @@ export class LoginPageComponent {
   login(): void {
     const ok = this.auth.login(this.userName, this.email, this.password, this.selectedRole);
     if (!ok) {
-      this.errorMessage = 'Enter email and password to continue.';
+      this.errorMessage = 'Fill out all fields to continue.';
     } else {
       this.errorMessage = '';
     }

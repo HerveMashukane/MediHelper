@@ -7,7 +7,7 @@ export interface AuthUser {
   userName: string;
   email: string;
   displayName: string;
-  displayMail: string;
+  displayEmail: string;
   role: UserRole;
   staffUnit?: 'pharmacy' | 'laboratory' | 'radiology';
 }
@@ -33,7 +33,7 @@ export class AuthService {
       userName: userName.trim(),
       email: email.trim(),
       displayName: userName,
-      displayMail: email,
+      displayEmail: email,
       role,
     };
     this.userSignal.set(user);
